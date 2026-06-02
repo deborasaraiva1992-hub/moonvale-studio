@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Moonvale Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>.portal-wrapper{
 display:flex;
 justify-content:center;
@@ -84,7 +87,7 @@ scroll-behavior:smooth;
 body{
 background:#050816;
 color:#f5f1e8;
-font-family:Georgia,serif;
+font-family:'Cormorant Garamond',serif;
 line-height:1.6;
 }
 
@@ -235,7 +238,48 @@ color:#d8c08a;
 letter-spacing:3px;
 margin-bottom:10px;
 }
+.logo,
+.menu a,
+.hero h1,
+.section-title{
+font-family:'Cinzel',serif;
+}
 
+.portal-card h3{
+font-family:'Cinzel',serif;
+}
+
+.portal-card p{
+font-family:'Cormorant Garamond',serif;
+font-size:1.05rem;
+}
+
+.scroll-indicator{
+margin-top:55px;
+text-align:center;
+color:#d8c08a;
+letter-spacing:3px;
+font-size:.75rem;
+}
+
+.scroll-indicator .star{
+display:block;
+font-size:1rem;
+margin-bottom:8px;
+}
+
+.scroll-indicator .arrow{
+display:block;
+font-size:1.4rem;
+margin-top:8px;
+animation:floatArrow 2s infinite ease-in-out;
+}
+
+@keyframes floatArrow{
+0%{transform:translateY(0);}
+50%{transform:translateY(8px);}
+100%{transform:translateY(0);}
+}
 @media(max-width:900px){
 
 .menu{
@@ -300,9 +344,13 @@ MOONVALE
 </div>
 
 <div class="scroll-indicator">
-⌄
-<br>
+
+<span class="star">✦</span>
+
 SCROLL TO DISCOVER
+
+<span class="arrow">⌄</span>
+
 </div>
 
 </div>
@@ -317,13 +365,21 @@ FEATURED COLLECTIONS
 
 <div class="grid">
 
-<div class="card">Ethernia Collection</div>
+<div class="card">
+Ethernia Collection
+</div>
 
-<div class="card">Fantasy Collection</div>
+<div class="card">
+Fantasy Collection
+</div>
 
-<div class="card">Artefacts Collection</div>
+<div class="card">
+Artefacts Collection
+</div>
 
-<div class="card">Chronicles Collection</div>
+<div class="card">
+Chronicles Collection
+</div>
 
 </div>
 
