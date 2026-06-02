@@ -14,41 +14,64 @@ padding:0;
 box-sizing:border-box;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:#050816;
-color:white;
-font-family:Georgia, serif;
+color:#f5f1e8;
+font-family:Georgia,serif;
+line-height:1.6;
 }
 
 nav{
 position:fixed;
 top:0;
+left:0;
 width:100%;
-padding:20px 30px;
+padding:20px 40px;
+background:rgba(5,8,22,.75);
+backdrop-filter:blur(12px);
+z-index:1000;
+}
+
+.nav-container{
+max-width:1400px;
+margin:auto;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,.35);
-backdrop-filter:blur(10px);
-z-index:999;
 }
 
 .logo{
-font-size:1.6rem;
+font-size:1.4rem;
 letter-spacing:4px;
 font-weight:bold;
+color:#d8c08a;
 }
 
 .menu{
 display:flex;
-gap:20px;
+gap:24px;
+align-items:center;
 }
 
 .menu a{
-color:white;
 text-decoration:none;
+color:#f5f1e8;
 font-size:.9rem;
-opacity:.8;
+letter-spacing:1px;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#d8c08a;
+}
+
+.lang{
+color:#d8c08a;
+font-size:.85rem;
 }
 
 .hero{
@@ -58,57 +81,60 @@ align-items:center;
 justify-content:center;
 text-align:center;
 padding:20px;
+
 background:
 linear-gradient(
-rgba(2,6,23,.65),
-rgba(2,6,23,.85)
+rgba(5,8,22,.55),
+rgba(5,8,22,.85)
 );
 }
 
 .hero-content{
-max-width:800px;
+max-width:900px;
 }
 
 .hero h1{
 font-size:4rem;
-margin-bottom:20px;
+letter-spacing:4px;
+margin-bottom:25px;
 }
 
-.hero p{
-font-size:1.2rem;
-opacity:.85;
-max-width:650px;
-margin:auto;
-line-height:1.8;
-}
-
-.buttons{
-margin-top:40px;
+.hero-buttons{
 display:flex;
 justify-content:center;
-gap:15px;
+gap:18px;
 flex-wrap:wrap;
+margin-top:30px;
 }
 
 .btn{
-padding:14px 28px;
-border:1px solid rgba(255,255,255,.25);
+padding:14px 30px;
+border:1px solid #d8c08a;
 border-radius:50px;
-color:white;
 text-decoration:none;
+color:#f5f1e8;
+transition:.3s;
+}
+
+.btn:hover{
+background:#d8c08a;
+color:#050816;
 }
 
 .section{
-padding:120px 30px;
+padding:110px 30px;
+max-width:1400px;
+margin:auto;
+}
+
+.section-title{
 text-align:center;
+font-size:2rem;
+margin-bottom:50px;
+letter-spacing:2px;
 }
 
-.section h2{
-margin-bottom:40px;
-font-size:2.2rem;
-}
-
-.cards{
+.grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
@@ -116,33 +142,45 @@ gap:25px;
 
 .card{
 height:260px;
-border:1px solid rgba(255,255,255,.12);
+border:1px solid rgba(216,192,138,.25);
 border-radius:20px;
+background:rgba(255,255,255,.02);
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:1.3rem;
-background:rgba(255,255,255,.03);
+font-size:1.1rem;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+border-color:#d8c08a;
+}
+
+.world-card{
+height:320px;
 }
 
 footer{
-padding:60px 20px;
+border-top:1px solid rgba(216,192,138,.15);
+padding:70px 20px;
 text-align:center;
-border-top:1px solid rgba(255,255,255,.08);
 }
 
-@media(max-width:768px){
+footer h3{
+color:#d8c08a;
+letter-spacing:3px;
+margin-bottom:10px;
+}
+
+@media(max-width:900px){
 
 .menu{
 display:none;
 }
 
 .hero h1{
-font-size:2.5rem;
-}
-
-.hero p{
-font-size:1rem;
+font-size:2.4rem;
 }
 
 }
@@ -154,16 +192,22 @@ font-size:1rem;
 
 <nav>
 
+<div class="nav-container">
+
 <div class="logo">
 MOONVALE
 </div>
 
 <div class="menu">
-<a href="#">Ethernia</a>
-<a href="#">Fantasy</a>
-<a href="#">Lore Library</a>
-<a href="#">Artefacts</a>
-<a href="#">About</a>
+<a href="#">HOME</a>
+<a href="#">ETHERNIA</a>
+<a href="#">FANTASY</a>
+<a href="#">LORE LIBRARY</a>
+<a href="#">ARTEFACTS</a>
+<a href="#">ABOUT</a>
+<span class="lang">PT | EN | ES</span>
+</div>
+
 </div>
 
 </nav>
@@ -172,15 +216,18 @@ MOONVALE
 
 <div class="hero-content">
 
-<h1>Between Stars And Stories</h1>
+<h1>BETWEEN STARS AND STORIES</h1>
 
-<p>
-A collection of worlds, legends, heroes and forgotten memories waiting to be discovered.
-</p>
+<div class="hero-buttons">
 
-<div class="buttons">
-<a class="btn" href="#">Explore Ethernia</a>
-<a class="btn" href="#">Explore Fantasy</a>
+<a href="#" class="btn">
+☀️ Enter Ethernia
+</a>
+
+<a href="#" class="btn">
+🌙 Enter Fantasy
+</a>
+
 </div>
 
 </div>
@@ -189,17 +236,63 @@ A collection of worlds, legends, heroes and forgotten memories waiting to be dis
 
 <section class="section">
 
-<h2>Explore The Worlds</h2>
+<h2 class="section-title">
+FEATURED COLLECTIONS
+</h2>
 
-<div class="cards">
+<div class="grid">
 
-<div class="card">Ethernia</div>
+<div class="card">Ethernia Collection</div>
 
-<div class="card">Fantasy</div>
+<div class="card">Fantasy Collection</div>
 
-<div class="card">Lore Library</div>
+<div class="card">Artefacts Collection</div>
 
-<div class="card">Artefacts</div>
+<div class="card">Chronicles Collection</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+EXPLORE THE WORLD
+</h2>
+
+<div class="grid">
+
+<div class="card world-card">
+ETHERNIA
+</div>
+
+<div class="card world-card">
+FANTASY
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+CONTINUE THE JOURNEY
+</h2>
+
+<div class="grid">
+
+<div class="card">
+Lore Library
+</div>
+
+<div class="card">
+Artefacts
+</div>
+
+<div class="card">
+About Moonvale
+</div>
 
 </div>
 
@@ -207,7 +300,9 @@ A collection of worlds, legends, heroes and forgotten memories waiting to be dis
 
 <footer>
 
-Moonvale Studio © 2026
+<h3>MOONVALE</h3>
+
+<p>Between Stars And Stories</p>
 
 </footer>
 
