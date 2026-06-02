@@ -6,7 +6,70 @@
 
 <title>Moonvale Studio</title>
 
-<style>
+<style>.portal-wrapper{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:25px;
+margin-top:50px;
+flex-wrap:wrap;
+}
+
+.portal-card{
+width:280px;
+padding:35px 25px;
+border:1px solid rgba(216,192,138,.35);
+border-radius:18px;
+background:rgba(255,255,255,.03);
+backdrop-filter:blur(8px);
+text-align:center;
+transition:.35s;
+}
+
+.portal-card:hover{
+transform:translateY(-6px);
+border-color:#d8c08a;
+box-shadow:0 0 25px rgba(216,192,138,.15);
+}
+
+.portal-card h3{
+letter-spacing:3px;
+margin-bottom:12px;
+color:#d8c08a;
+}
+
+.portal-card p{
+font-size:.9rem;
+opacity:.85;
+}
+
+.portal-symbol{
+font-size:1.8rem;
+margin-bottom:12px;
+color:#d8c08a;
+}
+
+.portal-divider{
+font-size:2rem;
+color:#d8c08a;
+}
+
+.scroll-indicator{
+margin-top:60px;
+font-size:.8rem;
+letter-spacing:2px;
+opacity:.7;
+}
+
+.scroll-indicator{
+animation:float 2.5s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(8px);}
+100%{transform:translateY(0);}
+}
 
 *{
 margin:0;
