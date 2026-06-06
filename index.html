@@ -19,7 +19,7 @@ flex-wrap:wrap;
 }
 
 .portal-card{
-width:280px;
+width:min(100%,320px);
 padding:35px 25px;
 border:1px solid rgba(216,192,138,.35);
 border-radius:18px;
@@ -141,12 +141,12 @@ font-size:.85rem;
 }
 
 .hero{
-height:100vh;
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-padding:20px;
+padding:140px 20px 80px;
 
 background:
 linear-gradient(
@@ -160,7 +160,7 @@ max-width:900px;
 }
 
 .hero h1{
-font-size:4rem;
+font-size:clamp(2.5rem,8vw,5rem);
 letter-spacing:4px;
 margin-bottom:25px;
 }
@@ -207,7 +207,8 @@ gap:25px;
 }
 
 .card{
-height:340px;
+aspect-ratio:3/4;
+height:auto;
 border:1px solid rgba(216,192,138,.25);
 border-radius:24px;
 background:linear-gradient(
@@ -294,8 +295,17 @@ animation:floatArrow 2s infinite ease-in-out;
 display:none;
 }
 
-.hero h1{
-font-size:2.4rem;
+.portal-divider{
+display:none;
+}
+
+.section{
+padding:70px 20px;
+}
+
+.world-card{
+height:auto;
+min-height:260px;
 }
 
 }
@@ -366,8 +376,6 @@ SCROLL TO DISCOVER
 </section>
 
 <section class="section">
-<section class="section">
-
 <h2 class="section-title">
 FEATURED COLLECTIONS
 </h2>
@@ -448,7 +456,7 @@ YouTube
 ABOUT MOONVALE
 </h2>
 
-<div class="card" style="height:auto;padding:60px;">
+<div class="card" style="height:auto;padding:60px;max-width:900px;margin:auto;">
 
 <p style="max-width:700px;font-size:1.2rem;">
 
