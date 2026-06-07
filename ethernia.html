@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ethernia | Moonvale</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#050816;
+color:#f5f1e8;
+font-family:'Cormorant Garamond',serif;
+line-height:1.6;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 24px;
+background:rgba(5,8,22,.85);
+backdrop-filter:blur(12px);
+z-index:1000;
+}
+
+.nav-container{
+max-width:1400px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-family:'Cinzel',serif;
+letter-spacing:4px;
+font-size:1.4rem;
+color:#d8c08a;
+}
+
+.menu{
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.menu a{
+font-family:'Cinzel',serif;
+font-size:.85rem;
+}
+
+.hero{
+min-height:70vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:140px 20px 80px;
+
+background:
+linear-gradient(
+rgba(5,8,22,.65),
+rgba(5,8,22,.90)
+);
+}
+
+.hero-content{
+max-width:900px;
+}
+
+.hero h1{
+font-family:'Cinzel',serif;
+font-size:clamp(3rem,8vw,5rem);
+letter-spacing:4px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.3rem;
+color:#d8c08a;
+}
+
+.section{
+max-width:1400px;
+margin:auto;
+padding:80px 20px;
+}
+
+.lore{
+max-width:800px;
+margin:auto;
+text-align:center;
+font-size:1.3rem;
+}
+
+.quote{
+margin-top:40px;
+font-style:italic;
+color:#d8c08a;
+}
+
+.filters{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-top:60px;
+}
+
+.filter-btn{
+padding:14px 28px;
+border:1px solid rgba(216,192,138,.35);
+border-radius:50px;
+font-family:'Cinzel',serif;
+}
+
+.grid{
+margin-top:60px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:24px;
+}
+
+.card{
+height:260px;
+border:1px solid rgba(216,192,138,.25);
+border-radius:24px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-family:'Cinzel',serif;
+font-size:1.2rem;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.04),
+rgba(255,255,255,.015)
+);
+}
+
+footer{
+border-top:1px solid rgba(216,192,138,.15);
+padding:60px 20px;
+text-align:center;
+margin-top:80px;
+}
+
+footer h3{
+font-family:'Cinzel',serif;
+color:#d8c08a;
+margin-bottom:10px;
+}
+
+@media(max-width:900px){
+
+.menu{
+display:none;
+}
+
+.hero{
+padding-top:120px;
+}
+
+.card{
+height:220px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="nav-container">
+
+<div class="logo">
+MOONVALE
+</div>
+
+<div class="menu">
+<a href="index.html">HOME</a>
+<a href="ethernia.html">ETHERNIA</a>
+<a href="#">FANTASY</a>
+<a href="#">LORE LIBRARY</a>
+<a href="#">ARTEFACTS</a>
+<a href="#">ABOUT</a>
+</div>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>ETHERNIA</h1>
+
+<p>
+Realm of Light, Hope and Forgotten Dreams
+</p>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="lore">
+
+<p>
+
+Beyond the Astral Sea lies Ethernia, a realm of radiant kingdoms, ancient forests and celestial wonders where stories are carried by the stars themselves.
+
+</p>
+
+<div class="quote">
+
+"Every star remembers a story, and every story leaves a light behind."
+
+</div>
+
+</div>
+
+<div class="filters">
+
+<div class="filter-btn">REGIONS</div>
+<div class="filter-btn">CHARACTERS</div>
+<div class="filter-btn">RELICS</div>
+<div class="filter-btn">CHRONICLES</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">Lumindor</div>
+
+<div class="card">Sylvarith</div>
+
+<div class="card">Elarion Vale</div>
+
+<div class="card">Aurelith Veil</div>
+
+<div class="card">Elynthara</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>MOONVALE</h3>
+
+<p>Between Stars And Stories</p>
+
+</footer>
+
+</body>
+</html>
