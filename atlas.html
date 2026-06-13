@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moonvale Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
+  --dim:rgba(245,241,232,0.6);--border:rgba(216,192,138,0.22);
+  --ec:#d8c08a;--fc:#9b8ec4;
+}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;padding:18px 48px;background:rgba(5,8,22,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.08);z-index:1000;}
+.nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Cinzel',serif;font-size:1.35rem;letter-spacing:5px;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:28px;align-items:center;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;transition:color .25s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-lang{font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);letter-spacing:1px;cursor:pointer;user-select:none;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:1.5px;background:var(--gold);}
+
+/* PAGE HEADER */
+.page-header{padding:110px 40px 40px;text-align:center;}
+.page-eyebrow{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:6px;color:var(--gold);opacity:.75;margin-bottom:14px;}
+.page-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:6px;font-weight:400;margin-bottom:12px;}
+.page-sub{font-size:clamp(1rem,2vw,1.25rem);color:var(--dim);font-style:italic;margin-bottom:30px;}
+.rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 30px;}
+.realm-tabs{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:28px;}
+.tab-btn{padding:9px 26px;border:1px solid var(--border);border-radius:40px;background:transparent;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--dim);cursor:pointer;transition:all .25s;}
+.tab-btn:hover,.tab-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(216,192,138,.06);}
+.tab-btn.te.active{border-color:var(--ec);color:var(--ec);}
+.tab-btn.tf.active{border-color:var(--fc);color:var(--fc);background:rgba(155,142,196,.08);}
+
+/* MAP */
+.atlas-wrap{max-width:1400px;margin:0 auto;padding:0 24px 60px;}
+.atlas-frame{
+  position:relative;width:100%;
+  border:1px solid rgba(216,192,138,.3);border-radius:16px;overflow:hidden;
+  box-shadow:0 0 80px rgba(0,0,0,.8),0 0 160px rgba(216,192,138,.04);
+}
+.atlas-frame img{width:100%;display:block;user-select:none;pointer-events:none;}
+
+/* SVG overlay — exact same dimensions as image */
+.atlas-svg{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  overflow:visible;
+}
+
+/* Region polygons — invisible by default, glow on hover */
+.region-area{
+  fill:transparent;
+  stroke:transparent;
+  cursor:pointer;
+  transition:fill .25s, stroke .25s, filter .25s;
+}
+.region-area.eth:hover{
+  fill:rgba(216,192,138,0.12);
+  stroke:#d8c08a;
+  stroke-width:1.5;
+  filter:drop-shadow(0 0 8px rgba(216,192,138,0.4));
+}
+.region-area.fan:hover{
+  fill:rgba(155,142,196,0.12);
+  stroke:#9b8ec4;
+  stroke-width:1.5;
+  filter:drop-shadow(0 0 8px rgba(155,142,196,0.4));
+}
+.region-area.future:hover{
+  fill:rgba(216,192,138,0.06);
+  stroke:rgba(216,192,138,0.3);
+  stroke-width:1;
+}
+
+/* Pulse dots on each region */
+.pulse-dot{
+  transform-origin:center;
+  animation:pulseDot 2.5s ease-in-out infinite;
+}
+.pulse-dot circle.ring{fill:none;stroke-width:1.2;}
+.pulse-dot circle.core{opacity:.9;}
+.eth .pulse-dot circle.ring{stroke:var(--ec);}
+.eth .pulse-dot circle.core{fill:var(--ec);}
+.fan .pulse-dot circle.ring{stroke:var(--fc);}
+.fan .pulse-dot circle.core{fill:var(--fc);}
+@keyframes pulseDot{
+  0%,100%{opacity:.8;transform:scale(1);}
+  50%{opacity:.2;transform:scale(1.8);}
+}
+
+/* TOOLTIP */
+.atlas-tooltip{
+  position:fixed;z-index:500;
+  background:rgba(5,8,22,.97);
+  border:1px solid var(--gold);
+  border-radius:14px;padding:16px 20px;
+  pointer-events:none;opacity:0;
+  transform:translateY(6px);
+  transition:opacity .18s,transform .18s;
+  min-width:190px;max-width:240px;
+  backdrop-filter:blur(16px);
+  box-shadow:0 8px 32px rgba(0,0,0,.7);
+}
+.atlas-tooltip.show{opacity:1;transform:translateY(0);}
+.atlas-tooltip.fan{border-color:var(--fc);}
+.atlas-tooltip.future{border-color:rgba(216,192,138,.3);}
+.tt-realm{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:3px;opacity:.7;margin-bottom:4px;}
+.tt-realm.eth{color:var(--ec);}
+.tt-realm.fan{color:var(--fc);}
+.tt-realm.fut{color:rgba(216,192,138,.5);}
+.tt-name{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:2px;margin-bottom:3px;}
+.tt-desc{font-size:.8rem;color:var(--dim);font-style:italic;margin-bottom:9px;}
+.tt-cta{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;color:var(--gold);opacity:.75;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(5,8,22,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-overlay.open{opacity:1;pointer-events:auto;}
+.modal-box{background:#080c1e;border:1px solid rgba(216,192,138,.3);border-radius:20px;padding:50px 40px;text-align:center;max-width:400px;transform:translateY(20px);transition:transform .3s;}
+.modal-overlay.open .modal-box{transform:translateY(0);}
+.modal-sym{font-size:2rem;color:var(--gold);opacity:.6;margin-bottom:16px;}
+.modal-title{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:3px;margin-bottom:10px;}
+.modal-desc{font-size:1rem;color:var(--dim);font-style:italic;margin-bottom:28px;}
+.modal-close{padding:12px 30px;border:1px solid var(--border);border-radius:40px;background:transparent;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--text);cursor:pointer;transition:all .25s;}
+.modal-close:hover{border-color:var(--gold);color:var(--gold);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:30px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:4px;text-decoration:none;color:var(--text);}
+.mobile-menu a:hover{color:var(--gold);}
+.mobile-close{position:absolute;top:24px;right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(216,192,138,.1);padding:60px 32px 44px;text-align:center;}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.5rem;letter-spacing:6px;color:var(--gold);margin-bottom:8px;}
+.footer-tagline{font-style:italic;font-size:.95rem;color:var(--dim);margin-bottom:30px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 22px;list-style:none;margin-bottom:24px;}
+.footer-links a{text-decoration:none;color:var(--dim);font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:2px;transition:color .25s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-lang{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;color:var(--gold);opacity:.65;margin-bottom:22px;cursor:pointer;}
+.footer-copy{font-size:.72rem;color:var(--dim);opacity:.45;}
+
+@media(max-width:900px){nav{padding:16px 20px;}.nav-links{display:none;}.hamburger{display:flex;}.page-header{padding:90px 20px 30px;}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">MOONVALE</a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+      <li><a href="ethernia.html">ETHERNIA</a></li>
+      <li><a href="fantasy.html">FANTASY</a></li>
+      <li><a href="lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+      <li><span class="nav-lang" id="langToggle">PT | EN | ES</span></li>
+    </ul>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">HOME</a>
+  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" onclick="closeMenu()" data-i18n="nav.lore">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()" data-i18n="nav.artefacts">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()" data-i18n="nav.about">ABOUT</a>
+</div>
+
+<div class="page-header">
+  <p class="page-eyebrow" data-i18n="atlas.eyebrow">✦ &nbsp; CARTOGRAPHY OF WORLDS &nbsp; ✦</p>
+  <h1 class="page-title">Moonvale Atlas</h1>
+  <p class="page-sub" data-i18n="atlas.sub">Explore the realms. Discover the legends.</p>
+  <div class="rule"></div>
+  <div class="realm-tabs">
+    <button class="tab-btn active" data-filter="all" data-i18n="filter.all">ALL REALMS</button>
+    <button class="tab-btn te" data-filter="ethernia">ETHERNIA</button>
+    <button class="tab-btn tf" data-filter="fantasy">FANTASY</button>
+  </div>
+</div>
+
+<div class="atlas-wrap">
+  <div class="atlas-frame">
+
+    <!-- THE BEAUTIFUL IMAGE -->
+    <img src="/mnt/user-data/uploads/1000108472.png" alt="Moonvale Atlas of Realms" draggable="false">
+
+    <!-- SVG OVERLAY — viewBox matches image 1536x1024 -->
+    <svg class="atlas-svg" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" id="atlasSvg">
+      <defs>
+        <filter id="glowEth" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feFlood flood-color="#d8c08a" flood-opacity=".5" result="c"/>
+          <feComposite in="c" in2="blur" operator="in" result="glow"/>
+          <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glowFan" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feFlood flood-color="#9b8ec4" flood-opacity=".5" result="c"/>
+          <feComposite in="c" in2="blur" operator="in" result="glow"/>
+          <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- ═══ ETHERNIA REGIONS ═══ -->
+
+      <!-- Aurelith Veil — north snowy mountains, top-left -->
+      <g class="region eth" data-key="aurelith-veil">
+        <polygon class="region-area eth"
+          points="120,30 280,18 420,30 480,90 470,180 380,220 260,230 150,200 80,140 90,70"/>
+        <g class="pulse-dot eth">
+          <circle class="ring" cx="280" cy="130" r="18" style="animation-delay:0s"/>
+          <circle class="core" cx="280" cy="130" r="5"/>
+        </g>
+      </g>
+
+      <!-- Sylvarith — west forest -->
+      <g class="region eth" data-key="sylvarith">
+        <polygon class="region-area eth"
+          points="60,220 160,190 230,210 250,300 240,400 200,460 130,470 70,430 40,340 50,260"/>
+        <g class="pulse-dot eth">
+          <circle class="ring" cx="155" cy="330" r="18" style="animation-delay:.6s"/>
+          <circle class="core" cx="155" cy="330" r="5"/>
+        </g>
+      </g>
+
+      <!-- Lumindor — central golden capital -->
+      <g class="region eth" data-key="lumindor">
+        <polygon class="region-area eth"
+          points="270,230 420,200 520,220 560,310 550,420 480,490 370,510 270,490 220,400 230,300"/>
+        <g class="pulse-dot eth">
+          <circle class="ring" cx="390" cy="360" r="18" style="animation-delay:1.2s"/>
+          <circle class="core" cx="390" cy="360" r="5"/>
+        </g>
+      </g>
+
+      <!-- Elarion Vale — gardens southwest -->
+      <g class="region eth" data-key="elarion-vale">
+        <polygon class="region-area eth"
+          points="100,500 240,470 330,490 360,570 340,660 270,710 170,720 90,680 65,600 80,530"/>
+        <g class="pulse-dot eth">
+          <circle class="ring" cx="215" cy="590" r="18" style="animation-delay:1.8s"/>
+          <circle class="core" cx="215" cy="590" r="5"/>
+        </g>
+      </g>
+
+      <!-- Elynthara — coastal south -->
+      <g class="region eth" data-key="elynthara">
+        <polygon class="region-area eth"
+          points="350,580 490,555 600,570 640,630 620,710 540,750 420,755 330,720 305,660 320,610"/>
+        <g class="pulse-dot eth">
+          <circle class="ring" cx="470" cy="655" r="18" style="animation-delay:2.4s"/>
+          <circle class="core" cx="470" cy="655" r="5"/>
+        </g>
+      </g>
+
+      <!-- ═══ FANTASY REGIONS ═══ -->
+
+      <!-- Drakenfell — north volcanic mountains -->
+      <g class="region fan" data-key="drakenfell">
+        <polygon class="region-area fan"
+          points="820,30 980,18 1110,35 1160,100 1150,200 1070,240 940,255 830,230 770,160 780,80"/>
+        <g class="pulse-dot fan">
+          <circle class="ring" cx="960" cy="140" r="18" style="animation-delay:.3s"/>
+          <circle class="core" cx="960" cy="140" r="5"/>
+        </g>
+      </g>
+
+      <!-- Nocthaven — gothic northeast -->
+      <g class="region fan" data-key="nocthaven">
+        <polygon class="region-area fan"
+          points="1160,60 1340,50 1460,90 1510,180 1500,300 1420,360 1300,370 1190,330 1140,240 1150,140"/>
+        <g class="pulse-dot fan">
+          <circle class="ring" cx="1330" cy="210" r="18" style="animation-delay:.9s"/>
+          <circle class="core" cx="1330" cy="210" r="5"/>
+        </g>
+      </g>
+
+      <!-- Eldermere — center-left fantasy, dark forest -->
+      <g class="region fan" data-key="eldermere">
+        <polygon class="region-area fan"
+          points="800,280 920,255 1020,270 1060,360 1040,460 960,510 860,510 790,450 770,360 780,300"/>
+        <g class="pulse-dot fan">
+          <circle class="ring" cx="915" cy="385" r="18" style="animation-delay:1.5s"/>
+          <circle class="core" cx="915" cy="385" r="5"/>
+        </g>
+      </g>
+
+      <!-- Velmorra — arcane center-right -->
+      <g class="region fan" data-key="velmorra">
+        <polygon class="region-area fan"
+          points="1060,280 1200,260 1320,285 1370,370 1350,470 1270,530 1160,540 1070,500 1040,410 1050,320"/>
+        <g class="pulse-dot fan">
+          <circle class="ring" cx="1200" cy="400" r="18" style="animation-delay:2.1s"/>
+          <circle class="core" cx="1200" cy="400" r="5"/>
+        </g>
+      </g>
+
+      <!-- Blacktide Harbor — southeast coast -->
+      <g class="region fan" data-key="blacktide-harbor">
+        <polygon class="region-area fan"
+          points="1060,620 1200,590 1360,600 1460,650 1470,740 1390,800 1260,830 1120,820 1020,760 1020,680"/>
+        <g class="pulse-dot fan">
+          <circle class="ring" cx="1245" cy="710" r="18" style="animation-delay:2.7s"/>
+          <circle class="core" cx="1245" cy="710" r="5"/>
+        </g>
+      </g>
+
+      <!-- ═══ FUTURE / MYSTERY ISLANDS ═══ -->
+      <ellipse class="region-area future" data-key="future" cx="770" cy="820" rx="55" ry="32" style="cursor:pointer"/>
+      <ellipse class="region-area future" data-key="future" cx="650" cy="600" rx="40" ry="24" style="cursor:pointer"/>
+      <ellipse class="region-area future" data-key="future" cx="700" cy="900" rx="60" ry="30" style="cursor:pointer"/>
+
+    </svg>
+  </div>
+</div>
+
+<!-- TOOLTIP -->
+<div class="atlas-tooltip" id="atlasTooltip">
+  <p class="tt-realm" id="ttRealm"></p>
+  <p class="tt-name"  id="ttName"></p>
+  <p class="tt-desc"  id="ttDesc"></p>
+  <p class="tt-cta"   data-i18n="tooltip.cta">EXPLORE REGION →</p>
+</div>
+
+<!-- COMING SOON MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-sym">◈</div>
+    <h3 class="modal-title" data-i18n="modal.title">UNCHARTED TERRITORY</h3>
+    <p class="modal-desc"   data-i18n="modal.desc">These lands have not yet been mapped. Return when the stars align.</p>
+    <button class="modal-close" onclick="closeModal()" data-i18n="modal.close">RETURN TO ATLAS</button>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-logo">MOONVALE</p>
+  <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
+  <ul class="footer-links">
+    <li><a href="index.html"       data-i18n="nav.home">Home</a></li>
+    <li><a href="ethernia.html">Ethernia</a></li>
+    <li><a href="fantasy.html">Fantasy</a></li>
+    <li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li>
+    <li><a href="artefacts.html"   data-i18n="nav.artefacts">Artefacts</a></li>
+    <li><a href="about.html"       data-i18n="nav.about">About</a></li>
+  </ul>
+  <p class="footer-lang" id="langToggle2">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
+  <p class="footer-copy" data-i18n="footer.copy">© Moonvale Studio. All rights reserved.</p>
+</footer>
+
+<script>
+// ── TRANSLATIONS ──
+const T = {
+  en:{
+    'nav.home':'HOME','nav.lore':'LORE LIBRARY','nav.artefacts':'ARTEFACTS','nav.about':'ABOUT',
+    'atlas.eyebrow':'✦   CARTOGRAPHY OF WORLDS   ✦','atlas.sub':'Explore the realms. Discover the legends.',
+    'filter.all':'ALL REALMS','tooltip.cta':'EXPLORE REGION →',
+    'modal.title':'UNCHARTED TERRITORY',
+    'modal.desc':'These lands have not yet been mapped. Return when the stars align.',
+    'modal.close':'RETURN TO ATLAS',
+    'footer.tagline':'Between Stars And Stories','footer.copy':'© Moonvale Studio. All rights reserved.'
+  },
+  pt:{
+    'nav.home':'INÍCIO','nav.lore':'BIBLIOTECA DE LORE','nav.artefacts':'ARTEFACTOS','nav.about':'SOBRE',
+    'atlas.eyebrow':'✦   CARTOGRAFIA DOS MUNDOS   ✦','atlas.sub':'Explora os reinos. Descobre as lendas.',
+    'filter.all':'TODOS OS REINOS','tooltip.cta':'EXPLORAR REGIÃO →',
+    'modal.title':'TERRITÓRIO INEXPLORADO',
+    'modal.desc':'Estas terras ainda não foram mapeadas. Regressa quando as estrelas se alinharem.',
+    'modal.close':'REGRESSAR AO ATLAS',
+    'footer.tagline':'Entre Estrelas e Histórias','footer.copy':'© Moonvale Studio. Todos os direitos reservados.'
+  },
+  es:{
+    'nav.home':'INICIO','nav.lore':'BIBLIOTECA DE LORE','nav.artefacts':'ARTEFACTOS','nav.about':'ACERCA',
+    'atlas.eyebrow':'✦   CARTOGRAFÍA DE LOS MUNDOS   ✦','atlas.sub':'Explora los reinos. Descubre las leyendas.',
+    'filter.all':'TODOS LOS REINOS','tooltip.cta':'EXPLORAR REGIÓN →',
+    'modal.title':'TERRITORIO INEXPLORADO',
+    'modal.desc':'Estas tierras aún no han sido trazadas. Regresa cuando las estrellas se alineen.',
+    'modal.close':'VOLVER AL ATLAS',
+    'footer.tagline':'Entre Estrellas e Historias','footer.copy':'© Moonvale Studio. Todos los derechos reservados.'
+  }
+};
+const LANGS=['en','pt','es'];
+let lang='en';
+function applyLang(l){
+  lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v=T[l][el.dataset.i18n]; if(v) el.textContent=v;
+  });
+}
+['langToggle','langToggle2'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('click',()=>applyLang(LANGS[(LANGS.indexOf(lang)+1)%3]));
+});
+
+// ── REGION DATA — names & place names FIXED, never translated ──
+const R = {
+  'aurelith-veil':   {name:'Aurelith Veil',    desc:'Celestial Observatory',    realm:'ethernia', url:'ethernia.html?region=aurelith-veil'},
+  'sylvarith':       {name:'Sylvarith',      
