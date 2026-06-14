@@ -3,108 +3,638 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Moonvale Studio</title>
+<title>Moonvale Studio — Between Stars And Stories</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>.portal-wrapper{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:25px;
-margin-top:50px;
-flex-wrap:wrap;
-}
+  :root {
+    --bg: #050816;
+    --gold: #d8c08a;
+    --gold-hi: #f5d97f;
+    --text: #f5f1e8;
+    --text-dim: rgba(245,241,232,0.65);
+    --border: rgba(216,192,138,0.25);
+    --border-hover: rgba(216,192,138,0.7);
+  }
 
-.portal-card{
-width:min(100%,320px);
-padding:35px 25px;
-border:1px solid rgba(216,192,138,.35);
-border-radius:18px;
-background:rgba(255,255,255,.03);
-backdrop-filter:blur(8px);
-text-align:center;
-transition:.35s;
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-text-decoration:none;
-color:#f5f1e8;
-display:block;
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%;
+    padding: 18px 48px;
+    background: rgba(5,8,22,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(216,192,138,0.08);
+    z-index: 1000;
+    transition: background 0.3s;
+  }
+  .nav-inner {
+    max-width: 1400px; margin: auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem; letter-spacing: 5px; color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 28px; align-items: center; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--text);
+    font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-lang {
+    font-family: 'Cinzel', serif; font-size: 0.72rem;
+    color: var(--gold); letter-spacing: 1px; cursor: pointer;
+  }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    width: 24px; height: 1.5px; background: var(--gold); transition: 0.3s;
+  }
 
-.portal-card:hover{
-transform:translateY(-6px);
-border-color:#d8c08a;
-box-shadow:0 0 25px rgba(216,192,138,.15);
-}
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('home-hero.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(5,8,22,0.3) 0%,
+      rgba(5,8,22,0.1) 35%,
+      rgba(5,8,22,0.5) 70%,
+      rgba(5,8,22,1) 100%
+    );
+  }
+  /* Mobile hero — foca no centro da imagem */
+  @media (max-width: 600px) {
+    .hero-bg {
+      background-position: 60% center;
+    }
+    .hero { min-height: 100svh; }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 160px 24px 100px;
+    max-width: 980px;
+  }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 6px;
+    color: var(--gold); opacity: 0.85;
+    margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    font-weight: 400; letter-spacing: 6px;
+    line-height: 1.15;
+    margin-bottom: 22px;
+  }
+  .hero-subtitle {
+    font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 70px;
+    font-weight: 300;
+  }
 
-.portal-card h3{
-letter-spacing:3px;
-margin-bottom:12px;
-color:#d8c08a;
-}
+  /* portal cards */
+  .portals {
+    display: flex; align-items: center; justify-content: center;
+    gap: 20px; flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .portal {
+    width: clamp(220px, 28vw, 290px);
+    padding: 32px 24px 28px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: rgba(5,8,22,0.45);
+    backdrop-filter: blur(10px);
+    text-decoration: none; color: var(--text);
+    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s, background 0.35s;
+  }
+  .portal:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold);
+    background: rgba(5,8,22,0.65);
+    box-shadow: 0 0 35px rgba(216,192,138,0.14);
+  }
+  .portal-sym {
+    font-size: 1.7rem; color: var(--gold);
+    margin-bottom: 12px; display: block;
+  }
+  .portal h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem; letter-spacing: 4px;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .portal p {
+    font-size: 0.95rem; color: var(--text-dim);
+    font-style: italic; line-height: 1.5;
+  }
+  .portal-sep { font-size: 1.8rem; color: var(--border); }
 
-.portal-card p{
-font-size:.9rem;
-opacity:.85;
-}
+  .scroll-cue {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 4px;
+    color: var(--gold); opacity: 0.7;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .scroll-cue svg {
+    width: 16px; animation: scrollBob 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
 
-.portal-symbol{
-font-size:1.8rem;
-margin-bottom:12px;
-color:#d8c08a;
-}
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 1400px; margin: 0 auto;
+    padding: 100px 32px;
+  }
+  .section-header {
+    text-align: center; margin-bottom: 60px;
+  }
+  .section-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 5px;
+    color: var(--gold); opacity: 0.75;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: 3px; font-weight: 400;
+  }
+  .section-rule {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 18px auto 0;
+  }
 
-.portal-divider{
-font-size:2rem;
-color:#d8c08a;
-}
+  /* ── FEATURED COLLECTIONS ── */
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+  .collection-card {
+    position: relative;
+    aspect-ratio: 2/3;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+    text-decoration: none;
+  }
+  .collection-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(216,192,138,0.12);
+    border-color: var(--gold);
+  }
+  .collection-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .collection-card:hover img { transform: scale(1.06); }
+  .collection-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,8,22,0.85) 0%, transparent 55%);
+    pointer-events: none;
+  }
 
-.scroll-indicator{
-margin-top:60px;
-font-size:.8rem;
-letter-spacing:2px;
-opacity:.7;
-}
+  /* ── ATLAS ── */
+  .atlas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .atlas-card {
+    position: relative;
+    height: 320px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    text-decoration: none; color: var(--text);
+    display: flex; align-items: flex-end;
+    padding: 32px;
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  }
+  .atlas-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 45px rgba(0,0,0,0.45), 0 0 25px rgba(216,192,138,0.1);
+    border-color: var(--gold);
+  }
+  .atlas-card-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.5s;
+  }
+  .atlas-card:hover .atlas-card-bg { transform: scale(1.05); }
+  .atlas-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,8,22,0.88) 0%, rgba(5,8,22,0.2) 60%, transparent 100%);
+  }
+  .atlas-card-content { position: relative; z-index: 2; }
+  .atlas-card-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 4px;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .atlas-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    letter-spacing: 4px; font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .atlas-card-desc {
+    font-size: 0.9rem; color: var(--text-dim);
+    font-style: italic; max-width: 360px;
+  }
+  .atlas-card-arrow {
+    position: absolute; bottom: 32px; right: 32px; z-index: 2;
+    color: var(--gold); font-size: 1.2rem;
+    opacity: 0; transform: translateX(-6px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .atlas-card:hover .atlas-card-arrow { opacity: 1; transform: translateX(0); }
 
-.scroll-indicator{
-animation:float 2.5s ease-in-out infinite;
-}
+  /* ── JOURNEY ── */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .journey-card {
+    padding: 40px 28px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.025);
+    text-decoration: none; color: var(--text);
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  .journey-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 0 28px rgba(216,192,138,0.1);
+  }
+  .journey-icon {
+    font-size: 2rem; margin-bottom: 16px; display: block; color: var(--gold);
+  }
+  .journey-card h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem; letter-spacing: 3px; color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .journey-card p {
+    font-size: 0.9rem; color: var(--text-dim); font-style: italic;
+  }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(8px);}
-100%{transform:translateY(0);}
-}
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%; max-width: 1400px; margin: 0 auto;
+    border: none; border-top: 1px solid rgba(216,192,138,0.1);
+  }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(216,192,138,0.12);
+    padding: 70px 32px 50px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem; letter-spacing: 6px; color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .footer-tagline {
+    font-style: italic; font-size: 1rem; color: var(--text-dim);
+    margin-bottom: 36px;
+  }
+  .footer-links {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 24px;
+    list-style: none; margin-bottom: 30px;
+  }
+  .footer-links a {
+    text-decoration: none; color: var(--text-dim);
+    font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 2px;
+    transition: color 0.25s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-lang {
+    font-family: 'Cinzel', serif; font-size: 0.72rem;
+    letter-spacing: 2px; color: var(--gold); opacity: 0.7;
+    margin-bottom: 28px;
+  }
+  .footer-copy {
+    font-size: 0.75rem; color: var(--text-dim); opacity: 0.5;
+  }
 
-html{
-scroll-behavior:smooth;
-}
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(5,8,22,0.97);
+    flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem; letter-spacing: 4px;
+    text-decoration: none; color: var(--text);
+    transition: color 0.25s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-close {
+    position: absolute; top: 24px; right: 32px;
+    font-size: 2rem; color: var(--gold); cursor: pointer; background: none; border: none;
+  }
 
-body{
-background:#050816;
-color:#f5f1e8;
-font-family:'Cormorant Garamond',serif;
-line-height:1.6;
-}
+  /* ── RESPONSIVE ── */
 
-nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:20px 40px;
-background:rgba(5,8,22,.75);
-backdrop-filter:blur(12px);
-z-index:1000;
-}
+  /* Tablet landscape */
+  @media (max-width: 1100px) {
+    .collections-grid { grid-template-columns: repeat(3, 1fr); }
+    .collections-grid .collection-card:nth-child(4),
+    .collections-grid .collection-card:nth-child(5) { display: none; }
+    .journey-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Tablet portrait */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .section { padding: 60px 20px; }
+    .section-header { margin-bottom: 36px; }
+    .hero-content { padding: 120px 20px 80px; }
+    .hero-subtitle { margin-bottom: 40px; }
+    /* portal cards — side by side, smaller */
+    .portals { gap: 14px; margin-bottom: 40px; }
+    .portal { width: clamp(140px, 42vw, 220px); padding: 20px 16px; border-radius: 16px; }
+    .portal-sym { font-size: 1.3rem; margin-bottom: 8px; }
+    .portal h3 { font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 6px; }
+    .portal p { font-size: 0.82rem; }
+    .portal-sep { display: none; }
+    /* collections */
+    .collections-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .collections-grid .collection-card:nth-child(n) { display: block; }
+    .collections-grid .collection-card:nth-child(5) { display: none; }
+    /* journey */
+    .journey-grid { grid-template-columns: 1fr; gap: 14px; }
+    .journey-card { padding: 24px 20px; border-radius: 16px; }
+    .journey-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    nav { padding: 14px 20px; }
+    .logo { font-size: 1.1rem; letter-spacing: 4px; }
+    .section { padding: 50px 16px; }
+    /* portal cards — side by side, compact */
+    .portals { gap: 10px; flex-wrap: nowrap; }
+    .portal { width: calc(50% - 5px); padding: 16px 12px; border-radius: 14px; }
+    .portal-sym { font-size: 1.1rem; margin-bottom: 6px; }
+    .portal h3 { font-size: 0.75rem; letter-spacing: 2px; }
+    .portal p { font-size: 0.76rem; line-height: 1.4; }
+    /* hero */
+    .hero-content { padding: 100px 16px 60px; }
+    .hero-title { letter-spacing: 3px; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 30px; }
+    /* collections — 2 cols, show all */
+    .collections-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .collections-grid .collection-card:nth-child(n) { display: block; }
+    /* journey — full width */
+    .journey-grid { grid-template-columns: 1fr; gap: 10px; }
+    .journey-card { padding: 20px 16px; }
+    /* section titles */
+    .section-title { font-size: 1.2rem; letter-spacing: 2px; }
+    .section-eyebrow { font-size: 0.6rem; }
+    /* footer */
+    footer { padding: 50px 20px 36px; }
+    .footer-logo { font-size: 1.2rem; }
+  }
+
+  /* Small mobile */
+  @media (max-width: 380px) {
+    .portal { padding: 12px 10px; }
+    .portal h3 { font-size: 0.68rem; }
+    .portal p { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ── PARTICLES ── */
+  #particles-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 1;
+    opacity: .6;
+  }
+
+  /* ── MIST / NEBULA ── */
+  .mist-layer {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 50%, rgba(216,192,138,.03) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 35% at 80% 30%, rgba(155,142,196,.03) 0%, transparent 70%);
+    animation: mistDrift 18s ease-in-out infinite alternate;
+  }
+  @keyframes mistDrift {
+    0%   { transform: translateX(0) translateY(0); opacity: .6; }
+    50%  { transform: translateX(12px) translateY(-8px); opacity: 1; }
+    100% { transform: translateX(-8px) translateY(6px); opacity: .7; }
+  }
+
+  /* ── BUTTON SHIMMER ── */
+  .btn, .portal, .filter-btn, .tab-btn, .journey-card, .collection-card {
+    position: relative; overflow: hidden;
+  }
+  .btn::before, .portal::before, .journey-card::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(245,217,127,.12), transparent);
+    transform: skewX(-20deg);
+    transition: left .5s ease;
+    pointer-events: none;
+  }
+  .btn:hover::before, .portal:hover::before, .journey-card:hover::before {
+    left: 150%;
+  }
+
+  /* ── CLICK RIPPLE ── */
+  .ripple {
+    position: absolute; border-radius: 50%;
+    background: rgba(216,192,138,.3);
+    transform: scale(0);
+    animation: rippleAnim .5s ease-out forwards;
+    pointer-events: none;
+  }
+  @keyframes rippleAnim {
+    to { transform: scale(3); opacity: 0; }
+  }
+
+  /* ── HERO KEN BURNS ── */
+  .hero-bg {
+    animation: kenBurns 20s ease-in-out infinite alternate;
+  }
+  @keyframes kenBurns {
+    0%   { transform: scale(1) translateX(0); }
+    100% { transform: scale(1.06) translateX(-12px); }
+  }
+  @media (max-width: 600px) {
+    .hero-bg { animation: kenBurnsMobile 20s ease-in-out infinite alternate; }
+    @keyframes kenBurnsMobile {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.04); }
+    }
+  }
+
+  /* ── MUSIC PLAYER ── */
+  #musicPlayer {
+    position: fixed; bottom: 24px; right: 24px;
+    z-index: 2000;
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(5,8,22,.88);
+    border: 1px solid rgba(216,192,138,.3);
+    border-radius: 50px;
+    padding: 10px 18px;
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition: border-color .3s, box-shadow .3s;
+    user-select: none;
+  }
+  #musicPlayer:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(216,192,138,.15);
+  }
+  #musicIcon { font-size: 1rem; color: var(--gold); transition: transform .3s; }
+  #musicPlayer:hover #musicIcon { transform: rotate(15deg); }
+  #musicLabel {
+    font-family: 'Cinzel', serif;
+    font-size: .6rem; letter-spacing: 2px;
+    color: var(--text-dim);
+  }
+  #musicVol {
+    width: 60px; height: 3px;
+    -webkit-appearance: none; appearance: none;
+    background: rgba(216,192,138,.2); border-radius: 2px; cursor: pointer;
+  }
+  #musicVol::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+  }
+  @media (max-width: 600px) {
+    #musicPlayer { bottom: 16px; right: 16px; padding: 8px 14px; gap: 8px; }
+    #musicVol { display: none; }
+  }
+
+  /* ── SECTION FADE IN ── */
+  .fade-in-section {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .fade-in-section.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── GOLD GLOW ON SECTION TITLES ── */
+  .section-title {
+    text-shadow: 0 0 30px rgba(216,192,138,.15);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<canvas id="particles-canvas"></canvas>
+<div class="mist-layer"></div>
+
+<!-- MUSIC PLAYER -->
+<div id="musicPlayer" onclick="toggleMusic()">
+  <span id="musicIcon">♪</span>
+  <span id="musicLabel">MUSIC OFF</span>
+  <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" onclick="e=>e.stopPropagation()" oninput="setVol(this.value)">
+</div>
+
+<!-- AUDIO -->
+<audio id="bgAudio" loop preload="none">
+  <source src="https://soundimage.org/wp-content/uploads/2014/04/Fantascape.mp3" type="audio/mpeg">
+</audio>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">MOONVALE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="ethernia.html">ETHERNIA</a></li>
+      <li><a href="fantasy.html">FANTASY</a></li>
+      <li><a href="lore-library.html">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html">ARTEFACTS</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><span class="nav-lang">PT | EN | ES</span></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="openMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" onclick="closeMenu()">HOME</a>
+  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()">ABOUT</a>
+  <span class="nav-lang">PT | EN | ES</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ &nbsp; MOONVALE STUDIO &nbsp; ✦</p>
+    <h1 class="hero-title">BETWEEN STARS<br>AND STORIES</h1>
+    <p class="hero-subtitle">Two worlds. One living archive. Infinite legends waiti}
 
 .nav-container{
 max-width:1400px;
