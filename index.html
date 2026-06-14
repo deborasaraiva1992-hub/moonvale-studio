@@ -586,52 +586,61 @@
     opacity: 1; transform: translateY(0);
   }
 
-  /* ── GOLD GLOW ON SECTION TITLES ── */
-  .section-title {
-    text-shadow: 0 0 30px rgba(216,192,138,.15);
+  /* ── CAROUSEL ── */
+  .carousel-wrap {
+    position: relative;
+    display: flex; align-items: center; gap: 16px;
   }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<canvas id="particles-canvas"></canvas>
-<div class="mist-layer"></div>
-
-<!-- MUSIC PLAYER -->
-<div id="musicPlayer" onclick="toggleMusic()">
-  <span id="musicIcon">♪</span>
-  <span id="musicLabel">MUSIC OFF</span>
-  <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" onclick="e=>e.stopPropagation()" oninput="setVol(this.value)">
-</div>
-
-<!-- AUDIO -->
-<audio id="bgAudio" loop preload="none">
-  <source src="https://soundimage.org/wp-content/uploads/2014/04/Fantascape.mp3" type="audio/mpeg">
-</audio>
-  <div class="nav-inner">
-    <a href="index.html" class="logo">MOONVALE</a>
-    <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="ethernia.html">ETHERNIA</a></li>
-      <li><a href="fantasy.html">FANTASY</a></li>
-      <li><a href="lore-library.html">LORE LIBRARY</a></li>
-      <li><a href="artefacts.html">ARTEFACTS</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-      <li><span class="nav-lang">PT | EN | ES</span></li>
-    </ul>
-    <div class="hamburger" id="hamburger" onclick="openMenu()">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" onclick="closeMenu()">HOME</a>
-  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
-  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
-  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
-  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
-  <a href="ab
+  .carousel-viewport {
+    overflow: hidden; flex: 1; border-radius: 18px;
+  }
+  .carousel-track {
+    display: flex; gap: 18px;
+    transition: transform .45s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .collection-card {
+    position: relative;
+    flex: 0 0 calc((100% - 36px) / 3);
+    aspect-ratio: 2/3;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+    text-decoration: none;
+  }
+  @media (max-width: 900px) {
+    .collection-card { flex: 0 0 calc((100% - 18px) / 2); }
+  }
+  @media (max-width: 600px) {
+    .collection-card { flex: 0 0 100%; }
+  }
+  .collection-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 20px rgba(216,192,138,.12);
+    border-color: var(--gold);
+  }
+  .collection-card img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform .5s;
+  }
+  .collection-card:hover img { transform: scale(1.06); }
+  .collection-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,8,22,.88) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .collection-card-label {
+    position: absolute; bottom: 18px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: .72rem; letter-spacing: 2px;
+    color: var(--gold); padding: 0 12px;
+    text-shadow: 0 1px 4px rgba(0,0,0,.8);
+  }
+  /* Carousel buttons */
+  .carousel-btn {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border:
