@@ -75,6 +75,7 @@
     display: flex; align-items: center; justify-content: center;
     text-align: center;
     overflow: hidden;
+    background-color: #050816;
   }
   .hero-bg {
     position: absolute; inset: 0;
@@ -82,23 +83,28 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    will-change: transform;
+    animation: kenBurns 22s ease-in-out infinite alternate;
+    z-index: 0;
   }
   .hero-bg::after {
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(5,8,22,0.3) 0%,
+      rgba(5,8,22,0.25) 0%,
       rgba(5,8,22,0.1) 35%,
       rgba(5,8,22,0.5) 70%,
       rgba(5,8,22,1) 100%
     );
   }
-  /* Mobile hero — foca no centro da imagem */
+  @keyframes kenBurns {
+    0%   { transform: scale(1) translateX(0); }
+    100% { transform: scale(1.06) translateX(-12px); }
+  }
   @media (max-width: 600px) {
-    .hero-bg {
-      background-position: 60% center;
-    }
+    .hero-bg { background-position: 60% center; animation: kenBurnsMobile 22s ease-in-out infinite alternate; }
+    @keyframes kenBurnsMobile { 0%{transform:scale(1);}100%{transform:scale(1.04);} }
     .hero { min-height: 100svh; }
   }
   .hero-content {
@@ -522,21 +528,6 @@
     to { transform: scale(3); opacity: 0; }
   }
 
-  /* ── HERO KEN BURNS ── */
-  .hero-bg {
-    animation: kenBurns 20s ease-in-out infinite alternate;
-  }
-  @keyframes kenBurns {
-    0%   { transform: scale(1) translateX(0); }
-    100% { transform: scale(1.06) translateX(-12px); }
-  }
-  @media (max-width: 600px) {
-    .hero-bg { animation: kenBurnsMobile 20s ease-in-out infinite alternate; }
-    @keyframes kenBurnsMobile {
-      0%   { transform: scale(1); }
-      100% { transform: scale(1.04); }
-    }
-  }
 
   /* ── MUSIC PLAYER ── */
   #musicPlayer {
@@ -641,4 +632,6 @@
   <a href="index.html" onclick="closeMenu()">HOME</a>
   <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
   <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
-  <a href="lore-library.html" onclick="c
+  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="ab
