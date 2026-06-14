@@ -6,641 +6,613 @@
 <title>Moonvale Studio — Between Stars And Stories</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
+  --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.25);
+}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;}
 
-  :root {
-    --bg: #050816;
-    --gold: #d8c08a;
-    --gold-hi: #f5d97f;
-    --text: #f5f1e8;
-    --text-dim: rgba(245,241,232,0.65);
-    --border: rgba(216,192,138,0.25);
-    --border-hover: rgba(216,192,138,0.7);
-  }
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;padding:18px 48px;background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.08);z-index:1000;}
+.nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'Cinzel',serif;font-size:1.35rem;letter-spacing:5px;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:28px;align-items:center;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:2px;transition:color .25s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-lang{font-family:'Cinzel',serif;font-size:.72rem;color:var(--gold);letter-spacing:1px;cursor:pointer;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:1.5px;background:var(--gold);}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Cormorant Garamond', serif;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#050816;}
+.hero-bg{position:absolute;inset:0;background-image:url('home-hero.webp');background-size:cover;background-position:center;background-repeat:no-repeat;animation:kenBurns 22s ease-in-out infinite alternate;z-index:0;}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.3) 0%,rgba(5,8,22,.05) 30%,rgba(5,8,22,.55) 70%,rgba(5,8,22,1) 100%);}
+@keyframes kenBurns{0%{transform:scale(1) translateX(0);}100%{transform:scale(1.07) translateX(-10px);}}
+.hero-content{position:relative;z-index:2;padding:160px 24px 100px;max-width:980px;}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:6px;color:var(--gold);opacity:.85;margin-bottom:28px;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(2.6rem,7vw,5.2rem);font-weight:400;letter-spacing:6px;line-height:1.15;margin-bottom:22px;}
+.hero-subtitle{font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--dim);font-style:italic;margin-bottom:60px;font-weight:300;}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; width: 100%;
-    padding: 18px 48px;
-    background: rgba(5,8,22,0.82);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(216,192,138,0.08);
-    z-index: 1000;
-    transition: background 0.3s;
-  }
-  .nav-inner {
-    max-width: 1400px; margin: auto;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .logo {
-    font-family: 'Cinzel', serif;
-    font-size: 1.35rem; letter-spacing: 5px; color: var(--gold);
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex; gap: 28px; align-items: center; list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none; color: var(--text);
-    font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 2px;
-    transition: color 0.25s;
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-lang {
-    font-family: 'Cinzel', serif; font-size: 0.72rem;
-    color: var(--gold); letter-spacing: 1px; cursor: pointer;
-  }
-  .hamburger {
-    display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
-  }
-  .hamburger span {
-    width: 24px; height: 1.5px; background: var(--gold); transition: 0.3s;
-  }
+/* PORTALS */
+.portals{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:50px;}
+.portal{width:clamp(200px,28vw,280px);padding:28px 22px;border:1px solid var(--border);border-radius:20px;background:rgba(5,8,22,.5);backdrop-filter:blur(10px);text-decoration:none;color:var(--text);transition:transform .35s,border-color .35s,box-shadow .35s;position:relative;overflow:hidden;}
+.portal::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(245,217,127,.1),transparent);transform:skewX(-20deg);transition:left .5s ease;pointer-events:none;}
+.portal:hover::before{left:150%;}
+.portal:hover{transform:translateY(-7px);border-color:var(--gold);box-shadow:0 0 35px rgba(216,192,138,.15);}
+.portal-sym{font-size:1.7rem;color:var(--gold);margin-bottom:12px;display:block;}
+.portal h3{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:4px;color:var(--gold);margin-bottom:10px;}
+.portal p{font-size:.92rem;color:var(--dim);font-style:italic;line-height:1.5;}
+.portal-sep{font-size:1.8rem;color:var(--border);}
 
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center;
-    overflow: hidden;
-    background-color: #050816;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background-image: url('home-hero.webp');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    will-change: transform;
-    animation: kenBurns 22s ease-in-out infinite alternate;
-    z-index: 0;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(5,8,22,0.25) 0%,
-      rgba(5,8,22,0.1) 35%,
-      rgba(5,8,22,0.5) 70%,
-      rgba(5,8,22,1) 100%
-    );
-  }
-  @keyframes kenBurns {
-    0%   { transform: scale(1) translateX(0); }
-    100% { transform: scale(1.06) translateX(-12px); }
-  }
-  @media (max-width: 600px) {
-    .hero-bg { background-position: 60% center; animation: kenBurnsMobile 22s ease-in-out infinite alternate; }
-    @keyframes kenBurnsMobile { 0%{transform:scale(1);}100%{transform:scale(1.04);} }
-    .hero { min-height: 100svh; }
-  }
-  .hero-content {
-    position: relative; z-index: 2;
-    padding: 160px 24px 100px;
-    max-width: 980px;
-  }
-  .hero-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem; letter-spacing: 6px;
-    color: var(--gold); opacity: 0.85;
-    margin-bottom: 28px;
-  }
-  .hero-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2.6rem, 7vw, 5.2rem);
-    font-weight: 400; letter-spacing: 6px;
-    line-height: 1.15;
-    margin-bottom: 22px;
-  }
-  .hero-subtitle {
-    font-size: clamp(1.15rem, 2.5vw, 1.6rem);
-    color: var(--text-dim);
-    font-style: italic;
-    margin-bottom: 70px;
-    font-weight: 300;
-  }
+/* SCROLL CUE */
+.scroll-cue{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:4px;color:var(--gold);opacity:.7;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.scroll-cue svg{width:16px;animation:scrollBob 2.2s ease-in-out infinite;}
+@keyframes scrollBob{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
 
-  /* portal cards */
-  .portals {
-    display: flex; align-items: center; justify-content: center;
-    gap: 20px; flex-wrap: wrap;
-    margin-bottom: 60px;
-  }
-  .portal {
-    width: clamp(220px, 28vw, 290px);
-    padding: 32px 24px 28px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: rgba(5,8,22,0.45);
-    backdrop-filter: blur(10px);
-    text-decoration: none; color: var(--text);
-    transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s, background 0.35s;
-  }
-  .portal:hover {
-    transform: translateY(-7px);
-    border-color: var(--gold);
-    background: rgba(5,8,22,0.65);
-    box-shadow: 0 0 35px rgba(216,192,138,0.14);
-  }
-  .portal-sym {
-    font-size: 1.7rem; color: var(--gold);
-    margin-bottom: 12px; display: block;
-  }
-  .portal h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 1rem; letter-spacing: 4px;
-    color: var(--gold); margin-bottom: 10px;
-  }
-  .portal p {
-    font-size: 0.95rem; color: var(--text-dim);
-    font-style: italic; line-height: 1.5;
-  }
-  .portal-sep { font-size: 1.8rem; color: var(--border); }
+/* SECTIONS */
+.section{max-width:1400px;margin:0 auto;padding:100px 32px;}
+.section-header{text-align:center;margin-bottom:50px;}
+.section-eyebrow{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:5px;color:var(--gold);opacity:.75;margin-bottom:14px;}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3vw,2rem);letter-spacing:3px;font-weight:400;text-shadow:0 0 30px rgba(216,192,138,.15);}
+.section-rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto 0;}
 
-  .scroll-cue {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem; letter-spacing: 4px;
-    color: var(--gold); opacity: 0.7;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-  }
-  .scroll-cue svg {
-    width: 16px; animation: scrollBob 2.2s ease-in-out infinite;
-  }
-  @keyframes scrollBob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-  }
+/* CAROUSEL */
+.carousel-wrap{position:relative;display:flex;align-items:center;gap:16px;}
+.carousel-viewport{overflow:hidden;flex:1;border-radius:18px;}
+.carousel-track{display:flex;gap:18px;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.collection-card{position:relative;flex:0 0 calc((100% - 36px) / 3);aspect-ratio:2/3;border-radius:18px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform .35s,box-shadow .35s,border-color .35s;text-decoration:none;display:block;}
+.collection-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px rgba(216,192,138,.12);border-color:var(--gold);}
+.collection-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.collection-card:hover img{transform:scale(1.06);}
+.collection-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,8,22,.85) 0%,transparent 55%);pointer-events:none;}
+.carousel-btn{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:rgba(5,8,22,.7);color:var(--gold);font-size:1.6rem;cursor:pointer;transition:border-color .25s,transform .2s;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;}
+.carousel-btn:hover{border-color:var(--gold);transform:scale(1.08);}
+.carousel-btn:disabled{opacity:.25;cursor:default;transform:none;}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:22px;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(216,192,138,.25);border:none;cursor:pointer;padding:0;transition:background .25s,transform .25s;}
+.carousel-dot.active{background:var(--gold);transform:scale(1.4);}
 
-  /* ── SECTIONS ── */
-  .section {
-    max-width: 1400px; margin: 0 auto;
-    padding: 100px 32px;
-  }
-  .section-header {
-    text-align: center; margin-bottom: 60px;
-  }
-  .section-eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem; letter-spacing: 5px;
-    color: var(--gold); opacity: 0.75;
-    margin-bottom: 14px;
-  }
-  .section-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    letter-spacing: 3px; font-weight: 400;
-  }
-  .section-rule {
-    width: 60px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 18px auto 0;
-  }
+/* ATLAS MAP */
+.atlas-map-wrap{position:relative;border:1px solid rgba(216,192,138,.3);border-radius:16px;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,.8);}
+.atlas-map-wrap img{width:100%;display:block;user-select:none;pointer-events:none;}
+.atlas-map-svg{position:absolute;top:0;left:0;width:100%;height:100%;}
+.ha{fill:transparent;stroke:transparent;cursor:pointer;transition:fill .2s,stroke .2s,filter .2s;}
+.ha.eth:hover{fill:rgba(216,192,138,.1);stroke:#d8c08a;stroke-width:1.5;filter:drop-shadow(0 0 10px rgba(216,192,138,.4));}
+.ha.fan:hover{fill:rgba(155,142,196,.1);stroke:#9b8ec4;stroke-width:1.5;filter:drop-shadow(0 0 10px rgba(155,142,196,.4));}
+@keyframes hp{0%,100%{opacity:.8;transform:scale(1);}50%{opacity:.1;transform:scale(1.9);}}
 
-  /* ── FEATURED COLLECTIONS ── */
-  .collections-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 18px;
-  }
-  .collection-card {
-    position: relative;
-    aspect-ratio: 2/3;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
-    text-decoration: none;
-  }
-  .collection-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(216,192,138,0.12);
-    border-color: var(--gold);
-  }
-  .collection-card img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .collection-card:hover img { transform: scale(1.06); }
-  .collection-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(5,8,22,0.85) 0%, transparent 55%);
-    pointer-events: none;
-  }
+/* ATLAS TOOLTIP */
+.atlas-tooltip{position:fixed;z-index:500;background:rgba(5,8,22,.97);border:1px solid var(--gold);border-radius:14px;padding:14px 18px;pointer-events:none;opacity:0;transition:opacity .18s;min-width:180px;backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.7);}
+.atlas-tooltip.show{opacity:1;}
+.atlas-tooltip.fan{border-color:#9b8ec4;}
+.att-realm{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:3px;opacity:.75;margin-bottom:4px;}
+.att-realm.eth{color:var(--gold);}
+.att-realm.fan{color:#9b8ec4;}
+.att-name{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:2px;margin-bottom:3px;}
+.att-desc{font-size:.8rem;color:var(--dim);font-style:italic;margin-bottom:8px;}
+.att-cta{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;color:var(--gold);opacity:.8;}
 
-  /* ── ATLAS ── */
-  .atlas-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .atlas-card {
-    position: relative;
-    height: 320px;
-    border-radius: 22px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    text-decoration: none; color: var(--text);
-    display: flex; align-items: flex-end;
-    padding: 32px;
-    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
-  }
-  .atlas-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 45px rgba(0,0,0,0.45), 0 0 25px rgba(216,192,138,0.1);
-    border-color: var(--gold);
-  }
-  .atlas-card-bg {
-    position: absolute; inset: 0;
-    background-size: cover; background-position: center;
-    transition: transform 0.5s;
-  }
-  .atlas-card:hover .atlas-card-bg { transform: scale(1.05); }
-  .atlas-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(5,8,22,0.88) 0%, rgba(5,8,22,0.2) 60%, transparent 100%);
-  }
-  .atlas-card-content { position: relative; z-index: 2; }
-  .atlas-card-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem; letter-spacing: 4px;
-    color: var(--gold); margin-bottom: 8px;
-  }
-  .atlas-card-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    letter-spacing: 4px; font-weight: 400;
-    margin-bottom: 8px;
-  }
-  .atlas-card-desc {
-    font-size: 0.9rem; color: var(--text-dim);
-    font-style: italic; max-width: 360px;
-  }
-  .atlas-card-arrow {
-    position: absolute; bottom: 32px; right: 32px; z-index: 2;
-    color: var(--gold); font-size: 1.2rem;
-    opacity: 0; transform: translateX(-6px);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  .atlas-card:hover .atlas-card-arrow { opacity: 1; transform: translateX(0); }
+/* JOURNEY */
+.journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.journey-card{padding:36px 24px;border:1px solid var(--border);border-radius:20px;background:rgba(255,255,255,.025);text-decoration:none;color:var(--text);text-align:center;transition:transform .3s,border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.journey-card::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(245,217,127,.08),transparent);transform:skewX(-20deg);transition:left .5s;pointer-events:none;}
+.journey-card:hover::before{left:150%;}
+.journey-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 0 28px rgba(216,192,138,.1);}
+.journey-icon{font-size:1.8rem;margin-bottom:14px;display:block;color:var(--gold);}
+.journey-card h4{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:3px;color:var(--gold);margin-bottom:8px;}
+.journey-card p{font-size:.88rem;color:var(--dim);font-style:italic;}
 
-  /* ── JOURNEY ── */
-  .journey-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  .journey-card {
-    padding: 40px 28px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    background: rgba(255,255,255,0.025);
-    text-decoration: none; color: var(--text);
-    text-align: center;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-  }
-  .journey-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gold);
-    box-shadow: 0 0 28px rgba(216,192,138,0.1);
-  }
-  .journey-icon {
-    font-size: 2rem; margin-bottom: 16px; display: block; color: var(--gold);
-  }
-  .journey-card h4 {
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem; letter-spacing: 3px; color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .journey-card p {
-    font-size: 0.9rem; color: var(--text-dim); font-style: italic;
-  }
+/* DIVIDER */
+hr.divider{border:none;border-top:1px solid rgba(216,192,138,.1);max-width:1400px;margin:0 auto;}
 
-  /* ── DIVIDER ── */
-  .divider {
-    width: 100%; max-width: 1400px; margin: 0 auto;
-    border: none; border-top: 1px solid rgba(216,192,138,0.1);
-  }
+/* FOOTER */
+footer{border-top:1px solid rgba(216,192,138,.12);padding:70px 32px 50px;text-align:center;}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.5rem;letter-spacing:6px;color:var(--gold);margin-bottom:10px;}
+.footer-tagline{font-style:italic;font-size:1rem;color:var(--dim);margin-bottom:32px;}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;list-style:none;margin-bottom:28px;}
+.footer-links a{text-decoration:none;color:var(--dim);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;transition:color .25s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-lang{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:2px;color:var(--gold);opacity:.7;margin-bottom:24px;}
+.footer-copy{font-size:.75rem;color:var(--dim);opacity:.5;}
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid rgba(216,192,138,0.12);
-    padding: 70px 32px 50px;
-    text-align: center;
-  }
-  .footer-logo {
-    font-family: 'Cinzel', serif;
-    font-size: 1.6rem; letter-spacing: 6px; color: var(--gold);
-    margin-bottom: 10px;
-  }
-  .footer-tagline {
-    font-style: italic; font-size: 1rem; color: var(--text-dim);
-    margin-bottom: 36px;
-  }
-  .footer-links {
-    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 24px;
-    list-style: none; margin-bottom: 30px;
-  }
-  .footer-links a {
-    text-decoration: none; color: var(--text-dim);
-    font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 2px;
-    transition: color 0.25s;
-  }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-lang {
-    font-family: 'Cinzel', serif; font-size: 0.72rem;
-    letter-spacing: 2px; color: var(--gold); opacity: 0.7;
-    margin-bottom: 28px;
-  }
-  .footer-copy {
-    font-size: 0.75rem; color: var(--text-dim); opacity: 0.5;
-  }
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:30px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:4px;text-decoration:none;color:var(--text);transition:color .25s;}
+.mobile-menu a:hover{color:var(--gold);}
+.mobile-close{position:absolute;top:24px;right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
 
-  /* ── MOBILE MENU ── */
-  .mobile-menu {
-    display: none;
-    position: fixed; inset: 0; z-index: 999;
-    background: rgba(5,8,22,0.97);
-    flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-family: 'Cinzel', serif;
-    font-size: 1.4rem; letter-spacing: 4px;
-    text-decoration: none; color: var(--text);
-    transition: color 0.25s;
-  }
-  .mobile-menu a:hover { color: var(--gold); }
-  .mobile-close {
-    position: absolute; top: 24px; right: 32px;
-    font-size: 2rem; color: var(--gold); cursor: pointer; background: none; border: none;
-  }
+/* PARTICLES CANVAS */
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.7;}
 
-  /* ── RESPONSIVE ── */
+/* MIST */
+.mist-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 20% 50%,rgba(216,192,138,.025) 0%,transparent 70%),radial-gradient(ellipse 50% 35% at 80% 30%,rgba(155,142,196,.025) 0%,transparent 70%);animation:mistDrift 18s ease-in-out infinite alternate;}
+@keyframes mistDrift{0%{transform:translateX(0) translateY(0);}50%{transform:translateX(12px) translateY(-8px);}100%{transform:translateX(-8px) translateY(6px);}}
 
-  /* Tablet landscape */
-  @media (max-width: 1100px) {
-    .collections-grid { grid-template-columns: repeat(3, 1fr); }
-    .collections-grid .collection-card:nth-child(4),
-    .collections-grid .collection-card:nth-child(5) { display: none; }
-    .journey-grid { grid-template-columns: repeat(3, 1fr); }
-  }
+/* CLICK RIPPLE */
+.ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.25);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
 
-  /* Tablet portrait */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .section { padding: 60px 20px; }
-    .section-header { margin-bottom: 36px; }
-    .hero-content { padding: 120px 20px 80px; }
-    .hero-subtitle { margin-bottom: 40px; }
-    /* portal cards — side by side, smaller */
-    .portals { gap: 14px; margin-bottom: 40px; }
-    .portal { width: clamp(140px, 42vw, 220px); padding: 20px 16px; border-radius: 16px; }
-    .portal-sym { font-size: 1.3rem; margin-bottom: 8px; }
-    .portal h3 { font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 6px; }
-    .portal p { font-size: 0.82rem; }
-    .portal-sep { display: none; }
-    /* collections */
-    .collections-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .collections-grid .collection-card:nth-child(n) { display: block; }
-    .collections-grid .collection-card:nth-child(5) { display: none; }
-    /* journey */
-    .journey-grid { grid-template-columns: 1fr; gap: 14px; }
-    .journey-card { padding: 24px 20px; border-radius: 16px; }
-    .journey-icon { font-size: 1.5rem; margin-bottom: 10px; }
-  }
+/* CUSTOM CURSOR */
+#cursor-star{position:fixed;pointer-events:none;z-index:9999;width:20px;height:20px;transform:translate(-50%,-50%);transition:transform .1s;display:none;}
+@media(hover:hover){#cursor-star{display:block;}}
 
-  /* Mobile */
-  @media (max-width: 600px) {
-    nav { padding: 14px 20px; }
-    .logo { font-size: 1.1rem; letter-spacing: 4px; }
-    .section { padding: 50px 16px; }
-    /* portal cards — side by side, compact */
-    .portals { gap: 10px; flex-wrap: nowrap; }
-    .portal { width: calc(50% - 5px); padding: 16px 12px; border-radius: 14px; }
-    .portal-sym { font-size: 1.1rem; margin-bottom: 6px; }
-    .portal h3 { font-size: 0.75rem; letter-spacing: 2px; }
-    .portal p { font-size: 0.76rem; line-height: 1.4; }
-    /* hero */
-    .hero-content { padding: 100px 16px 60px; }
-    .hero-title { letter-spacing: 3px; }
-    .hero-subtitle { font-size: 1rem; margin-bottom: 30px; }
-    /* collections — 2 cols, show all */
-    .collections-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .collections-grid .collection-card:nth-child(n) { display: block; }
-    /* journey — horizontal compact cards */
-    .journey-grid { grid-template-columns: 1fr; gap: 10px; }
-    .journey-card {
-      padding: 16px 20px;
-      display: flex; align-items: center; gap: 16px;
-      text-align: left;
+/* PAGE TRANSITION */
+.page-transition{position:fixed;inset:0;background:#050816;z-index:9998;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+.page-transition.out{opacity:1;pointer-events:auto;}
+
+/* FADE IN SECTIONS */
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* MUSIC PLAYER */
+#musicPlayer{position:fixed;bottom:24px;right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.9);border:1px solid rgba(216,192,138,.3);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
+#musicPlayer:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(216,192,138,.15);}
+#musicIcon{font-size:1rem;color:var(--gold);transition:transform .3s;}
+#musicPlayer:hover #musicIcon{transform:rotate(15deg);}
+#musicLabel{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:2px;color:var(--dim);}
+#musicVol{width:55px;height:3px;-webkit-appearance:none;appearance:none;background:rgba(216,192,138,.2);border-radius:2px;cursor:pointer;}
+#musicVol::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;background:var(--gold);border-radius:50%;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .collection-card{flex:0 0 calc((100% - 18px) / 2);}
+  .journey-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:900px){
+  nav{padding:16px 24px;}.nav-links{display:none;}.hamburger{display:flex;}
+  .section{padding:70px 20px;}
+  .hero-content{padding:120px 20px 80px;}
+  .portals{gap:14px;margin-bottom:40px;}
+  .portal{width:clamp(140px,42vw,220px);padding:20px 16px;}
+  .portal-sep{display:none;}
+  .journey-grid{grid-template-columns:1fr;gap:14px;}
+  .journey-card{padding:22px 20px;display:flex;align-items:center;gap:16px;text-align:left;}
+  .journey-icon{font-size:1.5rem;margin-bottom:0;flex-shrink:0;}
+}
+@media(max-width:600px){
+  nav{padding:14px 20px;}.logo{font-size:1.1rem;}
+  .section{padding:55px 16px;}
+  .hero{min-height:100svh;}.hero-bg{background-position:55% center;}
+  .hero-content{padding:100px 16px 70px;}
+  .hero-title{letter-spacing:3px;}.hero-subtitle{font-size:1rem;margin-bottom:36px;}
+  .portals{gap:10px;flex-wrap:nowrap;}
+  .portal{width:calc(50% - 5px);padding:16px 12px;border-radius:14px;}
+  .portal-sym{font-size:1.1rem;margin-bottom:6px;}
+  .portal h3{font-size:.75rem;letter-spacing:2px;}
+  .portal p{font-size:.75rem;}
+  .collection-card{flex:0 0 100%;}
+  .carousel-btn{width:36px;height:36px;font-size:1.3rem;}
+  .section-title{font-size:1.2rem;letter-spacing:2px;}
+  footer{padding:50px 16px 36px;}.footer-logo{font-size:1.2rem;}
+  #musicPlayer{bottom:16px;right:14px;padding:0;border-radius:50%;width:40px;height:40px;justify-content:center;}
+  #musicLabel,#musicVol{display:none;}
+}
+@media(max-width:380px){
+  .portal p{display:none;}
+  .portal h3{font-size:.68rem;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- CANVAS & EFFECTS -->
+<canvas id="particles-canvas"></canvas>
+<div class="mist-layer"></div>
+<div id="cursor-star">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 1L11.8 7.2H18.2L13 11.1L14.8 17.3L10 13.4L5.2 17.3L7 11.1L1.8 7.2H8.2L10 1Z" fill="#d8c08a" opacity=".8"/>
+  </svg>
+</div>
+<div class="page-transition" id="pageTransition"></div>
+
+<!-- MUSIC -->
+<div id="musicPlayer" onclick="toggleMusic()">
+  <span id="musicIcon">♪</span>
+  <span id="musicLabel">MUSIC OFF</span>
+  <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
+</div>
+<audio id="bgAudio" loop preload="none">
+  <source src="music-home.mp3" type="audio/mpeg">
+</audio>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">MOONVALE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="ethernia.html">ETHERNIA</a></li>
+      <li><a href="fantasy.html">FANTASY</a></li>
+      <li><a href="lore-library.html">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html">ARTEFACTS</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><span class="nav-lang">PT | EN | ES</span></li>
+    </ul>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" onclick="closeMenu()">HOME</a>
+  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()">ABOUT</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="heroEyebrow">✦ &nbsp; MOONVALE STUDIO &nbsp; ✦</p>
+    <h1 class="hero-title" id="heroTitle"></h1>
+    <p class="hero-subtitle">Two worlds. One living archive. Infinite legends waiting to be found.</p>
+    <div class="portals">
+      <a href="ethernia.html" class="portal">
+        <span class="portal-sym">✦</span>
+        <h3>ETHERNIA</h3>
+        <p>Realm of Light, Hope and Forgotten Dreams</p>
+      </a>
+      <div class="portal-sep">✧</div>
+      <a href="fantasy.html" class="portal">
+        <span class="portal-sym">☾</span>
+        <h3>FANTASY</h3>
+        <p>Realm of Shadows, Memories and Endless Mysteries</p>
+      </a>
+    </div>
+    <div class="scroll-cue">
+      SCROLL TO DISCOVER
+      <svg viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 2v14M2 10l6 8 6-8"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED COLLECTIONS -->
+<section class="section fade-in">
+  <div class="section-header">
+    <p class="section-eyebrow">THE ARCHIVE</p>
+    <h2 class="section-title">FEATURED COLLECTIONS</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="carousel-wrap">
+    <button class="carousel-btn" id="carouselPrev" aria-label="Previous">‹</button>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carouselTrack">
+        <a href="artefacts.html" class="collection-card">
+          <img src="Dark-medieval-legends.webp" alt="Dark Medieval Legends" loading="lazy">
+          <div class="collection-card-overlay"></div>
+        </a>
+        <a href="artefacts.html" class="collection-card">
+          <img src="Fantasy-sillouete.webp" alt="Fantasy Silhouette Art" loading="lazy">
+          <div class="collection-card-overlay"></div>
+        </a>
+        <a href="artefacts.html" class="collection-card">
+          <img src="Enchanted-realms-colections.webp" alt="Enchanted Realms Collection" loading="lazy">
+          <div class="collection-card-overlay"></div>
+        </a>
+        <a href="artefacts.html" class="collection-card">
+          <img src="Epic-fantasy-kingdoms.webp" alt="Epic Fantasy Kingdoms" loading="lazy">
+          <div class="collection-card-overlay"></div>
+        </a>
+        <a href="artefacts.html" class="collection-card">
+          <img src="Golden-steampunk-realms.webp" alt="Golden Steampunk Realms" loading="lazy">
+          <div class="collection-card-overlay"></div>
+        </a>
+      </div>
+    </div>
+    <button class="carousel-btn" id="carouselNext" aria-label="Next">›</button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<hr class="divider">
+
+<!-- MOONVALE ATLAS -->
+<section class="section fade-in" style="padding-bottom:0;">
+  <div class="section-header">
+    <p class="section-eyebrow">EXPLORE THE WORLDS</p>
+    <h2 class="section-title">MOONVALE ATLAS</h2>
+    <div class="section-rule"></div>
+    <p style="font-style:italic;color:var(--dim);font-size:.95rem;margin-top:8px;">Click on each region to explore the legends.</p>
+  </div>
+  <div class="atlas-map-wrap">
+    <img src="Atlas.webp" alt="Moonvale Atlas of Realms" draggable="false">
+    <svg class="atlas-map-svg" viewBox="0 0 15
+          <polygon class="ha eth" data-key="aurelith-veil" data-url="ethernia.html?region=aurelith-veil" points="120,30 280,18 420,30 480,90 470,180 380,220 260,230 150,200 80,140 90,70"/>
+      <polygon class="ha eth" data-key="sylvarith"     data-url="ethernia.html?region=sylvarith"     points="60,220 160,190 230,210 250,300 240,400 200,460 130,470 70,430 40,340 50,260"/>
+      <polygon class="ha eth" data-key="lumindor"      data-url="ethernia.html?region=lumindor"      points="270,230 420,200 520,220 560,310 550,420 480,490 370,510 270,490 220,400 230,300"/>
+      <polygon class="ha eth" data-key="elarion-vale"  data-url="ethernia.html?region=elarion-vale"  points="100,500 240,470 330,490 360,570 340,660 270,710 170,720 90,680 65,600 80,530"/>
+      <polygon class="ha eth" data-key="elynthara"     data-url="ethernia.html?region=elynthara"     points="350,580 490,555 600,570 640,630 620,710 540,750 420,755 330,720 305,660 320,610"/>
+      <polygon class="ha fan" data-key="drakenfell"       data-url="fantasy.html?region=drakenfell"       points="820,30 980,18 1110,35 1160,100 1150,200 1070,240 940,255 830,230 770,160 780,80"/>
+      <polygon class="ha fan" data-key="nocthaven"        data-url="fantasy.html?region=nocthaven"        points="1160,60 1340,50 1460,90 1510,180 1500,300 1420,360 1300,370 1190,330 1140,240 1150,140"/>
+      <polygon class="ha fan" data-key="eldermere"        data-url="fantasy.html?region=eldermere"        points="800,280 920,255 1020,270 1060,360 1040,460 960,510 860,510 790,450 770,360 780,300"/>
+      <polygon class="ha fan" data-key="velmorra"         data-url="fantasy.html?region=velmorra"         points="1060,280 1200,260 1320,285 1370,370 1350,470 1270,530 1160,540 1070,500 1040,410 1050,320"/>
+      <polygon class="ha fan" data-key="blacktide-harbor" data-url="fantasy.html?region=blacktide-harbor" points="1060,620 1200,590 1360,600 1460,650 1470,740 1390,800 1260,830 1120,820 1020,760 1020,680"/>
+      <!-- pulse dots -->
+      <g pointer-events="none">
+        <circle cx="280"  cy="130" r="14" fill="none" stroke="#d8c08a" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 0s"/><circle cx="280"  cy="130" r="4" fill="#d8c08a"/>
+        <circle cx="155"  cy="330" r="14" fill="none" stroke="#d8c08a" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite .6s"/><circle cx="155"  cy="330" r="4" fill="#d8c08a"/>
+        <circle cx="390"  cy="360" r="14" fill="none" stroke="#d8c08a" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 1.2s"/><circle cx="390"  cy="360" r="4" fill="#d8c08a"/>
+        <circle cx="215"  cy="590" r="14" fill="none" stroke="#d8c08a" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 1.8s"/><circle cx="215"  cy="590" r="4" fill="#d8c08a"/>
+        <circle cx="470"  cy="655" r="14" fill="none" stroke="#d8c08a" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 2.4s"/><circle cx="470"  cy="655" r="4" fill="#d8c08a"/>
+        <circle cx="960"  cy="140" r="14" fill="none" stroke="#9b8ec4" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite .3s"/><circle cx="960"  cy="140" r="4" fill="#9b8ec4"/>
+        <circle cx="1330" cy="210" r="14" fill="none" stroke="#9b8ec4" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite .9s"/><circle cx="1330" cy="210" r="4" fill="#9b8ec4"/>
+        <circle cx="915"  cy="385" r="14" fill="none" stroke="#9b8ec4" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 1.5s"/><circle cx="915"  cy="385" r="4" fill="#9b8ec4"/>
+        <circle cx="1200" cy="400" r="14" fill="none" stroke="#9b8ec4" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 2.1s"/><circle cx="1200" cy="400" r="4" fill="#9b8ec4"/>
+        <circle cx="1245" cy="710" r="14" fill="none" stroke="#9b8ec4" stroke-width="1.2" style="animation:hp 2.5s ease-in-out infinite 2.7s"/><circle cx="1245" cy="710" r="4" fill="#9b8ec4"/>
+      </g>
+    </svg>
+    <div class="atlas-tooltip" id="atlasTooltip">
+      <p class="att-realm" id="attRealm"></p>
+      <p class="att-name"  id="attName"></p>
+      <p class="att-desc"  id="attDesc"></p>
+      <p class="att-cta">EXPLORE →</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" style="margin-top:60px;">
+
+<!-- CONTINUE THE JOURNEY -->
+<section class="section fade-in">
+  <div class="section-header">
+    <p class="section-eyebrow">FOLLOW THE WORLDS</p>
+    <h2 class="section-title">CONTINUE THE JOURNEY</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="journey-grid">
+    <a href="#" class="journey-card">
+      <span class="journey-icon">✦</span>
+      <h4>TIKTOK ETHERNIA</h4>
+      <p>Daily tales from the golden realm</p>
+    </a>
+    <a href="#" class="journey-card">
+      <span class="journey-icon">☾</span>
+      <h4>TIKTOK FANTASY</h4>
+      <p>Shadows, legends and moonlit stories</p>
+    </a>
+    <a href="#" class="journey-card">
+      <span class="journey-icon">◈</span>
+      <h4>YOUTUBE</h4>
+      <p>Lore deep dives and world chronicles</p>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">MOONVALE</p>
+  <p class="footer-tagline">Between Stars And Stories</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="ethernia.html">Ethernia</a></li>
+    <li><a href="fantasy.html">Fantasy</a></li>
+    <li><a href="lore-library.html">Lore Library</a></li>
+    <li><a href="artefacts.html">Artefacts</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <p class="footer-lang">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
+  <p class="footer-copy">© Moonvale Studio. All rights reserved.</p>
+</footer>
+
+<script>
+// ── STAR PARTICLES ──
+(function(){
+  const c = document.getElementById('particles-canvas');
+  const ctx = c.getContext('2d');
+  let W, H;
+  function resize(){ W=c.width=window.innerWidth; H=c.height=window.innerHeight; }
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  const R=(a,b)=>a+Math.random()*(b-a);
+  class Star{
+    constructor(){ this.reset(true); }
+    reset(init){
+      this.x=R(0,W); this.y=init?R(0,H):H+5;
+      this.size=R(.4,2); this.alpha=R(.05,.5);
+      this.da=R(.003,.01)*(Math.random()>.5?1:-1);
+      this.vx=R(-.08,.08); this.vy=R(-.1,-.02);
     }
-    .journey-icon {
-      font-size: 1.4rem; margin-bottom: 0;
-      flex-shrink: 0;
+    update(){
+      this.x+=this.vx; this.y+=this.vy;
+      this.alpha+=this.da;
+      if(this.alpha<.03||this.alpha>.55) this.da*=-1;
+      if(this.y<-5||this.x<-5||this.x>W+5) this.reset(false);
     }
-    .journey-card h4 { font-size: 0.72rem; margin-bottom: 3px; }
-    .journey-card p { font-size: 0.8rem; }
-    /* section titles */
-    .section-title { font-size: 1.2rem; letter-spacing: 2px; }
-    .section-eyebrow { font-size: 0.6rem; }
-    /* footer */
-    footer { padding: 50px 20px 36px; }
-    .footer-logo { font-size: 1.2rem; }
-  }
-
-  /* Small mobile */
-  @media (max-width: 380px) {
-    .portal { padding: 12px 10px; }
-    .portal h3 { font-size: 0.68rem; }
-    .portal p { display: none; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
-
-  /* ── PARTICLES ── */
-  #particles-canvas {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; z-index: 1;
-    opacity: .6;
-  }
-
-  /* ── MIST / NEBULA ── */
-  .mist-layer {
-    position: fixed; inset: 0;
-    pointer-events: none; z-index: 0;
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 50%, rgba(216,192,138,.03) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 35% at 80% 30%, rgba(155,142,196,.03) 0%, transparent 70%);
-    animation: mistDrift 18s ease-in-out infinite alternate;
-  }
-  @keyframes mistDrift {
-    0%   { transform: translateX(0) translateY(0); opacity: .6; }
-    50%  { transform: translateX(12px) translateY(-8px); opacity: 1; }
-    100% { transform: translateX(-8px) translateY(6px); opacity: .7; }
-  }
-
-  /* ── BUTTON SHIMMER ── */
-  .btn, .portal, .filter-btn, .tab-btn, .journey-card, .collection-card {
-    position: relative; overflow: hidden;
-  }
-  .btn::before, .portal::before, .journey-card::before {
-    content: '';
-    position: absolute; top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(245,217,127,.12), transparent);
-    transform: skewX(-20deg);
-    transition: left .5s ease;
-    pointer-events: none;
-  }
-  .btn:hover::before, .portal:hover::before, .journey-card:hover::before {
-    left: 150%;
-  }
-
-  /* ── CLICK RIPPLE ── */
-  .ripple {
-    position: absolute; border-radius: 50%;
-    background: rgba(216,192,138,.3);
-    transform: scale(0);
-    animation: rippleAnim .5s ease-out forwards;
-    pointer-events: none;
-  }
-  @keyframes rippleAnim {
-    to { transform: scale(3); opacity: 0; }
-  }
-
-
-  /* ── MUSIC PLAYER ── */
-  #musicPlayer {
-    position: fixed; bottom: 24px; right: 24px;
-    z-index: 2000;
-    display: flex; align-items: center; gap: 10px;
-    background: rgba(5,8,22,.88);
-    border: 1px solid rgba(216,192,138,.3);
-    border-radius: 50px;
-    padding: 10px 18px;
-    backdrop-filter: blur(12px);
-    cursor: pointer;
-    transition: border-color .3s, box-shadow .3s;
-    user-select: none;
-  }
-  #musicPlayer:hover {
-    border-color: var(--gold);
-    box-shadow: 0 0 20px rgba(216,192,138,.15);
-  }
-  #musicIcon { font-size: 1rem; color: var(--gold); transition: transform .3s; }
-  #musicPlayer:hover #musicIcon { transform: rotate(15deg); }
-  #musicLabel {
-    font-family: 'Cinzel', serif;
-    font-size: .6rem; letter-spacing: 2px;
-    color: var(--text-dim);
-  }
-  #musicVol {
-    width: 60px; height: 3px;
-    -webkit-appearance: none; appearance: none;
-    background: rgba(216,192,138,.2); border-radius: 2px; cursor: pointer;
-  }
-  #musicVol::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 10px; height: 10px;
-    background: var(--gold); border-radius: 50%;
-  }
-  /* Mobile — só ícone, sem label nem slider */
-  @media (max-width: 600px) {
-    #musicPlayer {
-      bottom: 20px; right: 16px;
-      padding: 10px 12px;
-      border-radius: 50%;
-      width: 42px; height: 42px;
-      justify-content: center;
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+      ctx.fillStyle=`rgba(216,192,138,${this.alpha})`;
+      ctx.fill();
     }
-    #musicLabel { display: none; }
-    #musicVol { display: none; }
-    #musicIcon { font-size: 1.1rem; }
   }
+  const n = window.innerWidth<600?50:100;
+  const stars=[];
+  for(let i=0;i<n;i++) stars.push(new Star());
+  function animate(){ ctx.clearRect(0,0,W,H); stars.forEach(s=>{s.update();s.draw();}); requestAnimationFrame(animate); }
+  animate();
+})();
 
-  /* ── SECTION FADE IN ── */
-  .fade-in-section {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity .7s ease, transform .7s ease;
-  }
-  .fade-in-section.visible {
-    opacity: 1; transform: translateY(0);
-  }
+ // ── CUSTOM CURSOR ──
+(function(){
+  const cur = document.getElementById('cursor-star');
+  if(!cur) return;
+  document.addEventListener('mousemove', e=>{
+    cur.style.left = e.clientX+'px';
+    cur.style.top  = e.clientY+'px';
+  });
+  document.addEventListener('mousedown', ()=>{ cur.style.transform='translate(-50%,-50%) scale(1.5)'; });
+  document.addEventListener('mouseup',   ()=>{ cur.style.transform='translate(-50%,-50%) scale(1)'; });
+})();
 
-  /* ── CAROUSEL ── */
-  .carousel-wrap {
-    position: relative;
-    display: flex; align-items: center; gap: 16px;
+// ── PAGE TRANSITION ──
+(function(){
+  const pt = document.getElementById('pageTransition');
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href = a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http')) return;
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      pt.classList.add('out');
+      setTimeout(()=>{ window.location.href=href; }, 380);
+    });
+  });
+  // fade in on load
+  pt.style.opacity='1'; pt.style.pointerEvents='auto';
+  setTimeout(()=>{ pt.style.opacity='0'; pt.style.pointerEvents='none'; },50);
+})();
+
+// ── TYPING EFFECT ──
+(function(){
+  const el = document.getElementById('heroTitle');
+  if(!el) return;
+  const text = 'BETWEEN STARS\nAND STORIES';
+  let i=0;
+  function type(){
+    if(i<=text.length){
+      el.innerHTML = text.slice(0,i).replace('\n','<br>') + (i<text.length?'<span style="opacity:.5">|</span>':'');
+      i++;
+      setTimeout(type, i<text.length?80:0);
+    }
   }
-  .carousel-viewport {
-    overflow: hidden; flex: 1; border-radius: 18px;
+  setTimeout(type, 600);
+})();
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+// ── PARALLAX HERO (desktop only) ──
+if(window.innerWidth>900){
+  window.addEventListener('scroll',()=>{
+    const bg=document.getElementById('heroBg');
+    if(bg) bg.style.transform=`scale(1.07) translateY(${window.scrollY*.15}px)`;
+  },{passive:true});
+}
+
+// ── RIPPLE ──
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.portal,.journey-card,.collection-card,.carousel-btn');
+  if(!t) return;
+  const r=document.createElement('span');
+  r.className='ripple';
+  const rect=t.getBoundingClientRect();
+  const sz=Math.max(rect.width,rect.height);
+  r.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
+  t.appendChild(r);
+  setTimeout(()=>r.remove(),500);
+});
+
+// ── CAROUSEL ──
+(function(){
+  const track=document.getElementById('carouselTrack');
+  const dots=document.getElementById('carouselDots');
+  const prev=document.getElementById('carouselPrev');
+  const next=document.getElementById('carouselNext');
+  if(!track) return;
+  const cards=track.querySelectorAll('.collection-card');
+  const total=cards.length;
+  let cur=0;
+  function vis(){ return window.innerWidth<=600?1:window.innerWidth<=1100?2:3; }
+  function pages(){ return Math.ceil(total/vis()); }
+  function buildDots(){
+    dots.innerHTML='';
+    for(let i=0;i<pages();i++){
+      const d=document.createElement('button');
+      d.className='carousel-dot'+(i===cur?' active':'');
+      d.onclick=()=>{ cur=i; update(); };
+      dots.appendChild(d);
+    }
   }
-  .carousel-track {
-    display: flex; gap: 18px;
-    transition: transform .45s cubic-bezier(.4,0,.2,1);
-    will-change: transform;
+  function update(){
+    const v=vis(), pg=pages()-1;
+    if(cur>pg) cur=pg;
+    const w=track.parentElement.offsetWidth;
+    const gap=18, iw=(w-gap*(v-1))/v;
+    track.style.transform=`translateX(-${cur*v*(iw+gap)}px)`;
+    dots.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+    prev.disabled=cur===0;
+    next.disabled=cur>=pg;
   }
-  .collection-card {
-    position: relative;
-    flex: 0 0 calc((100% - 36px) / 3);
-    aspect-ratio: 2/3;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
-    text-decoration: none;
-  }
-  @media (max-width: 900px) {
-    .collection-card { flex: 0 0 calc((100% - 18px) / 2); }
-  }
-  @media (max-width: 600px) {
-    .collection-card { flex: 0 0 100%; }
-  }
-  .collection-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0,0,0,.5), 0 0 20px rgba(216,192,138,.12);
-    border-color: var(--gold);
-  }
-  .collection-card img {
-    width: 100%; height: 100%; object-fit: cover; transition: transform .5s;
-  }
-  .collection-card:hover img { transform: scale(1.06); }
-  .collection-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(5,8,22,.88) 0%, transparent 55%);
-    pointer-events: none;
-  }
-  .collection-card-label {
-    position: absolute; bottom: 18px; left: 0; right: 0;
-    text-align: center;
-    font-family: 'Cinzel', serif;
-    font-size: .72rem; letter-spacing: 2px;
-    color: var(--gold); padding: 0 12px;
-    text-shadow: 0 1px 4px rgba(0,0,0,.8);
-  }
-  /* Carousel buttons */
-  .carousel-btn {
-    flex-shrink: 0;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    border:
+  prev.onclick=()=>{ if(cur>0){cur--;update();} };
+  next.onclick=()=>{ if(cur<pages()-1){cur++;update();} };
+  let sx=0;
+  track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  track.addEventListener('touchend',e=>{
+    const dx=sx-e.changedTouches[0].clientX;
+    if(Math.abs(dx)>50){ if(dx>0&&cur<pages()-1){cur++;update();}else if(dx<0&&cur>0){cur--;update();} }
+  });
+  window.addEventListener('resize',()=>{ buildDots(); update(); });
+  buildDots(); update();
+})();
+
+// ── ATLAS MAP ──
+(function(){
+  const R={
+    'aurelith-veil':{name:'Aurelith Veil',desc:'Celestial Observatory',realm:'ethernia'},
+    'sylvarith':{name:'Sylvarith',desc:'Worldtree of Sylvarith',realm:'ethernia'},
+    'lumindor':{name:'Lumindor',desc:'Celestial Capital',realm:'ethernia'},
+    'elarion-vale':{name:'Elarion Vale',desc:'Eternal Gardens',realm:'ethernia'},
+    'elynthara':{name:'Elynthara',desc:'Lighthouse of Elynthara',realm:'ethernia'},
+    'drakenfell':{name:'Drakenfell',desc:'Ashen Fortress',realm:'fantasy'},
+    'nocthaven':{name:'Nocthaven',desc:'Black Moon Castle',realm:'fantasy'},
+    'eldermere':{name:'Eldermere',desc:'Root Sanctuary',realm:'fantasy'},
+    'velmorra':{name:'Velmorra',desc:'Arcane Observatory',realm:'fantasy'},
+    'blacktide-harbor':{name:'Blacktide Harbor',desc:'Tidewatch Lighthouse',realm:'fantasy'},
+  };
+  const tt=document.getElementById('atlasTooltip');
+  const tR=document.getElementById('attRealm');
+  const tN=document.getElementById('attName');
+  const tD=document.getElementById('attDesc');
+  document.querySelectorAll('.ha').forEach(el=>{
+    const d=R[el.dataset.key]; if(!d) return;
+    const isE=d.realm==='ethernia';
+    el.addEventListener('mouseenter',e=>{ tR.textContent=isE?'ETHERNIA':'FANTASY'; tR.className='att-realm '+(isE?'eth':'fan'); tN.textContent=d.name; tD.textContent=d.desc; tt.className='atlas-tooltip show'+(isE?'':' fan'); moveTT(e); });
+    el.addEventListener('mousemove',e=>moveTT(e));
+    el.addEventListener('mouseleave',()=>tt.classList.remove('show'));
+    el.addEventListener('click',()=>window.location.href=el.dataset.url);
+  });
+  function moveTT(e){ let x=e.clientX+16,y=e.clientY-20; if(x+200>window.innerWidth) x=e.clientX-216; if(y+120>window.innerHeight) y=e.clientY-130; tt.style.left=x+'px'; tt.style.top=y+'px'; }
+})();
+
+// ── MUSIC ──
+const audio=document.getElementById('bgAudio');
+const mLabel=document.getElementById('musicLabel');
+const mIcon=document.getElementById('musicIcon');
+let musicOn=false;
+audio.volume=0.18;
+function toggleMusic(){
+  if(musicOn){ fadeOut(); } else { fadeIn(); }
+}
+function fadeIn(){
+  musicOn=true; audio.volume=0;
+  audio.play().then(()=>{
+    mLabel.textContent='MUSIC ON'; mIcon.textContent='♫';
+    let v=0; const f=setInterval(()=>{ v=Math.min(v+.01,.18); audio.volume=v; if(v>=.18) clearInterval(f); },60);
+  }).catch(()=>{ musicOn=false; mLabel.textContent='MUSIC OFF'; });
+}
+function fadeOut(){
+  musicOn=false; mLabel.textContent='MUSIC OFF'; mIcon.textContent='♪';
+  let v=audio.volume; const f=setInterval(()=>{ v=Math.max(v-.01,0); audio.volume=v; if(v<=0){audio.pause();clearInterval(f);} },60);
+}
+function setVol(v){ audio.volume=parseFloat(v); }
+
+// ── NAV ──
+function openMenu(){ document.getElementById('mobileMenu').classList.add('open'); }
+function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); }
+</script>
+</body>
+</html>
