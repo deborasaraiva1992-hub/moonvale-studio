@@ -114,8 +114,8 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 
 /* LORE SECTION */
 .lore-section{
-  max-width:800px;margin:0 auto;
-  padding:80px 32px 70px;
+  max-width:780px;margin:0 auto;
+  padding:90px 32px 80px;
   text-align:center;
 }
 .lore-ornament{
@@ -126,9 +126,12 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .lore-line.right{background:linear-gradient(90deg,var(--fan),transparent);}
 .lore-sym{color:var(--fan);font-size:1rem;opacity:.6;}
 .lore-text{
-  font-size:clamp(1.05rem,2vw,1.3rem);
+  font-size:clamp(1rem,1.9vw,1.2rem);
   color:var(--dim);line-height:1.9;font-weight:300;
+  text-align:left;
 }
+.lore-text p{margin-bottom:22px;}
+.lore-text p:last-child{margin-bottom:0;}
 
 /* SECTION BASE */
 .section{max-width:1400px;margin:0 auto;padding:80px 48px;}
@@ -352,9 +355,13 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
     <span class="lore-sym">☾</span>
     <div class="lore-line right"></div>
   </div>
-  <p class="lore-text">
-    Beyond the Astrael Sea lies Fantasy — a realm of forgotten kingdoms, moonlit forests, wandering legends and ancient mysteries hidden beneath the stars. Here, shadows breathe and silence speaks in ancient tongues.
-  </p>
+  <div class="lore-text">
+    <p>Beyond the Astrael Sea, where the light of Ethernia fades into memory, lies Fantasy — a realm wrapped in eternal dusk. Here, the moon never fully sets, and the stars burn cold and watchful over kingdoms that time itself seems to have forgotten.</p>
+    <p>Long before the first chronicles were written, Fantasy was a land of endless twilight — neither day nor night, but something older, something in between. The forests grew without sun, the rivers ran silver beneath the moon, and the first shadow-born walked its soil, carrying secrets no living tongue could speak.</p>
+    <p>Five kingdoms rose from that darkness: Nocthaven's gothic spires beneath the black moon, Eldermere's whispering ancient woods, Velmorra's arcane towers reaching toward forgotten constellations, Drakenfell's ashen fortress where dragons once ruled the skies, and Blacktide Harbor, where ships still sail toward shores no map has ever charted.</p>
+    <p>Each region holds a piece of a story older than the realm itself — a tale of loss, of power, and of the thin veil between what is remembered and what was meant to stay buried. To walk through Fantasy is to walk through someone else's memory, half-forgotten, half-alive.</p>
+    <p style="color:var(--fan);font-style:italic;opacity:.85;">Every shadow guards a memory, and every memory waits to be found.</p>
+  </div>
 </div>
 
 <hr class="section-divider">
