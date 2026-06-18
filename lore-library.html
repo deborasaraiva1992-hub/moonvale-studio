@@ -35,7 +35,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 @keyframes kenBurns{0%{transform:scale(1);}100%{transform:scale(1.05);}}
 .hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.3) 0%,rgba(5,8,22,.0) 20%,rgba(5,8,22,.1) 55%,rgba(5,8,22,.85) 82%,rgba(5,8,22,1) 100%);}
 .hero-img-overlay::before{content:'';position:absolute;top:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,rgba(5,8,22,.45),transparent);}
-.hero-content{position:relative;z-index:2;padding:0 24px 60px;max-width:900px;width:100%;margin-top:-150px;}
+.hero-content{position:relative;z-index:2;padding:0 24px 60px;max-width:900px;width:100%;margin-top:-90px;}
 .hero-eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:6px;color:var(--gold);opacity:.85;margin-bottom:16px;}
 .hero-title{font-family:'Cinzel',serif;font-size:clamp(2.8rem,8.5vw,6.5rem);font-weight:400;letter-spacing:7px;line-height:1;margin-bottom:16px;color:var(--gold-hi);text-shadow:0 0 50px rgba(245,217,127,.4),0 0 100px rgba(155,142,196,.15);}
 .hero-subtitle{font-size:clamp(1rem,2.2vw,1.4rem);color:var(--dim);font-style:italic;font-weight:300;margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto;}
@@ -79,31 +79,30 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .atlas-mini{
   position:relative;border-radius:8px;overflow:hidden;
   border:1px solid var(--border);
-  max-height:420px;display:block;text-decoration:none;
+  display:block;text-decoration:none;
   transition:border-color .35s,box-shadow .35s;
 }
 .atlas-mini:hover{border-color:var(--gold);box-shadow:0 0 40px rgba(216,192,138,.08);}
-.atlas-mini img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85);transition:transform .6s;}
-.atlas-mini:hover img{transform:scale(1.03);}
+.atlas-mini img{width:100%;height:auto;display:block;transition:transform .6s;}
+.atlas-mini:hover img{transform:scale(1.02);}
 .atlas-mini-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(5,8,22,.1) 0%,rgba(5,8,22,.65) 100%);
+  background:linear-gradient(to bottom,rgba(5,8,22,.05) 0%,rgba(5,8,22,.0) 60%,rgba(5,8,22,.55) 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding:40px;
+  padding:36px;
 }
 .atlas-mini-btn{
   display:inline-flex;align-items:center;gap:10px;
   padding:13px 32px;border:1px solid rgba(216,192,138,.5);border-radius:3px;
   font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;
-  color:var(--gold);background:rgba(5,8,22,.5);backdrop-filter:blur(8px);
+  color:var(--gold);background:rgba(5,8,22,.6);backdrop-filter:blur(8px);
   transition:all .3s;
 }
-.atlas-mini:hover .atlas-mini-btn{border-color:var(--gold);background:rgba(216,192,138,.1);box-shadow:0 0 25px rgba(216,192,138,.15);}
+.atlas-mini:hover .atlas-mini-btn{border-color:var(--gold);background:rgba(216,192,138,.12);box-shadow:0 0 25px rgba(216,192,138,.15);}
 .atlas-mini-btn svg{transition:transform .3s;}
 .atlas-mini:hover .atlas-mini-btn svg{transform:translateX(3px);}
 @media(max-width:600px){
-  .atlas-mini{max-height:240px;}
-  .atlas-mini-overlay{padding:20px;}
+  .atlas-mini-overlay{padding:18px;}
   .atlas-mini-btn{padding:10px 22px;font-size:.62rem;}
 }
 
@@ -185,7 +184,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
 @media(max-width:900px){
   nav{padding:14px 24px;}.nav-links{display:none;}.hamburger{display:flex;}
   .section{padding:50px 24px;}
-  .hero-content{margin-top:-110px;padding:0 20px 50px;}
+  .hero-content{margin-top:-60px;padding:0 20px 50px;}
   .archive-grid{grid-template-columns:repeat(2,1fr);}
   footer{padding:50px 24px 32px;}
 }
@@ -193,7 +192,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   nav{padding:12px 18px;}.logo-nav{font-size:1rem;}
   .section{padding:42px 16px;}
   .hero{padding-top:58px;}
-  .hero-content{margin-top:-75px;padding:0 16px 42px;}
+  .hero-content{margin-top:-40px;padding:0 16px 42px;}
   .hero-title{font-size:clamp(2.2rem,9vw,3.5rem);letter-spacing:4px;}
   .hero-subtitle{font-size:.9rem;}
   .filter-tabs{gap:8px;}
@@ -351,7 +350,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
     </div>
     <div class="footer-col">
       <h5>ARCHIVE</h5>
-      <ul><li><a href="lore-library.html">Lore Library</a></li><li><a href="artefacts.html">Artefacts</a></li><li><a href="lore-library.html">Chronicles</a></li></ul>
+      <ul><li><a href="lore-library/regions.html">Regions</a></li><li><a href="lore-library/characters.html">Characters</a></li><li><a href="lore-library/relics.html">Relics</a></li><li><a href="lore-library/chronicles.html">Chronicles</a></li></ul>
     </div>
     <div class="footer-col">
       <h5>CONNECT</h5>
