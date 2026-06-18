@@ -408,4 +408,92 @@ function applyLang(l){
 // ── REGION DATA — names & place names FIXED, never translated ──
 const R = {
   'aurelith-veil':   {name:'Aurelith Veil',    desc:'Celestial Observatory',    realm:'ethernia', url:'ethernia.html?region=aurelith-veil'},
-  'sylvarith':       {name:'Sylvarith',      
+  'sylvarith':       {name:'Sylvarith',         desc:'Worldtree of Sylvarith',   realm:'ethernia', url:'ethernia.html?region=sylvarith'},
+  'lumindor':        {name:'Lumindor',          desc:'Celestial Capital',        realm:'ethernia', url:'ethernia.html?region=lumindor'},
+  'elarion-vale':    {name:'Elarion Vale',      desc:'Eternal Gardens',          realm:'ethernia', url:'ethernia.html?region=elarion-vale'},
+  'elynthara':       {name:'Elynthara',         desc:'Lighthouse of Elynthara',  realm:'ethernia', url:'ethernia.html?region=elynthara'},
+  'drakenfell':      {name:'Drakenfell',        desc:'Ashen Fortress',           realm:'fantasy',  url:'fantasy.html?region=drakenfell'},
+  'nocthaven':       {name:'Nocthaven',         desc:'Black Moon Castle',        realm:'fantasy',  url:'fantasy.html?region=nocthaven'},
+  'eldermere':       {name:'Eldermere',         desc:'Root Sanctuary',           realm:'fantasy',  url:'fantasy.html?region=eldermere'},
+  'velmorra':        {name:'Velmorra',          desc:'Arcane Observatory',       realm:'fantasy',  url:'fantasy.html?region=velmorra'},
+  'blacktide-harbor':{name:'Blacktide Harbor', desc:'Tidewatch Lighthouse',     realm:'fantasy',  url:'fantasy.html?region=blacktide-harbor'},
+};
+
+const tooltip = document.getElementById('atlasTooltip');
+const ttRealm = document.getElementById('ttRealm');
+const ttName  = document.getElementById('ttName');
+const ttDesc  = document.getElementById('ttDesc');
+
+// ── REGION INTERACTIONS ──
+document.querySelectorAll('.region').forEach(g => {
+  const key  = g.dataset.key;
+  const data = R[key]; if(!data) return;
+  const isEth = data.realm === 'ethernia';
+
+  g.addEventListener('mouseenter', e => {
+    ttRealm.textContent = isEth ? 'ETHERNIA' : 'FANTASY';
+    ttRealm.className   = 'tt-realm ' + (isEth ? 'eth' : 'fan');
+    ttName.textContent  = data.name;
+    ttDesc.textContent  = data.desc;
+    tooltip.querySelector('.tt-cta').textContent = T[lang]['tooltip.cta'] || 'EXPLORE REGION →';
+    tooltip.className   = 'atlas-tooltip show' + (isEth ? '' : ' fan');
+    moveTT(e);
+  });
+  g.addEventListener('mousemove',  e => moveTT(e));
+  g.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+  g.addEventListener('click',      () => window.location.href = data.url);
+  g.style.cursor = 'pointer';
+});
+
+// ── FUTURE ISLANDS ──
+document.querySelectorAll('[data-key="future"]').forEach(el => {
+  el.addEventListener('mouseenter', e => {
+    ttRealm.textContent = '? ? ? ? ?';
+    ttRealm.className   = 'tt-realm fut';
+    ttName.textContent  = '— — — —';
+    ttDesc.textContent  = '';
+    tooltip.querySelector('.tt-cta').textContent = '· · ·';
+    tooltip.className   = 'atlas-tooltip show future';
+    moveTT(e);
+  });
+  el.addEventListener('mousemove',  e => moveTT(e));
+  el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+  el.addEventListener('click', () => openModal());
+});
+
+function moveTT(e) {
+  const tw=250, th=130;
+  let x = e.clientX + 16, y = e.clientY - 20;
+  if(x + tw > window.innerWidth)  x = e.clientX - tw - 16;
+  if(y + th > window.innerHeight) y = e.clientY - th - 10;
+  tooltip.style.left = x + 'px';
+  tooltip.style.top  = y + 'px';
+}
+
+// ── FILTER TABS ──
+document.querySelectorAll('.realm-tabs .tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.realm-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.region').forEach(g => {
+      const isEth = g.classList.contains('eth');
+      const show  = f==='all' || (f==='ethernia'&&isEth) || (f==='fantasy'&&!isEth);
+      g.style.opacity       = show ? '1'    : '0.05';
+      g.style.pointerEvents = show ? 'auto' : 'none';
+    });
+  });
+});
+
+// ── MODAL ──
+function openModal()  { document.getElementById('modalOverlay').classList.add('open'); }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if(e.target === e.currentTarget) closeModal();
+});
+
+function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+</script>
+</body>
+</html>
