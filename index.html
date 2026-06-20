@@ -132,27 +132,20 @@ nav{
 }
 @keyframes mistRise{0%{opacity:.6;transform:translateY(0);}100%{opacity:.9;transform:translateY(-8px);}}
 
-/* realm labels */
-.hero-realm-labels{
-  position:absolute;top:20%;left:0;width:100%;
-  display:flex;justify-content:space-between;
-  padding:0 6%;z-index:3;pointer-events:none;
-}
-.realm-label{text-align:center;}
-.realm-label-name{font-family:'Cinzel',serif;font-size:clamp(.55rem,1.1vw,.8rem);letter-spacing:5px;color:var(--gold);opacity:.8;}
-.realm-label-sub{font-size:clamp(.65rem,1vw,.82rem);color:var(--dim);font-style:italic;margin-top:4px;opacity:.75;}
+/* realm labels — now sit right above their portal buttons */
+.hero-realm-labels{display:none;} /* legacy, replaced by per-button labels */
 
 .hero-content{
   position:relative;z-index:4;
   padding:0 24px 70px;max-width:960px;width:100%;
-  margin-top:-120px;
+  margin-top:-260px;
 }
 
-/* BIG LOGO */
+/* BIG LOGO — moved higher, closer to top of image */
 .hero-logo{
   font-family:'Cinzel',serif;
   font-size:clamp(2.8rem,9vw,7.5rem);
-  font-weight:400;letter-spacing:6px;line-height:1;margin-bottom:12px;
+  font-weight:400;letter-spacing:6px;line-height:1;margin-bottom:10px;
   display:flex;align-items:center;justify-content:center;
 }
 .logo-o2{display:inline-flex;align-items:center;justify-content:center;position:relative;}
@@ -162,13 +155,22 @@ nav{
 }
 .hero-tagline{
   font-family:'Cinzel',serif;font-size:clamp(.65rem,1.5vw,1rem);
-  letter-spacing:6px;color:var(--gold);opacity:.8;margin-bottom:55px;
+  letter-spacing:6px;color:var(--gold);opacity:.8;margin-bottom:90px;
 }
 
-/* PORTALS */
-.hero-portals{display:flex;justify-content:space-between;gap:20px;padding:0 5%;margin-bottom:40px;}
+/* PORTALS — each button now has its own realm label above it */
+.hero-portals{display:flex;justify-content:space-between;gap:20px;padding:0 5%;margin-bottom:40px;align-items:flex-end;}
+.hero-portal-col{flex:1;max-width:260px;display:flex;flex-direction:column;align-items:center;}
+.portal-realm-name{
+  font-family:'Cinzel',serif;font-size:clamp(.6rem,1.2vw,.82rem);
+  letter-spacing:5px;color:var(--gold);opacity:.9;margin-bottom:4px;
+}
+.portal-realm-sub{
+  font-size:clamp(.68rem,1.1vw,.88rem);color:var(--dim);
+  font-style:italic;opacity:.8;margin-bottom:14px;
+}
 .hero-btn{
-  flex:1;max-width:260px;padding:14px 24px;
+  width:100%;padding:14px 24px;
   border:1px solid rgba(216,192,138,.45);border-radius:3px;
   font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;
   color:var(--text);text-decoration:none;
@@ -184,6 +186,7 @@ nav{
 .hero-btn-eth:hover{border-color:var(--gold);background:rgba(216,192,138,.1);box-shadow:0 0 30px rgba(216,192,138,.2);}
 .hero-btn-fan{border-color:rgba(155,142,196,.4);}
 .hero-btn-fan:hover{border-color:#9b8ec4;background:rgba(155,142,196,.08);box-shadow:0 0 30px rgba(155,142,196,.2);}
+.hero-portal-col.fan .portal-realm-name{color:#c8b8e8;}
 
 /* scroll cue */
 .scroll-cue{
@@ -385,7 +388,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 @media(max-width:900px){
   nav{padding:14px 24px;padding-top:calc(14px + env(safe-area-inset-top));}.nav-links{display:none;}.hamburger{display:flex;}
   .section{padding:65px 24px;}
-  .hero-content{margin-top:-90px;padding:0 20px 55px;}
+  .hero-content{margin-top:-200px;padding:0 20px 55px;}
   .hero-portals{padding:0 3%;gap:12px;}
   .journey-grid{grid-template-columns:repeat(2,1fr);}
   .stats-section{grid-template-columns:1fr;margin:0 24px;}
@@ -398,13 +401,13 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   nav{padding:12px 18px;padding-top:calc(12px + env(safe-area-inset-top));}.logo-nav{font-size:1rem;}
   .section{padding:50px 16px;}
   .hero{padding-top:calc(58px + env(safe-area-inset-top));}
-  .hero-content{margin-top:-70px;padding:0 16px 44px;}
+  .hero-content{margin-top:-150px;padding:0 16px 44px;}
   .hero-logo{font-size:clamp(2rem,11vw,3.5rem);letter-spacing:3px;}
-  .hero-tagline{font-size:.6rem;letter-spacing:4px;margin-bottom:32px;}
+  .hero-tagline{font-size:.6rem;letter-spacing:4px;margin-bottom:50px;}
   .hero-portals{padding:0 2%;gap:10px;}
   .hero-btn{padding:12px 14px;font-size:.62rem;letter-spacing:2px;}
-  .hero-realm-labels{top:16%;padding:0 3%;}
-  .realm-label-name{font-size:.5rem;letter-spacing:3px;}
+  .portal-realm-name{font-size:.55rem;letter-spacing:3px;}
+  .portal-realm-sub{font-size:.62rem;margin-bottom:10px;}
   .collection-card{flex:0 0 100%;}
   .carousel-btn{width:36px;height:36px;font-size:1.3rem;}
   .journey-grid{grid-template-columns:1fr 1fr;gap:10px;}
@@ -491,16 +494,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
     <div class="hero-img-overlay"></div>
     <div class="hero-mist"></div>
   </div>
-  <div class="hero-realm-labels">
-    <div class="realm-label">
-      <div class="realm-label-name">✦ &nbsp; ETHERNIA</div>
-      <div class="realm-label-sub">The Realm of Light</div>
-    </div>
-    <div class="realm-label">
-      <div class="realm-label-name">FANTASY &nbsp; ☾</div>
-      <div class="realm-label-sub">The Realm of Shadows</div>
-    </div>
-  </div>
   <div class="hero-content">
     <div class="hero-logo">
       <span>M</span><span>O</span>
@@ -513,8 +506,16 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
     </div>
     <p class="hero-tagline">BETWEEN STARS AND STORIES</p>
     <div class="hero-portals">
-      <a href="ethernia.html" class="hero-btn hero-btn-eth">ENTER ETHERNIA</a>
-      <a href="fantasy.html" class="hero-btn hero-btn-fan">ENTER FANTASY</a>
+      <div class="hero-portal-col eth">
+        <p class="portal-realm-name">✦ &nbsp; ETHERNIA</p>
+        <p class="portal-realm-sub">The Realm of Light</p>
+        <a href="ethernia.html" class="hero-btn hero-btn-eth">ENTER ETHERNIA</a>
+      </div>
+      <div class="hero-portal-col fan">
+        <p class="portal-realm-name">FANTASY &nbsp; ☾</p>
+        <p class="portal-realm-sub">The Realm of Shadows</p>
+        <a href="fantasy.html" class="hero-btn hero-btn-fan">ENTER FANTASY</a>
+      </div>
     </div>
     <div class="scroll-cue">
       <div class="scroll-mouse"></div>
