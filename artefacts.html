@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artefacts — Moonvale Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
+  --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
+  --fan:#9b8ec4;
+}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.07);z-index:1000;}
+.nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
+.logo-nav{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:5px;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:26px;align-items:center;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-lang{font-family:'Cinzel',serif;font-size:.68rem;color:var(--gold);letter-spacing:1px;cursor:pointer;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:1.5px;background:var(--gold);}
+
+/* HERO */
+.hero{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;background:#050816;padding-top:62px;}
+.hero-img-wrap{position:relative;width:100%;overflow:hidden;}
+.hero-img-wrap img{width:100%;height:auto;display:block;animation:kenBurns 24s ease-in-out infinite alternate;transform-origin:center top;}
+@keyframes kenBurns{0%{transform:scale(1);}100%{transform:scale(1.05);}}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.3) 0%,rgba(5,8,22,.0) 20%,rgba(5,8,22,.1) 55%,rgba(5,8,22,.85) 82%,rgba(5,8,22,1) 100%);}
+.hero-img-overlay::before{content:'';position:absolute;top:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,rgba(5,8,22,.45),transparent);}
+.hero-content{position:relative;z-index:2;padding:0 24px 60px;max-width:900px;width:100%;margin-top:-90px;}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:6px;color:var(--gold);opacity:.85;margin-bottom:20px;}
+
+.hero-title-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:20px;}
+.hero-rule{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.hero-rule-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.5;}
+.hero-rule-line.right{background:linear-gradient(90deg,var(--gold),transparent);}
+.hero-rule-sym{color:var(--gold);font-size:.8rem;opacity:.7;}
+
+.hero-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2.8rem,8.5vw,6.5rem);
+  font-weight:400;letter-spacing:9px;line-height:1;
+  position:relative;
+  background:linear-gradient(120deg,#a8895a 0%,var(--gold) 18%,var(--gold-hi) 35%,#fff8e0 45%,var(--gold-hi) 55%,var(--gold) 72%,#a8895a 100%);
+  background-size:260% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:titleShimmer 7s ease-in-out infinite;
+  filter:drop-shadow(0 0 35px rgba(245,217,127,.35)) drop-shadow(0 0 70px rgba(155,142,196,.15));
+  opacity:0;
+}
+.hero-title.revealed{
+  animation:titleShimmer 7s ease-in-out infinite, titleReveal 1.4s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes titleShimmer{
+  0%{background-position:0% center;}
+  100%{background-position:160% center;}
+}
+@keyframes titleReveal{
+  0%{opacity:0;letter-spacing:22px;filter:blur(8px) drop-shadow(0 0 35px rgba(245,217,127,.35));}
+  100%{opacity:1;letter-spacing:9px;filter:blur(0) drop-shadow(0 0 35px rgba(245,217,127,.35)) drop-shadow(0 0 70px rgba(155,142,196,.15));}
+}
+
+.hero-rule-bottom{display:flex;align-items:center;gap:14px;margin-top:18px;}
+
+.hero-subtitle{font-size:clamp(1rem,2.2vw,1.4rem);color:var(--dim);font-style:italic;font-weight:300;margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto;margin-top:24px;}
+
+.scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--gold);opacity:.6;}
+.scroll-mouse{width:20px;height:32px;border:1.5px solid var(--gold);border-radius:10px;position:relative;display:flex;justify-content:center;}
+.scroll-mouse::after{content:'';width:2.5px;height:5px;background:var(--gold);border-radius:2px;position:absolute;top:5px;animation:scrollWheel 2s ease-in-out infinite;}
+@keyframes scrollWheel{0%{top:5px;opacity:1;}100%{top:17px;opacity:0;}}
+
+/* LORE SECTION */
+.lore-section{max-width:760px;margin:0 auto;padding:80px 32px 60px;text-align:center;}
+.lore-ornament{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:24px;}
+.lore-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.45;}
+.lore-line.right{background:linear-gradient(90deg,var(--gold),transparent);}
+.lore-sym{color:var(--gold);font-size:1rem;opacity:.65;}
+.lore-text{font-size:clamp(1rem,1.9vw,1.2rem);color:rgba(216,192,138,0.8);line-height:1.9;font-weight:300;}
+
+/* SECTION BASE */
+.section{max-width:1400px;margin:0 auto;padding:70px 48px;}
+.section-header{text-align:center;margin-bottom:50px;}
+.section-ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px;}
+.section-ornament-line{width:35px;height:1px;background:var(--gold);opacity:.4;}
+.section-ornament-sym{color:var(--gold);font-size:.85rem;opacity:.6;}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:4px;font-weight:400;}
+.section-sub{font-size:clamp(.82rem,1.4vw,1rem);color:var(--dim);font-style:italic;margin-top:10px;}
+.section-divider{width:100%;max-width:1400px;margin:0 auto;border:none;border-top:1px solid rgba(216,192,138,.08);}
+
+/* CAROUSEL (Featured Collections) */
+.carousel-wrap{position:relative;display:flex;align-items:center;gap:16px;}
+.carousel-viewport{overflow:hidden;flex:1;border-radius:8px;}
+.carousel-track{display:flex;gap:18px;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.col-card{position:relative;flex:0 0 calc((100% - 36px) / 3);aspect-ratio:2/3;border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:transform .35s,box-shadow .35s,border-color .35s;text-decoration:none;display:block;}
+@media(max-width:900px){.col-card{flex:0 0 calc((100% - 18px) / 2);}}
+@media(max-width:600px){.col-card{flex:0 0 100%;}}
+.col-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 20px rgba(216,192,138,.12);}
+.col-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.col-card:hover img{transform:scale(1.05);}
+.carousel-btn{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:rgba(5,8,22,.7);color:var(--gold);font-size:1.6rem;cursor:pointer;transition:border-color .25s,transform .2s;backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;}
+.carousel-btn:hover{border-color:var(--gold);transform:scale(1.08);}
+.carousel-btn:disabled{opacity:.25;cursor:default;transform:none;}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:22px;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(216,192,138,.25);border:none;cursor:pointer;padding:0;transition:background .25s,transform .25s;}
+.carousel-dot.active{background:var(--gold);transform:scale(1.4);}
+
+/* PRODUCT GRID (New Arrivals / Best Sellers) */
+.product-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.product-card{position:relative;aspect-ratio:2/3;border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:pointer;text-decoration:none;display:block;transition:transform .35s,box-shadow .35s,border-color .35s;}
+.product-card:hover{transform:translateY(-6px) scale(1.02);border-color:var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 20px rgba(216,192,138,.1);}
+.product-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;}
+.product-card:hover img{transform:scale(1.06);}
+.product-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,8,22,.85) 0%,transparent 50%);pointer-events:none;}
+.product-badge{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:30px;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:2px;backdrop-filter:blur(6px);}
+.product-badge.new{background:rgba(216,192,138,.15);border:1px solid rgba(216,192,138,.4);color:var(--gold);}
+.product-badge.best{background:rgba(155,142,196,.15);border:1px solid rgba(155,142,196,.4);color:var(--fan);}
+.product-info{position:absolute;bottom:0;left:0;right:0;padding:16px 14px;}
+.product-name{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:1.5px;color:var(--text);}
+.product-realm{font-size:.7rem;color:var(--dim);font-style:italic;margin-top:2px;}
+
+/* EXPLORE BY REALM */
+.realm-split{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.realm-card{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--border);text-decoration:none;display:block;height:380px;transition:transform .35s,box-shadow .35s,border-color .35s;}
+.realm-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.5);}
+.realm-card.eth:hover{border-color:var(--gold);}
+.realm-card.fan:hover{border-color:var(--fan);}
+.realm-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.realm-card:hover img{transform:scale(1.05);}
+.realm-card-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.2) 0%,rgba(5,8,22,.75) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:36px;}
+.realm-card-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:4px;margin-bottom:10px;}
+.realm-card.eth .realm-card-label{color:var(--gold);}
+.realm-card.fan .realm-card-label{color:var(--fan);}
+.realm-card-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,2.5vw,1.9rem);letter-spacing:4px;margin-bottom:18px;color:var(--gold-hi);}
+.realm-card.fan .realm-card-title{color:#c8b8e8;}
+.realm-card-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 26px;border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:2px;color:var(--gold);background:rgba(5,8,22,.5);backdrop-filter:blur(6px);transition:all .3s;}
+.realm-card.fan .realm-card-btn{border-color:rgba(155,142,196,.5);color:var(--fan);}
+.realm-card:hover .realm-card-btn{background:rgba(216,192,138,.1);}
+.realm-card.fan:hover .realm-card-btn{background:rgba(155,142,196,.1);}
+
+.ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.22);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
+
+.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:4px;text-decoration:none;color:var(--text);transition:color .25s;}
+.mobile-menu a:hover{color:var(--gold);}
+.mobile-close{position:absolute;top:24px;right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
+
+footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
+.footer-inner{max-width:1400px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:8px;}
+.footer-tagline{font-style:italic;font-size:.88rem;color:var(--dim);margin-bottom:14px;}
+.footer-desc{font-size:.8rem;color:var(--dim);opacity:.65;line-height:1.7;margin-bottom:18px;}
+.footer-social{display:flex;gap:12px;}
+.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s;text-decoration:none;}
+.footer-social a:hover{border-color:var(--gold);box-shadow:0 0 10px rgba(216,192,138,.12);}
+.footer-social svg{width:13px;height:13px;}
+.footer-col h5{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--gold);margin-bottom:16px;opacity:.75;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:9px;}
+.footer-col ul li a{text-decoration:none;color:var(--dim);font-size:.8rem;transition:color .25s;opacity:.75;}
+.footer-col ul li a:hover{color:var(--gold);opacity:1;}
+.footer-bottom{max-width:1400px;margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(216,192,138,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:.7rem;color:var(--dim);opacity:.4;}
+.footer-lang-row{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:var(--gold);opacity:.55;cursor:pointer;}
+
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.55;}
+.mist-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 55% 40% at 25% 45%,rgba(216,192,138,.03) 0%,transparent 70%),radial-gradient(ellipse 45% 35% at 75% 60%,rgba(155,142,196,.02) 0%,transparent 70%);animation:mistDrift 22s ease-in-out infinite alternate;}
+@keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
+#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:7px;height:7px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);opacity:.85;display:none;}
+#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:26px;height:26px;border:1px solid rgba(216,192,138,.5);border-radius:50%;transform:translate(-50%,-50%);transition:left .08s ease,top .08s ease,transform .2s;display:none;}
+@media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
+.page-transition{position:fixed;inset:0;background:#050816;z-index:9997;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+.page-transition.out{opacity:1;pointer-events:auto;}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+#musicPlayer{position:fixed;bottom:24px;right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.9);border:1px solid rgba(216,192,138,.25);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
+#musicPlayer:hover{border-color:var(--gold);box-shadow:0 0 18px rgba(216,192,138,.12);}
+#musicIcon{font-size:1rem;color:var(--gold);}
+#musicLabel{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;color:var(--dim);}
+#musicVol{width:50px;height:3px;-webkit-appearance:none;appearance:none;background:rgba(216,192,138,.2);border-radius:2px;cursor:pointer;}
+#musicVol::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;background:var(--gold);border-radius:50%;}
+
+@media(max-width:1100px){
+  .product-grid{grid-template-columns:repeat(3,1fr);}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+}
+@media(max-width:900px){
+  nav{padding:14px 24px;}.nav-links{display:none;}.hamburger{display:flex;}
+  .section{padding:50px 24px;}
+  .hero-content{margin-top:-60px;padding:0 20px 50px;}
+  .realm-split{grid-template-columns:1fr;gap:16px;}
+  .realm-card{height:300px;}
+  footer{padding:50px 24px 32px;}
+}
+@media(max-width:600px){
+  nav{padding:12px 18px;}.logo-nav{font-size:1rem;}
+  .section{padding:42px 16px;}
+  .hero{padding-top:58px;}
+  .hero-content{margin-top:-40px;padding:0 16px 42px;}
+  .hero-title{font-size:clamp(2.2rem,9vw,3.5rem);}
+  .hero-title.revealed{animation:titleShimmer 7s ease-in-out infinite, titleReveal 1.4s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes titleReveal{0%{opacity:0;letter-spacing:14px;filter:blur(6px);}100%{opacity:1;letter-spacing:4px;filter:blur(0);}}
+  .hero-rule-line{width:34px;}
+  .hero-subtitle{font-size:.9rem;}
+  .product-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .carousel-btn{width:36px;height:36px;font-size:1.3rem;}
+  .footer-inner{grid-template-columns:1fr;gap:24px;}
+  footer{padding:44px 16px 28px;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  #musicPlayer{bottom:14px;right:12px;padding:0;border-radius:50%;width:38px;height:38px;justify-content:center;}
+  #musicLabel,#musicVol{display:none;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+<div class="mist-layer"></div>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div class="page-transition" id="pageTransition"></div>
+
+<div id="musicPlayer" onclick="toggleMusic()">
+  <span id="musicIcon">♪</span>
+  <span id="musicLabel">MUSIC OFF</span>
+  <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
+</div>
+<audio id="bgAudio" loop preload="none">
+  <source src="music-artefacts.mp3" type="audio/mpeg">
+</audio>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-nav">MOONVALE</a>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="ethernia.html">ETHERNIA</a></li>
+      <li><a href="fantasy.html">FANTASY</a></li>
+      <li><a href="lore-library.html">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" class="active">ARTEFACTS</a></li>
+      <li><a href="about.html">ABOUT</a></li>
+      <li><span class="nav-lang">PT | EN | ES</span></li>
+    </ul>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" onclick="closeMenu()">HOME</a>
+  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()">ABOUT</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img-wrap">
+    <img src="artefacts-hero.webp" alt="Artefacts — Relics of Moonvale" draggable="false">
+    <div class="hero-img-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✧ &nbsp; RELICS OF BOTH WORLDS &nbsp; ✧</p>
+    <div class="hero-title-wrap">
+      <div class="hero-rule">
+        <div class="hero-rule-line"></div>
+        <span class="hero-rule-sym">◈</span>
+        <div class="hero-rule-line right"></div>
+      </div>
+      <h1 class="hero-title" id="heroTitle">ARTEFACTS</h1>
+      <div class="hero-rule-bottom">
+        <div class="hero-rule-line"></div>
+        <span class="hero-rule-sym">◈</span>
+        <div class="hero-rule-line right"></div>
+      </div>
+    </div>
+    <p class="hero-subtitle">Treasures forged in light and shadow, waiting to be discovered.</p>
+    <div class="scroll-cue">
+      <div class="scroll-mouse"></div>
+      SCROLL TO DISCOVER
+    </div>
+  </div>
+</section>
+
+<!-- MINI LORE -->
+<div class="lore-section fade-in">
+  <div class="lore-ornament">
+    <div class="lore-line"></div>
+    <span class="lore-sym">✧</span>
+    <div class="lore-line right"></div>
+  </div>
+  <p class="lore-text">
+    Every relic in Moonvale carries a fragment of its world's soul — light from Ethernia's eternal dawn, or shadow from Fantasy's endless dusk. Collected, illustrated, and preserved, these artefacts are pieces of legend you can hold close.
+  </p>
+</div>
+
+<hr class="section-divider">
+
+<!-- FEATURED COLLECTIONS -->
+<section class="section fade-in">
+  <div class="section-header">
+    <div class="section-ornament">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-sym">✧</span>
+      <h2 class="section-title">FEATURED COLLECTIONS</h2>
+      <span class="section-ornament-sym">✧</span>
+      <div class="section-ornament-line"></div>
+    </div>
+    <p class="section-sub">Curated sets, each with its own story.</p>
+  </div>
+  <div class="carousel-wrap">
+    <button class="carousel-btn" id="carouselPrev" aria-label="Previous">‹</button>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carouselTrack">
+        <a href="#" class="col-card"><img src="Dark-medieval-legends.webp" alt="Dark Medieval Legends" loading="lazy"></a>
+        <a href="#" class="col-card"><img src="Fantasy-sillouete.webp" alt="Fantasy Silhouette Art" loading="lazy"></a>
+        <a href="#" class="col-card"><img src="Enchanted-realms-colections.webp" alt="Enchanted Realms Collection" loading="lazy"></a>
+        <a href="#" class="col-card"><img src="Epic-fantasy-kingdoms.webp" alt="Epic Fantasy Kingdoms" loading="lazy"></a>
+        <a href="#" class="col-card"><img src="Golden-steampunk-realms.webp" alt="Golden Steampunk Realms" loading="lazy"></a>
+      </div>
+    </div>
+    <button class="carousel-btn" id="carouselNext" aria-label="Next">›</button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<hr class="section-divider">
+
+<!-- NEW ARRIVALS -->
+<section class="section fade-in">
+  <div class="section-header">
+    <div class="section-ornament">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-sym">✦</span>
+      <h2 class="section-title">NEW ARRIVALS</h2>
+      <span class="section-ornament-sym">✦</span>
+      <div class="section-ornament-line"></div>
+    </div>
+    <p class="section-sub">The latest relics to enter the archive.</p>
+  </div>
+  <div class="product-grid">
+    <a href="#" class="product-card">
+      <img src="crown-of-lumindor.webp" alt="Crown of Lumindor" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge new">NEW</span>
+      <div class="product-info"><p class="product-name">Crown of Lumindor</p><p class="product-realm">Ethernia</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="moonshadow-lantern.webp" alt="Moonshadow Lantern" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge new">NEW</span>
+      <div class="product-info"><p class="product-name">Moonshadow Lantern</p><p class="product-realm">Fantasy</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="frozen-star-prism.webp" alt="Frozen Star Prism" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge new">NEW</span>
+      <div class="product-info"><p class="product-name">Frozen Star Prism</p><p class="product-realm">Ethernia</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="emberfang-blade.webp" alt="Emberfang Blade" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge new">NEW</span>
+      <div class="product-info"><p class="product-name">Emberfang Blade</p><p class="product-realm">Fantasy</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="moonveil-compass.webp" alt="Moonveil Compass" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge new">NEW</span>
+      <div class="product-info"><p class="product-name">Moonveil Compass</p><p class="product-realm">Ethernia</p></div>
+    </a>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- BEST SELLERS -->
+<section class="section fade-in">
+  <div class="section-header">
+    <div class="section-ornament">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-sym">⌖</span>
+      <h2 class="section-title">BEST SELLERS</h2>
+      <span class="section-ornament-sym">⌖</span>
+      <div class="section-ornament-line"></div>
+    </div>
+    <p class="section-sub">The most beloved relics of the archive.</p>
+  </div>
+  <div class="product-grid">
+    <a href="#" class="product-card">
+      <img src="tears-of-sylvarith.webp" alt="Tears of Sylvarith" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge best">BEST SELLER</span>
+      <div class="product-info"><p class="product-name">Tears of Sylvarith</p><p class="product-realm">Ethernia</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="tidewatch-spyglass.webp" alt="Tidewatch Spyglass" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge best">BEST SELLER</span>
+      <div class="product-info"><p class="product-name">Tidewatch Spyglass</p><p class="product-realm">Fantasy</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="bloomheart-relic.webp" alt="Bloomheart Relic" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge best">BEST SELLER</span>
+      <div class="product-info"><p class="product-name">Bloomheart Relic</p><p class="product-realm">Ethernia</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="astral-codex.webp" alt="Astral Codex" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge best">BEST SELLER</span>
+      <div class="product-info"><p class="product-name">Astral Codex</p><p class="product-realm">Fantasy</p></div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="rootkeeper-bow.webp" alt="Rootkeeper Bow" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <div class="product-overlay"></div>
+      <span class="product-badge best">BEST SELLER</span>
+      <div class="product-info"><p class="product-name">Rootkeeper Bow</p><p class="product-realm">Fantasy</p></div>
+    </a>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPLORE BY REALM -->
+<section class="section fade-in">
+  <div class="section-header">
+    <div class="section-ornament">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-sym">◈</span>
+      <h2 class="section-title">EXPLORE BY REALM</h2>
+      <span class="section-ornament-sym">◈</span>
+      <div class="section-ornament-line"></div>
+    </div>
+    <p class="section-sub">Two worlds, two collections of treasure.</p>
+  </div>
+  <div class="realm-split">
+    <a href="ethernia.html" class="realm-card eth">
+      <img src="ethernia-hero.webp" alt="Ethernia Artefacts">
+      <div class="realm-card-overlay">
+        <p class="realm-card-label">✦ &nbsp; ETHERNIA</p>
+        <p class="realm-card-title">RELICS OF LIGHT</p>
+        <span class="realm-card-btn">EXPLORE →</span>
+      </div>
+    </a>
+    <a href="fantasy.html" class="realm-card fan">
+      <img src="fantasy-hero.webp" alt="Fantasy Artefacts">
+      <div class="realm-card-overlay">
+        <p class="realm-card-label">FANTASY &nbsp; ☾</p>
+        <p class="realm-card-title">RELICS OF SHADOW</p>
+        <span class="realm-card-btn">EXPLORE →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-logo">MOONVALE</p>
+      <p class="footer-tagline">Between Stars And Stories</p>
+      <p class="footer-desc">We are the bridge between worlds and imagination.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>NAVIGATION</h5>
+      <ul><li><a href="index.html">Home</a></li><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="lore-library.html">Lore Library</a></li><li><a href="artefacts.html">Artefacts</a></li><li><a href="about.html">About</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>WORLDS</h5>
+      <ul><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="atlas.html">Atlas</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>ARCHIVE</h5>
+      <ul><li><a href="lore-library/regions.html">Regions</a></li><li><a href="lore-library/characters.html">Characters</a></li><li><a href="lore-library/relics.html">Relics</a></li><li><a href="lore-library/chronicles.html">Chronicles</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5>CONNECT</h5>
+      <ul><li><a href="#">TikTok Ethernia</a></li><li><a href="#">TikTok Fantasy</a></li><li><a href="#">YouTube</a></li><li><a href="#">Pinterest</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Moonvale Studio. All rights reserved.</p>
+    <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
+  </div>
+</footer>
+
+<script>
+// ── HERO TITLE REVEAL ──
+window.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    const t=document.getElementById('heroTitle');
+    if(t)t.classList.add('revealed');
+  },200);
+});
+
+(function(){
+  const c=document.getElementById('particles-canvas');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize,{passive:true});
+  const R=(a,b)=>a+Math.random()*(b-a);
+  class Star{
+    constructor(){this.reset(true);}
+    reset(init){this.x=R(0,W);this.y=init?R(0,H):H+5;this.size=R(.3,1.6);this.alpha=R(.04,.4);this.da=R(.002,.007)*(Math.random()>.5?1:-1);this.vx=R(-.05,.05);this.vy=R(-.07,.01);this.gold=Math.random()>.4;}
+    update(){this.x+=this.vx;this.y+=this.vy;this.alpha+=this.da;if(this.alpha<.02||this.alpha>.45)this.da*=-1;if(this.y<-5||this.x<-5||this.x>W+5)this.reset(false);}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=this.gold?`rgba(216,192,138,${this.alpha})`:`rgba(155,142,196,${this.alpha*.6})`;ctx.fill();}
+  }
+  const n=window.innerWidth<600?40:80;const stars=[];
+  for(let i=0;i<n;i++)stars.push(new Star());
+  function animate(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.update();s.draw();});requestAnimationFrame(animate);}
+  animate();
+})();
+
+(function(){
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  if(!dot||!ring)return;
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+  animRing();
+  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.transform='translate(-50%,-50%) scale(.6)';});
+  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.6)';ring.style.borderColor='var(--gold)';});el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});});
+})();
+
+(function(){
+  const pt=document.getElementById('pageTransition');
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http'))return;
+    a.addEventListener('click',e=>{e.preventDefault();pt.classList.add('out');setTimeout(()=>{window.location.href=href;},380);});
+  });
+  pt.style.opacity='1';pt.style.pointerEvents='auto';
+  setTimeout(()=>{pt.style.opacity='0';pt.style.pointerEvents='none';},50);
+})();
+
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('.col-card,.product-card,.carousel-btn,.realm-card');
+  if(!t)return;
+  const r=document.createElement('span');r.className='ripple';
+  const rect=t.getBoundingClientRect();const sz=Math.max(rect.width,rect.height);
+  r.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
+  t.appendChild(r);setTimeout(()=>r.remove(),500);
+});
+
+(function(){
+  const track=document.getElementById('carouselTrack');
+  const dots=document.getElementById('carouselDots');
+  const prev=document.getElementById('carouselPrev');
+  const next=document.getElementById('carouselNext');
+  if(!track)return;
+  const total=track.querySelectorAll('.col-card').length;
+  let cur=0;
+  function vis(){return window.innerWidth<=600?1:window.innerWidth<=900?2:3;}
+  function pages(){return Math.ceil(total/vis());}
+  function buildDots(){
+    dots.innerHTML='';
+    for(let i=0;i<pages();i++){
+      const d=document.createElement('button');
+      d.className='carousel-dot'+(i===cur?' active':'');
+      d.onclick=()=>{cur=i;update();};
+      dots.appendChild(d);
+    }
+  }
+  function update(){
+    const v=vis(),pg=pages()-1;
+    if(cur>pg)cur=pg;
+    const w=track.parentElement.offsetWidth,gap=18,iw=(w-gap*(v-1))/v;
+    track.style.transform=`translateX(-${cur*v*(iw+gap)}px)`;
+    dots.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+    prev.disabled=cur===0;next.disabled=cur>=pg;
+  }
+  prev.onclick=()=>{if(cur>0){cur--;update();}};
+  next.onclick=()=>{if(cur<pages()-1){cur++;update();}};
+  let sx=0;
+  track.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  track.addEventListener('touchend',e=>{
+    const dx=sx-e.changedTouches[0].clientX;
+    if(Math.abs(dx)>50){if(dx>0&&cur<pages()-1){cur++;update();}else if(dx<0&&cur>0){cur--;update();}}
+  });
+  window.addEventListener('resize',()=>{buildDots();update();});
+  buildDots();update();
+})();
+
+const audio=document.getElementById('bgAudio');
+const mLabel=document.getElementById('musicLabel');
+const mIcon=document.getElementById('musicIcon');
+let musicOn=false;audio.volume=0.18;
+function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
+function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent='MUSIC ON';mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent='MUSIC OFF';});}
+function fadeOut(){musicOn=false;mLabel.textContent='MUSIC OFF';mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
+function setVol(v){audio.volume=parseFloat(v);}
+
+function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+</script>
+</body>
+</html>
