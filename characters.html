@@ -7,7 +7,7 @@
 <meta name="description" content="Meet the legendary characters of Ethernia and Fantasy — heroes, mages and bearers of light and shadow.">
 <meta property="og:title" content="Characters — Moonvale Studio">
 <meta property="og:description" content="Bearers of light. Legends of the shadows.">
-<meta property="og:image" content="../lore-library-hero.webp">
+<meta property="og:image" content="lore-library-hero.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -134,8 +134,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
 .footer-tagline{font-style:italic;font-size:.88rem;color:var(--dim);margin-bottom:14px;}
 .footer-desc{font-size:.8rem;color:var(--dim);opacity:.65;line-height:1.7;margin-bottom:18px;}
 .footer-social{display:flex;gap:12px;}
-.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s;text-decoration:none;}
-.footer-social a:hover{border-color:var(--gold);box-shadow:0 0 10px rgba(216,192,138,.12);}
+.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s,transform .25s,background .25s;text-decoration:none;position:relative;overflow:hidden;}
+.footer-social a::after{content:'';position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.18),transparent 60%);opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s;}
+.footer-social a:hover{border-color:var(--gold);background:rgba(216,192,138,.06);box-shadow:0 0 14px rgba(216,192,138,.18),0 0 28px rgba(155,142,196,.08);transform:translateY(-2px);}
+.footer-social a:hover::after{opacity:1;transform:scale(1);animation:socialCelestial 1.8s ease-in-out infinite;}
+@keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
 .footer-social svg{width:13px;height:13px;}
 .footer-col h5{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--gold);margin-bottom:16px;opacity:.75;}
 .footer-col ul{list-style:none;}
@@ -228,20 +231,20 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
   <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
 </div>
 <audio id="bgAudio" loop preload="none">
-  <source src="../music-lore.mp3" type="audio/mpeg">
+  
 </audio>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="../index.html" class="logo-nav">MOONVALE</a>
+    <a href="index.html" class="logo-nav">MOONVALE</a>
     <ul class="nav-links">
-      <li><a href="../index.html" data-i18n="nav.home">HOME</a></li>
-      <li><a href="../ethernia.html" data-i18n="nav.ethernia">ETHERNIA</a></li>
-      <li><a href="../fantasy.html" data-i18n="nav.fantasy">FANTASY</a></li>
-      <li><a href="../lore-library.html" class="active" data-i18n="nav.lore">LORE LIBRARY</a></li>
-      <li><a href="../artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
-      <li><a href="../about.html" data-i18n="nav.about">ABOUT</a></li>
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+      <li><a href="ethernia.html" data-i18n="nav.ethernia">ETHERNIA</a></li>
+      <li><a href="fantasy.html" data-i18n="nav.fantasy">FANTASY</a></li>
+      <li><a href="lore-library.html" class="active" data-i18n="nav.lore">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
       <li><span class="nav-lang" id="langToggle">PT | EN | ES</span></li>
     </ul>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
@@ -250,17 +253,17 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="../index.html" onclick="closeMenu()" data-i18n="nav.home">HOME</a>
-  <a href="../ethernia.html" onclick="closeMenu()" data-i18n="nav.ethernia">ETHERNIA</a>
-  <a href="../fantasy.html" onclick="closeMenu()" data-i18n="nav.fantasy">FANTASY</a>
-  <a href="../lore-library.html" onclick="closeMenu()" data-i18n="nav.lore">LORE LIBRARY</a>
-  <a href="../artefacts.html" onclick="closeMenu()" data-i18n="nav.artefacts">ARTEFACTS</a>
-  <a href="../about.html" onclick="closeMenu()" data-i18n="nav.about">ABOUT</a>
+  <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">HOME</a>
+  <a href="ethernia.html" onclick="closeMenu()" data-i18n="nav.ethernia">ETHERNIA</a>
+  <a href="fantasy.html" onclick="closeMenu()" data-i18n="nav.fantasy">FANTASY</a>
+  <a href="lore-library.html" onclick="closeMenu()" data-i18n="nav.lore">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()" data-i18n="nav.artefacts">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()" data-i18n="nav.about">ABOUT</a>
 </div>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="../lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a> &nbsp;/&nbsp; <span data-i18n="page.crumb">CHARACTERS</span>
+  <a href="lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a> &nbsp;/&nbsp; <span data-i18n="page.crumb">CHARACTERS</span>
 </div>
 
 <!-- HERO -->
@@ -288,27 +291,27 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
     </div>
     <div class="items-grid">
       <a href="seraphine-luminaris.html" class="item-card">
-        <img src="../character-seraphine-luminaris.webp" alt="Seraphine Luminaris" loading="lazy" onerror="this.style.opacity=0">
+        <img src="ethernia-characters.webp" alt="Seraphine Luminaris" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Seraphine Luminaris</p><p class="item-tag">Keeper of Dawn</p></div>
       </a>
       <a href="elyndor-sylvaris.html" class="item-card">
-        <img src="../character-elyndor-sylvaris.webp" alt="Elyndor Sylvaris" loading="lazy" onerror="this.style.opacity=0">
+        <img src="ethernia-characters.webp" alt="Elyndor Sylvaris" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Elyndor Sylvaris</p><p class="item-tag">Warden of the Bloom</p></div>
       </a>
       <a href="aelira-vaelwyn.html" class="item-card">
-        <img src="../character-aelira-vaelwyn.webp" alt="Aelira Vaelwyn" loading="lazy" onerror="this.style.opacity=0">
+        <img src="ethernia-characters.webp" alt="Aelira Vaelwyn" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Aelira Vaelwyn</p><p class="item-tag">Voice of the Vale</p></div>
       </a>
       <a href="vaelith-asterion.html" class="item-card">
-        <img src="../character-vaelith-asterion.webp" alt="Vaelith Asterion" loading="lazy" onerror="this.style.opacity=0">
+        <img src="ethernia-characters.webp" alt="Vaelith Asterion" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Vaelith Asterion</p><p class="item-tag">Sworn of the Light</p></div>
       </a>
       <a href="seraphine-vaelaris.html" class="item-card">
-        <img src="../character-seraphine-vaelaris.webp" alt="Seraphine Vaelaris" loading="lazy" onerror="this.style.opacity=0">
+        <img src="ethernia-characters.webp" alt="Seraphine Vaelaris" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Seraphine Vaelaris</p><p class="item-tag">Lighthouse Sentinel</p></div>
       </a>
@@ -323,27 +326,27 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
     </div>
     <div class="items-grid">
       <a href="morthen-vale.html" class="item-card">
-        <img src="../character-morthen-vale.webp" alt="Morthen Vale" loading="lazy" onerror="this.style.opacity=0">
+        <img src="fantasy-characters.webp" alt="Morthen Vale" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Morthen Vale</p><p class="item-tag">Shadow of Nocthaven</p></div>
       </a>
       <a href="caelum-voren.html" class="item-card">
-        <img src="../character-caelum-voren.webp" alt="Caelum Voren" loading="lazy" onerror="this.style.opacity=0">
+        <img src="fantasy-characters.webp" alt="Caelum Voren" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Caelum Voren</p><p class="item-tag">Keeper of the Marsh</p></div>
       </a>
       <a href="alaric-drakewynn.html" class="item-card">
-        <img src="../character-alaric-drakewynn.webp" alt="Alaric Drakewynn" loading="lazy" onerror="this.style.opacity=0">
+        <img src="fantasy-characters.webp" alt="Alaric Drakewynn" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Alaric Drakewynn</p><p class="item-tag">Lord of Ashen Peaks</p></div>
       </a>
       <a href="lyra-elderwyn.html" class="item-card">
-        <img src="../character-lyra-elderwyn.webp" alt="Lyra Elderwyn" loading="lazy" onerror="this.style.opacity=0">
+        <img src="fantasy-characters.webp" alt="Lyra Elderwyn" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Lyra Elderwyn</p><p class="item-tag">Veiled Tower Mage</p></div>
       </a>
       <a href="captain-serak-thorn.html" class="item-card">
-        <img src="../character-captain-serak-thorn.webp" alt="Captain Serak Thorn" loading="lazy" onerror="this.style.opacity=0">
+        <img src="fantasy-characters.webp" alt="Captain Serak Thorn" loading="lazy" onerror="this.style.opacity=0">
         <div class="item-overlay"></div>
         <div class="item-content"><p class="item-name">Captain Serak Thorn</p><p class="item-tag">Harbor of Blacktide</p></div>
       </a>
@@ -367,11 +370,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.navigation">NAVIGATION</h5>
-      <ul><li><a href="../index.html" data-i18n="nav.home">Home</a></li><li><a href="../ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="../fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="../lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="../artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="../about.html" data-i18n="nav.about">About</a></li></ul>
+      <ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li></ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.worlds">WORLDS</h5>
-      <ul><li><a href="../ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="../fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="../atlas.html" data-i18n="footer.atlas">Atlas</a></li></ul>
+      <ul><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li></ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
@@ -393,6 +396,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;padding
   </div>
 </footer>
 
+<script src="moonvale-i18n.js"></script>
 <script>
 (function(){
   const c=document.getElementById('particles-canvas');
