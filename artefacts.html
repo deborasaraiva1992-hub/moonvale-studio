@@ -160,8 +160,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
 .footer-tagline{font-style:italic;font-size:.88rem;color:var(--dim);margin-bottom:14px;}
 .footer-desc{font-size:.8rem;color:var(--dim);opacity:.65;line-height:1.7;margin-bottom:18px;}
 .footer-social{display:flex;gap:12px;}
-.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s;text-decoration:none;}
-.footer-social a:hover{border-color:var(--gold);box-shadow:0 0 10px rgba(216,192,138,.12);}
+.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s,transform .25s,background .25s;text-decoration:none;position:relative;overflow:hidden;}
+.footer-social a::after{content:'';position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.18),transparent 60%);opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s;}
+.footer-social a:hover{border-color:var(--gold);background:rgba(216,192,138,.06);box-shadow:0 0 14px rgba(216,192,138,.18),0 0 28px rgba(155,142,196,.08);transform:translateY(-2px);}
+.footer-social a:hover::after{opacity:1;transform:scale(1);animation:socialCelestial 1.8s ease-in-out infinite;}
+@keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
 .footer-social svg{width:13px;height:13px;}
 .footer-col h5{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--gold);margin-bottom:16px;opacity:.75;}
 .footer-col ul{list-style:none;}
@@ -237,7 +240,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
 </div>
 <audio id="bgAudio" loop preload="none">
-  <source src="music-artefacts.mp3" type="audio/mpeg">
 </audio>
 
 <nav>
@@ -353,31 +355,31 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   </div>
   <div class="product-grid">
     <a href="#" class="product-card">
-      <img src="crown-of-lumindor.webp" alt="Crown of Lumindor" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="ethernia-relics.webp" alt="Crown of Lumindor" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge new">NEW</span>
       <div class="product-info"><p class="product-name">Crown of Lumindor</p><p class="product-realm">Ethernia</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="moonshadow-lantern.webp" alt="Moonshadow Lantern" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="fantasy-relics.webp" alt="Moonshadow Lantern" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge new">NEW</span>
       <div class="product-info"><p class="product-name">Moonshadow Lantern</p><p class="product-realm">Fantasy</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="frozen-star-prism.webp" alt="Frozen Star Prism" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="ethernia-relics.webp" alt="Frozen Star Prism" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge new">NEW</span>
       <div class="product-info"><p class="product-name">Frozen Star Prism</p><p class="product-realm">Ethernia</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="emberfang-blade.webp" alt="Emberfang Blade" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="fantasy-relics.webp" alt="Emberfang Blade" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge new">NEW</span>
       <div class="product-info"><p class="product-name">Emberfang Blade</p><p class="product-realm">Fantasy</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="moonveil-compass.webp" alt="Moonveil Compass" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="ethernia-relics.webp" alt="Moonveil Compass" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge new">NEW</span>
       <div class="product-info"><p class="product-name">Moonveil Compass</p><p class="product-realm">Ethernia</p></div>
@@ -401,31 +403,31 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   </div>
   <div class="product-grid">
     <a href="#" class="product-card">
-      <img src="tears-of-sylvarith.webp" alt="Tears of Sylvarith" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="ethernia-relics.webp" alt="Tears of Sylvarith" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge best">BEST SELLER</span>
       <div class="product-info"><p class="product-name">Tears of Sylvarith</p><p class="product-realm">Ethernia</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="tidewatch-spyglass.webp" alt="Tidewatch Spyglass" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="fantasy-relics.webp" alt="Tidewatch Spyglass" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge best">BEST SELLER</span>
       <div class="product-info"><p class="product-name">Tidewatch Spyglass</p><p class="product-realm">Fantasy</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="bloomheart-relic.webp" alt="Bloomheart Relic" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="ethernia-relics.webp" alt="Bloomheart Relic" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge best">BEST SELLER</span>
       <div class="product-info"><p class="product-name">Bloomheart Relic</p><p class="product-realm">Ethernia</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="astral-codex.webp" alt="Astral Codex" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="fantasy-relics.webp" alt="Astral Codex" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge best">BEST SELLER</span>
       <div class="product-info"><p class="product-name">Astral Codex</p><p class="product-realm">Fantasy</p></div>
     </a>
     <a href="#" class="product-card">
-      <img src="rootkeeper-bow.webp" alt="Rootkeeper Bow" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+      <img src="fantasy-relics.webp" alt="Rootkeeper Bow" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
       <div class="product-overlay"></div>
       <span class="product-badge best">BEST SELLER</span>
       <div class="product-info"><p class="product-name">Rootkeeper Bow</p><p class="product-realm">Fantasy</p></div>
@@ -471,8 +473,8 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   <div class="footer-inner">
     <div>
       <p class="footer-logo">MOONVALE</p>
-      <p class="footer-tagline">Between Stars And Stories</p>
-      <p class="footer-desc">We are the bridge between worlds and imagination.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
+      <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
       <div class="footer-social">
         <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
@@ -480,28 +482,29 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
       </div>
     </div>
     <div class="footer-col">
-      <h5>NAVIGATION</h5>
-      <ul><li><a href="index.html">Home</a></li><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="lore-library.html">Lore Library</a></li><li><a href="artefacts.html">Artefacts</a></li><li><a href="about.html">About</a></li></ul>
+      <h5 data-i18n="footer.navigation">NAVIGATION</h5>
+      <ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>WORLDS</h5>
-      <ul><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="atlas.html">Atlas</a></li></ul>
+      <h5 data-i18n="footer.worlds">WORLDS</h5>
+      <ul><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>ARCHIVE</h5>
-      <ul><li><a href="lore-library/regions.html">Regions</a></li><li><a href="lore-library/characters.html">Characters</a></li><li><a href="lore-library/relics.html">Relics</a></li><li><a href="lore-library/chronicles.html">Chronicles</a></li></ul>
+      <h5 data-i18n="footer.archive">ARCHIVE</h5>
+      <ul><li><a href="regions.html" data-i18n="archive.regions">Regions</a></li><li><a href="characters.html" data-i18n="archive.characters">Characters</a></li><li><a href="relics.html" data-i18n="archive.relics">Relics</a></li><li><a href="chronicles.html" data-i18n="archive.chronicles">Chronicles</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>CONNECT</h5>
+      <h5 data-i18n="footer.connect">CONNECT</h5>
       <ul><li><a href="#">TikTok Ethernia</a></li><li><a href="#">TikTok Fantasy</a></li><li><a href="#">YouTube</a></li><li><a href="#">Pinterest</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 Moonvale Studio. All rights reserved.</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2025 Moonvale Studio. All rights reserved.</p>
     <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
   </div>
 </footer>
 
+<script src="moonvale-i18n.js"></script>
 <script>
 // ── HERO TITLE REVEAL ──
 window.addEventListener('DOMContentLoaded',()=>{

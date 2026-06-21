@@ -322,8 +322,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 .footer-tagline{font-style:italic;font-size:.88rem;color:var(--dim);margin-bottom:14px;}
 .footer-desc{font-size:.8rem;color:var(--dim);opacity:.65;line-height:1.7;margin-bottom:18px;}
 .footer-social{display:flex;gap:12px;}
-.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s;text-decoration:none;}
-.footer-social a:hover{border-color:var(--gold);box-shadow:0 0 12px rgba(216,192,138,.15);}
+.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s,transform .25s,background .25s;text-decoration:none;position:relative;overflow:hidden;}
+.footer-social a::after{content:'';position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.18),transparent 60%);opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s;}
+.footer-social a:hover{border-color:var(--gold);background:rgba(216,192,138,.06);box-shadow:0 0 14px rgba(216,192,138,.18),0 0 28px rgba(155,142,196,.08);transform:translateY(-2px);}
+.footer-social a:hover::after{opacity:1;transform:scale(1);animation:socialCelestial 1.8s ease-in-out infinite;}
+@keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
 .footer-social svg{width:13px;height:13px;}
 .footer-col h5{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--gold);margin-bottom:16px;opacity:.75;}
 .footer-col ul{list-style:none;}
@@ -432,7 +435,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <!-- LOADING SCREEN -->
 <div id="loader">
   <div class="loader-logo">MOONVALE</div>
-  <div class="loader-tagline">Between Stars And Stories</div>
+  <div class="loader-tagline" data-i18n="footer.tagline">Between Stars And Stories</div>
   <div class="loader-bar"></div>
 </div>
 
@@ -456,7 +459,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
 </div>
 <audio id="bgAudio" loop preload="none">
-  <source src="music-home.mp3" type="audio/mpeg">
 </audio>
 
 <!-- NAV -->
@@ -464,12 +466,12 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   <div class="nav-inner">
     <a href="index.html" class="logo-nav">MOONVALE</a>
     <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="ethernia.html">ETHERNIA</a></li>
-      <li><a href="fantasy.html">FANTASY</a></li>
-      <li><a href="lore-library.html">LORE LIBRARY</a></li>
-      <li><a href="artefacts.html">ARTEFACTS</a></li>
-      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+      <li><a href="ethernia.html" data-i18n="nav.ethernia">ETHERNIA</a></li>
+      <li><a href="fantasy.html" data-i18n="nav.fantasy">FANTASY</a></li>
+      <li><a href="lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
       <li><span class="nav-lang">PT | EN | ES</span></li>
     </ul>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
@@ -479,12 +481,12 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" onclick="closeMenu()">HOME</a>
-  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
-  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
-  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
-  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
-  <a href="about.html" onclick="closeMenu()">ABOUT</a>
+  <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">HOME</a>
+  <a href="ethernia.html" onclick="closeMenu()" data-i18n="nav.ethernia">ETHERNIA</a>
+  <a href="fantasy.html" onclick="closeMenu()" data-i18n="nav.fantasy">FANTASY</a>
+  <a href="lore-library.html" onclick="closeMenu()" data-i18n="nav.lore">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()" data-i18n="nav.artefacts">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()" data-i18n="nav.about">ABOUT</a>
 </div>
 
 <!-- HERO — img tag, sem corte -->
@@ -504,22 +506,22 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
       </span>
       <span>NVALE</span>
     </div>
-    <p class="hero-tagline">BETWEEN STARS AND STORIES</p>
+    <p class="hero-tagline" data-i18n="home.tagline">BETWEEN STARS AND STORIES</p>
     <div class="hero-portals">
       <div class="hero-portal-col eth">
         <p class="portal-realm-name">✦ &nbsp; ETHERNIA</p>
-        <p class="portal-realm-sub">The Realm of Light</p>
-        <a href="ethernia.html" class="hero-btn hero-btn-eth">ENTER ETHERNIA</a>
+        <p class="portal-realm-sub" data-i18n="home.eth.sub">The Realm of Light</p>
+        <a href="ethernia.html" class="hero-btn hero-btn-eth" data-i18n="home.enter.eth">ENTER ETHERNIA</a>
       </div>
       <div class="hero-portal-col fan">
         <p class="portal-realm-name">FANTASY &nbsp; ☾</p>
-        <p class="portal-realm-sub">The Realm of Shadows</p>
-        <a href="fantasy.html" class="hero-btn hero-btn-fan">ENTER FANTASY</a>
+        <p class="portal-realm-sub" data-i18n="home.fan.sub">The Realm of Shadows</p>
+        <a href="fantasy.html" class="hero-btn hero-btn-fan" data-i18n="home.enter.fan">ENTER FANTASY</a>
       </div>
     </div>
     <div class="scroll-cue">
       <div class="scroll-mouse"></div>
-      SCROLL TO DISCOVER
+      <span data-i18n="home.scroll">SCROLL TO DISCOVER</span>
     </div>
   </div>
 </section>
@@ -537,11 +539,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
     <div class="section-ornament">
       <div class="section-ornament-line"></div>
       <span class="section-ornament-sym">✧</span>
-      <h2 class="section-title">FEATURED COLLECTIONS</h2>
+      <h2 class="section-title" data-i18n="home.featured">FEATURED COLLECTIONS</h2>
       <span class="section-ornament-sym">✧</span>
       <div class="section-ornament-line"></div>
     </div>
-    <p class="section-sub">Worlds forged in art. Legends brought to life.</p>
+    <p class="section-sub" data-i18n="home.featured.sub">Worlds forged in art. Legends brought to life.</p>
   </div>
   <div class="carousel-wrap">
     <button class="carousel-btn" id="carouselPrev" aria-label="Previous">‹</button>
@@ -567,17 +569,17 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
     <div class="section-ornament">
       <div class="section-ornament-line"></div>
       <span class="section-ornament-sym">⌖</span>
-      <h2 class="section-title">EXPLORE THE WORLD</h2>
+      <h2 class="section-title" data-i18n="home.explore">EXPLORE THE WORLD</h2>
       <span class="section-ornament-sym">⌖</span>
       <div class="section-ornament-line"></div>
     </div>
-    <p class="section-sub">Every place hides a story.</p>
+    <p class="section-sub" data-i18n="home.explore.sub">Every place hides a story.</p>
   </div>
   <a href="atlas.html" class="atlas-banner">
     <img src="Atlas.webp" alt="Moonvale Atlas" loading="lazy">
     <div class="atlas-banner-overlay">
       <div class="atlas-banner-btn">
-        OPEN INTERACTIVE MAP
+        <span data-i18n="home.open.map">OPEN INTERACTIVE MAP</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
     </div>
@@ -592,28 +594,28 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
     <div class="section-ornament">
       <div class="section-ornament-line"></div>
       <span class="section-ornament-sym">◈</span>
-      <h2 class="section-title">CONTINUE THE JOURNEY</h2>
+      <h2 class="section-title" data-i18n="home.journey">CONTINUE THE JOURNEY</h2>
       <span class="section-ornament-sym">◈</span>
       <div class="section-ornament-line"></div>
     </div>
-    <p class="section-sub">More stories. More worlds. More Moonvale.</p>
+    <p class="section-sub" data-i18n="home.journey.sub">More stories. More worlds. More Moonvale.</p>
   </div>
   <div class="journey-grid">
     <a href="#" class="journey-card">
       <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div>
-      <h4>TIKTOK ETHERNIA</h4><p>Daily tales from the golden realm</p>
+      <h4>TIKTOK ETHERNIA</h4><p data-i18n="home.tiktok.eth.desc">Daily tales from the golden realm</p>
     </a>
     <a href="#" class="journey-card">
       <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div>
-      <h4>TIKTOK FANTASY</h4><p>Shadows, legends and moonlit stories</p>
+      <h4>TIKTOK FANTASY</h4><p data-i18n="home.tiktok.fan.desc">Shadows, legends and moonlit stories</p>
     </a>
     <a href="#" class="journey-card">
       <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-      <h4>YOUTUBE</h4><p>Lore deep dives and world chronicles</p>
+      <h4>YOUTUBE</h4><p data-i18n="home.youtube.desc">Lore deep dives and world chronicles</p>
     </a>
     <a href="#" class="journey-card">
       <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
-      <h4>PINTEREST</h4><p>Visual inspiration from both worlds</p>
+      <h4>PINTEREST</h4><p data-i18n="home.pinterest.desc">Visual inspiration from both worlds</p>
     </a>
   </div>
 </section>
@@ -623,8 +625,8 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   <div class="footer-inner">
     <div>
       <p class="footer-logo">MOONVALE</p>
-      <p class="footer-tagline">Between Stars And Stories</p>
-      <p class="footer-desc">We are the bridge between worlds and imagination.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
+      <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
       <div class="footer-social">
         <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
         <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
@@ -632,33 +634,34 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
       </div>
     </div>
     <div class="footer-col">
-      <h5>NAVIGATION</h5>
-      <ul><li><a href="index.html">Home</a></li><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="lore-library.html">Lore Library</a></li><li><a href="artefacts.html">Artefacts</a></li><li><a href="about.html">About</a></li></ul>
+      <h5 data-i18n="footer.navigation">NAVIGATION</h5>
+      <ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>WORLDS</h5>
-      <ul><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="atlas.html">Atlas</a></li></ul>
+      <h5 data-i18n="footer.worlds">WORLDS</h5>
+      <ul><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>ARCHIVE</h5>
+      <h5 data-i18n="footer.archive">ARCHIVE</h5>
       <ul>
-        <li><a href="lore-library/regions.html">Regions</a></li>
-        <li><a href="lore-library/characters.html">Characters</a></li>
-        <li><a href="lore-library/relics.html">Relics</a></li>
-        <li><a href="lore-library/chronicles.html">Chronicles</a></li>
+        <li><a href="regions.html" data-i18n="archive.regions">Regions</a></li>
+        <li><a href="characters.html" data-i18n="archive.characters">Characters</a></li>
+        <li><a href="relics.html" data-i18n="archive.relics">Relics</a></li>
+        <li><a href="chronicles.html" data-i18n="archive.chronicles">Chronicles</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h5>CONNECT</h5>
+      <h5 data-i18n="footer.connect">CONNECT</h5>
       <ul><li><a href="#">TikTok Ethernia</a></li><li><a href="#">TikTok Fantasy</a></li><li><a href="#">YouTube</a></li><li><a href="#">Pinterest</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 Moonvale Studio. All rights reserved.</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2025 Moonvale Studio. All rights reserved.</p>
     <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
   </div>
 </footer>
 
+<script src="moonvale-i18n.js"></script>
 <script>
 // ── LOADING SCREEN ──
 window.addEventListener('load',()=>{
@@ -765,11 +768,11 @@ document.addEventListener('click',e=>{
 // ── QUOTE ROTATOR ──
 (function(){
   const quotes=[
-    {text:'Where light ends, Fantasy begins.',source:'— Moonvale Chronicles'},
-    {text:'Every shadow guards a memory.',source:'— Tales of Fantasy'},
-    {text:'The stars of Ethernia never forget.',source:'— Lore of Lumindor'},
-    {text:'Two worlds, one river of light between them.',source:'— The Astrael Scrolls'},
-    {text:'Between stars and stories, all legends are born.',source:'— Moonvale Archives'},
+    {text:{en:'Where light ends, Fantasy begins.',pt:'Onde a luz termina, Fantasy começa.',es:'Donde termina la luz, empieza Fantasy.'},source:{en:'— Moonvale Chronicles',pt:'— Crónicas de Moonvale',es:'— Crónicas de Moonvale'}},
+    {text:{en:'Every shadow guards a memory.',pt:'Cada sombra guarda uma memória.',es:'Cada sombra guarda un recuerdo.'},source:{en:'— Tales of Fantasy',pt:'— Contos de Fantasy',es:'— Relatos de Fantasy'}},
+    {text:{en:'The stars of Ethernia never forget.',pt:'As estrelas de Ethernia nunca esquecem.',es:'Las estrellas de Ethernia nunca olvidan.'},source:{en:'— Lore of Lumindor',pt:'— Lore de Lumindor',es:'— Lore de Lumindor'}},
+    {text:{en:'Two worlds, one river of light between them.',pt:'Dois mundos, um rio de luz entre eles.',es:'Dos mundos, un río de luz entre ellos.'},source:{en:'— The Astrael Scrolls',pt:'— Os Pergaminhos de Astrael',es:'— Los Pergaminos de Astrael'}},
+    {text:{en:'Between stars and stories, all legends are born.',pt:'Entre estrelas e histórias, nascem todas as lendas.',es:'Entre estrellas e historias, nacen todas las leyendas.'},source:{en:'— Moonvale Archives',pt:'— Arquivos de Moonvale',es:'— Archivos de Moonvale'}},
   ];
   const textEl=document.getElementById('quoteText');
   const srcEl=document.getElementById('quoteSource');
@@ -789,13 +792,15 @@ document.addEventListener('click',e=>{
     textEl.style.opacity='0';textEl.style.transform='translateY(8px)';
     setTimeout(()=>{
       cur=i;
-      textEl.textContent=quotes[i].text;
-      srcEl.textContent=quotes[i].source;
+      const lang=(window.MoonvaleI18n&&window.MoonvaleI18n.getLanguage())||'en';
+      textEl.textContent=quotes[i].text[lang]||quotes[i].text.en;
+      srcEl.textContent=quotes[i].source[lang]||quotes[i].source.en;
       textEl.style.opacity='1';textEl.style.transform='translateY(0)';
       dotsEl.querySelectorAll('.quote-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
     },300);
   }
   buildDots();showQuote(0);
+  window.addEventListener('moonvale:languagechange',()=>showQuote(cur));
   setInterval(()=>showQuote((cur+1)%quotes.length),5000);
 })();
 
@@ -841,8 +846,8 @@ const mLabel=document.getElementById('musicLabel');
 const mIcon=document.getElementById('musicIcon');
 let musicOn=false;audio.volume=0.18;
 function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
-function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent='MUSIC ON';mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent='MUSIC OFF';});}
-function fadeOut(){musicOn=false;mLabel.textContent='MUSIC OFF';mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
+function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.on']||'MUSIC ON');mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.off']||'MUSIC OFF');});}
+function fadeOut(){musicOn=false;mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.off']||'MUSIC OFF');mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
 function setVol(v){audio.volume=parseFloat(v);}
 
 // ── NAV ──
