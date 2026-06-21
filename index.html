@@ -424,6 +424,50 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   .quote-section{padding:50px 20px;}
   .quote-text{font-size:1.1rem;}
 }
+
+
+/* ── PREMIUM HOMEPAGE REDESIGN OVERRIDES ── */
+body{cursor:auto;background:radial-gradient(circle at 50% 0%,rgba(216,192,138,.08),transparent 35%),#050816;}
+.hero{min-height:100svh;justify-content:center;overflow:hidden;padding-top:0;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;overflow:hidden;z-index:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.05);animation:kenBurns 28s ease-in-out infinite alternate;}
+.hero-img-overlay{background:radial-gradient(circle at 50% 42%,rgba(245,217,127,.16),transparent 28%),linear-gradient(to bottom,rgba(5,8,22,.45),rgba(5,8,22,.18) 35%,rgba(5,8,22,.8) 100%),linear-gradient(90deg,rgba(5,8,22,.8),transparent 40%,rgba(5,8,22,.72));}
+.hero-content{margin-top:0;padding:calc(92px + env(safe-area-inset-top)) 24px 96px;max-width:980px;text-shadow:0 6px 28px rgba(0,0,0,.65);}
+.hero-kicker{font-family:'Cinzel',serif;color:var(--gold);letter-spacing:7px;font-size:clamp(.62rem,1.2vw,.85rem);margin-bottom:16px;opacity:.86;}
+.hero-logo{display:block;font-size:clamp(2.8rem,8vw,7rem);letter-spacing:clamp(4px,1vw,12px);line-height:1.05;margin-bottom:14px;}
+.hero-tagline{margin:0 0 26px;font-size:clamp(.72rem,1.5vw,1rem);}
+.hero-description{font-size:clamp(1.15rem,2.4vw,1.75rem);line-height:1.45;color:rgba(245,241,232,.82);max-width:760px;margin:0 auto 36px;font-style:italic;}
+.primary-cta,.moonvale-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border:1px solid rgba(216,192,138,.56);border-radius:999px;background:rgba(5,8,22,.48);color:var(--gold);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;text-decoration:none;cursor:pointer;backdrop-filter:blur(10px);box-shadow:0 0 30px rgba(216,192,138,.08);transition:transform .3s,border-color .3s,background .3s,box-shadow .3s;}
+.primary-cta:hover,.moonvale-btn:hover{transform:translateY(-3px);border-color:var(--gold-hi);background:rgba(216,192,138,.12);box-shadow:0 0 34px rgba(216,192,138,.18);}
+.hero .scroll-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:4;margin:0;}
+.realm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}
+.realm-card{position:relative;min-height:620px;border:1px solid rgba(216,192,138,.2);border-radius:18px;overflow:hidden;background:#080b1c;box-shadow:0 24px 80px rgba(0,0,0,.38);}
+.realm-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .8s ease;}
+.realm-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,8,22,.9),rgba(5,8,22,.12) 58%,rgba(5,8,22,.24));}
+.realm-card:hover img{transform:scale(1.045);}
+.realm-card-content{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:46px;text-align:center;}
+.realm-card h3,.banner-overlay h2{font-family:'Cinzel',serif;font-weight:400;color:var(--gold);letter-spacing:7px;font-size:clamp(1.7rem,4vw,3.2rem);}
+.realm-card p{font-size:1.25rem;color:var(--dim);font-style:italic;margin:8px 0 24px;}
+.treasure-grid{display:grid;grid-template-columns:repeat(5,minmax(170px,1fr));gap:18px;}
+.treasure-grid .collection-card{flex:none;min-height:340px;aspect-ratio:2/3;}
+.section-action{text-align:center;margin-top:34px;}
+.cinematic-banner{position:relative;display:block;min-height:520px;border-radius:20px;overflow:hidden;border:1px solid rgba(216,192,138,.18);box-shadow:0 26px 90px rgba(0,0,0,.42);text-decoration:none;color:var(--text);}
+.cinematic-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
+.cinematic-banner:hover img{transform:scale(1.025);}
+.banner-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(34px,7vw,92px);background:linear-gradient(90deg,rgba(5,8,22,.78),rgba(5,8,22,.28) 42%,rgba(5,8,22,.04) 72%);}
+.banner-overlay p{font-size:clamp(1.2rem,2.4vw,1.8rem);line-height:1.45;color:rgba(245,241,232,.8);font-style:italic;margin:18px 0 28px;max-width:430px;}
+.journey-banner-section{position:relative;max-width:1400px;margin:0 auto 70px;border-radius:20px;overflow:hidden;border:1px solid rgba(216,192,138,.18);min-height:560px;}
+.journey-banner-section>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.journey-banner-overlay{position:relative;z-index:1;min-height:560px;padding:80px 48px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(to bottom,rgba(5,8,22,.32),rgba(5,8,22,.78));}
+.social-grid{max-width:980px;margin:0 auto;grid-template-columns:repeat(4,1fr);}
+.social-grid .journey-card{background:rgba(5,8,22,.56);backdrop-filter:blur(10px);}
+.social-grid .journey-card h4{margin-bottom:0;}
+.lang-btn{background:none;border:0;color:var(--gold);font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:1px;cursor:pointer;padding:2px 3px;opacity:.65;}
+.lang-btn.active,.lang-btn:hover{opacity:1;color:var(--gold-hi);}
+@media(max-width:1100px){.treasure-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px}.treasure-grid .collection-card{flex:0 0 min(72vw,320px);scroll-snap-align:start}.social-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.realm-grid{grid-template-columns:1fr}.realm-card{min-height:520px}.cinematic-banner{min-height:460px}.banner-overlay{background:linear-gradient(to right,rgba(5,8,22,.82),rgba(5,8,22,.28));}.journey-banner-section{border-radius:0;margin-bottom:0}.journey-banner-overlay{padding:64px 20px}.social-grid{grid-template-columns:1fr 1fr;gap:12px}.hero-description br,.journey-banner-overlay .section-sub br{display:none}}
+@media(max-width:520px){.hero-logo{font-size:2.45rem}.hero-kicker,.hero-tagline{letter-spacing:4px}.realm-card-content{padding:34px 22px}.cinematic-banner{border-radius:14px;min-height:420px}.banner-overlay{padding:28px}.social-grid{grid-template-columns:1fr}.treasure-grid .collection-card{flex-basis:78vw}.journey-card{padding:22px 12px}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
@@ -432,7 +476,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <!-- LOADING SCREEN -->
 <div id="loader">
   <div class="loader-logo">MOONVALE</div>
-  <div class="loader-tagline">Between Stars And Stories</div>
+  <div class="loader-tagline" data-i18n="hero.sloganTitle">Between Stars And Stories</div>
   <div class="loader-bar"></div>
 </div>
 
@@ -452,7 +496,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <!-- MUSIC -->
 <div id="musicPlayer" onclick="toggleMusic()">
   <span id="musicIcon">♪</span>
-  <span id="musicLabel">MUSIC OFF</span>
+  <span id="musicLabel" data-i18n="music.off">MUSIC OFF</span>
   <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
 </div>
 <audio id="bgAudio" loop preload="none">
@@ -464,13 +508,13 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   <div class="nav-inner">
     <a href="index.html" class="logo-nav">MOONVALE</a>
     <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
       <li><a href="ethernia.html">ETHERNIA</a></li>
       <li><a href="fantasy.html">FANTASY</a></li>
-      <li><a href="lore-library.html">LORE LIBRARY</a></li>
-      <li><a href="artefacts.html">ARTEFACTS</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-      <li><span class="nav-lang">PT | EN | ES</span></li>
+      <li><a href="lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+      <li><span class="nav-lang"><button class="lang-btn" data-lang="pt">PT</button> | <button class="lang-btn active" data-lang="en">EN</button> | <button class="lang-btn" data-lang="es">ES</button></span></li>
     </ul>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
   </div>
@@ -479,107 +523,101 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" onclick="closeMenu()">HOME</a>
+  <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">HOME</a>
   <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
   <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
-  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
-  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
-  <a href="about.html" onclick="closeMenu()">ABOUT</a>
+  <a href="lore-library.html" onclick="closeMenu()" data-i18n="nav.lore">LORE LIBRARY</a>
+  <a href="artefacts.html" onclick="closeMenu()" data-i18n="nav.artefacts">ARTEFACTS</a>
+  <a href="about.html" onclick="closeMenu()" data-i18n="nav.about">ABOUT</a>
 </div>
 
-<!-- HERO — img tag, sem corte -->
-<section class="hero">
-  <div class="hero-img-wrap">
-    <img src="home-hero.webp" alt="Moonvale — Between Stars and Stories" draggable="false">
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" data-parallax="0.08">
+    <img src="home-hero.webp" alt="Moonvale Studio portal beneath celestial skies" draggable="false" fetchpriority="high">
     <div class="hero-img-overlay"></div>
     <div class="hero-mist"></div>
   </div>
-  <div class="hero-content">
-    <div class="hero-logo">
-      <span>M</span><span>O</span>
-      <span class="logo-o2">O
-        <svg viewBox="0 0 100 100" fill="none">
-          <path d="M62 18C72 28 72 72 62 82C80 76 92 64 92 50C92 36 80 24 62 18Z" fill="#d8c08a" opacity=".35"/>
-        </svg>
-      </span>
-      <span>NVALE</span>
-    </div>
-    <p class="hero-tagline">BETWEEN STARS AND STORIES</p>
-    <div class="hero-portals">
-      <div class="hero-portal-col eth">
-        <p class="portal-realm-name">✦ &nbsp; ETHERNIA</p>
-        <p class="portal-realm-sub">The Realm of Light</p>
-        <a href="ethernia.html" class="hero-btn hero-btn-eth">ENTER ETHERNIA</a>
-      </div>
-      <div class="hero-portal-col fan">
-        <p class="portal-realm-name">FANTASY &nbsp; ☾</p>
-        <p class="portal-realm-sub">The Realm of Shadows</p>
-        <a href="fantasy.html" class="hero-btn hero-btn-fan">ENTER FANTASY</a>
-      </div>
-    </div>
-    <div class="scroll-cue">
-      <div class="scroll-mouse"></div>
-      SCROLL TO DISCOVER
-    </div>
+  <div class="hero-content fade-in visible">
+    <p class="hero-kicker" data-i18n="hero.kicker">BETWEEN STARS AND STORIES</p>
+    <h1 class="hero-logo" data-i18n="hero.title">MOONVALE STUDIO</h1>
+    <p class="hero-tagline" data-i18n="hero.subtitle">BETWEEN STARS AND STORIES</p>
+    <p class="hero-description" data-i18n="hero.description">A living archive of worlds, tales and timeless treasures.<br>Explore. Remember. Belong.</p>
+    <button class="primary-cta" type="button" data-scroll-target="#choose-realm" data-i18n="hero.cta">BEGIN YOUR JOURNEY</button>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <div class="scroll-mouse"></div>
+    <span data-i18n="hero.scroll">SCROLL TO DISCOVER</span>
   </div>
 </section>
 
-<!-- QUOTE ROTATOR -->
-<div class="quote-section fade-in">
-  <p class="quote-text" id="quoteText"></p>
-  <p class="quote-source" id="quoteSource"></p>
-  <div class="quote-dots" id="quoteDots"></div>
-</div>
-
-<!-- FEATURED COLLECTIONS -->
-<section class="section fade-in">
+<!-- CHOOSE YOUR REALM -->
+<section class="section realm-section fade-in" id="choose-realm">
   <div class="section-header">
-    <div class="section-ornament">
-      <div class="section-ornament-line"></div>
-      <span class="section-ornament-sym">✧</span>
-      <h2 class="section-title">FEATURED COLLECTIONS</h2>
-      <span class="section-ornament-sym">✧</span>
-      <div class="section-ornament-line"></div>
-    </div>
-    <p class="section-sub">Worlds forged in art. Legends brought to life.</p>
+    <div class="section-ornament"><div class="section-ornament-line"></div><span class="section-ornament-sym">✦</span><h2 class="section-title" data-i18n="realms.title">CHOOSE YOUR REALM</h2><span class="section-ornament-sym">✦</span><div class="section-ornament-line"></div></div>
   </div>
-  <div class="carousel-wrap">
-    <button class="carousel-btn" id="carouselPrev" aria-label="Previous">‹</button>
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="carouselTrack">
-        <a href="artefacts.html" class="collection-card"><img src="Dark-medieval-legends.webp" alt="Dark Medieval Legends" loading="lazy"><div class="collection-card-overlay"></div></a>
-        <a href="artefacts.html" class="collection-card"><img src="Enchanted-realms-colections.webp" alt="Enchanted Realms" loading="lazy"><div class="collection-card-overlay"></div></a>
-        <a href="artefacts.html" class="collection-card"><img src="Epic-fantasy-kingdoms.webp" alt="Epic Fantasy Kingdoms" loading="lazy"><div class="collection-card-overlay"></div></a>
-        <a href="artefacts.html" class="collection-card"><img src="Golden-steampunk-realms.webp" alt="Golden Steampunk Realms" loading="lazy"><div class="collection-card-overlay"></div></a>
-        <a href="artefacts.html" class="collection-card"><img src="Fantasy-sillouete.webp" alt="Fantasy Silhouette Art" loading="lazy"><div class="collection-card-overlay"></div></a>
+  <div class="realm-grid">
+    <article class="realm-card realm-eth">
+      <img src="ethernia-hero.webp" alt="Ethernia realm of light" loading="lazy">
+      <div class="realm-card-content">
+        <h3>ETHERNIA</h3>
+        <p data-i18n="realms.etherniaSub">Realm of Light and Legacy</p>
+        <a href="ethernia.html" class="moonvale-btn" data-i18n="realms.etherniaBtn">ENTER ETHERNIA</a>
       </div>
-    </div>
-    <button class="carousel-btn" id="carouselNext" aria-label="Next">›</button>
+    </article>
+    <article class="realm-card realm-fan">
+      <img src="fantasy-hero.webp" alt="Fantasy realm of mystery" loading="lazy">
+      <div class="realm-card-content">
+        <h3>FANTASY</h3>
+        <p data-i18n="realms.fantasySub">Realm of Mystery and Shadow</p>
+        <a href="fantasy.html" class="moonvale-btn" data-i18n="realms.fantasyBtn">ENTER FANTASY</a>
+      </div>
+    </article>
   </div>
-  <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
 <hr class="section-divider">
 
-<!-- ATLAS BANNER -->
-<section class="section fade-in">
+<!-- TREASURES OF MOONVALE -->
+<section class="section treasures-section fade-in">
   <div class="section-header">
-    <div class="section-ornament">
-      <div class="section-ornament-line"></div>
-      <span class="section-ornament-sym">⌖</span>
-      <h2 class="section-title">EXPLORE THE WORLD</h2>
-      <span class="section-ornament-sym">⌖</span>
-      <div class="section-ornament-line"></div>
-    </div>
-    <p class="section-sub">Every place hides a story.</p>
+    <div class="section-ornament"><div class="section-ornament-line"></div><span class="section-ornament-sym">✧</span><h2 class="section-title" data-i18n="treasures.title">TREASURES OF MOONVALE</h2><span class="section-ornament-sym">✧</span><div class="section-ornament-line"></div></div>
+    <p class="section-sub" data-i18n="treasures.subtitle">Curated artefacts from the living archive.</p>
   </div>
-  <a href="atlas.html" class="atlas-banner">
-    <img src="Atlas.webp" alt="Moonvale Atlas" loading="lazy">
-    <div class="atlas-banner-overlay">
-      <div class="atlas-banner-btn">
-        OPEN INTERACTIVE MAP
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </div>
+  <div class="treasure-grid">
+    <a href="artefacts.html" class="collection-card"><img src="Epic-fantasy-kingdoms.webp" alt="Epic Fantasy Kingdoms" loading="lazy"><div class="collection-card-overlay"></div></a>
+    <a href="artefacts.html" class="collection-card"><img src="Enchanted-realms-colections.webp" alt="Enchanted Realms Collection" loading="lazy"><div class="collection-card-overlay"></div></a>
+    <a href="artefacts.html" class="collection-card"><img src="Golden-steampunk-realms.webp" alt="Golden Steampunk Realms" loading="lazy"><div class="collection-card-overlay"></div></a>
+    <a href="artefacts.html" class="collection-card"><img src="Dark-medieval-legends.webp" alt="Dark Medieval Legends" loading="lazy"><div class="collection-card-overlay"></div></a>
+    <a href="artefacts.html" class="collection-card"><img src="Fantasy-sillouete.webp" alt="Fantasy Silhouette" loading="lazy"><div class="collection-card-overlay"></div></a>
+  </div>
+  <div class="section-action"><a href="artefacts.html" class="moonvale-btn" data-i18n="treasures.cta">VIEW ALL COLLECTIONS</a></div>
+</section>
+
+<hr class="section-divider">
+
+<!-- MOONVALE ATLAS -->
+<section class="section fade-in">
+  <a href="atlas.html" class="cinematic-banner atlas-banner">
+    <img src="moonvale-atlas-banner.webp" alt="Moonvale Atlas celestial map" loading="lazy">
+    <div class="banner-overlay banner-left">
+      <h2 data-i18n="atlas.title">MOONVALE ATLAS</h2>
+      <p data-i18n="atlas.description">Chart the stars.<br>Discover realms.<br>Uncover the unknown.</p>
+      <span class="moonvale-btn" data-i18n="atlas.cta">OPEN THE ATLAS</span>
+    </div>
+  </a>
+</section>
+
+<hr class="section-divider">
+
+<!-- LORE LIBRARY -->
+<section class="section fade-in">
+  <a href="lore-library.html" class="cinematic-banner lore-banner">
+    <img src="lore-library-banner.webp" alt="Lore Library living archive" loading="lazy">
+    <div class="banner-overlay banner-left">
+      <h2 data-i18n="lore.title">LORE LIBRARY</h2>
+      <p data-i18n="lore.description">Explore the archive of legends.<br>Every story has a memory.</p>
+      <span class="moonvale-btn" data-i18n="lore.cta">ENTER THE ARCHIVE</span>
     </div>
   </a>
 </section>
@@ -587,34 +625,19 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <hr class="section-divider">
 
 <!-- CONTINUE THE JOURNEY -->
-<section class="section fade-in">
-  <div class="section-header">
-    <div class="section-ornament">
-      <div class="section-ornament-line"></div>
-      <span class="section-ornament-sym">◈</span>
-      <h2 class="section-title">CONTINUE THE JOURNEY</h2>
-      <span class="section-ornament-sym">◈</span>
-      <div class="section-ornament-line"></div>
+<section class="journey-banner-section fade-in">
+  <img src="continue-the-journey-banner.webp" alt="Moonvale portal remains open" loading="lazy">
+  <div class="journey-banner-overlay">
+    <div class="section-header">
+      <div class="section-ornament"><div class="section-ornament-line"></div><span class="section-ornament-sym">◈</span><h2 class="section-title" data-i18n="journey.title">CONTINUE THE JOURNEY</h2><span class="section-ornament-sym">◈</span><div class="section-ornament-line"></div></div>
+      <p class="section-sub" data-i18n="journey.description">The portal remains open.<br>Follow the stories beyond Moonvale.</p>
     </div>
-    <p class="section-sub">More stories. More worlds. More Moonvale.</p>
-  </div>
-  <div class="journey-grid">
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div>
-      <h4>TIKTOK ETHERNIA</h4><p>Daily tales from the golden realm</p>
-    </a>
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div>
-      <h4>TIKTOK FANTASY</h4><p>Shadows, legends and moonlit stories</p>
-    </a>
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-      <h4>YOUTUBE</h4><p>Lore deep dives and world chronicles</p>
-    </a>
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
-      <h4>PINTEREST</h4><p>Visual inspiration from both worlds</p>
-    </a>
+    <div class="journey-grid social-grid">
+      <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" class="journey-card"><div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div><h4>TIKTOK ETHERNIA</h4></a>
+      <a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer" class="journey-card"><div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div><h4>TIKTOK FANTASY</h4></a>
+      <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" class="journey-card"><div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div><h4>YOUTUBE</h4></a>
+      <a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" class="journey-card"><div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div><h4>PINTEREST</h4></a>
+    </div>
   </div>
 </section>
 
@@ -623,24 +646,24 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   <div class="footer-inner">
     <div>
       <p class="footer-logo">MOONVALE</p>
-      <p class="footer-tagline">Between Stars And Stories</p>
-      <p class="footer-desc">We are the bridge between worlds and imagination.</p>
+      <p class="footer-tagline" data-i18n="hero.sloganTitle">Between Stars And Stories</p>
+      <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
       <div class="footer-social">
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+        <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" aria-label="TikTok Ethernia"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
-      <h5>NAVIGATION</h5>
+      <h5 data-i18n="footer.navigation">NAVIGATION</h5>
       <ul><li><a href="index.html">Home</a></li><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="lore-library.html">Lore Library</a></li><li><a href="artefacts.html">Artefacts</a></li><li><a href="about.html">About</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>WORLDS</h5>
+      <h5 data-i18n="footer.worlds">WORLDS</h5>
       <ul><li><a href="ethernia.html">Ethernia</a></li><li><a href="fantasy.html">Fantasy</a></li><li><a href="atlas.html">Atlas</a></li></ul>
     </div>
     <div class="footer-col">
-      <h5>ARCHIVE</h5>
+      <h5 data-i18n="footer.archive">ARCHIVE</h5>
       <ul>
         <li><a href="lore-library/regions.html">Regions</a></li>
         <li><a href="lore-library/characters.html">Characters</a></li>
@@ -649,17 +672,40 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
       </ul>
     </div>
     <div class="footer-col">
-      <h5>CONNECT</h5>
-      <ul><li><a href="#">TikTok Ethernia</a></li><li><a href="#">TikTok Fantasy</a></li><li><a href="#">YouTube</a></li><li><a href="#">Pinterest</a></li></ul>
+      <h5 data-i18n="footer.connect">CONNECT</h5>
+      <ul><li><a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer">Pinterest</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2025 Moonvale Studio. All rights reserved.</p>
-    <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
+    <p class="footer-lang-row"><button class="lang-btn" data-lang="pt">PT</button> | <button class="lang-btn active" data-lang="en">EN</button> | <button class="lang-btn" data-lang="es">ES</button></p>
   </div>
 </footer>
 
 <script>
+const translations={
+  en:{
+    'nav.home':'HOME','nav.lore':'LORE LIBRARY','nav.artefacts':'ARTEFACTS','nav.about':'ABOUT','hero.sloganTitle':'Between Stars And Stories','hero.kicker':'BETWEEN STARS AND STORIES','hero.title':'MOONVALE STUDIO','hero.subtitle':'BETWEEN STARS AND STORIES','hero.description':'A living archive of worlds, tales and timeless treasures.<br>Explore. Remember. Belong.','hero.cta':'BEGIN YOUR JOURNEY','hero.scroll':'SCROLL TO DISCOVER','realms.title':'CHOOSE YOUR REALM','realms.etherniaSub':'Realm of Light and Legacy','realms.etherniaBtn':'ENTER ETHERNIA','realms.fantasySub':'Realm of Mystery and Shadow','realms.fantasyBtn':'ENTER FANTASY','treasures.title':'TREASURES OF MOONVALE','treasures.subtitle':'Curated artefacts from the living archive.','treasures.cta':'VIEW ALL COLLECTIONS','atlas.title':'MOONVALE ATLAS','atlas.description':'Chart the stars.<br>Discover realms.<br>Uncover the unknown.','atlas.cta':'OPEN THE ATLAS','lore.title':'LORE LIBRARY','lore.description':'Explore the archive of legends.<br>Every story has a memory.','lore.cta':'ENTER THE ARCHIVE','journey.title':'CONTINUE THE JOURNEY','journey.description':'The portal remains open.<br>Follow the stories beyond Moonvale.','footer.desc':'We are the bridge between worlds and imagination.','footer.navigation':'NAVIGATION','footer.worlds':'WORLDS','footer.archive':'ARCHIVE','footer.connect':'CONNECT','music.off':'MUSIC OFF','music.on':'MUSIC ON'},
+  pt:{
+    'nav.home':'INÍCIO','nav.lore':'BIBLIOTECA DE LORE','nav.artefacts':'ARTEFACTOS','nav.about':'SOBRE','hero.sloganTitle':'Entre Estrelas E Histórias','hero.kicker':'ENTRE ESTRELAS E HISTÓRIAS','hero.title':'MOONVALE STUDIO','hero.subtitle':'ENTRE ESTRELAS E HISTÓRIAS','hero.description':'Um arquivo vivo de mundos, contos e tesouros atemporais.<br>Explore. Recorde. Pertença.','hero.cta':'COMECE SUA JORNADA','hero.scroll':'ROLE PARA DESCOBRIR','realms.title':'ESCOLHA SEU REINO','realms.etherniaSub':'Reino de Luz e Legado','realms.etherniaBtn':'ENTRAR EM ETHERNIA','realms.fantasySub':'Reino de Mistério e Sombra','realms.fantasyBtn':'ENTRAR EM FANTASY','treasures.title':'TESOUROS DE MOONVALE','treasures.subtitle':'Artefactos curados do arquivo vivo.','treasures.cta':'VER TODAS AS COLEÇÕES','atlas.title':'ATLAS DE MOONVALE','atlas.description':'Mapeie as estrelas.<br>Descubra reinos.<br>Revele o desconhecido.','atlas.cta':'ABRIR O ATLAS','lore.title':'BIBLIOTECA DE LORE','lore.description':'Explore o arquivo de lendas.<br>Toda história tem uma memória.','lore.cta':'ENTRAR NO ARQUIVO','journey.title':'CONTINUE A JORNADA','journey.description':'O portal permanece aberto.<br>Siga as histórias além de Moonvale.','footer.desc':'Somos a ponte entre mundos e imaginação.','footer.navigation':'NAVEGAÇÃO','footer.worlds':'MUNDOS','footer.archive':'ARQUIVO','footer.connect':'CONECTAR','music.off':'MÚSICA OFF','music.on':'MÚSICA ON'},
+  es:{
+    'nav.home':'INICIO','nav.lore':'BIBLIOTECA DE LORE','nav.artefacts':'ARTEFACTOS','nav.about':'ACERCA DE','hero.sloganTitle':'Entre Estrellas E Historias','hero.kicker':'ENTRE ESTRELLAS E HISTORIAS','hero.title':'MOONVALE STUDIO','hero.subtitle':'ENTRE ESTRELLAS E HISTORIAS','hero.description':'Un archivo vivo de mundos, relatos y tesoros eternos.<br>Explora. Recuerda. Pertenece.','hero.cta':'COMIENZA TU VIAJE','hero.scroll':'DESPLÁZATE PARA DESCUBRIR','realms.title':'ELIGE TU REINO','realms.etherniaSub':'Reino de Luz y Legado','realms.etherniaBtn':'ENTRAR A ETHERNIA','realms.fantasySub':'Reino de Misterio y Sombra','realms.fantasyBtn':'ENTRAR A FANTASY','treasures.title':'TESOROS DE MOONVALE','treasures.subtitle':'Artefactos seleccionados del archivo vivo.','treasures.cta':'VER TODAS LAS COLECCIONES','atlas.title':'ATLAS DE MOONVALE','atlas.description':'Traza las estrellas.<br>Descubre reinos.<br>Revela lo desconocido.','atlas.cta':'ABRIR EL ATLAS','lore.title':'BIBLIOTECA DE LORE','lore.description':'Explora el archivo de leyendas.<br>Cada historia tiene una memoria.','lore.cta':'ENTRAR AL ARCHIVO','journey.title':'CONTINÚA EL VIAJE','journey.description':'El portal permanece abierto.<br>Sigue las historias más allá de Moonvale.','footer.desc':'Somos el puente entre mundos e imaginación.','footer.navigation':'NAVEGACIÓN','footer.worlds':'MUNDOS','footer.archive':'ARCHIVO','footer.connect':'CONECTAR','music.off':'MÚSICA OFF','music.on':'MÚSICA ON'}
+};
+let currentLang=localStorage.getItem('moonvaleLang')||'en';
+function applyTranslations(lang=currentLang){
+  currentLang=translations[lang]?lang:'en';localStorage.setItem('moonvaleLang',currentLang);document.documentElement.lang=currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const v=translations[currentLang][el.dataset.i18n];if(v)el.innerHTML=v;});
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===currentLang));
+}
+document.addEventListener('click',e=>{const btn=e.target.closest('.lang-btn');if(btn){applyTranslations(btn.dataset.lang);}});
+document.addEventListener('DOMContentLoaded',()=>applyTranslations(currentLang));
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('[data-scroll-target]').forEach(btn=>btn.addEventListener('click',()=>{
+    const target=document.querySelector(btn.dataset.scrollTarget);
+    if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+});
+
 // ── LOADING SCREEN ──
 window.addEventListener('load',()=>{
   setTimeout(()=>{
@@ -841,8 +887,8 @@ const mLabel=document.getElementById('musicLabel');
 const mIcon=document.getElementById('musicIcon');
 let musicOn=false;audio.volume=0.18;
 function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
-function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent='MUSIC ON';mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent='MUSIC OFF';});}
-function fadeOut(){musicOn=false;mLabel.textContent='MUSIC OFF';mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
+function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent=translations[currentLang]['music.on'];mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent=translations[currentLang]['music.off'];});}
+function fadeOut(){musicOn=false;mLabel.textContent=translations[currentLang]['music.off'];mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
 function setVol(v){audio.volume=parseFloat(v);}
 
 // ── NAV ──
