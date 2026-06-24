@@ -6,39 +6,37 @@
 <title>Moonvale Atlas — Cartography of Worlds</title>
 <meta name="description" content="Explore the interactive atlas of Moonvale — map the realms of Ethernia and Fantasy, discover regions, legends and forgotten paths.">
 <meta property="og:title" content="Moonvale Atlas">
-<meta property="og:description" content="The stars remember every path.">
-<meta property="og:image" content="atlas-map.webp">
+<meta property="og:image" content="atlas-banner.webp">
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#050816; --ink-deep:#0b1228;
-  --gold:#d8c08a; --gold-hi:#f5d97f; --gold-dim:rgba(216,192,138,.35);
-  --cream:#f5f1e8; --cream-dim:rgba(245,241,232,.6);
+  --ink:#050816;--ink-deep:#0b1228;
+  --gold:#d8c08a;--gold-hi:#f5d97f;--gold-dim:rgba(216,192,138,.3);
+  --cream:#f5f1e8;--cream-dim:rgba(245,241,232,.6);
   --purple:#9b8ec4;
   --ease:cubic-bezier(.16,.84,.44,1);
-  --font-d:'Cinzel',Georgia,serif;
-  --font-b:'Cormorant Garamond',Georgia,serif;
+  --font-d:'Cinzel',Georgia,serif;--font-b:'Cormorant Garamond',Georgia,serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
 body{background:var(--ink);color:var(--cream);font-family:var(--font-b);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.7;}
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 :focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:clamp(1rem,2vw,1.5rem) clamp(1.2rem,4vw,3rem);background:rgba(5,8,22,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.08);}
-.nav__logo{font-family:var(--font-d);font-size:clamp(.95rem,1.5vw,1.2rem);letter-spacing:.3em;color:var(--gold);}
-.nav__links{display:flex;gap:clamp(1rem,2vw,2.2rem);list-style:none;align-items:center;}
-.nav__links a{font-family:var(--font-d);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim);transition:color .25s;}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:clamp(.9rem,1.8vw,1.4rem) clamp(1.2rem,4vw,3rem);background:rgba(5,8,22,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.08);}
+.nav__logo{font-family:var(--font-d);font-size:clamp(.9rem,1.4vw,1.15rem);letter-spacing:.3em;color:var(--gold);}
+.nav__links{display:flex;gap:clamp(.9rem,1.8vw,2rem);list-style:none;align-items:center;}
+.nav__links a{font-family:var(--font-d);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);transition:color .25s;}
 .nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--gold);}
-.lang-switch{display:flex;gap:.4rem;}
-.lang-switch button{font-family:var(--font-d);font-size:.68rem;letter-spacing:.1em;color:var(--cream-dim);padding:.25em .45em;border:1px solid transparent;transition:color .25s,border-color .25s;}
+.lang-switch{display:flex;gap:.35rem;}
+.lang-switch button{font-family:var(--font-d);font-size:.66rem;letter-spacing:.08em;color:var(--cream-dim);padding:.22em .4em;border:1px solid transparent;transition:color .25s,border-color .25s;}
 .lang-switch button.active,.lang-switch button:hover{color:var(--gold-hi);border-color:var(--gold-dim);}
 .nav__toggle{display:none;flex-direction:column;gap:5px;width:26px;}
 .nav__toggle span{height:1.5px;background:var(--gold);transition:transform .3s,opacity .3s;}
@@ -52,96 +50,144 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
   .nav__toggle{display:flex;}
 }
 
-/* MAP SECTION */
-#map-section{padding-top:clamp(4rem,8vh,5.5rem);}
-.map-header{text-align:center;padding:clamp(1.5rem,3vw,2.5rem) clamp(1.4rem,4vw,3rem) clamp(1rem,2vw,1.8rem);}
-.map-eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.3em;color:var(--gold);opacity:.7;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
-.map-eyebrow::before,.map-eyebrow::after{content:'◈';}
-.map-title{font-family:var(--font-d);font-size:clamp(1.8rem,4vw,3rem);letter-spacing:.1em;font-weight:400;background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-hi) 40%,var(--cream) 55%,var(--gold-hi) 70%,var(--gold-dim) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite;margin-bottom:.6rem;}
-@keyframes shimmer{0%{background-position:0%}100%{background-position:-200%}}
-.map-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--cream-dim);font-style:italic;margin-bottom:1.4rem;}
-.realm-tabs{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;}
-.tab-btn{padding:.65em 1.8em;border:1px solid var(--gold-dim);border-radius:40px;font-family:var(--font-d);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim);transition:all .25s;}
+/* ── BUTTONS ── */
+.btn-gold{display:inline-flex;align-items:center;gap:.5em;padding:.85em 2.4em;font-family:var(--font-d);font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:linear-gradient(135deg,var(--gold-hi),var(--gold));border-radius:1px;position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease),box-shadow .4s var(--ease);}
+.btn-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(216,192,138,.5);}
+.btn-gold:hover::after{transform:translateX(120%);}
+.btn-outline{display:inline-flex;align-items:center;gap:.5em;padding:.82em 2em;font-family:var(--font-d);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);border-radius:1px;transition:border-color .3s,color .3s,background .3s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.06);}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(6rem,14vh,10rem) clamp(1.4rem,5vw,4rem) clamp(3rem,6vw,5rem);overflow:hidden;background-image:url('atlas-banner.webp');background-size:cover;background-position:center;}
+.hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,22,.75) 0%,rgba(5,8,22,.4) 40%,rgba(5,8,22,.6) 100%);pointer-events:none;}
+.hero__content{position:relative;z-index:2;}
+.hero__eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.32em;color:var(--gold);opacity:.8;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
+.hero__eyebrow::before,.hero__eyebrow::after{content:'✦';}
+.hero__title-small{font-family:var(--font-d);font-size:clamp(1rem,2.2vw,1.6rem);letter-spacing:.22em;color:var(--gold-hi);margin-bottom:.3rem;}
+.hero__title{font-family:var(--font-d);font-size:clamp(3rem,8vw,6rem);letter-spacing:.08em;font-weight:400;background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-hi) 35%,var(--cream) 52%,var(--gold-hi) 68%,var(--gold-dim) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite;margin-bottom:1.2rem;}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:-220%}}
+.hero__rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 1.4rem;}
+.hero__sub{font-size:clamp(1.1rem,2vw,1.45rem);color:var(--cream-dim);font-style:italic;margin-bottom:.9rem;}
+.hero__body{font-size:clamp(.95rem,1.4vw,1.1rem);color:rgba(245,241,232,.55);max-width:480px;margin:0 auto 2.6rem;line-height:1.8;}
+.hero__scroll{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem;font-family:var(--font-d);font-size:.6rem;letter-spacing:.22em;color:rgba(245,241,232,.35);}
+.scroll-line{width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);position:relative;overflow:hidden;}
+.scroll-line::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:linear-gradient(180deg,transparent,var(--gold));animation:spulse 2.2s ease-in-out infinite;}
+@keyframes spulse{0%{top:-100%}60%,100%{top:100%}}
+
+/* ── MAP SECTION ── */
+#map-section{padding-top:0;}
+.map-controls-bar{display:flex;justify-content:space-between;align-items:center;padding:clamp(1.2rem,2.5vw,2rem) clamp(1rem,3vw,2.4rem) clamp(.8rem,1.5vw,1.2rem);max-width:1440px;margin:0 auto;}
+.map-filter-group{display:flex;gap:.6rem;flex-wrap:wrap;}
+.tab-btn{padding:.55em 1.6em;border:1px solid var(--gold-dim);border-radius:40px;font-family:var(--font-d);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);transition:all .25s;}
 .tab-btn:hover,.tab-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(216,192,138,.06);}
 .tab-btn.tf.active{border-color:var(--purple);color:var(--purple);background:rgba(155,142,196,.08);}
+.map-util-btns{display:flex;gap:.6rem;}
+.util-btn{display:inline-flex;align-items:center;gap:.4em;padding:.5em 1.1em;font-family:var(--font-d);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);border-radius:4px;transition:all .25s;background:rgba(5,8,22,.7);backdrop-filter:blur(8px);}
+.util-btn:hover{border-color:var(--gold);background:rgba(216,192,138,.08);}
+.util-btn svg{width:12px;height:12px;fill:currentColor;}
 
-/* Atlas frame */
-.atlas-outer{max-width:1440px;margin:0 auto;padding:0 clamp(1rem,3vw,2.4rem) 0;}
-.atlas-frame{position:relative;width:100%;border:1px solid rgba(216,192,138,.35);border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px rgba(216,192,138,.08),0 0 80px rgba(0,0,0,.9),0 0 120px rgba(216,192,138,.05);}
-.atlas-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(216,192,138,.1) 0%,transparent 40%),radial-gradient(ellipse at bottom right,rgba(216,192,138,.07) 0%,transparent 40%);pointer-events:none;z-index:3;}
+/* atlas frame */
+.atlas-outer{max-width:1440px;margin:0 auto;padding:0 clamp(1rem,3vw,2.4rem);}
+.atlas-frame{position:relative;width:100%;border:1px solid rgba(216,192,138,.4);border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(216,192,138,.06),0 0 100px rgba(0,0,0,.9),0 0 60px rgba(216,192,138,.06);}
+.atlas-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(216,192,138,.08) 0%,transparent 35%),radial-gradient(ellipse at bottom right,rgba(216,192,138,.06) 0%,transparent 35%);pointer-events:none;z-index:3;}
 .atlas-frame img{width:100%;display:block;user-select:none;pointer-events:none;position:relative;z-index:1;}
-.atlas-mist{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.15;}
+.atlas-mist{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.14;}
 .atlas-const{position:absolute;inset:0;z-index:4;pointer-events:none;}
 .atlas-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;overflow:visible;}
 
-/* region polygons */
+/* region areas */
 .region-area{fill:transparent;stroke:transparent;cursor:pointer;transition:fill .3s,stroke .3s;}
 .pulse-g{cursor:pointer;}
-.pulse-ring{fill:none;stroke-width:1.2;animation:pulseRing 3s ease-in-out infinite;}
+.pulse-ring{fill:none;stroke-width:1.5;animation:pulseRing 3s ease-in-out infinite;}
 .pulse-core{animation:pulseCore 3s ease-in-out infinite;}
-@keyframes pulseRing{0%,100%{r:10;opacity:.7}50%{r:16;opacity:.15}}
-@keyframes pulseCore{0%,100%{opacity:.9}50%{opacity:.4}}
+@keyframes pulseRing{0%,100%{r:9;opacity:.8}50%{r:15;opacity:.12}}
+@keyframes pulseCore{0%,100%{opacity:.95}50%{opacity:.35}}
+.region-label-g{cursor:pointer;pointer-events:all;}
+.region-label-bg{fill:rgba(5,8,22,.72);rx:4;ry:4;}
+.region-label-text{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;text-anchor:middle;dominant-baseline:middle;transition:opacity .2s;}
+
+/* routes */
 .route-line{stroke-width:1.2;stroke-linecap:round;stroke-dasharray:6 4;fill:none;opacity:0;transition:opacity .6s;}
-.route-line.visible{opacity:.55;animation:dashDraw 1.2s ease forwards,dashFlow 3s linear infinite 1.2s;}
-@keyframes dashDraw{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+.route-line.visible{opacity:.5;animation:dashDraw 1.2s ease forwards,dashFlow 3s linear infinite 1.2s;}
+@keyframes dashDraw{from{stroke-dashoffset:500}to{stroke-dashoffset:0}}
 @keyframes dashFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:-200}}
-.map-beacon{transition:opacity .5s;}
-.beacon-text{font-family:'Cinzel',serif;font-size:11px;fill:rgba(216,192,138,.7);letter-spacing:2px;text-anchor:middle;}
-.beacon-ring{fill:none;stroke:var(--gold);stroke-width:1;animation:beaconPulse 2.5s ease-in-out infinite;}
+
+/* beacon */
+.map-beacon{transition:opacity .6s;}
+.beacon-ring{fill:none;stroke:#d8c08a;stroke-width:1;animation:beaconPulse 2.5s ease-in-out infinite;}
 @keyframes beaconPulse{0%,100%{r:18;opacity:.6}50%{r:28;opacity:.1}}
+.beacon-text{font-family:'Cinzel',serif;font-size:10px;fill:rgba(216,192,138,.65);letter-spacing:1.5px;text-anchor:middle;}
+
+/* zoom controls */
+.zoom-controls{position:absolute;bottom:16px;right:16px;z-index:10;display:flex;flex-direction:column;gap:4px;}
+.zoom-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:rgba(5,8,22,.85);border:1px solid rgba(216,192,138,.35);border-radius:4px;color:var(--gold);font-size:1.1rem;font-family:var(--font-d);cursor:pointer;transition:all .2s;backdrop-filter:blur(8px);}
+.zoom-btn:hover{border-color:var(--gold);background:rgba(216,192,138,.1);}
 
 /* tooltip */
-.atlas-tooltip{position:fixed;z-index:300;background:rgba(5,8,22,.97);border:1px solid var(--gold-dim);border-radius:12px;padding:1.1rem 1.4rem;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s;min-width:200px;max-width:250px;backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(0,0,0,.7);}
+.atlas-tooltip{position:fixed;z-index:300;background:rgba(5,8,22,.97);border:1px solid var(--gold-dim);border-radius:10px;padding:1rem 1.3rem;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s;min-width:190px;max-width:240px;backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(0,0,0,.7);}
 .atlas-tooltip.show{opacity:1;transform:translateY(0);}
 .atlas-tooltip.fan{border-color:rgba(155,142,196,.4);}
-.tt-realm{font-family:var(--font-d);font-size:.55rem;letter-spacing:.25em;opacity:.7;margin-bottom:.3rem;}
+.tt-realm{font-family:var(--font-d);font-size:.52rem;letter-spacing:.22em;opacity:.7;margin-bottom:.25rem;}
 .tt-realm.eth{color:var(--gold);}
 .tt-realm.fan{color:var(--purple);}
 .tt-realm.fut{color:rgba(216,192,138,.4);}
-.tt-name{font-family:var(--font-d);font-size:.9rem;letter-spacing:.1em;margin-bottom:.2rem;}
-.tt-sub{font-size:.78rem;color:var(--cream-dim);font-style:italic;margin-bottom:.6rem;}
-.tt-cta{font-family:var(--font-d);font-size:.55rem;letter-spacing:.2em;color:var(--gold);opacity:.7;}
+.tt-name{font-family:var(--font-d);font-size:.85rem;letter-spacing:.08em;margin-bottom:.18rem;}
+.tt-sub{font-size:.75rem;color:var(--cream-dim);font-style:italic;}
 
-/* REGION PANEL */
-.region-panel{max-width:1440px;margin:0 auto;padding:clamp(2rem,4vw,3.5rem) clamp(1.4rem,4vw,3rem);}
-.panel-inner{background:linear-gradient(135deg,rgba(11,18,40,.95),rgba(5,8,22,.98));border:1px solid rgba(216,192,138,.18);border-radius:16px;padding:clamp(2rem,4vw,3.5rem) clamp(1.8rem,4vw,3.5rem);box-shadow:0 24px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(216,192,138,.08);}
-.panel-realm-tag{font-family:var(--font-d);font-size:.6rem;letter-spacing:.3em;margin-bottom:.8rem;display:inline-flex;align-items:center;gap:.5em;}
-.panel-realm-tag.eth{color:var(--gold);}
-.panel-realm-tag.fan{color:var(--purple);}
-.panel-realm-tag::before{content:'◈';}
-.panel-title{font-family:var(--font-d);font-size:clamp(1.6rem,3vw,2.6rem);letter-spacing:.1em;color:var(--cream);margin-bottom:.6rem;}
-.panel-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--gold);font-style:italic;margin-bottom:1.2rem;}
-.panel-desc{font-size:clamp(.95rem,1.3vw,1.1rem);color:var(--cream-dim);line-height:1.8;margin-bottom:2rem;}
-.panel-actions{display:flex;flex-wrap:wrap;gap:1rem;}
-.panel-initial{text-align:center;padding:1rem 0;}
-.pi-symbol{font-size:2.5rem;color:var(--gold);opacity:.4;margin-bottom:1.2rem;}
-.panel-initial h3{font-family:var(--font-d);font-size:clamp(1rem,2vw,1.4rem);letter-spacing:.15em;color:var(--cream);margin-bottom:.8rem;}
-.panel-initial p{color:var(--cream-dim);font-style:italic;font-size:1.05rem;max-width:460px;margin:0 auto 2rem;}
+/* ── DYNAMIC BANNER ── */
+.dyn-banner{position:relative;overflow:hidden;min-height:clamp(300px,42vw,520px);}
 
-/* BUTTONS */
-.btn-gold{display:inline-block;padding:.9em 2.6em;font-family:var(--font-d);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:linear-gradient(135deg,var(--gold-hi),var(--gold));border-radius:1px;position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease),box-shadow .4s var(--ease);}
-.btn-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease);}
-.btn-gold:hover,.btn-gold:focus-visible{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(216,192,138,.5);}
-.btn-gold:hover::after,.btn-gold:focus-visible::after{transform:translateX(120%);}
-.btn-outline{display:inline-block;padding:.85em 2.2em;font-family:var(--font-d);font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);border-radius:1px;transition:border-color .3s,color .3s,background .3s;}
-.btn-outline:hover,.btn-outline:focus-visible{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.06);}
-
-/* CINEMATIC BANNER */
-.atlas-banner{
-  position:relative;min-height:65vh;
+/* initial state */
+.dyn-default{
+  position:relative;min-height:inherit;
   display:flex;align-items:center;justify-content:center;text-align:center;
-  overflow:hidden;margin-top:0;
-  background-image:url('atlas-banner.webp');
-  background-size:cover;background-position:center top;
+  background-image:url('atlas-banner.webp');background-size:cover;background-position:center;
+  transition:opacity .5s var(--ease);
 }
-.atlas-banner__veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,22,.82) 0%,rgba(5,8,22,.5) 45%,rgba(5,8,22,.15) 70%);}
-.atlas-banner__content{position:relative;z-index:2;padding:clamp(2rem,5vw,5rem) clamp(1.4rem,4vw,3rem);max-width:700px;}
-.atlas-banner__eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.3em;color:var(--gold);opacity:.7;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
-.atlas-banner__eyebrow::before,.atlas-banner__eyebrow::after{content:'◈';}
-.atlas-banner__title{font-family:var(--font-d);font-size:clamp(2rem,5vw,3.8rem);letter-spacing:.1em;color:var(--cream);margin-bottom:1.2rem;}
-.atlas-banner__text{font-size:clamp(1rem,1.6vw,1.3rem);color:var(--cream-dim);font-style:italic;margin:0 auto 2.4rem;}
+.dyn-default__veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,22,.85) 0%,rgba(5,8,22,.55) 50%,rgba(5,8,22,.2) 80%);}
+.dyn-default__content{position:relative;z-index:2;padding:clamp(2rem,5vw,5rem) clamp(1.4rem,4vw,3rem);max-width:640px;}
+.dyn-default__star{font-size:1.2rem;color:var(--gold);opacity:.7;margin-bottom:.8rem;}
+.dyn-default__title{font-family:var(--font-d);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.1em;color:var(--cream);margin-bottom:.9rem;}
+.dyn-default__text{font-size:clamp(1rem,1.6vw,1.25rem);color:var(--cream-dim);font-style:italic;margin:0 auto 2.2rem;max-width:480px;}
 
-/* FOOTER */
+/* region state */
+.dyn-region{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:2fr 3fr;
+  opacity:0;pointer-events:none;
+  transition:opacity .6s var(--ease);
+  background:var(--ink-deep);
+}
+.dyn-region.visible{opacity:1;pointer-events:auto;}
+.dyn-region.visible~.dyn-default{opacity:0;pointer-events:none;}
+.dyn-region__img{overflow:hidden;}
+.dyn-region__img img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease;}
+.dyn-region.visible .dyn-region__img img{transform:scale(1.04);}
+.dyn-region__body{display:flex;flex-direction:column;justify-content:center;padding:clamp(2rem,4vw,3.5rem) clamp(1.8rem,4vw,3.5rem);border-left:1px solid rgba(216,192,138,.12);}
+.dyn-region__realm{font-family:var(--font-d);font-size:.6rem;letter-spacing:.28em;margin-bottom:.6rem;display:inline-flex;align-items:center;gap:.5em;}
+.dyn-region__realm.eth{color:var(--gold);}
+.dyn-region__realm.fan{color:var(--purple);}
+.dyn-region__realm::before{content:'◈';}
+.dyn-region__compass{font-size:1.6rem;color:var(--gold);opacity:.6;margin-bottom:.5rem;}
+.dyn-region__name{font-family:var(--font-d);font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:.08em;color:var(--cream);margin-bottom:.3rem;}
+.dyn-region__sub{font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--gold);font-style:italic;margin-bottom:1rem;}
+.dyn-region__desc{font-size:clamp(.9rem,1.2vw,1.05rem);color:var(--cream-dim);line-height:1.75;margin-bottom:1.8rem;}
+.dyn-region__actions{display:flex;flex-wrap:wrap;gap:.9rem;}
+.dyn-region__close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;border:1px solid rgba(216,192,138,.3);display:flex;align-items:center;justify-content:center;color:var(--cream-dim);font-size:.9rem;cursor:pointer;transition:all .25s;z-index:5;}
+.dyn-region__close:hover{border-color:var(--gold);color:var(--gold);}
+/* dots */
+.dyn-dots{display:flex;justify-content:center;gap:.5rem;padding:.9rem 0 .4rem;background:var(--ink-deep);}
+.dyn-dot{width:7px;height:7px;border-radius:50%;background:rgba(216,192,138,.25);cursor:pointer;transition:background .25s,transform .25s;}
+.dyn-dot.active{background:var(--gold);transform:scale(1.25);}
+
+@media(max-width:700px){
+  .dyn-region{grid-template-columns:1fr;}
+  .dyn-region__img{max-height:200px;}
+  .dyn-region__body{padding:1.6rem;}
+}
+
+/* ── FOOTER ── */
 .site-footer{padding:clamp(3rem,7vw,5rem) clamp(1.4rem,5vw,4rem) clamp(2rem,4vw,2.6rem);background:var(--ink-deep);border-top:1px solid rgba(216,192,138,.12);}
 .footer__inner{max-width:1400px;margin:0 auto;}
 .footer__top{display:grid;gap:2.4rem 3rem;grid-template-columns:1.5fr repeat(4,auto);align-items:start;margin-bottom:2.4rem;}
@@ -150,17 +196,17 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 .footer__desc{color:var(--cream-dim);font-size:.9rem;line-height:1.65;margin-bottom:1.2rem;}
 .footer__socials{display:flex;gap:.6rem;}
 .footer__social-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(216,192,138,.3);display:flex;align-items:center;justify-content:center;color:var(--cream-dim);transition:border-color .3s,color .3s,background .3s;}
-.footer__social-btn:hover,.footer__social-btn:focus-visible{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.1);}
+.footer__social-btn:hover{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.1);}
 .footer__social-btn svg{width:14px;height:14px;fill:currentColor;}
 .footer__col h3{font-family:var(--font-d);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
 .footer__col ul{list-style:none;display:flex;flex-direction:column;gap:.65rem;}
 .footer__col a{color:var(--cream-dim);font-size:.9rem;transition:color .3s;}
-.footer__col a:hover,.footer__col a:focus-visible{color:var(--gold-hi);}
+.footer__col a:hover{color:var(--gold-hi);}
 .footer__bottom{padding-top:1.6rem;border-top:1px solid rgba(245,241,232,.08);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.78rem;color:rgba(245,241,232,.3);}
 @media(max-width:1080px){.footer__top{grid-template-columns:1fr 1fr;}.footer__brand{grid-column:1/-1;}}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
 .reveal.in-view{opacity:1;transform:translateY(0);}
 </style>
 </head>
@@ -169,9 +215,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 <!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="nav__logo">MOONVALE</a>
-  <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   <ul class="nav__links" id="navLinks">
     <li><a href="index.html"        data-i18n="nav.home">Home</a></li>
     <li><a href="ethernia.html"     data-i18n="nav.ethernia">Ethernia</a></li>
@@ -188,20 +232,41 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
   </ul>
 </nav>
 
+<!-- HERO -->
+<section class="hero" id="heroAtlas">
+  <div class="hero__veil"></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow" data-i18n="hero.eyebrow">CARTOGRAPHY OF WORLDS</p>
+    <p class="hero__title-small" data-i18n="hero.pretitle">THE ATLAS OF</p>
+    <h1 class="hero__title">MOONVALE</h1>
+    <div class="hero__rule"></div>
+    <p class="hero__sub"  data-i18n="hero.sub">Explore the realms. Discover the legends.</p>
+    <p class="hero__body" data-i18n="hero.body">The stars remember every path. Select a marked location to uncover its history, mysteries and forgotten legends.</p>
+    <a href="#map-section" class="btn-gold" data-i18n="hero.cta">✦ EXPLORE THE MAP</a>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">
+    <span data-i18n="hero.scroll">BEGIN YOUR JOURNEY</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
 <!-- MAP SECTION -->
 <section id="map-section">
-  <div class="map-header reveal">
-    <p class="map-eyebrow" data-i18n="map.eyebrow">CARTOGRAPHY OF WORLDS</p>
-    <h1 class="map-title">MOONVALE ATLAS</h1>
-    <p class="map-sub" data-i18n="map.sub">Explore the realms. Discover the legends.</p>
-    <div class="realm-tabs">
-      <button class="tab-btn active" data-filter="all"      data-i18n="filter.all">ALL REALMS</button>
+  <div class="map-controls-bar reveal">
+    <div class="map-filter-group">
+      <button class="tab-btn active" data-filter="all"     data-i18n="filter.all">ALL REALMS</button>
       <button class="tab-btn te"     data-filter="ethernia">ETHERNIA</button>
       <button class="tab-btn tf"     data-filter="fantasy">FANTASY</button>
     </div>
+    <div class="map-util-btns">
+      <button class="util-btn" id="btnConstellations">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="4" cy="4" r="1.5"/><circle cx="20" cy="6" r="1.5"/><circle cx="6" cy="19" r="1.5"/><circle cx="19" cy="18" r="1.5"/><line x1="12" y1="12" x2="4" y2="4" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="12" x2="20" y2="6" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span data-i18n="btn.constellations">VIEW CONSTELLATIONS</span>
+      </button>
+    </div>
   </div>
 
-  <div class="atlas-outer">
+  <div class="atlas-outer reveal">
     <div class="atlas-frame" id="atlasFrame">
       <img src="atlas-map.webp" alt="Moonvale Atlas of Realms" draggable="false" id="atlasImg">
       <canvas class="atlas-mist"  id="mistCanvas"></canvas>
@@ -209,16 +274,16 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 
       <svg class="atlas-svg" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" id="atlasSvg">
         <defs>
-          <filter id="glowLumindor"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#d8c08a" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowSylvarith"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#50c864" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowAurelith"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#64b4ff" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowElarion"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#ffa0b4" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowElynthara"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#dcebff" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowDrakenfell"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#dc3c28" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowNocthaven"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#a064dc" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowVelmorra"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#b450ff" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowBlacktide"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#2864c8" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          <filter id="glowEldermere"><feGaussianBlur stdDeviation="10" result="b"/><feFlood flood-color="#3c8c50" flood-opacity=".6" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowLumindor" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#d8c08a" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowSylvarith" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#50c864" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowAurelith" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#64b4ff" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowElarion" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#ffa0b4" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowElynthara" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#dcebff" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowDrakenfell" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#dc3c28" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowNocthaven" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#a064dc" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowVelmorra" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#b450ff" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowBlacktide" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#2864c8" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <filter id="glowEldermere" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12" result="b"/><feFlood flood-color="#3c8c50" flood-opacity=".65" result="c"/><feComposite in="c" in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
 
         <!-- ROUTES -->
@@ -232,113 +297,137 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
         <g class="map-beacon" id="mapBeacon">
           <circle class="beacon-ring" cx="768" cy="512" r="20"/>
           <circle cx="768" cy="512" r="4" fill="#d8c08a" opacity=".9"/>
-          <text class="beacon-text" x="768" y="550" data-i18n="beacon.text">Select a realm to begin</text>
+          <text class="beacon-text" x="768" y="548" data-i18n="beacon.text">SELECT A REALM TO BEGIN YOUR JOURNEY</text>
         </g>
 
-        <!-- ETHERNIA -->
+        <!-- ETHERNIA REGIONS -->
         <g class="region eth" data-key="aurelith-veil">
           <polygon class="region-area eth" points="120,30 280,18 420,30 480,90 470,180 380,220 260,230 150,200 80,140 90,70"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="280" cy="130" r="10" stroke="#64b4ff" style="animation-delay:0s"/><circle class="pulse-core" cx="280" cy="130" r="4" fill="#64b4ff"/></g>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="280" cy="130" r="9" stroke="#64b4ff" style="animation-delay:0s"/><circle class="pulse-core" cx="280" cy="130" r="3.5" fill="#64b4ff"/></g>
+          <g class="region-label-g" data-key="aurelith-veil"><rect class="region-label-bg" x="222" y="155" width="116" height="18" rx="3" ry="3"/><text class="region-label-text" x="280" y="164" fill="#64b4ff">AURELITH VEIL</text></g>
         </g>
         <g class="region eth" data-key="sylvarith">
           <polygon class="region-area eth" points="60,220 160,190 230,210 250,300 240,400 200,460 130,470 70,430 40,340 50,260"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="155" cy="330" r="10" stroke="#50c864" style="animation-delay:.6s"/><circle class="pulse-core" cx="155" cy="330" r="4" fill="#50c864"/></g>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="155" cy="330" r="9" stroke="#50c864" style="animation-delay:.6s"/><circle class="pulse-core" cx="155" cy="330" r="3.5" fill="#50c864"/></g>
+          <g class="region-label-g" data-key="sylvarith"><rect class="region-label-bg" x="112" y="355" width="86" height="18" rx="3" ry="3"/><text class="region-label-text" x="155" y="364" fill="#50c864">SYLVARITH</text></g>
         </g>
         <g class="region eth" data-key="lumindor">
           <polygon class="region-area eth" points="270,230 420,200 520,220 560,310 550,420 480,490 370,510 270,490 220,400 230,300"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="390" cy="360" r="10" stroke="#d8c08a" style="animation-delay:1.2s"/><circle class="pulse-core" cx="390" cy="360" r="4" fill="#d8c08a"/></g>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="390" cy="360" r="9" stroke="#d8c08a" style="animation-delay:1.2s"/><circle class="pulse-core" cx="390" cy="360" r="3.5" fill="#d8c08a"/></g>
+          <g class="region-label-g" data-key="lumindor"><rect class="region-label-bg" x="348" y="385" width="84" height="18" rx="3" ry="3"/><text class="region-label-text" x="390" y="394" fill="#d8c08a">LUMINDOR</text></g>
         </g>
         <g class="region eth" data-key="elarion-vale">
           <polygon class="region-area eth" points="100,500 240,470 330,490 360,570 340,660 270,710 170,720 90,680 65,600 80,530"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="215" cy="590" r="10" stroke="#ffa0b4" style="animation-delay:1.8s"/><circle class="pulse-core" cx="215" cy="590" r="4" fill="#ffa0b4"/></g>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="215" cy="590" r="9" stroke="#ffa0b4" style="animation-delay:1.8s"/><circle class="pulse-core" cx="215" cy="590" r="3.5" fill="#ffa0b4"/></g>
+          <g class="region-label-g" data-key="elarion-vale"><rect class="region-label-bg" x="161" y="614" width="108" height="18" rx="3" ry="3"/><text class="region-label-text" x="215" y="623" fill="#ffa0b4">ELARION VALE</text></g>
         </g>
         <g class="region eth" data-key="elynthara">
           <polygon class="region-area eth" points="350,580 490,555 600,570 640,630 620,710 540,750 420,755 330,720 305,660 320,610"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="470" cy="655" r="10" stroke="#dcebff" style="animation-delay:2.4s"/><circle class="pulse-core" cx="470" cy="655" r="4" fill="#dcebff"/></g>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="470" cy="655" r="9" stroke="#dcebff" style="animation-delay:2.4s"/><circle class="pulse-core" cx="470" cy="655" r="3.5" fill="#dcebff"/></g>
+          <g class="region-label-g" data-key="elynthara"><rect class="region-label-bg" x="420" y="680" width="100" height="18" rx="3" ry="3"/><text class="region-label-text" x="470" y="689" fill="#dcebff">ELYNTHARA</text></g>
         </g>
 
-        <!-- FANTASY -->
+        <!-- FANTASY REGIONS -->
         <g class="region fan" data-key="drakenfell">
           <polygon class="region-area fan" points="820,30 980,18 1110,35 1160,100 1150,200 1070,240 940,255 830,230 770,160 780,80"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="960" cy="140" r="10" stroke="#dc3c28" style="animation-delay:.3s"/><circle class="pulse-core" cx="960" cy="140" r="4" fill="#dc3c28"/></g>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="960" cy="140" r="9" stroke="#dc3c28" style="animation-delay:.3s"/><circle class="pulse-core" cx="960" cy="140" r="3.5" fill="#dc3c28"/></g>
+          <g class="region-label-g" data-key="drakenfell"><rect class="region-label-bg" x="908" y="164" width="104" height="18" rx="3" ry="3"/><text class="region-label-text" x="960" y="173" fill="#dc3c28">DRAKENFELL</text></g>
         </g>
         <g class="region fan" data-key="nocthaven">
           <polygon class="region-area fan" points="1160,60 1340,50 1460,90 1510,180 1500,300 1420,360 1300,370 1190,330 1140,240 1150,140"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="1330" cy="210" r="10" stroke="#a064dc" style="animation-delay:.9s"/><circle class="pulse-core" cx="1330" cy="210" r="4" fill="#a064dc"/></g>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="1330" cy="210" r="9" stroke="#a064dc" style="animation-delay:.9s"/><circle class="pulse-core" cx="1330" cy="210" r="3.5" fill="#a064dc"/></g>
+          <g class="region-label-g" data-key="nocthaven"><rect class="region-label-bg" x="1280" y="235" width="100" height="18" rx="3" ry="3"/><text class="region-label-text" x="1330" y="244" fill="#a064dc">NOCTHAVEN</text></g>
         </g>
         <g class="region fan" data-key="eldermere">
           <polygon class="region-area fan" points="800,280 920,255 1020,270 1060,360 1040,460 960,510 860,510 790,450 770,360 780,300"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="915" cy="385" r="10" stroke="#3c8c50" style="animation-delay:1.5s"/><circle class="pulse-core" cx="915" cy="385" r="4" fill="#3c8c50"/></g>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="915" cy="385" r="9" stroke="#3c8c50" style="animation-delay:1.5s"/><circle class="pulse-core" cx="915" cy="385" r="3.5" fill="#3c8c50"/></g>
+          <g class="region-label-g" data-key="eldermere"><rect class="region-label-bg" x="869" y="410" width="92" height="18" rx="3" ry="3"/><text class="region-label-text" x="915" y="419" fill="#3c8c50">ELDERMERE</text></g>
         </g>
         <g class="region fan" data-key="velmorra">
           <polygon class="region-area fan" points="1060,280 1200,260 1320,285 1370,370 1350,470 1270,530 1160,540 1070,500 1040,410 1050,320"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="1200" cy="400" r="10" stroke="#b450ff" style="animation-delay:2.1s"/><circle class="pulse-core" cx="1200" cy="400" r="4" fill="#b450ff"/></g>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="1200" cy="400" r="9" stroke="#b450ff" style="animation-delay:2.1s"/><circle class="pulse-core" cx="1200" cy="400" r="3.5" fill="#b450ff"/></g>
+          <g class="region-label-g" data-key="velmorra"><rect class="region-label-bg" x="1158" y="425" width="84" height="18" rx="3" ry="3"/><text class="region-label-text" x="1200" y="434" fill="#b450ff">VELMORRA</text></g>
         </g>
         <g class="region fan" data-key="blacktide-harbor">
           <polygon class="region-area fan" points="1060,620 1200,590 1360,600 1460,650 1470,740 1390,800 1260,830 1120,820 1020,760 1020,680"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="1245" cy="710" r="10" stroke="#2864c8" style="animation-delay:2.7s"/><circle class="pulse-core" cx="1245" cy="710" r="4" fill="#2864c8"/></g>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="1245" cy="710" r="9" stroke="#2864c8" style="animation-delay:2.7s"/><circle class="pulse-core" cx="1245" cy="710" r="3.5" fill="#2864c8"/></g>
+          <g class="region-label-g" data-key="blacktide-harbor"><rect class="region-label-bg" x="1169" y="735" width="152" height="18" rx="3" ry="3"/><text class="region-label-text" x="1245" y="744" fill="#2864c8">BLACKTIDE HARBOR</text></g>
         </g>
 
         <!-- UNKNOWN LANDS -->
         <g class="region future" data-key="future-1">
           <ellipse class="region-area" cx="770" cy="820" rx="55" ry="30"/>
-          <circle class="pulse-ring" cx="770" cy="820" r="8" stroke="rgba(216,192,138,.4)" style="animation-delay:1s"/>
-          <circle cx="770" cy="820" r="3" fill="rgba(216,192,138,.5)"/>
+          <circle class="pulse-ring" cx="770" cy="820" r="7" stroke="rgba(216,192,138,.4)" style="animation-delay:1s"/>
+          <circle cx="770" cy="820" r="3" fill="rgba(216,192,138,.45)"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(216,192,138,.55)" text-anchor="middle" x="770" y="848" letter-spacing="1.5">UNKNOWN ISLE</text>
+          <text font-family="'Cinzel',serif" font-size="8" fill="rgba(216,192,138,.35)" text-anchor="middle" x="770" y="858" letter-spacing="1">???</text>
         </g>
         <g class="region future" data-key="future-2">
-          <ellipse class="region-area" cx="650" cy="600" rx="38" ry="22"/>
-          <circle class="pulse-ring" cx="650" cy="600" r="7" stroke="rgba(216,192,138,.3)" style="animation-delay:1.8s"/>
-          <circle cx="650" cy="600" r="3" fill="rgba(216,192,138,.4)"/>
-        </g>
-        <g class="region future" data-key="future-3">
-          <ellipse class="region-area" cx="700" cy="900" rx="58" ry="28"/>
-          <circle class="pulse-ring" cx="700" cy="900" r="8" stroke="rgba(216,192,138,.3)" style="animation-delay:.5s"/>
+          <ellipse class="region-area" cx="700" cy="900" rx="60" ry="28"/>
+          <circle class="pulse-ring" cx="700" cy="900" r="7" stroke="rgba(216,192,138,.35)" style="animation-delay:.5s"/>
           <circle cx="700" cy="900" r="3" fill="rgba(216,192,138,.4)"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(216,192,138,.5)" text-anchor="middle" x="700" y="926" letter-spacing="1.5">THE VEILED LANDS</text>
+          <text font-family="'Cinzel',serif" font-size="8" fill="rgba(216,192,138,.3)" text-anchor="middle" x="700" y="936" letter-spacing="1">???</text>
         </g>
       </svg>
+
+      <!-- ZOOM CONTROLS -->
+      <div class="zoom-controls">
+        <button class="zoom-btn" id="zoomIn">+</button>
+        <button class="zoom-btn" id="zoomOut">−</button>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- DYNAMIC BANNER -->
+<div class="dyn-banner reveal" id="dynBanner">
+  <!-- Default state -->
+  <div class="dyn-default" id="dynDefault">
+    <div class="dyn-default__veil"></div>
+    <div class="dyn-default__content">
+      <p class="dyn-default__star">✦</p>
+      <h2 class="dyn-default__title" data-i18n="banner.title">THE STARS REMEMBER</h2>
+      <p class="dyn-default__text"   data-i18n="banner.text">Ancient realms connected by starlight, shadow and forgotten legends.</p>
+      <a href="lore-library.html" class="btn-outline" data-i18n="banner.cta">⊞ ENTER THE LORE LIBRARY</a>
+    </div>
+  </div>
+
+  <!-- Region state -->
+    <div class="dyn-region" id="dynRegion">
+    <button class="dyn-region__close" id="dynClose" aria-label="Close">✕</button>
+    <div class="dyn-region__img">
+      <img src="" alt="" id="dynImg">
+    </div>
+    <div class="dyn-region__body">
+      <p  class="dyn-region__realm"   id="dynRealm"></p>
+      <p  class="dyn-region__compass">✦</p>
+      <h2 class="dyn-region__name"    id="dynName"></h2>
+      <p  class="dyn-region__sub"     id="dynSub"></p>
+      <p  class="dyn-region__desc"    id="dynDesc"></p>
+      <div class="dyn-region__actions">
+        <a class="btn-gold"    id="dynLore" href="#" data-i18n="panel.lore">⊞ READ THE LORE</a>
+        <a class="btn-outline" id="dynPage" href="#" data-i18n="panel.open">EXPLORE REGION →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DOTS -->
+<div class="dyn-dots" id="dynDots">
+  <span class="dyn-dot active" data-idx="0"></span>
+  <span class="dyn-dot" data-idx="1"></span>
+  <span class="dyn-dot" data-idx="2"></span>
+  <span class="dyn-dot" data-idx="3"></span>
+  <span class="dyn-dot" data-idx="4"></span>
+</div>
 
 <!-- TOOLTIP -->
 <div class="atlas-tooltip" id="atlasTooltip">
   <p class="tt-realm" id="ttRealm"></p>
   <p class="tt-name"  id="ttName"></p>
   <p class="tt-sub"   id="ttSub"></p>
-  <p class="tt-cta"   data-i18n="tooltip.cta">EXPLORE REGION →</p>
 </div>
-
-<!-- REGION PANEL -->
-<div class="region-panel reveal" id="regionPanel">
-  <div class="panel-inner" id="panelInner">
-    <div class="panel-initial" id="panelInitial">
-      <p class="pi-symbol">◈</p>
-      <h3 data-i18n="panel.welcome">WELCOME TO THE ATLAS</h3>
-      <p data-i18n="panel.prompt">Choose a marked location on the map to reveal its history, landmarks and legends.</p>
-    </div>
-    <div id="panelRegion" style="display:none;">
-      <p class="panel-realm-tag" id="panelRealm"></p>
-      <h2 class="panel-title" id="panelTitle"></h2>
-      <p class="panel-sub"   id="panelSub"></p>
-      <p class="panel-desc"  id="panelDesc"></p>
-      <div class="panel-actions">
-        <a class="btn-gold"    id="panelLore" href="#" data-i18n="panel.lore">READ THE LORE</a>
-        <a class="btn-outline" id="panelPage" href="#" data-i18n="panel.open">OPEN REGION PAGE</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CINEMATIC BANNER -->
-<section class="atlas-banner reveal">
-  <div class="atlas-banner__veil"></div>
-  <div class="atlas-banner__content">
-    <p class="atlas-banner__eyebrow" data-i18n="banner.eyebrow">THE CARTOGRAPHY OF WORLDS</p>
-    <h2 class="atlas-banner__title" data-i18n="banner.title">THE ATLAS OF MOONVALE</h2>
-    <p class="atlas-banner__text"   data-i18n="banner.text">Ancient realms connected by starlight, shadow and forgotten legends.</p>
-    <a href="#map-section" class="btn-gold" data-i18n="hero.cta">EXPLORE THE MAP</a>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -349,236 +438,158 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
         <p class="footer__tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
         <p class="footer__desc"    data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
         <div class="footer__socials">
-          <a href="https://www.tiktok.com/@ethernia.f" target="_blank" rel="noopener" aria-label="TikTok Ethernia" class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
-          <a href="https://www.tiktok.com/@fantasy.ia"         target="_blank" rel="noopener" aria-label="TikTok Fantasy"  class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
-          <a href="https://youtube.com/@fantasyy_ia"           target="_blank" rel="noopener" aria-label="YouTube"         class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.6 12 3.6 12 3.6s-7.54 0-9.38.45A3.02 3.02 0 0 0 .5 6.19C.06 8.04 0 12 0 12s.06 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.4 12 20.4 12 20.4s7.54 0 9.38-.45a3.02 3.02 0 0 0 2.12-2.14C23.94 15.96 24 12 24 12s-.06-3.96-.5-5.81zM9.75 15.52V8.48L15.86 12l-6.11 3.52z"/></svg></a>
-          <a href="https://www.pinterest.com/moonvalestudio/"  target="_blank" rel="noopener" aria-label="Pinterest"       class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+          <a href="https://www.tiktok.com/@ethernia.f"        target="_blank" rel="noopener" aria-label="TikTok Ethernia" class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
+          <a href="https://www.tiktok.com/@fantasy.ia"        target="_blank" rel="noopener" aria-label="TikTok Fantasy"  class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
+          <a href="https://youtube.com/@fantasyy_ia"          target="_blank" rel="noopener" aria-label="YouTube"         class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.6 12 3.6 12 3.6s-7.54 0-9.38.45A3.02 3.02 0 0 0 .5 6.19C.06 8.04 0 12 0 12s.06 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.4 12 20.4 12 20.4s7.54 0 9.38-.45a3.02 3.02 0 0 0 2.12-2.14C23.94 15.96 24 12 24 12s-.06-3.96-.5-5.81zM9.75 15.52V8.48L15.86 12l-6.11 3.52z"/></svg></a>
+          <a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener" aria-label="Pinterest"       class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
         </div>
       </div>
-      <div class="footer__col">
-        <h3 data-i18n="footer.navigation">Navigation</h3>
-        <ul>
-          <li><a href="index.html"        data-i18n="nav.home">Home</a></li>
-          <li><a href="ethernia.html"     data-i18n="nav.ethernia">Ethernia</a></li>
-          <li><a href="fantasy.html"      data-i18n="nav.fantasy">Fantasy</a></li>
-          <li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li>
-          <li><a href="artefacts.html"    data-i18n="nav.artefacts">Artefacts</a></li>
-          <li><a href="about.html"        data-i18n="nav.about">About</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h3 data-i18n="footer.worlds">Worlds</h3>
-        <ul>
-          <li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li>
-          <li><a href="fantasy.html"  data-i18n="nav.fantasy">Fantasy</a></li>
-          <li><a href="atlas.html"    data-i18n="nav.atlas">Atlas</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h3 data-i18n="footer.archive">Archive</h3>
-        <ul>
-          <li><a href="lore-library/regions.html"    data-i18n="footer.regions">Regions</a></li>
-          <li><a href="lore-library/characters.html" data-i18n="footer.characters">Characters</a></li>
-          <li><a href="lore-library/relics.html"     data-i18n="footer.relics">Relics</a></li>
-          <li><a href="lore-library/chronicles.html" data-i18n="footer.chronicles">Chronicles</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h3 data-i18n="footer.connect">Connect</h3>
-        <ul>
-          <li><a href="https://www.tiktok.com/@ethernia.f"        target="_blank" rel="noopener" data-i18n="footer.tiktok-ethernia">TikTok Ethernia</a></li>
-          <li><a href="https://www.tiktok.com/@fantasy.ia"        target="_blank" rel="noopener" data-i18n="footer.tiktok-fantasy">TikTok Fantasy</a></li>
-          <li><a href="https://youtube.com/@fantasyy_ia"          target="_blank" rel="noopener" data-i18n="footer.youtube">YouTube</a></li>
-          <li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener" data-i18n="footer.pinterest">Pinterest</a></li>
-        </ul>
-      </div>
+      <div class="footer__col"><h3 data-i18n="footer.navigation">Navigation</h3><ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li></ul></div>
+      <div class="footer__col"><h3 data-i18n="footer.worlds">Worlds</h3><ul><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="nav.atlas">Atlas</a></li></ul></div>
+      <div class="footer__col"><h3 data-i18n="footer.archive">Archive</h3><ul><li><a href="lore-library/regions.html" data-i18n="footer.regions">Regions</a></li><li><a href="lore-library/characters.html" data-i18n="footer.characters">Characters</a></li><li><a href="lore-library/relics.html" data-i18n="footer.relics">Relics</a></li><li><a href="lore-library/chronicles.html" data-i18n="footer.chronicles">Chronicles</a></li></ul></div>
+      <div class="footer__col"><h3 data-i18n="footer.connect">Connect</h3><ul><li><a href="https://www.tiktok.com/@ethernia.f" target="_blank" rel="noopener" data-i18n="footer.tiktok-ethernia">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia" target="_blank" rel="noopener" data-i18n="footer.tiktok-fantasy">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia" target="_blank" rel="noopener" data-i18n="footer.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener" data-i18n="footer.pinterest">Pinterest</a></li></ul></div>
     </div>
-    <div class="footer__bottom">
-      <span data-i18n="footer.copyright">© 2026 Moonvale Studio. All realms reserved.</span>
-    </div>
+    <div class="footer__bottom"><span data-i18n="footer.copyright">© 2026 Moonvale Studio. All realms reserved.</span></div>
   </div>
 </footer>
 
 <script>
 /* I18N */
-const T = {
-  en:{
-    'nav.home':'Home','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'About','nav.atlas':'Atlas',
-    'map.eyebrow':'CARTOGRAPHY OF WORLDS','map.sub':'Explore the realms. Discover the legends.',
-    'filter.all':'ALL REALMS','tooltip.cta':'EXPLORE REGION →','beacon.text':'Select a realm to begin',
-    'panel.welcome':'WELCOME TO THE ATLAS','panel.prompt':'Choose a marked location on the map to reveal its history, landmarks and legends.',
-    'panel.lore':'READ THE LORE','panel.open':'OPEN REGION PAGE',
-    'banner.eyebrow':'THE CARTOGRAPHY OF WORLDS','banner.title':'THE ATLAS OF MOONVALE',
-    'banner.text':'Ancient realms connected by starlight, shadow and forgotten legends.','hero.cta':'EXPLORE THE MAP',
-    'footer.tagline':'Between Stars And Stories','footer.desc':'We are the bridge between worlds and imagination.',
-    'footer.navigation':'Navigation','footer.worlds':'Worlds','footer.archive':'Archive',
-    'footer.regions':'Regions','footer.characters':'Characters','footer.relics':'Relics','footer.chronicles':'Chronicles',
-    'footer.connect':'Connect','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy',
-    'footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. All realms reserved.'
-  },
-  pt:{
-    'nav.home':'Início','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Sobre','nav.atlas':'Atlas',
-    'map.eyebrow':'CARTOGRAFIA DOS MUNDOS','map.sub':'Explora os reinos. Descobre as lendas.',
-    'filter.all':'TODOS OS REINOS','tooltip.cta':'EXPLORAR REGIÃO →','beacon.text':'Seleciona um reino para começar',
-    'panel.welcome':'BEM-VINDO AO ATLAS','panel.prompt':'Escolhe um local assinalado no mapa para revelar a sua história, marcos e lendas.',
-    'panel.lore':'LER O LORE','panel.open':'ABRIR PÁGINA DA REGIÃO',
-    'banner.eyebrow':'A CARTOGRAFIA DOS MUNDOS','banner.title':'O ATLAS DE MOONVALE',
-    'banner.text':'Reinos antigos ligados pela luz das estrelas, sombras e lendas esquecidas.','hero.cta':'EXPLORAR O MAPA',
-    'footer.tagline':'Entre Estrelas e Histórias','footer.desc':'Somos a ponte entre mundos e imaginação.',
-    'footer.navigation':'Navegação','footer.worlds':'Mundos','footer.archive':'Arquivo',
-    'footer.regions':'Regiões','footer.characters':'Personagens','footer.relics':'Relíquias','footer.chronicles':'Crónicas',
-    'footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy',
-    'footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. Todos os reinos reservados.'
-  },
-  es:{
-    'nav.home':'Inicio','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Acerca','nav.atlas':'Atlas',
-    'map.eyebrow':'CARTOGRAFÍA DE LOS MUNDOS','map.sub':'Explora los reinos. Descubre las leyendas.',
-    'filter.all':'TODOS LOS REINOS','tooltip.cta':'EXPLORAR REGIÓN →','beacon.text':'Selecciona un reino para comenzar',
-    'panel.welcome':'BIENVENIDO AL ATLAS','panel.prompt':'Elige un lugar marcado en el mapa para revelar su historia, hitos y leyendas.',
-    'panel.lore':'LEER EL LORE','panel.open':'ABRIR PÁGINA DE REGIÓN',
-    'banner.eyebrow':'LA CARTOGRAFÍA DE LOS MUNDOS','banner.title':'EL ATLAS DE MOONVALE',
-    'banner.text':'Reinos antiguos conectados por la luz de las estrellas, sombras y leyendas olvidadas.','hero.cta':'EXPLORAR EL MAPA',
-    'footer.tagline':'Entre Estrellas e Historias','footer.desc':'Somos el puente entre mundos e imaginación.',
-    'footer.navigation':'Navegación','footer.worlds':'Mundos','footer.archive':'Archivo',
-    'footer.regions':'Regiones','footer.characters':'Personajes','footer.relics':'Reliquias','footer.chronicles':'Crónicas',
-    'footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy',
-    'footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. Todos los reinos reservados.'
-  }
+const T={
+  en:{'nav.home':'Home','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'About','nav.atlas':'Atlas','hero.eyebrow':'CARTOGRAPHY OF WORLDS','hero.pretitle':'THE ATLAS OF','hero.sub':'Explore the realms. Discover the legends.','hero.body':'The stars remember every path. Select a marked location to uncover its history, mysteries and forgotten legends.','hero.cta':'EXPLORE THE MAP','hero.scroll':'BEGIN YOUR JOURNEY','filter.all':'ALL REALMS','btn.constellations':'VIEW CONSTELLATIONS','beacon.text':'SELECT A REALM TO BEGIN YOUR JOURNEY','banner.title':'THE STARS REMEMBER','banner.text':'Ancient realms connected by starlight, shadow and forgotten legends.','banner.cta':'ENTER THE LORE LIBRARY','panel.lore':'READ THE LORE','panel.open':'EXPLORE REGION →','footer.tagline':'Between Stars And Stories','footer.desc':'We are the bridge between worlds and imagination.','footer.navigation':'Navigation','footer.worlds':'Worlds','footer.archive':'Archive','footer.regions':'Regions','footer.characters':'Characters','footer.relics':'Relics','footer.chronicles':'Chronicles','footer.connect':'Connect','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. All realms reserved.'},
+  pt:{'nav.home':'Início','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Sobre','nav.atlas':'Atlas','hero.eyebrow':'CARTOGRAFIA DOS MUNDOS','hero.pretitle':'O ATLAS DE','hero.sub':'Explora os reinos. Descobre as lendas.','hero.body':'As estrelas recordam cada caminho. Seleciona um local assinalado para desvendar a sua história, mistérios e lendas esquecidas.','hero.cta':'EXPLORAR O MAPA','hero.scroll':'INICIAR A JORNADA','filter.all':'TODOS OS REINOS','btn.constellations':'VER CONSTELAÇÕES','beacon.text':'SELECIONA UM REINO PARA COMEÇAR A TUA JORNADA','banner.title':'AS ESTRELAS RECORDAM','banner.text':'Reinos antigos ligados pela luz das estrelas, sombras e lendas esquecidas.','banner.cta':'ENTRAR NA LORE LIBRARY','panel.lore':'LER O LORE','panel.open':'EXPLORAR REGIÃO →','footer.tagline':'Entre Estrelas e Histórias','footer.desc':'Somos a ponte entre mundos e imaginação.','footer.navigation':'Navegação','footer.worlds':'Mundos','footer.archive':'Arquivo','footer.regions':'Regiões','footer.characters':'Personagens','footer.relics':'Relíquias','footer.chronicles':'Crónicas','footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. Todos os reinos reservados.'},
+  es:{'nav.home':'Inicio','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Acerca','nav.atlas':'Atlas','hero.eyebrow':'CARTOGRAFÍA DE LOS MUNDOS','hero.pretitle':'EL ATLAS DE','hero.sub':'Explora los reinos. Descubre las leyendas.','hero.body':'Las estrellas recuerdan cada camino. Selecciona un lugar marcado para descubrir su historia, misterios y leyendas olvidadas.','hero.cta':'EXPLORAR EL MAPA','hero.scroll':'COMENZAR EL VIAJE','filter.all':'TODOS LOS REINOS','btn.constellations':'VER CONSTELACIONES','beacon.text':'SELECCIONA UN REINO PARA COMENZAR TU VIAJE','banner.title':'LAS ESTRELLAS RECUERDAN','banner.text':'Reinos antiguos conectados por la luz de las estrellas, sombras y leyendas olvidadas.','banner.cta':'ENTRAR EN LA LORE LIBRARY','panel.lore':'LEER EL LORE','panel.open':'EXPLORAR REGIÓN →','footer.tagline':'Entre Estrellas e Historias','footer.desc':'Somos el puente entre mundos e imaginación.','footer.navigation':'Navegación','footer.worlds':'Mundos','footer.archive':'Archivo','footer.regions':'Regiones','footer.characters':'Personajes','footer.relics':'Reliquias','footer.chronicles':'Crónicas','footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. Todos los reinos reservados.'}
 };
-let currentLang='en';
-function applyLang(l){
-  currentLang=l; document.documentElement.lang=l;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ const v=T[l][el.dataset.i18n]; if(v!==undefined) el.textContent=v; });
-  document.querySelectorAll('.lang-switch button').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===l));
-}
-document.querySelectorAll('.lang-switch button').forEach(btn=>btn.addEventListener('click',()=>applyLang(btn.dataset.lang)));
+let lang='en';
+function applyLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=T[l][el.dataset.i18n];if(v!==undefined)el.textContent=v;});document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));}
+document.querySelectorAll('.lang-switch button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
 applyLang('en');
 
 /* NAV */
-const navToggle=document.getElementById('navToggle'), navLinks=document.getElementById('navLinks');
-navToggle.addEventListener('click',()=>{ const o=navLinks.classList.toggle('open'); navToggle.classList.toggle('open',o); navToggle.setAttribute('aria-expanded',o); });
-navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ navLinks.classList.remove('open'); navToggle.classList.remove('open'); navToggle.setAttribute('aria-expanded',false); }));
-
-/* MIST */
-(function(){
-  const c=document.getElementById('mistCanvas'); if(!c) return;
-  const ctx=c.getContext('2d'); let ox=0;
-  function resize(){ c.width=c.offsetWidth; c.height=c.offsetHeight; }
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height); ox+=0.1;
-    for(let i=0;i<3;i++){
-      const y=c.height*(0.3+i*0.2)+Math.sin((ox+i*40)*0.008)*12;
-      const g=ctx.createLinearGradient(0,y-18,0,y+18);
-      g.addColorStop(0,'transparent'); g.addColorStop(.5,'rgba(180,210,255,0.05)'); g.addColorStop(1,'transparent');
-      ctx.fillStyle=g; ctx.fillRect(0,y-18,c.width,36);
-    }
-    requestAnimationFrame(draw);
-  }
-  resize(); window.addEventListener('resize',resize); draw();
-})();
-
-/* CONSTELLATIONS */
-(function(){
-  const frame=document.getElementById('atlasFrame'), c=document.getElementById('constCanvas');
-  if(!c||!frame) return;
-  const ctx=c.getContext('2d'); let mouse=null, stars=[];
-  function resize(){ c.width=frame.offsetWidth; c.height=frame.offsetHeight; stars=Array.from({length:80},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*.5+.2})); }
-  frame.addEventListener('mousemove',e=>{ const r=frame.getBoundingClientRect(); mouse={x:e.clientX-r.left,y:e.clientY-r.top}; });
-  frame.addEventListener('mouseleave',()=>{ mouse=null; });
-  function draw(){
-    ctx.clearRect(0,0,c.width,c.height);
-    if(mouse){ const radius=120;
-      stars.forEach(s=>{ const dx=s.x-mouse.x,dy=s.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<radius){ const a=(1-dist/radius)*.7; ctx.beginPath(); ctx.arc(s.x,s.y,s.r+1,0,Math.PI*2); ctx.fillStyle=`rgba(216,192,138,${a})`; ctx.fill();
-          stars.forEach(s2=>{ const dx2=s.x-s2.x,dy2=s.y-s2.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);
-            if(d2<60&&d2>0){ const d3=Math.sqrt((s2.x-mouse.x)**2+(s2.y-mouse.y)**2);
-              if(d3<radius){ ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(s2.x,s2.y); ctx.strokeStyle=`rgba(216,192,138,${a*.25})`; ctx.lineWidth=.5; ctx.stroke(); }
-            }
-          });
-        }
-      });
-    }
-    requestAnimationFrame(draw);
-  }
-  resize(); window.addEventListener('resize',resize); draw();
-})();
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');
+navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.classList.toggle('open',o);navToggle.setAttribute('aria-expanded',o);});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.classList.remove('open');navToggle.setAttribute('aria-expanded',false);}));
 
 /* REGION DATA */
 const REGIONS={
-  'lumindor':        {name:'Lumindor',        sub:'The Celestial Capital of Ethernia',       desc:'A city forged in starlight where ancient towers rise above the rivers of eternal dawn. The golden spires of Lumindor have guided every traveller home since the First Age.',   realm:'ethernia',url:'lore-library/regions/lumindor.html',        routes:['route-lumindor-elynthara','route-sylvarith-lumindor']},
-  'sylvarith':       {name:'Sylvarith',        sub:'The Worldtree of Sylvarith',              desc:'At the edge of Ethernia, a forest older than memory breathes with emerald light. The roots of Sylvarith run deeper than any map has ever dared to mark.',                      realm:'ethernia',url:'lore-library/regions/sylvarith.html',         routes:['route-sylvarith-lumindor']},
-  'aurelith-veil':   {name:'Aurelith Veil',    sub:'Celestial Observatory of the High Peaks', desc:'Above the snowline where the air runs thin and cold, the Veil Observatory watches stars that move against the current of time.',                                               realm:'ethernia',url:'lore-library/regions/aurelith-veil.html',     routes:[]},
-  'elarion-vale':    {name:'Elarion Vale',     sub:'The Eternal Gardens',                     desc:'Where flowers bloom in winter and rivers hum with an old half-forgotten song. The Vale has never known drought, nor darkness, nor the silence of an empty sky.',                realm:'ethernia',url:'lore-library/regions/elarion-vale.html',      routes:[]},
-  'elynthara':       {name:'Elynthara',        sub:'Lighthouse of Elynthara',                 desc:'A coastal realm where dawn breaks twice — once over the sea and once inside the crystal lighthouse whose beam once reached the farthest star.',                                 realm:'ethernia',url:'lore-library/regions/elynthara.html',          routes:['route-lumindor-elynthara']},
-  'drakenfell':      {name:'Drakenfell',       sub:'The Ashen Fortress',                      desc:'A volcanic citadel wreathed in ember and smoke. Its lords forge weapons from cooled lava and keep the mountain paths closed to all but the sworn.',                            realm:'fantasy', url:'lore-library/regions/drakenfell.html',          routes:['route-drakenfell-velmorra']},
-  'nocthaven':       {name:'Nocthaven',        sub:'Black Moon Castle',                       desc:'No moon shines over Nocthaven — it absorbs every light and returns it as violet shadow. The castle keeps its own calendar, and its own silence.',                              realm:'fantasy', url:'lore-library/regions/nocthaven.html',           routes:['route-nocthaven-blacktide']},
-  'eldermere':       {name:'Eldermere',        sub:'Root Sanctuary',                          desc:'The oldest forest in the known realms. Trees here grow sideways, root-first, as if the earth itself is turning away from the sky.',                                            realm:'fantasy', url:'lore-library/regions/eldermere.html',           routes:['route-eldermere-velmorra']},
-  'velmorra':        {name:'Velmorra',         sub:'Arcane Observatory',                      desc:'Built atop a ley-line nexus, Velmorra hums with contained magic. Its towers are filled with instruments no one fully understands, calibrated by hands long dust.',             realm:'fantasy', url:'lore-library/regions/velmorra.html',             routes:['route-drakenfell-velmorra','route-eldermere-velmorra']},
-  'blacktide-harbor':{name:'Blacktide Harbor',sub:'Tidewatch Lighthouse',                    desc:'Where black ships dock at midnight and carry cargo that casts no shadow. The lighthouse keeper has watched every vessel but recorded none.',                                     realm:'fantasy', url:'lore-library/regions/blacktide-harbor.html',    routes:['route-nocthaven-blacktide']},
+  'lumindor':        {name:'Lumindor',        sub:'The Celestial Capital of Ethernia',       desc:'A city forged in starlight where ancient towers rise above the rivers of eternal dawn.',                                                   realm:'ethernia',img:'region-lumindor.webp',       url:'lore-library/regions/lumindor.html',        routes:['route-lumindor-elynthara','route-sylvarith-lumindor']},
+  'sylvarith':       {name:'Sylvarith',        sub:'The Worldtree of Sylvarith',              desc:'At the edge of Ethernia, a forest older than memory breathes with emerald light.',                                                         realm:'ethernia',img:'region-sylvarith.webp',      url:'lore-library/regions/sylvarith.html',         routes:['route-sylvarith-lumindor']},
+  'aurelith-veil':   {name:'Aurelith Veil',    sub:'Celestial Observatory of the High Peaks', desc:'Above the snowline where the air runs thin and cold, the Veil Observatory watches stars that move against the current of time.',          realm:'ethernia',img:'region-aurelith-veil.webp',  url:'lore-library/regions/aurelith-veil.html',     routes:[]},
+  'elarion-vale':    {name:'Elarion Vale',     sub:'The Eternal Gardens',                     desc:'Where flowers bloom in winter and rivers hum with an old half-forgotten song.',                                                            realm:'ethernia',img:'region-elarion-vale.webp',   url:'lore-library/regions/elarion-vale.html',      routes:[]},
+  'elynthara':       {name:'Elynthara',        sub:'Lighthouse of Elynthara',                 desc:'A coastal realm where dawn breaks twice — once over the sea and once inside the crystal lighthouse.',                                      realm:'ethernia',img:'region-elynthara.webp',      url:'lore-library/regions/elynthara.html',         routes:['route-lumindor-elynthara']},
+  'drakenfell':      {name:'Drakenfell',       sub:'The Ashen Fortress',                      desc:'A volcanic citadel wreathed in ember and smoke. Its lords forge weapons from cooled lava.',                                               realm:'fantasy', img:'region-drakenfell.webp',      url:'lore-library/regions/drakenfell.html',         routes:['route-drakenfell-velmorra']},
+  'nocthaven':       {name:'Nocthaven',        sub:'Black Moon Castle',                       desc:'No moon shines over Nocthaven — it absorbs every light and returns it as violet shadow.',                                                  realm:'fantasy', img:'region-nocthaven.webp',       url:'lore-library/regions/nocthaven.html',          routes:['route-nocthaven-blacktide']},
+  'eldermere':       {name:'Eldermere',        sub:'Root Sanctuary',                          desc:'The oldest forest in the known realms. Trees here grow sideways, root-first, as if the earth itself is turning away from the sky.',        realm:'fantasy', img:'region-eldermere.webp',       url:'lore-library/regions/eldermere.html',          routes:['route-eldermere-velmorra']},
+  'velmorra':        {name:'Velmorra',         sub:'Arcane Observatory',                      desc:'Built atop a ley-line nexus, Velmorra hums with contained magic. Its towers hold instruments calibrated by hands long dust.',              realm:'fantasy', img:'region-velmorra.webp',        url:'lore-library/regions/velmorra.html',           routes:['route-drakenfell-velmorra','route-eldermere-velmorra']},
+  'blacktide-harbor':{name:'Blacktide Harbor',sub:'Tidewatch Lighthouse',                    desc:'Where black ships dock at midnight and carry cargo that casts no shadow.',                                                                  realm:'fantasy', img:'region-blacktide-harbor.webp',url:'lore-library/regions/blacktide-harbor.html',   routes:['route-nocthaven-blacktide']},
 };
+const REGION_KEYS=Object.keys(REGIONS);
+let selectedKey=null,selectedIdx=0;
 
 /* TOOLTIP */
 const tooltip=document.getElementById('atlasTooltip'),ttRealm=document.getElementById('ttRealm'),ttName=document.getElementById('ttName'),ttSub=document.getElementById('ttSub');
-function moveTT(e){ const tw=260,th=120; let x=e.clientX+16,y=e.clientY-20; if(x+tw>window.innerWidth)x=e.clientX-tw-16; if(y+th>window.innerHeight)y=e.clientY-th-10; tooltip.style.left=x+'px'; tooltip.style.top=y+'px'; }
+function moveTT(e){const tw=240,th=100;let x=e.clientX+16,y=e.clientY-20;if(x+tw>window.innerWidth)x=e.clientX-tw-16;if(y+th>window.innerHeight)y=e.clientY-th-10;tooltip.style.left=x+'px';tooltip.style.top=y+'px';}
 
-/* INTERACTIONS */
-let selectedKey=null;
+/* REGION INTERACTION */
 document.querySelectorAll('.region').forEach(g=>{
   const key=g.dataset.key; if(!key) return;
   const data=REGIONS[key];
   g.addEventListener('mouseenter',e=>{
-    if(data){ ttRealm.textContent=data.realm==='ethernia'?'ETHERNIA':'FANTASY'; ttRealm.className='tt-realm '+(data.realm==='ethernia'?'eth':'fan'); ttName.textContent=data.name; ttSub.textContent=data.sub; tooltip.querySelector('.tt-cta').textContent=T[currentLang]['tooltip.cta']||'EXPLORE REGION →'; tooltip.className='atlas-tooltip show'+(data.realm==='fantasy'?' fan':''); }
-    else { ttRealm.textContent='? ? ? ? ?'; ttRealm.className='tt-realm fut'; ttName.textContent='— — — —'; ttSub.textContent=''; tooltip.querySelector('.tt-cta').textContent='· · ·'; tooltip.className='atlas-tooltip show future'; }
+    if(data){ttRealm.textContent=data.realm==='ethernia'?'ETHERNIA':'FANTASY';ttRealm.className='tt-realm '+(data.realm==='ethernia'?'eth':'fan');ttName.textContent=data.name;ttSub.textContent=data.sub;tooltip.className='atlas-tooltip show'+(data.realm==='fantasy'?' fan':'');}
+    else{ttRealm.textContent='? ? ?';ttRealm.className='tt-realm fut';ttName.textContent='— — — —';ttSub.textContent='';tooltip.className='atlas-tooltip show future';}
     moveTT(e);
-    if(data){ const a=g.querySelector('.region-area'); a.style.fill=data.realm==='ethernia'?'rgba(216,192,138,.1)':'rgba(155,142,196,.1)'; a.style.stroke=data.realm==='ethernia'?'#d8c08a':'#9b8ec4'; }
+    if(data){const a=g.querySelector('.region-area');a.style.fill=data.realm==='ethernia'?'rgba(216,192,138,.1)':'rgba(155,142,196,.1)';a.style.stroke=data.realm==='ethernia'?'#d8c08a':'#9b8ec4';}
   });
   g.addEventListener('mousemove',moveTT);
-  g.addEventListener('mouseleave',()=>{ tooltip.classList.remove('show'); const a=g.querySelector('.region-area'); if(a&&key!==selectedKey){ a.style.fill='transparent'; a.style.stroke='transparent'; } });
-  g.addEventListener('click',()=>{ if(data) selectRegion(key,g); else showUnknown(); });
+  g.addEventListener('mouseleave',()=>{tooltip.classList.remove('show');const a=g.querySelector('.region-area');if(a&&key!==selectedKey){a.style.fill='transparent';a.style.stroke='transparent';}});
+  g.addEventListener('click',()=>{if(data)selectRegion(key,g);else showUnknown();});
+});
+document.querySelectorAll('.region-label-g').forEach(g=>{
+  const key=g.dataset.key; if(!key) return;
+  g.addEventListener('click',()=>{const rg=document.querySelector(`.region[data-key="${key}"]`);if(rg)rg.dispatchEvent(new Event('click'));});
 });
 
 function selectRegion(key,g){
-  if(selectedKey&&selectedKey!==key){ const p=document.querySelector(`.region[data-key="${selectedKey}"]`); if(p){ const a=p.querySelector('.region-area'); if(a){a.style.fill='transparent';a.style.stroke='transparent';} } const od=REGIONS[selectedKey]; if(od) od.routes.forEach(r=>{ const el=document.getElementById(r); if(el)el.classList.remove('visible'); }); }
-  selectedKey=key; const data=REGIONS[key]; if(!data) return;
-  const beacon=document.getElementById('mapBeacon'); if(beacon) beacon.style.opacity='0';
-  const area=g.querySelector('.region-area'); if(area){ area.style.fill=data.realm==='ethernia'?'rgba(216,192,138,.15)':'rgba(155,142,196,.15)'; area.style.stroke=data.realm==='ethernia'?'#d8c08a':'#9b8ec4'; }
+  if(selectedKey&&selectedKey!==key){const p=document.querySelector(`.region[data-key="${selectedKey}"]`);if(p){const a=p.querySelector('.region-area');if(a){a.style.fill='transparent';a.style.stroke='transparent';}}const od=REGIONS[selectedKey];if(od)od.routes.forEach(r=>{const el=document.getElementById(r);if(el)el.classList.remove('visible');});}
+  selectedKey=key;
+  const data=REGIONS[key];if(!data)return;
+  selectedIdx=REGION_KEYS.indexOf(key);
+  const beacon=document.getElementById('mapBeacon');if(beacon)beacon.style.opacity='0';
+  const area=g.querySelector('.region-area');if(area){area.style.fill=data.realm==='ethernia'?'rgba(216,192,138,.15)':'rgba(155,142,196,.15)';area.style.stroke=data.realm==='ethernia'?'#d8c08a':'#9b8ec4';}
   document.querySelectorAll('.route-line').forEach(r=>r.classList.remove('visible'));
-  data.routes.forEach(r=>{ const el=document.getElementById(r); if(el)el.classList.add('visible'); });
-  document.getElementById('panelInitial').style.display='none';
-  const pr=document.getElementById('panelRegion'); pr.style.display='block';
-  const pRealm=document.getElementById('panelRealm'); pRealm.textContent=data.realm==='ethernia'?'ETHERNIA':'FANTASY'; pRealm.className='panel-realm-tag '+(data.realm==='ethernia'?'eth':'fan');
-  document.getElementById('panelTitle').textContent=data.name;
-  document.getElementById('panelSub').textContent=data.sub;
-  document.getElementById('panelDesc').textContent=data.desc;
-  document.getElementById('panelLore').href=data.url;
-  document.getElementById('panelPage').href=data.url;
-  setTimeout(()=>document.getElementById('regionPanel').scrollIntoView({behavior:'smooth',block:'start'}),200);
+  data.routes.forEach(r=>{const el=document.getElementById(r);if(el)el.classList.add('visible');});
+  showRegionBanner(data);
+  updateDots(selectedIdx);
+  setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),300);
+}
+
+function showRegionBanner(data){
+  const realm=document.getElementById('dynRealm');realm.textContent=data.realm==='ethernia'?'ETHERNIA':'FANTASY';realm.className='dyn-region__realm '+(data.realm==='ethernia'?'eth':'fan');
+  document.getElementById('dynName').textContent=data.name;
+  document.getElementById('dynSub').textContent=data.sub;
+  document.getElementById('dynDesc').textContent=data.desc;
+  const img=document.getElementById('dynImg');img.src=data.img;img.alt=data.name;
+  document.getElementById('dynLore').href=data.url;
+  document.getElementById('dynPage').href=data.url;
+  document.getElementById('dynRegion').classList.add('visible');
 }
 
 function showUnknown(){
-  document.getElementById('panelInitial').style.display='none';
-  const pr=document.getElementById('panelRegion'); pr.style.display='block';
-  document.getElementById('panelRealm').textContent='? ? ? ? ?'; document.getElementById('panelRealm').className='panel-realm-tag';
-  document.getElementById('panelTitle').textContent='Uncharted Territory'; document.getElementById('panelSub').textContent='';
-  document.getElementById('panelDesc').textContent=currentLang==='pt'?'As estrelas ainda não revelaram os seus segredos. Regressa quando os céus se alinharem.':currentLang==='es'?'Las estrellas aún no han revelado sus secretos. Regresa cuando los cielos se alineen.':'The stars have not yet revealed their secrets. Return when the skies align.';
-  document.getElementById('panelLore').style.display='none'; document.getElementById('panelPage').style.display='none';
-  setTimeout(()=>document.getElementById('regionPanel').scrollIntoView({behavior:'smooth',block:'start'}),200);
+  const realm=document.getElementById('dynRealm');realm.textContent='? ? ?';realm.className='dyn-region__realm';
+  document.getElementById('dynName').textContent='Uncharted Territory';
+  document.getElementById('dynSub').textContent='';
+  document.getElementById('dynDesc').textContent=lang==='pt'?'As estrelas ainda não revelaram os seus segredos. Regressa quando os céus se alinharem.':lang==='es'?'Las estrellas aún no han revelado sus secretos.':'The stars have not yet revealed their secrets. Return when the skies align.';
+  const img=document.getElementById('dynImg');img.src='';img.alt='';
+  document.getElementById('dynLore').style.display='none';document.getElementById('dynPage').style.display='none';
+  document.getElementById('dynRegion').classList.add('visible');
+  setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),300);
 }
 
-/* FILTER */
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-    const f=btn.dataset.filter;
-    document.querySelectorAll('.region').forEach(g=>{ const show=f==='all'||(f==='ethernia'&&g.classList.contains('eth'))||(f==='fantasy'&&g.classList.contains('fan')); g.style.opacity=show?'1':'0.04'; g.style.pointerEvents=show?'auto':'none'; });
+/* CLOSE */
+document.getElementById('dynClose').addEventListener('click',()=>{
+  document.getElementById('dynRegion').classList.remove('visible');
+  if(selectedKey){const g=document.querySelector(`.region[data-key="${selectedKey}"]`);if(g){const a=g.querySelector('.region-area');if(a){a.style.fill='transparent';a.style.stroke='transparent';}}const od=REGIONS[selectedKey];if(od)od.routes.forEach(r=>{const el=document.getElementById(r);if(el)el.classList.remove('visible');});}
+  selectedKey=null;
+  const beacon=document.getElementById('mapBeacon');if(beacon)beacon.style.opacity='1';
+  document.getElementById('dynLore').style.display='';document.getElementById('dynPage').style.display='';
+  updateDots(0);
+});
+
+/* DOTS */
+function updateDots(idx){document.querySelectorAll('.dyn-dot').forEach((d,i)=>d.classList.toggle('active',i===idx%5));}
+document.querySelectorAll('.dyn-dot').forEach((dot,i)=>{
+  dot.addEventListener('click',()=>{
+    const idx=i%REGION_KEYS.length;const key=REGION_KEYS[idx];
+    const g=document.querySelector(`.region[data-key="${key}"]`);if(g)g.dispatchEvent(new Event('click'));
   });
 });
 
+/* FILTER */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;document.querySelectorAll('.region').forEach(g=>{const show=f==='all'||(f==='ethernia'&&g.classList.contains('eth'))||(f==='fantasy'&&g.classList.contains('fan'));g.style.opacity=show?'1':'0.04';g.style.pointerEvents=show?'auto':'none';});});
+});
+
+/* CONSTELLATIONS TOGGLE */
+let constVisible=false;
+document.getElementById('btnConstellations').addEventListener('click',()=>{
+  constVisible=!constVisible;
+  document.getElementById('constCanvas').style.opacity=constVisible?'1':'0';
+});
+
+/* ZOOM */
+let scale=1;
+document.getElementById('zoomIn').addEventListener('click',()=>{scale=Math.min(scale+.15,2.2);applyZoom();});
+document.getElementById('zoomOut').addEventListener('click',()=>{scale=Math.max(scale-.15,1);applyZoom();});
+function applyZoom(){const img=document.getElementById('atlasImg');const svg=document.getElementById('atlasSvg');[img,svg].forEach(el=>{el.style.transform=`scale(${scale})`;el.style.transformOrigin='center center';});}
+
+/* MIST */
+(function(){const c=document.getElementById('mistCanvas');if(!c)return;const ctx=c.getContext('2d');let ox=0;function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}function draw(){ctx.clearRect(0,0,c.width,c.height);ox+=0.08;for(let i=0;i<3;i++){const y=c.height*(0.3+i*0.2)+Math.sin((ox+i*40)*0.008)*10;const g=ctx.createLinearGradient(0,y-16,0,y+16);g.addColorStop(0,'transparent');g.addColorStop(.5,'rgba(160,200,255,0.04)');g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,y-16,c.width,32);}requestAnimationFrame(draw);}resize();window.addEventListener('resize',resize);draw();})();
+
+/* CONSTELLATIONS */
+(function(){const frame=document.getElementById('atlasFrame'),c=document.getElementById('constCanvas');if(!c||!frame)return;const ctx=c.getContext('2d');let mouse=null,stars=[];c.style.opacity='0';c.style.transition='opacity .5s';function resize(){c.width=frame.offsetWidth;c.height=frame.offsetHeight;stars=Array.from({length:90},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*.5+.2}));}frame.addEventListener('mousemove',e=>{const r=frame.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top};});frame.addEventListener('mouseleave',()=>{mouse=null;});function draw(){ctx.clearRect(0,0,c.width,c.height);if(mouse){const radius=130;stars.forEach(s=>{const dx=s.x-mouse.x,dy=s.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<radius){const a=(1-dist/radius)*.75;ctx.beginPath();ctx.arc(s.x,s.y,s.r+1,0,Math.PI*2);ctx.fillStyle=`rgba(216,192,138,${a})`;ctx.fill();stars.forEach(s2=>{const dx2=s.x-s2.x,dy2=s.y-s2.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);if(d2<65&&d2>0){const d3=Math.sqrt((s2.x-mouse.x)**2+(s2.y-mouse.y)**2);if(d3<radius){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s2.x,s2.y);ctx.strokeStyle=`rgba(216,192,138,${a*.22})`;ctx.lineWidth=.5;ctx.stroke();}}});}})}requestAnimationFrame(draw);}resize();window.addEventListener('resize',resize);draw();})();
+
 /* REVEAL */
-if('IntersectionObserver' in window){
-  const io=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target);} }); },{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-} else { document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view')); }
+if('IntersectionObserver' in window){const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target);}});},{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));}
 </script>
 </body>
 </html>
