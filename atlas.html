@@ -59,7 +59,8 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.06);}
 
 /* ── HERO ── */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(6rem,14vh,10rem) clamp(1.4rem,5vw,4rem) clamp(3rem,6vw,5rem);overflow:hidden;background-image:url('atlas-banner.webp');background-size:cover;background-position:center;}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(5rem,12vh,9rem) clamp(1.4rem,5vw,4rem) clamp(3rem,6vw,5rem);overflow:hidden;background-image:url('atlas-banner.webp');background-size:cover;background-position:center top;}
+@media(max-width:860px){.hero{min-height:100svh;background-position:center center;padding-top:5rem;}}
 .hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,22,.75) 0%,rgba(5,8,22,.4) 40%,rgba(5,8,22,.6) 100%);pointer-events:none;}
 .hero__content{position:relative;z-index:2;}
 .hero__eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.32em;color:var(--gold);opacity:.8;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
@@ -142,8 +143,8 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 .dyn-default{
   position:relative;min-height:inherit;
   display:flex;align-items:center;justify-content:center;text-align:center;
-  background-image:url('atlas-banner.webp');background-size:cover;background-position:center;
-  transition:opacity .5s var(--ease);
+  background-image:url('atlas-banner-default.webp');background-size:cover;background-position:center;
+  transition:opacity .5s var(--ease),visibility .5s var(--ease);
 }
 .dyn-default__veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,22,.85) 0%,rgba(5,8,22,.55) 50%,rgba(5,8,22,.2) 80%);}
 .dyn-default__content{position:relative;z-index:2;padding:clamp(2rem,5vw,5rem) clamp(1.4rem,4vw,3rem);max-width:640px;}
@@ -160,7 +161,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
   background:var(--ink-deep);
 }
 .dyn-region.visible{opacity:1;pointer-events:auto;}
-.dyn-region.visible~.dyn-default{opacity:0;pointer-events:none;}
+.dyn-default.hidden{opacity:0;visibility:hidden;pointer-events:none;}
 .dyn-region__img{overflow:hidden;}
 .dyn-region__img img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease;}
 .dyn-region.visible .dyn-region__img img{transform:scale(1.04);}
@@ -223,7 +224,6 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
     <li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li>
     <li><a href="artefacts.html"    data-i18n="nav.artefacts">Artefacts</a></li>
     <li><a href="about.html"        data-i18n="nav.about">About</a></li>
-    <li><a href="atlas.html" aria-current="page" data-i18n="nav.atlas">Atlas</a></li>
     <li class="lang-switch" role="group" aria-label="Language">
       <button data-lang="pt">PT</button>
       <button data-lang="en">EN</button>
@@ -287,11 +287,11 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
         </defs>
 
         <!-- ROUTES -->
-        <line id="route-lumindor-elynthara"  class="route-line" x1="390" y1="360" x2="470" y2="655" stroke="#d8c08a"/>
-        <line id="route-nocthaven-blacktide" class="route-line" x1="1330" y1="210" x2="1245" y2="710" stroke="#9b8ec4"/>
-        <line id="route-drakenfell-velmorra" class="route-line" x1="960" y1="140" x2="1200" y2="400" stroke="#9b8ec4"/>
-        <line id="route-sylvarith-lumindor"  class="route-line" x1="155" y1="330" x2="390" y2="360" stroke="#d8c08a"/>
-        <line id="route-eldermere-velmorra"  class="route-line" x1="915" y1="385" x2="1200" y2="400" stroke="#9b8ec4"/>
+        <line id="route-lumindor-elynthara"  class="route-line" x1="350" y1="400" x2="440" y2="595" stroke="#d8c08a"/>
+        <line id="route-nocthaven-blacktide" class="route-line" x1="1280" y1="210" x2="1180" y2="715" stroke="#9b8ec4"/>
+        <line id="route-drakenfell-velmorra" class="route-line" x1="840" y1="165" x2="1230" y2="425" stroke="#9b8ec4"/>
+        <line id="route-sylvarith-lumindor"  class="route-line" x1="150" y1="385" x2="350" y2="400" stroke="#d8c08a"/>
+        <line id="route-eldermere-velmorra"  class="route-line" x1="900" y1="415" x2="1230" y2="425" stroke="#9b8ec4"/>
 
         <!-- BEACON -->
         <g class="map-beacon" id="mapBeacon">
@@ -302,56 +302,56 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 
         <!-- ETHERNIA REGIONS -->
         <g class="region eth" data-key="aurelith-veil">
-          <polygon class="region-area eth" points="120,30 280,18 420,30 480,90 470,180 380,220 260,230 150,200 80,140 90,70"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="280" cy="130" r="9" stroke="#64b4ff" style="animation-delay:0s"/><circle class="pulse-core" cx="280" cy="130" r="3.5" fill="#64b4ff"/></g>
-          <g class="region-label-g" data-key="aurelith-veil"><rect class="region-label-bg" x="222" y="155" width="116" height="18" rx="3" ry="3"/><text class="region-label-text" x="280" y="164" fill="#64b4ff">AURELITH VEIL</text></g>
+          <polygon class="region-area eth" points="50,80 180,20 360,15 470,40 510,130 490,250 370,310 190,300 70,240 40,150"/>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="270" cy="165" r="9" stroke="#64b4ff" style="animation-delay:0s"/><circle class="pulse-core" cx="270" cy="165" r="3.5" fill="#64b4ff"/></g>
+          <g class="region-label-g" data-key="aurelith-veil"><rect class="region-label-bg" x="212" y="188" width="116" height="18" rx="3" ry="3"/><text class="region-label-text" x="270" y="197" fill="#64b4ff">AURELITH VEIL</text></g>
         </g>
         <g class="region eth" data-key="sylvarith">
-          <polygon class="region-area eth" points="60,220 160,190 230,210 250,300 240,400 200,460 130,470 70,430 40,340 50,260"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="155" cy="330" r="9" stroke="#50c864" style="animation-delay:.6s"/><circle class="pulse-core" cx="155" cy="330" r="3.5" fill="#50c864"/></g>
-          <g class="region-label-g" data-key="sylvarith"><rect class="region-label-bg" x="112" y="355" width="86" height="18" rx="3" ry="3"/><text class="region-label-text" x="155" y="364" fill="#50c864">SYLVARITH</text></g>
+          <polygon class="region-area eth" points="15,250 140,210 260,235 290,340 270,470 200,545 100,555 25,500 10,380"/>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="150" cy="385" r="9" stroke="#50c864" style="animation-delay:.6s"/><circle class="pulse-core" cx="150" cy="385" r="3.5" fill="#50c864"/></g>
+          <g class="region-label-g" data-key="sylvarith"><rect class="region-label-bg" x="107" y="410" width="86" height="18" rx="3" ry="3"/><text class="region-label-text" x="150" y="419" fill="#50c864">SYLVARITH</text></g>
         </g>
         <g class="region eth" data-key="lumindor">
-          <polygon class="region-area eth" points="270,230 420,200 520,220 560,310 550,420 480,490 370,510 270,490 220,400 230,300"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="390" cy="360" r="9" stroke="#d8c08a" style="animation-delay:1.2s"/><circle class="pulse-core" cx="390" cy="360" r="3.5" fill="#d8c08a"/></g>
-          <g class="region-label-g" data-key="lumindor"><rect class="region-label-bg" x="348" y="385" width="84" height="18" rx="3" ry="3"/><text class="region-label-text" x="390" y="394" fill="#d8c08a">LUMINDOR</text></g>
+          <polygon class="region-area eth" points="200,270 380,240 490,265 540,360 520,480 430,555 300,565 190,510 160,390"/>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="350" cy="400" r="9" stroke="#d8c08a" style="animation-delay:1.2s"/><circle class="pulse-core" cx="350" cy="400" r="3.5" fill="#d8c08a"/></g>
+          <g class="region-label-g" data-key="lumindor"><rect class="region-label-bg" x="308" y="425" width="84" height="18" rx="3" ry="3"/><text class="region-label-text" x="350" y="434" fill="#d8c08a">LUMINDOR</text></g>
         </g>
         <g class="region eth" data-key="elarion-vale">
-          <polygon class="region-area eth" points="100,500 240,470 330,490 360,570 340,660 270,710 170,720 90,680 65,600 80,530"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="215" cy="590" r="9" stroke="#ffa0b4" style="animation-delay:1.8s"/><circle class="pulse-core" cx="215" cy="590" r="3.5" fill="#ffa0b4"/></g>
-          <g class="region-label-g" data-key="elarion-vale"><rect class="region-label-bg" x="161" y="614" width="108" height="18" rx="3" ry="3"/><text class="region-label-text" x="215" y="623" fill="#ffa0b4">ELARION VALE</text></g>
+          <polygon class="region-area eth" points="100,510 270,475 380,495 410,590 380,690 270,730 140,725 65,665 60,570"/>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="225" cy="610" r="9" stroke="#ffa0b4" style="animation-delay:1.8s"/><circle class="pulse-core" cx="225" cy="610" r="3.5" fill="#ffa0b4"/></g>
+          <g class="region-label-g" data-key="elarion-vale"><rect class="region-label-bg" x="171" y="635" width="108" height="18" rx="3" ry="3"/><text class="region-label-text" x="225" y="644" fill="#ffa0b4">ELARION VALE</text></g>
         </g>
         <g class="region eth" data-key="elynthara">
-          <polygon class="region-area eth" points="350,580 490,555 600,570 640,630 620,710 540,750 420,755 330,720 305,660 320,610"/>
-          <g class="pulse-g eth"><circle class="pulse-ring" cx="470" cy="655" r="9" stroke="#dcebff" style="animation-delay:2.4s"/><circle class="pulse-core" cx="470" cy="655" r="3.5" fill="#dcebff"/></g>
-          <g class="region-label-g" data-key="elynthara"><rect class="region-label-bg" x="420" y="680" width="100" height="18" rx="3" ry="3"/><text class="region-label-text" x="470" y="689" fill="#dcebff">ELYNTHARA</text></g>
+          <polygon class="region-area eth" points="310,490 470,460 580,480 610,570 580,670 490,720 360,725 280,670 265,570"/>
+          <g class="pulse-g eth"><circle class="pulse-ring" cx="440" cy="595" r="9" stroke="#dcebff" style="animation-delay:2.4s"/><circle class="pulse-core" cx="440" cy="595" r="3.5" fill="#dcebff"/></g>
+          <g class="region-label-g" data-key="elynthara"><rect class="region-label-bg" x="390" y="620" width="100" height="18" rx="3" ry="3"/><text class="region-label-text" x="440" y="629" fill="#dcebff">ELYNTHARA</text></g>
         </g>
 
         <!-- FANTASY REGIONS -->
         <g class="region fan" data-key="drakenfell">
-          <polygon class="region-area fan" points="820,30 980,18 1110,35 1160,100 1150,200 1070,240 940,255 830,230 770,160 780,80"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="960" cy="140" r="9" stroke="#dc3c28" style="animation-delay:.3s"/><circle class="pulse-core" cx="960" cy="140" r="3.5" fill="#dc3c28"/></g>
-          <g class="region-label-g" data-key="drakenfell"><rect class="region-label-bg" x="908" y="164" width="104" height="18" rx="3" ry="3"/><text class="region-label-text" x="960" y="173" fill="#dc3c28">DRAKENFELL</text></g>
+          <polygon class="region-area fan" points="650,65 820,20 970,30 1040,100 1020,240 910,300 740,295 645,215 635,130"/>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="840" cy="165" r="9" stroke="#dc3c28" style="animation-delay:.3s"/><circle class="pulse-core" cx="840" cy="165" r="3.5" fill="#dc3c28"/></g>
+          <g class="region-label-g" data-key="drakenfell"><rect class="region-label-bg" x="788" y="190" width="104" height="18" rx="3" ry="3"/><text class="region-label-text" x="840" y="199" fill="#dc3c28">DRAKENFELL</text></g>
         </g>
         <g class="region fan" data-key="nocthaven">
-          <polygon class="region-area fan" points="1160,60 1340,50 1460,90 1510,180 1500,300 1420,360 1300,370 1190,330 1140,240 1150,140"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="1330" cy="210" r="9" stroke="#a064dc" style="animation-delay:.9s"/><circle class="pulse-core" cx="1330" cy="210" r="3.5" fill="#a064dc"/></g>
-          <g class="region-label-g" data-key="nocthaven"><rect class="region-label-bg" x="1280" y="235" width="100" height="18" rx="3" ry="3"/><text class="region-label-text" x="1330" y="244" fill="#a064dc">NOCTHAVEN</text></g>
+          <polygon class="region-area fan" points="1050,25 1240,15 1420,50 1510,140 1510,310 1420,390 1250,400 1090,340 1030,210 1040,100"/>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="1280" cy="210" r="9" stroke="#a064dc" style="animation-delay:.9s"/><circle class="pulse-core" cx="1280" cy="210" r="3.5" fill="#a064dc"/></g>
+          <g class="region-label-g" data-key="nocthaven"><rect class="region-label-bg" x="1230" y="235" width="100" height="18" rx="3" ry="3"/><text class="region-label-text" x="1280" y="244" fill="#a064dc">NOCTHAVEN</text></g>
         </g>
         <g class="region fan" data-key="eldermere">
-          <polygon class="region-area fan" points="800,280 920,255 1020,270 1060,360 1040,460 960,510 860,510 790,450 770,360 780,300"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="915" cy="385" r="9" stroke="#3c8c50" style="animation-delay:1.5s"/><circle class="pulse-core" cx="915" cy="385" r="3.5" fill="#3c8c50"/></g>
-          <g class="region-label-g" data-key="eldermere"><rect class="region-label-bg" x="869" y="410" width="92" height="18" rx="3" ry="3"/><text class="region-label-text" x="915" y="419" fill="#3c8c50">ELDERMERE</text></g>
+          <polygon class="region-area fan" points="730,295 920,270 1060,295 1100,390 1070,500 970,555 820,555 720,490 700,380"/>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="900" cy="415" r="9" stroke="#3c8c50" style="animation-delay:1.5s"/><circle class="pulse-core" cx="900" cy="415" r="3.5" fill="#3c8c50"/></g>
+          <g class="region-label-g" data-key="eldermere"><rect class="region-label-bg" x="854" y="440" width="92" height="18" rx="3" ry="3"/><text class="region-label-text" x="900" y="449" fill="#3c8c50">ELDERMERE</text></g>
         </g>
         <g class="region fan" data-key="velmorra">
-          <polygon class="region-area fan" points="1060,280 1200,260 1320,285 1370,370 1350,470 1270,530 1160,540 1070,500 1040,410 1050,320"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="1200" cy="400" r="9" stroke="#b450ff" style="animation-delay:2.1s"/><circle class="pulse-core" cx="1200" cy="400" r="3.5" fill="#b450ff"/></g>
-          <g class="region-label-g" data-key="velmorra"><rect class="region-label-bg" x="1158" y="425" width="84" height="18" rx="3" ry="3"/><text class="region-label-text" x="1200" y="434" fill="#b450ff">VELMORRA</text></g>
+          <polygon class="region-area fan" points="1060,300 1220,275 1380,305 1440,400 1410,510 1300,570 1140,570 1040,500 1020,390"/>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="1230" cy="425" r="9" stroke="#b450ff" style="animation-delay:2.1s"/><circle class="pulse-core" cx="1230" cy="425" r="3.5" fill="#b450ff"/></g>
+          <g class="region-label-g" data-key="velmorra"><rect class="region-label-bg" x="1188" y="450" width="84" height="18" rx="3" ry="3"/><text class="region-label-text" x="1230" y="459" fill="#b450ff">VELMORRA</text></g>
         </g>
         <g class="region fan" data-key="blacktide-harbor">
-          <polygon class="region-area fan" points="1060,620 1200,590 1360,600 1460,650 1470,740 1390,800 1260,830 1120,820 1020,760 1020,680"/>
-          <g class="pulse-g fan"><circle class="pulse-ring" cx="1245" cy="710" r="9" stroke="#2864c8" style="animation-delay:2.7s"/><circle class="pulse-core" cx="1245" cy="710" r="3.5" fill="#2864c8"/></g>
-          <g class="region-label-g" data-key="blacktide-harbor"><rect class="region-label-bg" x="1169" y="735" width="152" height="18" rx="3" ry="3"/><text class="region-label-text" x="1245" y="744" fill="#2864c8">BLACKTIDE HARBOR</text></g>
+          <polygon class="region-area fan" points="870,590 1100,560 1340,570 1490,630 1510,740 1430,830 1240,860 1010,850 870,775 850,670"/>
+          <g class="pulse-g fan"><circle class="pulse-ring" cx="1180" cy="715" r="9" stroke="#2864c8" style="animation-delay:2.7s"/><circle class="pulse-core" cx="1180" cy="715" r="3.5" fill="#2864c8"/></g>
+          <g class="region-label-g" data-key="blacktide-harbor"><rect class="region-label-bg" x="1104" y="740" width="152" height="18" rx="3" ry="3"/><text class="region-label-text" x="1180" y="749" fill="#2864c8">BLACKTIDE HARBOR</text></g>
         </g>
 
         <!-- UNKNOWN LANDS -->
@@ -394,7 +394,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
   </div>
 
   <!-- Region state -->
-    <div class="dyn-region" id="dynRegion">
+  <div class="dyn-region" id="dynRegion">
     <button class="dyn-region__close" id="dynClose" aria-label="Close">✕</button>
     <div class="dyn-region__img">
       <img src="" alt="" id="dynImg">
@@ -529,8 +529,9 @@ function showRegionBanner(data){
   document.getElementById('dynSub').textContent=data.sub;
   document.getElementById('dynDesc').textContent=data.desc;
   const img=document.getElementById('dynImg');img.src=data.img;img.alt=data.name;
-  document.getElementById('dynLore').href=data.url;
-  document.getElementById('dynPage').href=data.url;
+  document.getElementById('dynLore').href=data.url; document.getElementById('dynLore').style.display='';
+  document.getElementById('dynPage').href=data.url; document.getElementById('dynPage').style.display='';
+  document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
 }
 
@@ -548,6 +549,7 @@ function showUnknown(){
 /* CLOSE */
 document.getElementById('dynClose').addEventListener('click',()=>{
   document.getElementById('dynRegion').classList.remove('visible');
+  document.getElementById('dynDefault').classList.remove('hidden');
   if(selectedKey){const g=document.querySelector(`.region[data-key="${selectedKey}"]`);if(g){const a=g.querySelector('.region-area');if(a){a.style.fill='transparent';a.style.stroke='transparent';}}const od=REGIONS[selectedKey];if(od)od.routes.forEach(r=>{const el=document.getElementById(r);if(el)el.classList.remove('visible');});}
   selectedKey=null;
   const beacon=document.getElementById('mapBeacon');if(beacon)beacon.style.opacity='1';
