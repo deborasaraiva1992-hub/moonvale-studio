@@ -408,7 +408,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
     </div>
   </div>
 </section>
-  
+
 <!-- TOOLTIP -->
 <div class="atlas-tooltip" id="atlasTooltip">
   <p class="tt-realm" id="ttRealm"></p>
@@ -688,6 +688,8 @@ function showSpecial(special){
   document.getElementById('dynRegion').classList.add('visible');
   setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),320);
 }
+
+function showUnknown(){
   document.getElementById('dynRealm').textContent='? ? ?';document.getElementById('dynRealm').className='dyn-region__realm';
   document.getElementById('dynName').textContent='Uncharted Territory';
   document.getElementById('dynSub').textContent='';
