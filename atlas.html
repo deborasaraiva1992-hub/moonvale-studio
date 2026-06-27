@@ -240,116 +240,164 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 
       <svg class="atlas-svg" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" id="atlasSvg">
 
-        <!-- ROUTES (hidden, shown on region select) -->
-        <line id="rt-lum-ely"  class="route-line" x1="295" y1="410" x2="400" y2="575" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-syl-lum"  class="route-line" x1="115" y1="355" x2="295" y2="410" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-dra-vel"  class="route-line" x1="830" y1="165" x2="1150" y2="420" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-noc-bla"  class="route-line" x1="1290" y1="195" x2="1310" y2="700" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-eld-vel"  class="route-line" x1="895" y1="400" x2="1150" y2="420" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <!-- ROUTES -->
+        <line id="rt-lum-ely"  class="route-line" x1="369" y1="451" x2="568" y2="614" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-syl-lum"  class="route-line" x1="138" y1="379" x2="369" y2="451" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-dra-vel"  class="route-line" x1="845" y1="205" x2="1167" y2="451" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-noc-bla"  class="route-line" x1="1260" y1="205" x2="1382" y2="840" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-eld-vel"  class="route-line" x1="952" y1="451" x2="1167" y2="451" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
 
-        <!-- BEACON (center, disappears on first click) -->
+        <!-- BEACON -->
         <g id="mapBeacon" style="transition:opacity .6s">
           <circle class="beacon-ring" cx="768" cy="530" r="20"/>
           <circle cx="768" cy="530" r="4" fill="#d8c08a" opacity=".85"/>
           <text class="beacon-text" x="768" y="568" data-i18n="beacon.text">SELECT A REALM TO BEGIN</text>
         </g>
 
-        <!-- ══ ETHERNIA LANDMARKS ══ -->
-        <!-- Aurelith Veil — observatory dome on snowy peak -->
-        <g class="landmark eth" data-key="aurelith-veil" style="animation-delay:0s">
-          <circle class="landmark-hit" cx="248" cy="148" r="55"/>
-          <circle class="pulse-outer" cx="248" cy="148" r="10" style="animation-delay:0s"/>
-          <circle class="pulse-inner" cx="248" cy="148" r="3.5"/>
-          <rect class="landmark-label-bg" x="186" y="170" width="124" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="248" y="178">AURELITH VEIL</text>
+        <!-- ══════════════════════════════════
+             ETHERNIA REGIONS (green)
+        ══════════════════════════════════ -->
+        <g class="landmark eth" data-key="aurelith-veil">
+          <circle class="landmark-hit" cx="338" cy="174" r="58"/>
+          <circle class="pulse-outer" cx="338" cy="174" r="10" style="animation-delay:0s"/>
+          <circle class="pulse-inner" cx="338" cy="174" r="3.5"/>
+          <rect class="landmark-label-bg" x="276" y="196" width="124" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="338" y="204">AURELITH VEIL</text>
         </g>
-        <!-- Sylvarith — top of the giant tree -->
-        <g class="landmark eth" data-key="sylvarith" style="animation-delay:.7s">
-          <circle class="landmark-hit" cx="112" cy="352" r="55"/>
-          <circle class="pulse-outer" cx="112" cy="352" r="10" style="animation-delay:.7s"/>
-          <circle class="pulse-inner" cx="112" cy="352" r="3.5"/>
-          <rect class="landmark-label-bg" x="68" y="374" width="88" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="112" y="382">SYLVARITH</text>
+        <g class="landmark eth" data-key="sylvarith">
+          <circle class="landmark-hit" cx="138" cy="379" r="55"/>
+          <circle class="pulse-outer" cx="138" cy="379" r="10" style="animation-delay:.7s"/>
+          <circle class="pulse-inner" cx="138" cy="379" r="3.5"/>
+          <rect class="landmark-label-bg" x="94" y="401" width="88" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="138" y="409">SYLVARITH</text>
         </g>
-        <!-- Lumindor — central golden spire -->
-        <g class="landmark eth" data-key="lumindor" style="animation-delay:1.4s">
-          <circle class="landmark-hit" cx="295" cy="410" r="60"/>
-          <circle class="pulse-outer" cx="295" cy="410" r="10" style="animation-delay:1.4s"/>
-          <circle class="pulse-inner" cx="295" cy="410" r="3.5"/>
-          <rect class="landmark-label-bg" x="248" y="432" width="94" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="295" y="440">LUMINDOR</text>
+        <g class="landmark eth" data-key="lumindor">
+          <circle class="landmark-hit" cx="369" cy="451" r="60"/>
+          <circle class="pulse-outer" cx="369" cy="451" r="10" style="animation-delay:1.4s"/>
+          <circle class="pulse-inner" cx="369" cy="451" r="3.5"/>
+          <rect class="landmark-label-bg" x="322" y="473" width="94" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="369" y="481">LUMINDOR</text>
         </g>
-        <!-- Elarion Vale — center of pink gardens -->
-        <g class="landmark eth" data-key="elarion-vale" style="animation-delay:2.1s">
-          <circle class="landmark-hit" cx="192" cy="598" r="52"/>
-          <circle class="pulse-outer" cx="192" cy="598" r="10" style="animation-delay:2.1s"/>
-          <circle class="pulse-inner" cx="192" cy="598" r="3.5"/>
-          <rect class="landmark-label-bg" x="134" y="620" width="116" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="192" y="628">ELARION VALE</text>
+        <g class="landmark eth" data-key="elarion-vale">
+          <circle class="landmark-hit" cx="277" cy="676" r="52"/>
+          <circle class="pulse-outer" cx="277" cy="676" r="10" style="animation-delay:2.1s"/>
+          <circle class="pulse-inner" cx="277" cy="676" r="3.5"/>
+          <rect class="landmark-label-bg" x="219" y="698" width="116" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="277" y="706">ELARION VALE</text>
         </g>
-        <!-- Elynthara — lighthouse tower -->
-        <g class="landmark eth" data-key="elynthara" style="animation-delay:2.8s">
-          <circle class="landmark-hit" cx="398" cy="572" r="52"/>
-          <circle class="pulse-outer" cx="398" cy="572" r="10" style="animation-delay:2.8s"/>
-          <circle class="pulse-inner" cx="398" cy="572" r="3.5"/>
-          <rect class="landmark-label-bg" x="344" y="594" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="398" y="602">ELYNTHARA</text>
+        <g class="landmark eth" data-key="elynthara">
+          <circle class="landmark-hit" cx="568" cy="614" r="52"/>
+          <circle class="pulse-outer" cx="568" cy="614" r="10" style="animation-delay:2.8s"/>
+          <circle class="pulse-inner" cx="568" cy="614" r="3.5"/>
+          <rect class="landmark-label-bg" x="514" y="636" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="568" y="644">ELYNTHARA</text>
         </g>
 
-        <!-- ══ FANTASY LANDMARKS ══ -->
-        <!-- Drakenfell — volcano crater -->
-        <g class="landmark fan" data-key="drakenfell" style="animation-delay:.4s">
-          <circle class="landmark-hit" cx="832" cy="162" r="60"/>
-          <circle class="pulse-outer" cx="832" cy="162" r="10" style="animation-delay:.4s"/>
-          <circle class="pulse-inner" cx="832" cy="162" r="3.5"/>
-          <rect class="landmark-label-bg" x="778" y="184" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="832" y="192">DRAKENFELL</text>
+        <!-- ══════════════════════════════════
+             FANTASY REGIONS (green)
+        ══════════════════════════════════ -->
+        <g class="landmark fan" data-key="drakenfell">
+          <circle class="landmark-hit" cx="845" cy="205" r="60"/>
+          <circle class="pulse-outer" cx="845" cy="205" r="10" style="animation-delay:.4s"/>
+          <circle class="pulse-inner" cx="845" cy="205" r="3.5"/>
+          <rect class="landmark-label-bg" x="791" y="227" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="845" y="235">DRAKENFELL</text>
         </g>
-        <!-- Nocthaven — dark castle tower -->
-        <g class="landmark fan" data-key="nocthaven" style="animation-delay:1.1s">
-          <circle class="landmark-hit" cx="1292" cy="192" r="65"/>
-          <circle class="pulse-outer" cx="1292" cy="192" r="10" style="animation-delay:1.1s"/>
-          <circle class="pulse-inner" cx="1292" cy="192" r="3.5"/>
-          <rect class="landmark-label-bg" x="1238" y="214" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1292" y="222">NOCTHAVEN</text>
+        <g class="landmark fan" data-key="nocthaven">
+          <circle class="landmark-hit" cx="1260" cy="205" r="65"/>
+          <circle class="pulse-outer" cx="1260" cy="205" r="10" style="animation-delay:1.1s"/>
+          <circle class="pulse-inner" cx="1260" cy="205" r="3.5"/>
+          <rect class="landmark-label-bg" x="1206" y="227" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1260" y="235">NOCTHAVEN</text>
         </g>
-        <!-- Eldermere — deep dark forest -->
-        <g class="landmark fan" data-key="eldermere" style="animation-delay:1.8s">
-          <circle class="landmark-hit" cx="895" cy="398" r="58"/>
-          <circle class="pulse-outer" cx="895" cy="398" r="10" style="animation-delay:1.8s"/>
-          <circle class="pulse-inner" cx="895" cy="398" r="3.5"/>
-          <rect class="landmark-label-bg" x="845" y="420" width="100" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="895" y="428">ELDERMERE</text>
+        <g class="landmark fan" data-key="eldermere">
+          <circle class="landmark-hit" cx="952" cy="451" r="58"/>
+          <circle class="pulse-outer" cx="952" cy="451" r="10" style="animation-delay:1.8s"/>
+          <circle class="pulse-inner" cx="952" cy="451" r="3.5"/>
+          <rect class="landmark-label-bg" x="902" y="473" width="100" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="952" y="481">ELDERMERE</text>
         </g>
-        <!-- Velmorra — arcane purple dome -->
-        <g class="landmark fan" data-key="velmorra" style="animation-delay:2.5s">
-          <circle class="landmark-hit" cx="1152" cy="418" r="58"/>
-          <circle class="pulse-outer" cx="1152" cy="418" r="10" style="animation-delay:2.5s"/>
-          <circle class="pulse-inner" cx="1152" cy="418" r="3.5"/>
-          <rect class="landmark-label-bg" x="1104" y="440" width="96" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1152" y="448">VELMORRA</text>
+        <g class="landmark fan" data-key="velmorra">
+          <circle class="landmark-hit" cx="1167" cy="451" r="58"/>
+          <circle class="pulse-outer" cx="1167" cy="451" r="10" style="animation-delay:2.5s"/>
+          <circle class="pulse-inner" cx="1167" cy="451" r="3.5"/>
+          <rect class="landmark-label-bg" x="1119" y="473" width="96" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1167" y="481">VELMORRA</text>
         </g>
-        <!-- Blacktide Harbor — harbor lighthouse -->
-        <g class="landmark fan" data-key="blacktide-harbor" style="animation-delay:3.2s">
-          <circle class="landmark-hit" cx="1312" cy="698" r="65"/>
-          <circle class="pulse-outer" cx="1312" cy="698" r="10" style="animation-delay:3.2s"/>
-          <circle class="pulse-inner" cx="1312" cy="698" r="3.5"/>
-          <rect class="landmark-label-bg" x="1234" y="720" width="156" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1312" y="728">BLACKTIDE HARBOR</text>
+        <g class="landmark fan" data-key="blacktide-harbor">
+          <circle class="landmark-hit" cx="1382" cy="840" r="65"/>
+          <circle class="pulse-outer" cx="1382" cy="840" r="10" style="animation-delay:3.2s"/>
+          <circle class="pulse-inner" cx="1382" cy="840" r="3.5"/>
+          <rect class="landmark-label-bg" x="1304" y="862" width="156" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1382" y="870">BLACKTIDE HARBOR</text>
         </g>
 
-        <!-- UNKNOWN LANDS -->
-        <g class="landmark future" data-key="future-1">
-          <circle class="landmark-hit" cx="748" cy="812" r="45"/>
-          <circle cx="748" cy="812" r="8" fill="none" stroke="rgba(216,192,138,.35)" stroke-width="1" style="animation:pulseOut 3s ease-in-out infinite;animation-delay:.5s"/>
-          <circle cx="748" cy="812" r="3" fill="rgba(216,192,138,.45)"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(216,192,138,.5)" text-anchor="middle" x="748" y="832" letter-spacing="1.5">UNKNOWN ISLE</text>
+        <!-- ══════════════════════════════════
+             LIGHTHOUSES — pink
+        ══════════════════════════════════ -->
+        <g class="landmark special" data-key="lighthouse-dawn" data-type="lighthouse">
+          <circle class="landmark-hit" cx="430" cy="584" r="38"/>
+          <circle cx="430" cy="584" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:.3s"/>
+          <circle cx="430" cy="584" r="3" fill="rgba(255,200,220,.85)"/>
+          <rect fill="rgba(5,8,22,.75)" x="358" y="600" width="144" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="430" y="610" letter-spacing="1">DAWN'S LAST LANTERN</text>
         </g>
-        <g class="landmark future" data-key="future-2">
-          <circle class="landmark-hit" cx="660" cy="900" r="45"/>
-          <circle cx="660" cy="900" r="8" fill="none" stroke="rgba(216,192,138,.28)" stroke-width="1" style="animation:pulseOut 3s ease-in-out infinite;animation-delay:1.5s"/>
-          <circle cx="660" cy="900" r="3" fill="rgba(216,192,138,.38)"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(216,192,138,.42)" text-anchor="middle" x="660" y="920" letter-spacing="1.2">THE VEILED LANDS</text>
+        <g class="landmark special" data-key="lighthouse-tide" data-type="lighthouse">
+          <circle class="landmark-hit" cx="1440" cy="875" r="38"/>
+          <circle cx="1440" cy="875" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:1.3s"/>
+          <circle cx="1440" cy="875" r="3" fill="rgba(255,200,220,.85)"/>
+          <rect fill="rgba(5,8,22,.75)" x="1360" y="891" width="160" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="1440" y="901" letter-spacing="1">THE TIDEWATCH TOWER</text>
+        </g>
+
+        <!-- ══════════════════════════════════
+             SEA MONSTERS near Ethernia — blue/purple
+        ══════════════════════════════════ -->
+        <g class="landmark special" data-key="leviathan" data-type="creature">
+          <circle class="landmark-hit" cx="72" cy="820" r="40"/>
+          <circle cx="72" cy="820" r="9" fill="none" stroke="rgba(140,100,220,.6)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:.8s"/>
+          <circle cx="72" cy="820" r="3.5" fill="rgba(140,100,220,.7)"/>
+          <rect fill="rgba(5,8,22,.75)" x="14" y="836" width="116" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="72" y="846" letter-spacing="1">THE ANCIENT LEVIATHAN</text>
+        </g>
+        <g class="landmark special" data-key="colossus" data-type="creature">
+          <circle class="landmark-hit" cx="100" cy="880" r="40"/>
+          <circle cx="100" cy="880" r="9" fill="none" stroke="rgba(140,100,220,.5)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:2s"/>
+          <circle cx="100" cy="880" r="3.5" fill="rgba(140,100,220,.65)"/>
+          <rect fill="rgba(5,8,22,.75)" x="28" y="896" width="144" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="100" y="906" letter-spacing="1">THE DREAMING COLOSSUS</text>
+        </g>
+
+        <!-- ══════════════════════════════════
+             MYSTERIOUS ISLANDS — red
+        ══════════════════════════════════ -->
+        <g class="landmark special" data-key="astrael-crossing" data-type="mystery">
+          <circle class="landmark-hit" cx="660" cy="310" r="38"/>
+          <circle cx="660" cy="310" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
+          <circle cx="660" cy="310" r="3" fill="rgba(220,100,100,.6)"/>
+          <rect fill="rgba(5,8,22,.75)" x="586" y="326" width="148" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="660" y="336" letter-spacing="1">THE ASTRAEL CROSSING</text>
+        </g>
+        <g class="landmark special" data-key="drowned-compass" data-type="mystery">
+          <circle class="landmark-hit" cx="580" cy="430" r="38"/>
+          <circle cx="580" cy="430" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
+          <circle cx="580" cy="430" r="3" fill="rgba(220,100,100,.55)"/>
+          <rect fill="rgba(5,8,22,.75)" x="500" y="446" width="160" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="580" y="456" letter-spacing="1">THE DROWNED COMPASS</text>
+        </g>
+        <g class="landmark special" data-key="isle-whispered" data-type="mystery">
+          <circle class="landmark-hit" cx="760" cy="860" r="38"/>
+          <circle cx="760" cy="860" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
+          <circle cx="760" cy="860" r="3" fill="rgba(220,100,100,.55)"/>
+          <rect fill="rgba(5,8,22,.75)" x="678" y="876" width="164" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="760" y="886" letter-spacing="1">ISLE OF WHISPERED OATHS</text>
+        </g>
+        <g class="landmark special" data-key="forsaken-reliquary" data-type="mystery">
+          <circle class="landmark-hit" cx="860" cy="890" r="38"/>
+          <circle cx="860" cy="890" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
+          <circle cx="860" cy="890" r="3" fill="rgba(220,100,100,.5)"/>
+          <rect fill="rgba(5,8,22,.75)" x="778" y="906" width="164" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="860" y="916" letter-spacing="1">THE FORSAKEN RELIQUARY</text>
         </g>
       </svg>
 
@@ -360,7 +408,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
     </div>
   </div>
 </section>
-
+  
 <!-- TOOLTIP -->
 <div class="atlas-tooltip" id="atlasTooltip">
   <p class="tt-realm" id="ttRealm"></p>
@@ -527,18 +575,33 @@ resizeParticles();
 window.addEventListener('resize',resizeParticles);
 animateParticles();
 
-/* ── LANDMARK COORDS (SVG space) ── */
 const LANDMARK_CENTERS={
-  'aurelith-veil':{x:248,y:148},'sylvarith':{x:112,y:352},'lumindor':{x:295,y:410},
-  'elarion-vale':{x:192,y:598},'elynthara':{x:398,y:572},
-  'drakenfell':{x:832,y:162},'nocthaven':{x:1292,y:192},'eldermere':{x:895,y:398},
-  'velmorra':{x:1152,y:418},'blacktide-harbor':{x:1312,y:698}
+  'aurelith-veil':{x:338,y:174},'sylvarith':{x:138,y:379},'lumindor':{x:369,y:451},
+  'elarion-vale':{x:277,y:676},'elynthara':{x:568,y:614},
+  'drakenfell':{x:845,y:205},'nocthaven':{x:1260,y:205},'eldermere':{x:952,y:451},
+  'velmorra':{x:1167,y:451},'blacktide-harbor':{x:1382,y:840},
+  'lighthouse-dawn':{x:430,y:584},'lighthouse-tide':{x:1440,y:875},
+  'leviathan':{x:72,y:820},'colossus':{x:100,y:880},
+  'astrael-crossing':{x:660,y:310},'drowned-compass':{x:580,y:430},
+  'isle-whispered':{x:760,y:860},'forsaken-reliquary':{x:860,y:890}
+};
+
+const SPECIAL_TOOLTIPS={
+  'lighthouse-dawn':   {name:"Dawn's Last Lantern",  sub:'A beacon that never dims, even on moonless nights.',         realm:'ETHERNIA', color:'rgba(255,200,220,.9)'},
+  'lighthouse-tide':   {name:'The Tidewatch Tower',  sub:'Built by hands unknown. Lit by fire unknown.',               realm:'FANTASY',  color:'rgba(255,200,220,.9)'},
+  'leviathan':         {name:'The Ancient Leviathan',sub:'It stirs only when the stars misalign.',                     realm:'ETHERNIA', color:'rgba(160,120,240,.9)'},
+  'colossus':          {name:'The Dreaming Colossus', sub:'Asleep beneath the waves since the First Age.',              realm:'ETHERNIA', color:'rgba(160,120,240,.9)'},
+  'astrael-crossing':  {name:'The Astrael Crossing',  sub:'Where the two seas and the two skies meet as one.',         realm:'???',      color:'rgba(220,130,130,.9)'},
+  'drowned-compass':   {name:'The Drowned Compass',   sub:'Sailors who follow it are never seen again.',               realm:'???',      color:'rgba(220,130,130,.9)'},
+  'isle-whispered':    {name:'Isle of Whispered Oaths',sub:'An island that appears only to those who seek it.',        realm:'???',      color:'rgba(220,130,130,.9)'},
+  'forsaken-reliquary':{name:'The Forsaken Reliquary',sub:'A ruin with no origin. A purpose no one remembers.',        realm:'???',      color:'rgba(220,130,130,.9)'},
 };
 
 /* ── LANDMARK INTERACTIONS ── */
 document.querySelectorAll('.landmark').forEach(g=>{
   const key=g.dataset.key; if(!key) return;
   const data=REGIONS[key];
+  const special=SPECIAL_TOOLTIPS[key];
   const center=LANDMARK_CENTERS[key];
 
   g.addEventListener('mouseenter',e=>{
@@ -547,13 +610,12 @@ document.querySelectorAll('.landmark').forEach(g=>{
       ttRealm.className='tt-realm '+(data.realm==='ethernia'?'eth':'fan');
       ttName.textContent=data.name; ttSub.textContent=data.sub;
       tooltip.className='atlas-tooltip show'+(data.realm==='fantasy'?' fan':'');
-    } else {
-      ttRealm.textContent='? ? ?';ttRealm.className='tt-realm fut';
-      ttName.textContent='— — — —';ttSub.textContent='';
+    } else if(special){
+      ttRealm.textContent=special.realm; ttRealm.className='tt-realm fut';
+      ttName.textContent=special.name; ttSub.textContent=special.sub;
       tooltip.className='atlas-tooltip show';
     }
     moveTT(e);
-    // glow effect on hover
     const outer=g.querySelector('.pulse-outer');
     if(outer){outer.style.stroke='#f5d97f';outer.style.opacity='1';}
   });
@@ -564,12 +626,16 @@ document.querySelectorAll('.landmark').forEach(g=>{
     if(outer&&key!==selectedKey){outer.style.stroke='#d8c08a';outer.style.opacity='';}
   });
   g.addEventListener('click',e=>{
-    if(data&&center) spawnDust(center.x,center.y);
+    if(center) spawnDust(center.x,center.y);
     if(data) selectRegion(key);
-    else showUnknown();
+    else if(special) showSpecial(special);
   });
-  // touch support
-  g.addEventListener('touchstart',e=>{e.preventDefault();if(data&&center)spawnDust(center.x,center.y);if(data)selectRegion(key);else showUnknown();},{passive:false});
+  g.addEventListener('touchstart',e=>{
+    e.preventDefault();
+    if(center) spawnDust(center.x,center.y);
+    if(data) selectRegion(key);
+    else if(special) showSpecial(special);
+  },{passive:false});
 });
 
 function selectRegion(key){
@@ -609,7 +675,19 @@ function showRegionBanner(data){
   document.getElementById('dynRegion').classList.add('visible');
 }
 
-function showUnknown(){
+function showSpecial(special){
+  document.getElementById('dynRealm').textContent=special.realm;
+  document.getElementById('dynRealm').className='dyn-region__realm';
+  document.getElementById('dynName').textContent=special.name;
+  document.getElementById('dynSub').textContent=special.sub;
+  document.getElementById('dynDesc').textContent=lang==='pt'?'Este lugar guarda segredos que as estrelas ainda não revelaram.':lang==='es'?'Este lugar guarda secretos que las estrellas aún no han revelado.':'This place guards secrets the stars have not yet revealed. Return when the time is right.';
+  document.getElementById('dynImg').src='';
+  document.getElementById('dynLore').style.display='none';
+  document.getElementById('dynPage').style.display='none';
+  document.getElementById('dynDefault').classList.add('hidden');
+  document.getElementById('dynRegion').classList.add('visible');
+  setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),320);
+}
   document.getElementById('dynRealm').textContent='? ? ?';document.getElementById('dynRealm').className='dyn-region__realm';
   document.getElementById('dynName').textContent='Uncharted Territory';
   document.getElementById('dynSub').textContent='';
