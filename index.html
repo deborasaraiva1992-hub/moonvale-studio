@@ -848,7 +848,13 @@ let musicOn=false;audio.volume=0.18;
 function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
 function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.on']||'MUSIC ON');mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.off']||'MUSIC OFF');});}
 function fadeOut(){musicOn=false;mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.off']||'MUSIC OFF');mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
+function syncMusicLabel(){
+  const lang=(window.MoonvaleI18n&&window.MoonvaleI18n.getLanguage&&window.MoonvaleI18n.getLanguage())||'en';
+  const key=musicOn?'music.on':'music.off';
+  mLabel.textContent=(window.MoonvaleI18n?.translations?.[lang]?.[key]||window.MoonvaleI18n?.translations?.en?.[key]||(musicOn?'MUSIC ON':'MUSIC OFF'));
+}
 function setVol(v){audio.volume=parseFloat(v);}
+window.addEventListener('moonvale:languagechange',syncMusicLabel);
 
 // ── NAV ──
 function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
