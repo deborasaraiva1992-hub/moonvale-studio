@@ -517,6 +517,42 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:430px){.hero-content{margin-top:clamp(-118px,-28vw,-78px)}.hero-logo{font-size:clamp(2rem,10.5vw,2.85rem)}.portal-realm-name{font-size:.52rem}.collection-card{aspect-ratio:2.75/4}.atlas-banner img{height:clamp(300px,86vw,385px)}.section{padding-top:34px;padding-bottom:34px}}
 @media(min-width:1500px){.section{padding-left:72px;padding-right:72px}.atlas-banner img{height:min(720px,38vw)}}
 
+
+
+/* ── FINAL COMPOSITION PASS: reference-style hero and illuminated banners ── */
+.hero{min-height:auto;padding-top:calc(clamp(58px,6vw,76px) + env(safe-area-inset-top));}
+.hero-img-wrap{position:relative;inset:auto;height:auto;max-height:none;}
+.hero-img-wrap img{height:auto;object-fit:contain;object-position:center top;animation:none;}
+.hero-img-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.18) 0%,rgba(5,8,22,.02) 40%,rgba(5,8,22,.78) 82%,rgba(5,8,22,1) 100%);}
+.hero-content{position:absolute;inset:0;top:calc(clamp(58px,6vw,76px) + env(safe-area-inset-top));margin:0 auto;padding:clamp(26px,5vw,74px) clamp(18px,5vw,72px) clamp(24px,4vw,52px);display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:0;max-width:min(1040px,94vw);pointer-events:none;}
+.hero-logo,.hero-tagline,.hero-description,.hero-primary-cta,.scroll-cue{pointer-events:auto;}
+.hero-logo{font-size:clamp(2.6rem,6.8vw,6.4rem);margin-bottom:clamp(8px,1.2vw,14px);}
+.hero-tagline{margin-bottom:clamp(12px,2vw,22px);}
+.hero-description{max-width:680px;margin:0 auto clamp(20px,3vw,34px);color:rgba(245,241,232,.78);font-size:clamp(1rem,1.6vw,1.28rem);font-style:italic;line-height:1.55;text-shadow:0 2px 18px rgba(0,0,0,.65);}
+.hero-primary-cta{display:inline-flex;align-items:center;justify-content:center;padding:clamp(12px,1.5vw,15px) clamp(24px,3vw,38px);border:1px solid rgba(245,217,127,.58);border-radius:999px;background:linear-gradient(90deg,rgba(216,192,138,.16),rgba(5,8,22,.62),rgba(155,142,196,.12));box-shadow:0 0 28px rgba(216,192,138,.14),inset 0 0 18px rgba(245,217,127,.06);font-family:'Cinzel',serif;font-size:clamp(.64rem,.8vw,.76rem);letter-spacing:3px;color:var(--gold-hi);text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;}
+.hero-primary-cta:hover{transform:translateY(-2px);border-color:var(--gold-hi);box-shadow:0 0 34px rgba(216,192,138,.24),0 14px 38px rgba(0,0,0,.34);}
+.scroll-cue{margin-top:clamp(16px,2.5vw,30px);}
+.section{padding-top:clamp(40px,4.6vw,76px);padding-bottom:clamp(40px,4.6vw,76px);}
+.realm-selection{padding-top:clamp(36px,4.4vw,68px);}
+.section-divider{display:none;}
+.cinematic-banner{border-radius:20px;padding:0;background:transparent;box-shadow:0 30px 90px rgba(0,0,0,.52),0 0 46px rgba(216,192,138,.11);}
+.cinematic-banner::before{inset:9px;border:1px solid rgba(218,184,102,.42);border-radius:15px;background:linear-gradient(135deg,rgba(245,217,127,.72),rgba(245,217,127,.22) 13%,transparent 22%) top left/86px 86px no-repeat,linear-gradient(225deg,rgba(245,217,127,.72),rgba(245,217,127,.22) 13%,transparent 22%) top right/86px 86px no-repeat,linear-gradient(45deg,rgba(245,217,127,.62),rgba(245,217,127,.18) 13%,transparent 22%) bottom left/86px 86px no-repeat,linear-gradient(315deg,rgba(245,217,127,.62),rgba(245,217,127,.18) 13%,transparent 22%) bottom right/86px 86px no-repeat;box-shadow:inset 0 0 32px rgba(216,192,138,.055),0 0 30px rgba(216,192,138,.08);}
+.cinematic-banner::after{inset:22px;border-radius:12px;border:1px solid rgba(216,192,138,.14);background:radial-gradient(circle at 0 0,rgba(245,217,127,.72) 0 2px,transparent 3px),radial-gradient(circle at 100% 0,rgba(245,217,127,.72) 0 2px,transparent 3px),radial-gradient(circle at 0 100%,rgba(245,217,127,.62) 0 2px,transparent 3px),radial-gradient(circle at 100% 100%,rgba(245,217,127,.62) 0 2px,transparent 3px),linear-gradient(90deg,transparent,rgba(245,217,127,.12),transparent);}
+.atlas-banner img,.journey-banner img{width:100%;height:clamp(430px,38vw,660px);object-fit:contain;object-position:center;background:#050816;display:block;}
+.cinematic-banner-overlay{background:linear-gradient(90deg,rgba(5,8,22,.9) 0%,rgba(5,8,22,.7) 32%,rgba(5,8,22,.2) 58%,rgba(5,8,22,0) 100%);padding:clamp(34px,5vw,82px);align-items:center;}
+.cinematic-copy{max-width:min(560px,48%);padding:clamp(18px,2.5vw,30px) clamp(18px,3vw,34px);background:linear-gradient(90deg,rgba(5,8,22,.78),rgba(5,8,22,.42) 72%,transparent);border-left:1px solid rgba(245,217,127,.42);}
+.journey-banner{position:relative;overflow:hidden;text-decoration:none;display:block;}
+.journey-banner-overlay{justify-content:flex-start;}
+.journey-socials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:clamp(20px,2.4vw,30px);max-width:520px;}
+.journey-social{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid rgba(216,192,138,.28);border-radius:999px;background:linear-gradient(90deg,rgba(216,192,138,.11),rgba(5,8,22,.58));color:var(--gold-hi);text-decoration:none;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:1.8px;box-shadow:inset 0 0 16px rgba(245,217,127,.035);transition:transform .25s,border-color .25s,box-shadow .25s;}
+.journey-social svg{width:15px;height:15px;filter:drop-shadow(0 0 8px rgba(245,217,127,.28));}
+.journey-social:hover{transform:translateY(-2px);border-color:rgba(245,217,127,.62);box-shadow:0 0 22px rgba(216,192,138,.14),inset 0 0 18px rgba(245,217,127,.06);}
+#musicPlayer{width:auto;min-height:36px;transform:none;}
+@media(max-width:900px){.hero{padding-top:calc(54px + env(safe-area-inset-top));}.hero-content{top:calc(54px + env(safe-area-inset-top));padding:clamp(18px,4vw,42px) 18px 22px;}.hero-logo{font-size:clamp(2.2rem,9vw,4.4rem)}.hero-description{max-width:580px;font-size:clamp(.92rem,2.5vw,1.08rem);margin-bottom:18px}.scroll-cue{display:none}.section{padding-top:36px;padding-bottom:36px}.atlas-banner img,.journey-banner img{height:clamp(360px,58vw,520px)}.cinematic-copy{max-width:min(620px,76%)}.cinematic-banner-overlay{padding:clamp(24px,5vw,44px)}}
+@media(max-width:600px){.hero{padding-top:calc(52px + env(safe-area-inset-top));}.hero-content{position:relative;top:auto;margin-top:clamp(-132px,-28vw,-78px);padding:0 16px 24px}.hero-img-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.05) 0%,rgba(5,8,22,.18) 54%,rgba(5,8,22,.98) 100%)}.hero-logo{font-size:clamp(2.05rem,11vw,3.15rem);letter-spacing:2.4px}.hero-tagline{margin-bottom:10px}.hero-description{font-size:.92rem;line-height:1.42;margin-bottom:14px}.hero-primary-cta{padding:10px 20px;letter-spacing:2px}.section{padding:32px 14px}.section-header{margin-bottom:24px}.realm-card{min-height:270px}.atlas-banner img,.journey-banner img{height:clamp(300px,82vw,390px)}.cinematic-banner{border-radius:15px}.cinematic-banner::before{inset:7px;border-radius:11px;background-size:54px 54px}.cinematic-banner::after{inset:14px}.cinematic-banner-overlay{align-items:flex-end;padding:18px;background:linear-gradient(90deg,rgba(5,8,22,.88),rgba(5,8,22,.46) 72%,rgba(5,8,22,.08)),linear-gradient(to top,rgba(5,8,22,.9),transparent 66%)}.cinematic-copy{max-width:100%;padding:13px 12px}.journey-socials{grid-template-columns:1fr;gap:8px}.journey-social{padding:10px 12px;font-size:.58rem}#musicPlayer{width:32px;height:32px;min-height:32px;padding:0;right:calc(9px + env(safe-area-inset-right));bottom:calc(9px + env(safe-area-inset-bottom))}}
+@media(max-width:390px){.hero-content{margin-top:clamp(-114px,-28vw,-68px)}.hero-description{display:none}.hero-primary-cta{font-size:.58rem}.atlas-banner img,.journey-banner img{height:295px}.section{padding-top:28px;padding-bottom:28px}}
+@media(min-width:1500px){.atlas-banner img,.journey-banner img{height:min(660px,34vw)}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
@@ -598,31 +634,14 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
       <span>NVALE</span>
     </div>
     <p class="hero-tagline" data-i18n="home.tagline">BETWEEN STARS AND STORIES</p>
-    <div class="hero-portals">
-      <div class="hero-portal-col eth">
-        <p class="portal-realm-name">✦ &nbsp; ETHERNIA</p>
-        <p class="portal-realm-sub" data-i18n="home.eth.sub">The Realm of Light</p>
-        <a href="ethernia.html" class="hero-btn hero-btn-eth" data-i18n="home.enter.eth">ENTER ETHERNIA</a>
-      </div>
-      <div class="hero-portal-col fan">
-        <p class="portal-realm-name">FANTASY &nbsp; ☾</p>
-        <p class="portal-realm-sub" data-i18n="home.fan.sub">The Realm of Shadows</p>
-        <a href="fantasy.html" class="hero-btn hero-btn-fan" data-i18n="home.enter.fan">ENTER FANTASY</a>
-      </div>
-    </div>
+    <p class="hero-description">Two worlds shimmer beyond the veil — a living archive of celestial kingdoms, moonlit legends and forgotten magic.</p>
+    <a href="#realmTitle" class="hero-primary-cta">BEGIN YOUR JOURNEY</a>
     <div class="scroll-cue">
       <div class="scroll-mouse"></div>
       <span data-i18n="home.scroll">SCROLL TO DISCOVER</span>
     </div>
   </div>
 </section>
-
-<!-- QUOTE ROTATOR -->
-<div class="quote-section fade-in">
-  <p class="quote-text" id="quoteText"></p>
-  <p class="quote-source" id="quoteSource"></p>
-  <div class="quote-dots" id="quoteDots"></div>
-</div>
 
 <!-- REALM SELECTION -->
 <section class="realm-selection section fade-in" aria-labelledby="realmTitle">
@@ -684,7 +703,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
   <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
-<hr class="section-divider">
 
 <!-- ATLAS BANNER -->
 <section class="section fade-in">
@@ -714,7 +732,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
   </a>
 </section>
 
-<hr class="section-divider">
 
 <!-- LORE LIBRARY -->
 <section class="section fade-in">
@@ -741,7 +758,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
   </a>
 </section>
 
-<hr class="section-divider">
 
 <!-- CONTINUE THE JOURNEY -->
 <section class="section fade-in">
@@ -755,23 +771,33 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
     </div>
     <p class="section-sub" data-i18n="home.journey.sub">More stories. More worlds. More Moonvale.</p>
   </div>
-  <div class="journey-grid">
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div>
-      <h4>TIKTOK ETHERNIA</h4><p data-i18n="home.tiktok.eth.desc">Daily tales from the golden realm</p>
-    </a>
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></div>
-      <h4>TIKTOK FANTASY</h4><p data-i18n="home.tiktok.fan.desc">Shadows, legends and moonlit stories</p>
-    </a>
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
-      <h4>YOUTUBE</h4><p data-i18n="home.youtube.desc">Lore deep dives and world chronicles</p>
-    </a>
-    <a href="#" class="journey-card">
-      <div class="journey-icon"><svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
-      <h4>PINTEREST</h4><p data-i18n="home.pinterest.desc">Visual inspiration from both worlds</p>
-    </a>
+  <div class="journey-banner cinematic-banner">
+    <img src="continue-the-journey-banner.webp" alt="Continue the Moonvale journey" loading="lazy">
+    <div class="cinematic-banner-overlay journey-banner-overlay">
+      <div class="cinematic-copy journey-copy">
+        <span class="banner-kicker">Moonvale Channels</span>
+        <h3>Follow the living chronicle</h3>
+        <p>Step beyond the archive with golden realm tales, moonlit legends, lore deep dives and visual inspiration from both worlds.</p>
+        <div class="journey-socials" aria-label="Moonvale social links">
+          <a href="#" class="journey-social" aria-label="TikTok Ethernia">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+            <span>TikTok Ethernia</span>
+          </a>
+          <a href="#" class="journey-social" aria-label="TikTok Fantasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+            <span>TikTok Fantasy</span>
+          </a>
+          <a href="#" class="journey-social" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube</span>
+          </a>
+          <a href="#" class="journey-social" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+            <span>Pinterest</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -919,45 +945,6 @@ document.addEventListener('click',e=>{
   r.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
   t.appendChild(r);setTimeout(()=>r.remove(),500);
 });
-
-// ── QUOTE ROTATOR ──
-(function(){
-  const quotes=[
-    {text:{en:'Where light ends, Fantasy begins.',pt:'Onde a luz termina, Fantasy começa.',es:'Donde termina la luz, empieza Fantasy.'},source:{en:'— Moonvale Chronicles',pt:'— Crónicas de Moonvale',es:'— Crónicas de Moonvale'}},
-    {text:{en:'Every shadow guards a memory.',pt:'Cada sombra guarda uma memória.',es:'Cada sombra guarda un recuerdo.'},source:{en:'— Tales of Fantasy',pt:'— Contos de Fantasy',es:'— Relatos de Fantasy'}},
-    {text:{en:'The stars of Ethernia never forget.',pt:'As estrelas de Ethernia nunca esquecem.',es:'Las estrellas de Ethernia nunca olvidan.'},source:{en:'— Lore of Lumindor',pt:'— Lore de Lumindor',es:'— Lore de Lumindor'}},
-    {text:{en:'Two worlds, one river of light between them.',pt:'Dois mundos, um rio de luz entre eles.',es:'Dos mundos, un río de luz entre ellos.'},source:{en:'— The Astrael Scrolls',pt:'— Os Pergaminhos de Astrael',es:'— Los Pergaminos de Astrael'}},
-    {text:{en:'Between stars and stories, all legends are born.',pt:'Entre estrelas e histórias, nascem todas as lendas.',es:'Entre estrellas e historias, nacen todas las leyendas.'},source:{en:'— Moonvale Archives',pt:'— Arquivos de Moonvale',es:'— Archivos de Moonvale'}},
-  ];
-  const textEl=document.getElementById('quoteText');
-  const srcEl=document.getElementById('quoteSource');
-  const dotsEl=document.getElementById('quoteDots');
-  if(!textEl)return;
-  let cur=0;
-  function buildDots(){
-    dotsEl.innerHTML='';
-    quotes.forEach((_,i)=>{
-      const d=document.createElement('button');
-      d.className='quote-dot'+(i===cur?' active':'');
-      d.onclick=()=>showQuote(i);
-      dotsEl.appendChild(d);
-    });
-  }
-  function showQuote(i){
-    textEl.style.opacity='0';textEl.style.transform='translateY(8px)';
-    setTimeout(()=>{
-      cur=i;
-      const lang=(window.MoonvaleI18n&&window.MoonvaleI18n.getLanguage())||'en';
-      textEl.textContent=quotes[i].text[lang]||quotes[i].text.en;
-      srcEl.textContent=quotes[i].source[lang]||quotes[i].source.en;
-      textEl.style.opacity='1';textEl.style.transform='translateY(0)';
-      dotsEl.querySelectorAll('.quote-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
-    },300);
-  }
-  buildDots();showQuote(0);
-  window.addEventListener('moonvale:languagechange',()=>showQuote(cur));
-  setInterval(()=>showQuote((cur+1)%quotes.length),5000);
-})();
 
 // ── CAROUSEL ──
 (function(){
