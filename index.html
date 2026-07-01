@@ -573,6 +573,32 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:430px){.atlas-banner img,.journey-banner img{aspect-ratio:1.08/1}.cinematic-copy{max-width:88%}.cinematic-copy p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));}.journey-social span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.journey-social{gap:6px;padding:7px 8px}}
 @media(max-width:370px){.atlas-banner img,.journey-banner img{aspect-ratio:1/1}.cinematic-copy{max-width:92%;}.journey-socials{grid-template-columns:1fr}.cinematic-copy p{display:none}}
 
+
+
+/* ── FINAL RESPONSIVE POLISH: header clearance, desktop scale, slim mobile banners ── */
+:where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
+.section{max-width:min(1880px,100%);padding-left:clamp(22px,4.4vw,86px);padding-right:clamp(22px,4.4vw,86px);}
+.realm-grid{gap:clamp(24px,3.4vw,52px);}
+.realm-card{min-height:clamp(360px,35vw,560px);}
+.collection-card{aspect-ratio:3/4;}
+.carousel-track{gap:clamp(20px,2vw,30px);}
+.carousel-btn{width:clamp(44px,3.2vw,58px);height:clamp(44px,3.2vw,58px);}
+.cinematic-banner{border-radius:18px;box-shadow:0 22px 58px rgba(0,0,0,.44),0 0 24px rgba(216,192,138,.075);}
+.cinematic-banner::before{inset:5px;border-color:rgba(218,184,102,.3);border-radius:13px;background-size:54px 54px;box-shadow:inset 0 0 16px rgba(216,192,138,.035),0 0 14px rgba(216,192,138,.045);}
+.cinematic-banner::after{inset:12px;border-color:rgba(216,192,138,.08);}
+.atlas-banner img,.journey-banner img{aspect-ratio:16/6.6;object-fit:cover;background:#050816;}
+.atlas-banner img{object-position:center center;}
+.lore-banner img{object-position:center center;}
+.journey-banner img{object-position:center center;}
+.cinematic-banner-overlay{padding:clamp(22px,3.2vw,58px);background:linear-gradient(90deg,rgba(5,8,22,.68) 0%,rgba(5,8,22,.46) 32%,rgba(5,8,22,.12) 58%,rgba(5,8,22,0) 100%);}
+.cinematic-copy{max-width:min(520px,40%);padding:clamp(12px,1.7vw,22px) clamp(14px,2vw,24px);background:linear-gradient(90deg,rgba(5,8,22,.58),rgba(5,8,22,.22) 72%,transparent);}
+@media(min-width:1360px){.hero-content{max-width:min(1180px,92vw)}.section-title{font-size:clamp(1.45rem,2.4vw,2.15rem)}.section-sub{font-size:clamp(.95rem,1.25vw,1.16rem)}.collection-card{flex-basis:calc((100% - clamp(40px,4vw,60px)) / 3)}}
+@media(min-width:1700px){.section{padding-left:96px;padding-right:96px}.atlas-banner img,.journey-banner img{aspect-ratio:16/6.2}.realm-card{min-height:600px}}
+@media(max-width:900px){:where(section,[id]){scroll-margin-top:calc(76px + env(safe-area-inset-top));}.section{padding-top:32px;padding-bottom:32px}.realm-card{min-height:clamp(280px,58vw,430px)}.atlas-banner img,.journey-banner img{aspect-ratio:16/8.6}.cinematic-copy{max-width:68%}.cinematic-banner-overlay{padding:20px}}
+@media(max-width:600px){:where(section,[id]){scroll-margin-top:calc(70px + env(safe-area-inset-top));}.section{padding:28px 12px}.section-header{padding-top:6px}.atlas-banner img,.journey-banner img{aspect-ratio:16/8.7;min-height:0;height:auto;object-fit:cover}.cinematic-banner{border-radius:11px}.cinematic-banner::before{inset:3px;border-radius:8px;background-size:30px 30px}.cinematic-banner::after{inset:7px}.cinematic-banner-overlay{padding:10px;background:linear-gradient(90deg,rgba(5,8,22,.58),rgba(5,8,22,.28) 62%,rgba(5,8,22,.02)),linear-gradient(to top,rgba(5,8,22,.58),transparent 54%)}.cinematic-copy{max-width:74%;padding:8px 9px;background:linear-gradient(90deg,rgba(5,8,22,.52),rgba(5,8,22,.16),transparent);border-left-color:rgba(245,217,127,.3)}.banner-kicker{font-size:.5rem}.cinematic-copy h3{font-size:.98rem;margin:3px 0;letter-spacing:1.3px}.cinematic-copy p{font-size:.7rem;line-height:1.24}.atlas-banner-btn{font-size:.5rem;padding:7px 10px;margin-top:7px}.journey-socials{margin-top:7px;gap:6px}.journey-social{font-size:.48rem;padding:6px 7px;gap:5px}.journey-social svg{width:12px;height:12px}#musicPlayer{width:30px;height:30px;min-height:30px;right:calc(8px + env(safe-area-inset-right));bottom:calc(8px + env(safe-area-inset-bottom))}.carousel-btn{width:34px;height:34px}}
+@media(max-width:430px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9}.cinematic-copy{max-width:78%}.cinematic-copy p{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.journey-social{font-size:.45rem;padding:6px}.realm-card{min-height:250px}}
+@media(max-width:370px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9.4}.cinematic-copy{max-width:82%}.cinematic-copy p{display:none}.journey-socials{grid-template-columns:1fr 1fr}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
@@ -737,7 +763,7 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
     <p class="section-sub" data-i18n="home.explore.sub">Every place hides a story.</p>
   </div>
   <a href="atlas.html" class="atlas-banner cinematic-banner">
-    <img src="atlas-banner.webp" alt="Moonvale Atlas" loading="lazy">
+    <img src="moonvale-atlas-banner.webp" alt="Moonvale Atlas" loading="lazy">
     <div class="cinematic-banner-overlay">
       <div class="cinematic-copy">
         <span class="banner-kicker">Moonvale Atlas</span>
