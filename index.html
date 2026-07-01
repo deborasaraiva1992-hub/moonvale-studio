@@ -553,6 +553,26 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:390px){.hero-content{margin-top:clamp(-114px,-28vw,-68px)}.hero-description{display:none}.hero-primary-cta{font-size:.58rem}.atlas-banner img,.journey-banner img{height:295px}.section{padding-top:28px;padding-bottom:28px}}
 @media(min-width:1500px){.atlas-banner img,.journey-banner img{height:min(660px,34vw)}}
 
+
+
+/* ── MOBILE BANNER BALANCE PATCH ── */
+.cinematic-banner{box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 34px rgba(216,192,138,.09);}
+.cinematic-banner::before{inset:6px;border-width:1px;border-color:rgba(218,184,102,.34);border-radius:14px;background:linear-gradient(135deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top left/64px 64px no-repeat,linear-gradient(225deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top right/64px 64px no-repeat,linear-gradient(45deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom left/64px 64px no-repeat,linear-gradient(315deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom right/64px 64px no-repeat;box-shadow:inset 0 0 20px rgba(216,192,138,.04),0 0 20px rgba(216,192,138,.06);}
+.cinematic-banner::after{inset:14px;border-color:rgba(216,192,138,.1);background:radial-gradient(circle at 0 0,rgba(245,217,127,.58) 0 1.5px,transparent 2.5px),radial-gradient(circle at 100% 0,rgba(245,217,127,.58) 0 1.5px,transparent 2.5px),radial-gradient(circle at 0 100%,rgba(245,217,127,.5) 0 1.5px,transparent 2.5px),radial-gradient(circle at 100% 100%,rgba(245,217,127,.5) 0 1.5px,transparent 2.5px);}
+.atlas-banner img,.journey-banner img{height:auto;aspect-ratio:16/7;object-fit:cover;object-position:center;}
+.atlas-banner img{object-position:center top;}
+.lore-banner img{object-position:center center;}
+.journey-banner img{object-position:center center;}
+.cinematic-banner-overlay{padding:clamp(26px,4vw,64px);background:linear-gradient(90deg,rgba(5,8,22,.78) 0%,rgba(5,8,22,.56) 30%,rgba(5,8,22,.16) 55%,rgba(5,8,22,0) 100%);}
+.cinematic-copy{max-width:min(500px,44%);padding:clamp(14px,2vw,24px) clamp(16px,2.5vw,28px);background:linear-gradient(90deg,rgba(5,8,22,.66),rgba(5,8,22,.28) 72%,transparent);}
+.cinematic-copy h3{font-size:clamp(1.35rem,2.6vw,2.5rem);}
+.cinematic-copy p{font-size:clamp(.88rem,1.12vw,1.05rem);}
+@media(max-width:1024px){.atlas-banner img,.journey-banner img{aspect-ratio:16/8.2;}.cinematic-banner-overlay{padding:28px}.cinematic-copy{max-width:min(520px,62%);padding:16px 18px}.section{padding-top:34px;padding-bottom:34px}}
+@media(max-width:768px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9.2;}.cinematic-banner::before{inset:5px;background-size:48px 48px}.cinematic-banner::after{inset:11px}.cinematic-banner-overlay{padding:18px;background:linear-gradient(90deg,rgba(5,8,22,.68),rgba(5,8,22,.38) 58%,rgba(5,8,22,.04)),linear-gradient(to top,rgba(5,8,22,.76),transparent 58%)}.cinematic-copy{max-width:76%;padding:12px 14px;background:linear-gradient(90deg,rgba(5,8,22,.62),rgba(5,8,22,.2),transparent)}.cinematic-copy h3{font-size:clamp(1.16rem,4vw,1.55rem);letter-spacing:2.4px}.cinematic-copy p{font-size:.84rem;line-height:1.38}.atlas-banner-btn{padding:9px 16px;margin-top:12px}.journey-socials{margin-top:12px;gap:7px}.journey-social{padding:8px 10px}}
+@media(max-width:600px){.atlas-banner img,.journey-banner img{aspect-ratio:1.18/1;height:auto;min-height:0;object-fit:cover}.atlas-banner img{object-position:center top}.lore-banner img{object-position:center}.journey-banner img{object-position:center}.cinematic-banner{border-radius:13px}.cinematic-banner::before{inset:4px;border-radius:10px;background-size:38px 38px}.cinematic-banner::after{inset:9px}.cinematic-banner-overlay{padding:14px}.cinematic-copy{max-width:82%;padding:10px 11px}.banner-kicker{font-size:.55rem;letter-spacing:2px}.cinematic-copy h3{font-size:1.08rem;letter-spacing:1.7px;margin:5px 0}.cinematic-copy p{font-size:.78rem;line-height:1.32}.atlas-banner-btn{font-size:.56rem;padding:8px 12px;letter-spacing:1.6px}.journey-socials{grid-template-columns:1fr;margin-top:9px}.journey-social{font-size:.52rem;padding:7px 9px}.journey-social svg{width:13px;height:13px}}
+@media(max-width:430px){.atlas-banner img,.journey-banner img{aspect-ratio:1.08/1}.cinematic-copy{max-width:88%}.cinematic-copy p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));}.journey-social span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.journey-social{gap:6px;padding:7px 8px}}
+@media(max-width:370px){.atlas-banner img,.journey-banner img{aspect-ratio:1/1}.cinematic-copy{max-width:92%;}.journey-socials{grid-template-columns:1fr}.cinematic-copy p{display:none}}
+
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
@@ -717,7 +737,7 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
     <p class="section-sub" data-i18n="home.explore.sub">Every place hides a story.</p>
   </div>
   <a href="atlas.html" class="atlas-banner cinematic-banner">
-    <img src="Atlas.webp" alt="Moonvale Atlas" loading="lazy">
+    <img src="atlas-banner.webp" alt="Moonvale Atlas" loading="lazy">
     <div class="cinematic-banner-overlay">
       <div class="cinematic-copy">
         <span class="banner-kicker">Moonvale Atlas</span>
