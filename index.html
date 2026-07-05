@@ -688,6 +688,19 @@ footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,3
 @media(max-width:430px){.hero-content{padding-left:14px;padding-right:14px}.hero-logo{margin-bottom:6px}.hero-tagline{margin-bottom:8px}.hero-primary-cta{min-height:36px;padding:9px 18px}.realm-card{min-height:224px}.cinematic-copy{max-width:82%;}.cinematic-copy h3{font-size:.96rem}.journey-socials{grid-template-columns:1fr 1fr}.footer-inner{gap:12px!important}.footer-col h5{font-size:.55rem!important}.footer-col ul li a{font-size:.74rem!important}}
 @media(max-width:340px){.hero-description{font-size:.74rem}.realm-card{min-height:210px}.realm-card p{display:none}.carousel-viewport{max-width:82vw}.cinematic-copy p{display:none}.journey-social{font-size:.42rem}}
 
+
+
+/* ── FINAL DESKTOP CARD + FOOTER + SOCIAL LINK POLISH ── */
+.realm-card{aspect-ratio:3/2;min-height:0!important;}
+.realm-card img{object-fit:cover!important;object-position:center!important;}
+.realm-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+.realm-card-content{bottom:clamp(14px,2.2vw,32px);left:clamp(14px,2.8vw,36px);right:clamp(14px,2.8vw,36px);padding:clamp(13px,1.8vw,22px);}
+footer{padding-top:clamp(22px,2.6vw,34px)!important;padding-bottom:calc(clamp(16px,2vw,24px) + env(safe-area-inset-bottom))!important;}
+.footer-inner{grid-template-columns:minmax(240px,1.25fr) repeat(4,minmax(112px,.7fr));gap:clamp(14px,1.8vw,22px)!important;align-items:start;}
+.footer-logo{margin-bottom:4px!important}.footer-tagline{margin-bottom:6px!important}.footer-desc{margin-bottom:8px!important;line-height:1.45!important}.footer-social{gap:9px!important}.footer-col h5{margin-bottom:8px!important}.footer-col ul li{margin-bottom:4px!important}.footer-bottom{margin-top:clamp(12px,1.6vw,18px)!important;padding-top:10px!important}.footer-copy{line-height:1.35!important}
+@media(max-width:700px){.realm-grid{grid-template-columns:1fr}.realm-card{aspect-ratio:3/2;min-height:0!important}.realm-card-content{max-width:86%;padding:9px 10px}.footer-inner{gap:10px 14px!important}.footer-social a{width:30px!important;height:30px!important}.footer-bottom{margin-top:10px!important;padding-top:9px!important}.footer-language{transform:scale(.92);transform-origin:left center}}
+@media(max-width:380px){footer{padding-top:22px!important}.footer-desc{display:none}.footer-social{margin-top:4px!important}.footer-inner{gap:10px!important}}
+
 @media(prefers-reduced-motion:reduce){.hero-img-wrap img,.hero-primary-cta::after{animation:none!important}}
 
 
@@ -916,19 +929,19 @@ footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,3
         <h3 data-i18n="home.journey.title">Follow the living chronicle</h3>
         <p data-i18n="home.journey.desc">Step beyond the archive with golden realm tales, moonlit legends, lore deep dives and visual inspiration from both worlds.</p>
         <div class="journey-socials" aria-label="Moonvale social links">
-          <a href="#" class="journey-social" aria-label="TikTok Ethernia">
+          <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" class="journey-social" aria-label="TikTok Ethernia" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
             <span data-i18n="social.tiktok.eth">TikTok Ethernia</span>
           </a>
-          <a href="#" class="journey-social" aria-label="TikTok Fantasy">
+          <a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" class="journey-social" aria-label="TikTok Fantasy" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
             <span data-i18n="social.tiktok.fan">TikTok Fantasy</span>
           </a>
-          <a href="#" class="journey-social" aria-label="YouTube">
+          <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" class="journey-social" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             <span data-i18n="social.youtube">YouTube</span>
           </a>
-          <a href="#" class="journey-social" aria-label="Pinterest">
+          <a href="https://www.pinterest.com/moonvalestudio/" class="journey-social" aria-label="Pinterest" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
             <span data-i18n="social.pinterest">Pinterest</span>
           </a>
@@ -946,9 +959,9 @@ footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,3
       <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
       <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
       <div class="footer-social">
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+        <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.pinterest.com/moonvalestudio/" aria-label="Pinterest" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
@@ -970,7 +983,7 @@ footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,3
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.connect">CONNECT</h5>
-      <ul><li><a href="#" data-i18n="social.tiktok.eth">TikTok Ethernia</a></li><li><a href="#" data-i18n="social.tiktok.fan">TikTok Fantasy</a></li><li><a href="#" data-i18n="social.youtube">YouTube</a></li><li><a href="#" data-i18n="social.pinterest">Pinterest</a></li></ul>
+      <ul><li><a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.eth">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.fan">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" data-i18n="social.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" data-i18n="social.pinterest">Pinterest</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
