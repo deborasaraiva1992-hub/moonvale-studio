@@ -224,6 +224,28 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   #musicLabel,#musicVol{display:none;}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+
+/* ── Moonvale global polish: compact footer, safe anchors, subtle immersion ── */
+:where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
+footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px,3vw,34px) + env(safe-area-inset-bottom))!important;}
+.footer-inner{gap:clamp(18px,2.4vw,30px)!important;align-items:start;}
+.footer-logo{margin-bottom:6px!important;}
+.footer-tagline{margin-bottom:8px!important;}
+.footer-desc{margin-bottom:12px!important;}
+.footer-col h5{text-transform:uppercase;letter-spacing:2.6px;margin-bottom:10px!important;}
+.footer-col ul li{margin-bottom:5px!important;}
+.footer-col ul li a{text-transform:none;line-height:1.35;}
+.footer-bottom{margin-top:clamp(18px,2.4vw,26px)!important;padding-top:14px!important;}
+.hero-logo,.section-title{text-shadow:0 0 18px rgba(216,192,138,.16),0 0 34px rgba(155,142,196,.08);}
+.hero-primary-cta,.hero-btn,.atlas-banner-btn{will-change:transform;animation:moonvaleCtaBreath 4.8s ease-in-out infinite;}
+@keyframes moonvaleCtaBreath{0%,100%{box-shadow:0 0 18px rgba(216,192,138,.12)}50%{box-shadow:0 0 30px rgba(216,192,138,.22),0 0 46px rgba(155,142,196,.08)}}
+.cinematic-banner,.realm-card,.collection-card,.cat-card,.nav-card,.product-card{will-change:transform;}
+.cinematic-banner::before,.realm-card::before,.collection-card{transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;}
+@media(max-width:700px){:where(section,[id]){scroll-margin-top:calc(72px + env(safe-area-inset-top));}footer{padding-top:28px!important}.footer-inner{grid-template-columns:1fr 1fr!important;gap:18px 20px!important}.footer-inner>div:first-child{grid-column:1/-1}.footer-bottom{margin-top:16px!important}.footer-copy{font-size:.66rem!important}#musicPlayer{width:30px!important;height:30px!important;min-height:30px!important;padding:0!important;right:calc(8px + env(safe-area-inset-right))!important;bottom:calc(8px + env(safe-area-inset-bottom))!important}#musicLabel,#musicVol{display:none!important}}
+@media(max-width:420px){.footer-inner{grid-template-columns:1fr!important;gap:14px!important}.footer-col h5{margin-bottom:7px!important}.footer-col ul li{margin-bottom:4px!important}}
+@media(prefers-reduced-motion:reduce){.hero-primary-cta,.hero-btn,.atlas-banner-btn{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -499,7 +521,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy" data-i18n="footer.copy">© 2025 Moonvale Studio. All rights reserved.</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
     <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
   </div>
 </footer>
