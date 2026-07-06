@@ -725,7 +725,38 @@ footer{padding-top:clamp(10px,1.3vw,18px)!important;padding-bottom:calc(clamp(6p
 @media(max-width:700px){footer{padding-top:10px!important;padding-bottom:calc(8px + env(safe-area-inset-bottom))!important}.footer-inner{gap:5px 8px!important}.footer-col h5{margin-bottom:2px!important}.footer-col ul li{margin-bottom:0!important}.footer-bottom{margin-top:4px!important;padding-top:4px!important}}
 @media(max-width:380px){footer{padding-top:8px!important}.footer-inner{gap:4px 8px!important}.footer-desc{margin-bottom:3px!important}.footer-bottom{margin-top:3px!important;padding-top:3px!important}}
 
-@media(prefers-reduced-motion:reduce){.hero-img-wrap img,.hero-primary-cta::after{animation:none!important}}
+/* ── FINAL CINEMATIC MOTION PASS ── */
+.hero-img-wrap::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 52% 18%,rgba(245,217,127,.22),transparent 10%),radial-gradient(circle at 46% 42%,rgba(245,217,127,.12),transparent 8%),linear-gradient(100deg,transparent 22%,rgba(245,217,127,.08) 44%,transparent 58%);mix-blend-mode:screen;opacity:.28;animation:heroMoonPulse 11s ease-in-out infinite,heroTitleSweep 18s ease-in-out infinite;}
+.hero-img-wrap::after{content:'';position:absolute;left:-8%;right:-8%;bottom:0;height:36%;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 45% 68%,rgba(245,217,127,.1),transparent 46%),repeating-linear-gradient(100deg,rgba(245,217,127,.055) 0 1px,transparent 1px 32px);filter:blur(.4px);opacity:.22;animation:waterShimmer 13s ease-in-out infinite;}
+.hero-mist{background:linear-gradient(to top,rgba(5,8,22,.62),transparent),radial-gradient(ellipse at 28% 70%,rgba(216,192,138,.09),transparent 54%),radial-gradient(ellipse at 78% 62%,rgba(155,142,196,.08),transparent 58%);animation:mistRise 8s ease-in-out infinite alternate,mistLateral 18s ease-in-out infinite alternate;}
+.hero-logo{position:relative;}
+.hero-logo::before{content:'';position:absolute;inset:-18% -28%;z-index:-1;pointer-events:none;background:linear-gradient(105deg,transparent 22%,rgba(245,217,127,.16) 48%,transparent 68%);opacity:.35;transform:translateX(-35%);animation:titleAuraSweep 12s ease-in-out infinite;}
+.realm-card-eth::before,.realm-card-fan::before,.cinematic-banner::before{animation:ornamentGlow 9s ease-in-out infinite;}
+.realm-card-eth .realm-card-content::after,.realm-card-fan .realm-card-content::after,.collection-card-overlay::after,.cinematic-banner-overlay::before,footer::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 28%,rgba(245,217,127,.18) 0 1px,transparent 2px),radial-gradient(circle at 74% 42%,rgba(245,241,232,.12) 0 1px,transparent 2px),radial-gradient(circle at 48% 76%,rgba(216,192,138,.1) 0 1px,transparent 2px);background-size:170px 170px,230px 230px,310px 310px;opacity:.18;animation:ambientDust 16s linear infinite;}
+.realm-card-content>*,.cinematic-copy{position:relative;z-index:2;}
+.realm-card-eth .realm-card-content::after{background-image:radial-gradient(circle at 20% 35%,rgba(245,217,127,.26) 0 1px,transparent 2px),radial-gradient(circle at 72% 58%,rgba(255,232,160,.16) 0 1px,transparent 2px);opacity:.2;}
+.realm-card-fan .realm-card-content::after{background-image:radial-gradient(circle at 24% 42%,rgba(155,184,255,.22) 0 1px,transparent 2px),radial-gradient(circle at 78% 62%,rgba(200,184,232,.18) 0 1px,transparent 2px);opacity:.18;animation-duration:20s;}
+.realm-card-eth img{filter:saturate(1.04) brightness(1.02);animation:ethSunHaze 13s ease-in-out infinite;}
+.realm-card-fan img{filter:saturate(1.03) brightness(1.01);animation:fanMoonHaze 15s ease-in-out infinite;}
+.collection-card-overlay::after{z-index:2;background:linear-gradient(105deg,transparent 34%,rgba(245,217,127,.16),transparent 56%);opacity:.12;transform:translateX(-80%);animation:metalGlint 10s ease-in-out infinite;}
+.cinematic-banner-overlay::before{z-index:1;opacity:.16;mix-blend-mode:screen;}
+.atlas-banner .cinematic-banner-overlay::after,.journey-banner .cinematic-banner-overlay::after{content:'';position:absolute;inset:auto -12% 0;height:38%;pointer-events:none;background:repeating-linear-gradient(100deg,rgba(245,217,127,.045) 0 1px,transparent 1px 38px),radial-gradient(ellipse at center,rgba(155,142,196,.08),transparent 62%);opacity:.18;animation:waterShimmer 16s ease-in-out infinite;}
+.lore-banner .cinematic-banner-overlay::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 18%,rgba(245,217,127,.08) 42%,transparent 58%),radial-gradient(circle at 68% 38%,rgba(245,217,127,.1),transparent 18%);opacity:.16;animation:loreLightRay 14s ease-in-out infinite;}
+footer{position:relative;overflow:hidden;}
+footer::before{opacity:.08;animation-duration:24s;}
+@keyframes heroMoonPulse{0%,100%{opacity:.22;filter:brightness(1)}50%{opacity:.36;filter:brightness(1.16)}}
+@keyframes heroTitleSweep{0%,100%{background-position:-35% 0,0 0,0 0}50%{background-position:135% 0,0 0,0 0}}
+@keyframes waterShimmer{0%,100%{transform:translate3d(-1%,0,0);opacity:.16}50%{transform:translate3d(1.5%,-2px,0);opacity:.28}}
+@keyframes mistLateral{0%{transform:translate3d(-6px,0,0)}100%{transform:translate3d(8px,-3px,0)}}
+@keyframes titleAuraSweep{0%,68%,100%{transform:translateX(-45%);opacity:.18}82%{transform:translateX(45%);opacity:.36}}
+@keyframes ornamentGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(245,217,127,0))}50%{filter:drop-shadow(0 0 8px rgba(245,217,127,.18))}}
+@keyframes ambientDust{0%{background-position:0 0,0 0,0 0}100%{background-position:170px -170px,-230px 230px,310px -310px}}
+@keyframes ethSunHaze{0%,100%{filter:saturate(1.04) brightness(1.02)}50%{filter:saturate(1.08) brightness(1.06)}}
+@keyframes fanMoonHaze{0%,100%{filter:saturate(1.03) brightness(1.01)}50%{filter:saturate(1.08) brightness(1.05)}}
+@keyframes metalGlint{0%,72%,100%{transform:translateX(-90%);opacity:0}84%{transform:translateX(90%);opacity:.18}}
+@keyframes loreLightRay{0%,100%{transform:translateX(-2%);opacity:.1}50%{transform:translateX(2%);opacity:.2}}
+@media(max-width:700px){.hero-img-wrap::before,.hero-img-wrap::after{opacity:.18}.realm-card-eth img,.realm-card-fan img{animation:none}.cinematic-banner-overlay::before{opacity:.1}.collection-card-overlay::after{opacity:.08}}
+@media(prefers-reduced-motion:reduce){.hero-img-wrap img,.hero-primary-cta::after,.hero-img-wrap::before,.hero-img-wrap::after,.hero-mist,.hero-logo::before,.realm-card-eth::before,.realm-card-fan::before,.cinematic-banner::before,.realm-card-eth .realm-card-content::after,.realm-card-fan .realm-card-content::after,.collection-card-overlay::after,.cinematic-banner-overlay::before,.cinematic-banner-overlay::after,footer::before,.realm-card-eth img,.realm-card-fan img{animation:none!important}}
 
 
 </style>
