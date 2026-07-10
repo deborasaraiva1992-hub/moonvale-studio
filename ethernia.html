@@ -2,591 +2,399 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ethernia — Moonvale Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ethernia — Realm of Stars, Hope and Ancient Wonders | Moonvale Studio</title>
+<meta name="description" content="Step into Ethernia, the realm of stars and ancient wonders — explore its celestial regions, guardians, relics and chronicles.">
+<meta property="og:title" content="Ethernia | Moonvale Studio">
+<meta property="og:description" content="Realm of Stars, Hope and Ancient Wonders.">
+<meta property="og:image" content="ethernia-hero.webp">
+<link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
 :root{
-  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
-  --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
-  --eth:#d8c08a;--eth-dim:rgba(216,192,138,0.25);
+  --ink:#050816; --ink-soft:#080d1e;
+  --gold:#d8c08a; --gold-hi:#f5d97f; --gold-dim:rgba(216,192,138,.32);
+  --cream:#f5f1e8; --cream-dim:rgba(245,241,232,.65);
+  --ease:cubic-bezier(.16,.84,.44,1);
+  --font-d:'Cinzel',Georgia,serif;
+  --font-b:'Cormorant Garamond',Georgia,serif;
 }
-body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+body{background:var(--ink);color:var(--cream);font-family:var(--font-b);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.7;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.07);z-index:1000;}
-.nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
-.logo-nav{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:5px;color:var(--gold);text-decoration:none;}
-.nav-links{display:flex;gap:26px;align-items:center;list-style:none;}
-.nav-links a{text-decoration:none;color:var(--text);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;transition:color .25s;}
-.nav-links a:hover,.nav-links a.active{color:var(--gold);}
-.nav-lang{font-family:'Cinzel',serif;font-size:.68rem;color:var(--gold);letter-spacing:1px;cursor:pointer;}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
-.hamburger span{width:24px;height:1.5px;background:var(--gold);}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:clamp(1rem,2vw,1.5rem) clamp(1.2rem,4vw,3rem);background:rgba(5,8,22,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.08);}
+.nav__logo{font-family:var(--font-d);font-size:clamp(.95rem,1.5vw,1.2rem);letter-spacing:.3em;color:var(--gold);}
+.nav__links{display:flex;gap:clamp(1rem,2vw,2.2rem);list-style:none;align-items:center;}
+.nav__links a{font-family:var(--font-d);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim);transition:color .25s;}
+.nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--gold);}
+.lang-switch{display:flex;gap:.4rem;}
+.lang-switch button{font-family:var(--font-d);font-size:.68rem;letter-spacing:.1em;color:var(--cream-dim);padding:.25em .45em;border:1px solid transparent;transition:color .25s,border-color .25s;}
+.lang-switch button.active,.lang-switch button:hover{color:var(--gold-hi);border-color:var(--gold-dim);}
+.nav__toggle{display:none;flex-direction:column;gap:5px;width:26px;}
+.nav__toggle span{height:1.5px;background:var(--gold);transition:transform .3s,opacity .3s;}
+.nav__toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav__toggle.open span:nth-child(2){opacity:0;}
+.nav__toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+@media(max-width:860px){
+  .nav__links{position:fixed;inset:0;flex-direction:column;align-items:center;justify-content:center;background:var(--ink-soft);gap:2rem;transform:translateY(-100%);transition:transform .5s var(--ease);z-index:190;}
+  .nav__links.open{transform:translateY(0);}
+  .nav__links a{font-size:1.1rem;}
+  .nav__toggle{display:flex;}
+}
 
-/* HERO — imagem completa, sem corte */
+/* ── BUTTONS ── */
+.btn-gold{display:inline-block;padding:.9em 2.6em;font-family:var(--font-d);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:linear-gradient(135deg,var(--gold-hi),var(--gold));border-radius:1px;position:relative;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease),box-shadow .4s var(--ease);}
+.btn-gold::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(216,192,138,.5);}
+.btn-gold:hover::after{transform:translateX(120%);}
+
+/* ── HERO ── */
 .hero{
-  position:relative;width:100%;
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;background:#050816;
-  padding-top:62px;
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding-top:clamp(6rem,15vh,10rem);text-align:center;overflow:hidden;
+  background-image:url('ethernia-hero.webp');
+  background-size:cover;background-position:center top;
 }
-.hero-img-wrap{
-  position:relative;width:100%;
-  overflow:hidden;
+.hero__veil{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,8,22,.78) 0%,rgba(5,8,22,.28) 35%,rgba(5,8,22,.08) 55%,rgba(5,8,22,.45) 100%);
 }
-.hero-img-wrap img{
-  width:100%;height:auto;display:block;
-  animation:kenBurns 24s ease-in-out infinite alternate;
-  transform-origin:center top;
+.hero__particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;bottom:-5%;width:3px;height:3px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 6px 1px rgba(243,218,154,.8);opacity:0;animation:drift linear infinite;}
+@keyframes drift{0%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:.85;}90%{opacity:.5;}100%{transform:translateY(-110vh) translateX(var(--drift-x,20px));opacity:0;}}
+.hero__content{position:relative;z-index:2;max-width:900px;padding:0 1.4rem;}
+.hero__title{
+  font-size:clamp(3.2rem,9vw,6.6rem);letter-spacing:.16em;
+  background:linear-gradient(110deg,var(--gold-dim) 0%,var(--gold-hi) 25%,#fff7e0 45%,var(--gold-hi) 65%,var(--gold-dim) 100%);
+  background-size:240% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmer 7s linear infinite;
 }
-@keyframes kenBurns{0%{transform:scale(1);}100%{transform:scale(1.05) translateX(5px);}}
-.hero-img-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(5,8,22,.25) 0%,
-    rgba(5,8,22,.0) 20%,
-    rgba(5,8,22,.08) 55%,
-    rgba(5,8,22,.85) 82%,
-    rgba(5,8,22,1) 100%
-  );
-}
-.hero-img-overlay::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:100px;
-  background:linear-gradient(to bottom,rgba(5,8,22,.45),transparent);
-}
-/* warm golden tint */
-.hero-img-overlay::after{
-  content:'';position:absolute;inset:0;
-  background:rgba(216,160,60,.06);
-  mix-blend-mode:overlay;
-}
-.hero-content{
-  position:relative;z-index:2;
-  padding:0 24px 70px;
-  max-width:900px;width:100%;
-  margin-top:-160px;
-}
-.hero-eyebrow{
-  font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:6px;
-  color:var(--gold);opacity:.85;margin-bottom:16px;
-}
-.hero-title{
-  font-family:'Cinzel',serif;
-  font-size:clamp(3rem,9vw,7rem);
-  font-weight:400;letter-spacing:8px;line-height:1;
-  margin-bottom:16px;
-  color:var(--gold-hi);
-  text-shadow:0 0 50px rgba(245,217,127,.45),0 0 100px rgba(245,217,127,.2);
-}
-.hero-subtitle{
-  font-size:clamp(1rem,2.2vw,1.4rem);
-  color:var(--dim);font-style:italic;font-weight:300;
-  margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto;
-}
-.hero-quote{
-  font-size:clamp(.9rem,1.8vw,1.2rem);
-  color:var(--gold);font-style:italic;opacity:.85;
-  margin-bottom:50px;
-  position:relative;padding:0 30px;
-}
-.hero-quote::before{content:'"';font-size:2rem;color:var(--gold);opacity:.4;position:absolute;top:-8px;left:0;}
-.hero-quote::after{content:'"';font-size:2rem;color:var(--gold);opacity:.4;position:absolute;top:-8px;right:0;}
+@keyframes shimmer{0%{background-position:0%}100%{background-position:-240%}}
+.hero__subtitle{margin-top:1.1rem;font-family:var(--font-d);font-size:clamp(.95rem,1.6vw,1.25rem);letter-spacing:.22em;text-transform:uppercase;color:var(--cream-dim);}
+.hero__quote{margin:2.4rem auto 0;max-width:560px;font-style:italic;font-weight:500;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--gold-hi);line-height:1.6;}
+.hero__quote::before,.hero__quote::after{content:'"';color:var(--gold-dim);}
+.hero__scroll{position:absolute;bottom:clamp(1.6rem,4vh,3rem);left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--cream-dim);}
+.hero__scroll span{font-family:var(--font-d);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;}
+.hero__scroll-line{width:1px;height:46px;background:linear-gradient(180deg,var(--gold-hi),transparent);position:relative;overflow:hidden;}
+.hero__scroll-line::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:linear-gradient(180deg,transparent,var(--gold-hi));animation:scrollpulse 2.2s ease-in-out infinite;}
+@keyframes scrollpulse{0%{top:-100%}60%,100%{top:100%}}
 
-/* scroll cue */
-.scroll-cue{
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;
-  color:var(--gold);opacity:.6;
-}
-.scroll-mouse{width:20px;height:32px;border:1.5px solid var(--gold);border-radius:10px;position:relative;display:flex;justify-content:center;}
-.scroll-mouse::after{content:'';width:2.5px;height:5px;background:var(--gold);border-radius:2px;position:absolute;top:5px;animation:scrollWheel 2s ease-in-out infinite;}
-@keyframes scrollWheel{0%{top:5px;opacity:1;}100%{top:17px;opacity:0;}}
+/* ── EYEBROW ── */
+.eyebrow{font-family:var(--font-d);font-size:clamp(.7rem,1.1vw,.82rem);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.6em;margin-bottom:1.1rem;}
+.eyebrow::before{content:'◈';font-size:.8em;}
 
-/* LORE SECTION */
-.lore-section{
-  max-width:780px;margin:0 auto;
-  padding:90px 32px 80px;
-  text-align:center;
-}
-.lore-ornament{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:28px;}
-.lore-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.45;}
-.lore-line.right{background:linear-gradient(90deg,var(--gold),transparent);}
-.lore-sym{color:var(--gold);font-size:1rem;opacity:.65;}
-.lore-text{
-  font-size:clamp(1rem,1.9vw,1.2rem);
-  color:rgba(216,192,138,0.8);line-height:1.9;font-weight:300;
-  text-align:left;
-}
-.lore-text p{margin-bottom:22px;}
-.lore-text p:last-child{margin-bottom:0;}
+/* ── BANNER SHARED ── */
+.banner{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;}
+.banner__bg{position:absolute;inset:0;background-size:cover;}
+.banner__veil{position:absolute;inset:0;}
+.banner__content{position:relative;z-index:2;width:100%;padding:clamp(2.4rem,6vw,6rem);display:flex;}
+.banner__panel{max-width:560px;}
+.banner__panel h2{font-family:var(--font-d);font-size:clamp(2.1rem,4.2vw,3.4rem);color:var(--cream);margin-bottom:1.1rem;}
+.banner__panel p{font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.7;color:var(--cream-dim);margin:0 0 2.2rem;}
 
-/* SECTION BASE */
-.section{max-width:1400px;margin:0 auto;padding:80px 48px;}
-.section-header{text-align:center;margin-bottom:50px;}
-.section-ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px;}
-.section-ornament-line{width:35px;height:1px;background:var(--gold);opacity:.4;}
-.section-ornament-sym{color:var(--gold);font-size:.85rem;opacity:.6;}
-.section-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:4px;font-weight:400;}
-.section-sub{font-size:clamp(.82rem,1.4vw,1rem);color:var(--dim);font-style:italic;margin-top:10px;}
-.section-divider{width:100%;max-width:1400px;margin:0 auto;border:none;border-top:1px solid rgba(216,192,138,.08);}
+/* right-text: art left / text right */
+.banner--right-text .banner__bg{background-position:left center;}
+.banner--right-text .banner__veil{background:linear-gradient(90deg,rgba(5,8,22,0) 0%,rgba(5,8,22,.55) 52%,rgba(5,8,22,.93) 100%);}
+.banner--right-text .banner__content{justify-content:flex-end;text-align:right;}
+.banner--right-text .banner__panel{margin-left:auto;}
+.banner--right-text .eyebrow{justify-content:flex-end;}
+.banner--right-text .eyebrow::before{order:2;}
 
-/* NAVIGATION CARDS */
-.nav-cards-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-.nav-card{
-  position:relative;
-  aspect-ratio:2/3;
-  border-radius:6px;overflow:hidden;
-  border:1px solid var(--eth-dim);
-  text-decoration:none;color:var(--text);
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding:24px 18px;
-  transition:transform .35s,box-shadow .35s,border-color .35s;
-  background:rgba(25,18,8,.5);
-  cursor:pointer;
-}
-.nav-card:hover{
-  transform:translateY(-8px) scale(1.02);
-  border-color:var(--gold);
-  box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 24px rgba(216,192,138,.15);
-}
-.nav-card-placeholder{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,rgba(40,30,10,.6),rgba(60,45,15,.4));
-}
-.nav-card-placeholder svg{width:48px;height:48px;opacity:.22;}
-.nav-card-img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:saturate(.85) brightness(.85);
-  transition:transform .6s cubic-bezier(.4,0,.2,1),filter .5s ease;
-}
-.nav-card:hover .nav-card-img{
-  transform:scale(1.08);
-  filter:saturate(1.1) brightness(1.02);
-}
-.nav-card::after{
-  content:'';position:absolute;top:0;left:-100%;width:45%;height:100%;
-  background:linear-gradient(115deg,transparent,rgba(255,255,255,.08),transparent);
-  transform:skewX(-15deg);transition:left .65s ease;pointer-events:none;z-index:1;
-}
-.nav-card:hover::after{left:160%;}
-.nav-card-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(5,8,22,.97) 0%,rgba(5,8,22,.55) 45%,rgba(5,8,22,.05) 75%,transparent 100%);
-}
-.nav-card-content{position:relative;z-index:2;text-align:center;}
-.nav-card-sym{font-size:1.4rem;color:var(--gold);margin-bottom:10px;display:block;filter:drop-shadow(0 0 8px rgba(216,192,138,.5));}
-.nav-card-label{font-family:'Cinzel',serif;font-size:clamp(.7rem,1.2vw,.85rem);letter-spacing:3px;color:var(--text);margin-bottom:6px;}
-.nav-card-sub{font-size:.75rem;color:var(--dim);font-style:italic;}
+/* left-text: art right / text left */
+.banner--left-text .banner__bg{background-position:right center;}
+.banner--left-text .banner__veil{background:linear-gradient(90deg,rgba(5,8,22,.93) 0%,rgba(5,8,22,.55) 48%,rgba(5,8,22,0) 100%);}
+.banner--left-text .banner__content{justify-content:flex-start;text-align:left;}
 
-.ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.22);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
-@keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
+/* center: vignette */
+.banner--center .banner__veil{background:radial-gradient(ellipse at center,rgba(5,8,22,.88) 0%,rgba(5,8,22,.5) 42%,rgba(5,8,22,.1) 70%);}
+.banner--center .banner__content{justify-content:center;text-align:center;}
+.banner--center .banner__panel{max-width:680px;margin:0 auto;}
+.banner--center .eyebrow{justify-content:center;}
 
-.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:4px;text-decoration:none;color:var(--text);transition:color .25s;}
-.mobile-menu a:hover{color:var(--gold);}
-.mobile-close{position:absolute;top:24px;right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
+/* final — no button, italic large */
+.banner--final .banner__panel h2{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.45;letter-spacing:.05em;color:var(--gold-hi);font-style:italic;font-weight:500;font-family:var(--font-b);}
 
-footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
-.footer-inner{max-width:1400px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;}
-.footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:8px;}
-.footer-tagline{font-style:italic;font-size:.88rem;color:var(--dim);margin-bottom:14px;}
-.footer-desc{font-size:.8rem;color:var(--dim);opacity:.65;line-height:1.7;margin-bottom:18px;}
-.footer-social{display:flex;gap:12px;}
-.footer-social a{width:32px;height:32px;border:1px solid rgba(216,192,138,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,box-shadow .25s,transform .25s,background .25s;text-decoration:none;position:relative;overflow:hidden;}
-.footer-social a::after{content:'';position:absolute;inset:4px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.18),transparent 60%);opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s;}
-.footer-social a:hover{border-color:var(--gold);background:rgba(216,192,138,.06);box-shadow:0 0 14px rgba(216,192,138,.18),0 0 28px rgba(155,142,196,.08);transform:translateY(-2px);}
-.footer-social a:hover::after{opacity:1;transform:scale(1);animation:socialCelestial 1.8s ease-in-out infinite;}
-@keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
-.footer-social svg{width:13px;height:13px;}
-.footer-col h5{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:3px;color:var(--gold);margin-bottom:16px;opacity:.75;}
-.footer-col ul{list-style:none;}
-.footer-col ul li{margin-bottom:9px;}
-.footer-col ul li a{text-decoration:none;color:var(--dim);font-size:.8rem;transition:color .25s;opacity:.75;}
-.footer-col ul li a:hover{color:var(--gold);opacity:1;}
-.footer-bottom{max-width:1400px;margin:32px auto 0;padding-top:20px;border-top:1px solid rgba(216,192,138,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.footer-copy{font-size:.7rem;color:var(--dim);opacity:.4;}
-.footer-lang-row{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:var(--gold);opacity:.55;cursor:pointer;}
+/* section backgrounds */
+#celestial-realms .banner__bg{background-image:url('ethernia-banner-celestial-realms.webp');}
+#guardians .banner__bg{background-image:url('ethernia-banner-guardians-of-light.webp');}
+#relics .banner__bg{background-image:url('ethernia-banner-relics-of-stars.webp');}
+#chronicles .banner__bg{background-image:url('ethernia-banner-chronicles.webp');}
+#final-banner .banner__bg{background-image:url('ethernia-banner-final.webp');}
 
-/* EFFECTS */
-#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.55;}
-.mist-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 55% 40% at 20% 40%,rgba(216,192,138,.035) 0%,transparent 70%),radial-gradient(ellipse 45% 35% at 75% 65%,rgba(245,217,127,.025) 0%,transparent 70%);animation:mistDrift 22s ease-in-out infinite alternate;}
-@keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:7px;height:7px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);opacity:.85;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:26px;height:26px;border:1px solid rgba(216,192,138,.5);border-radius:50%;transform:translate(-50%,-50%);transition:left .08s ease,top .08s ease,transform .2s;display:none;}
-@media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
-.page-transition{position:fixed;inset:0;background:#050816;z-index:9997;opacity:0;pointer-events:none;transition:opacity .4s ease;}
-.page-transition.out{opacity:1;pointer-events:auto;}
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
-
-#musicPlayer{position:fixed;bottom:24px;right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.9);border:1px solid rgba(216,192,138,.25);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
-#musicPlayer:hover{border-color:var(--gold);box-shadow:0 0 18px rgba(216,192,138,.12);}
-#musicIcon{font-size:1rem;color:var(--gold);}
-#musicLabel{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;color:var(--dim);}
-#musicVol{width:50px;height:3px;-webkit-appearance:none;appearance:none;background:rgba(216,192,138,.2);border-radius:2px;cursor:pointer;}
-#musicVol::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;background:var(--gold);border-radius:50%;}
-
-/* RESPONSIVE */
-@media(max-width:1100px){.nav-cards-grid{grid-template-columns:repeat(2,1fr);}.footer-inner{grid-template-columns:1fr 1fr;gap:28px;}}
-@media(max-width:900px){
-  nav{padding:14px 24px;}.nav-links{display:none;}.hamburger{display:flex;}
-  .section{padding:60px 24px;}
-  .hero-content{margin-top:-120px;padding:0 20px 55px;}
-  .nav-cards-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
-  footer{padding:50px 24px 32px;}
+@media(max-width:860px){
+  .banner--right-text .banner__veil,.banner--left-text .banner__veil{background:linear-gradient(180deg,rgba(5,8,22,.4) 0%,rgba(5,8,22,.55) 55%,rgba(5,8,22,.92) 100%);}
+  .banner--right-text .banner__content,.banner--left-text .banner__content{justify-content:center;text-align:center;align-items:flex-end;padding-bottom:4rem;}
+  .banner--right-text .banner__panel,.banner--left-text .banner__panel{margin:0 auto;}
+  .banner--right-text .eyebrow,.banner--left-text .eyebrow{justify-content:center;}
+  .banner--right-text .eyebrow::before{order:0;}
 }
-@media(max-width:600px){
-  nav{padding:12px 18px;}.logo-nav{font-size:1rem;}
-  .section{padding:50px 16px;}
-  .hero{padding-top:58px;}
-  .hero-content{margin-top:-80px;padding:0 16px 48px;}
-  .hero-title{font-size:clamp(2.5rem,10vw,4rem);letter-spacing:5px;}
-  .hero-subtitle{font-size:.92rem;}
-  .hero-quote{font-size:.88rem;padding:0 20px;}
-  .nav-cards-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
-  .nav-card{padding:18px 12px;}
-  .nav-card-label{font-size:.7rem;}
-  .lore-section{padding:55px 20px 50px;}
-  .footer-inner{grid-template-columns:1fr;gap:24px;}
-  footer{padding:44px 16px 28px;}
-  .footer-bottom{flex-direction:column;text-align:center;}
-  #musicPlayer{bottom:14px;right:12px;padding:0;border-radius:50%;width:38px;height:38px;justify-content:center;}
-  #musicLabel,#musicVol{display:none;}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease);}
+.reveal.in-view{opacity:1;transform:translateY(0);}
 
-/* ── Moonvale global polish: compact footer, safe anchors, subtle immersion ── */
-:where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
-footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px,3vw,34px) + env(safe-area-inset-bottom))!important;}
-.footer-inner{gap:clamp(18px,2.4vw,30px)!important;align-items:start;}
-.footer-logo{margin-bottom:6px!important;}
-.footer-tagline{margin-bottom:8px!important;}
-.footer-desc{margin-bottom:12px!important;}
-.footer-col h5{text-transform:uppercase;letter-spacing:2.6px;margin-bottom:10px!important;}
-.footer-col ul li{margin-bottom:5px!important;}
-.footer-col ul li a{text-transform:none;line-height:1.35;}
-.footer-bottom{margin-top:clamp(18px,2.4vw,26px)!important;padding-top:14px!important;}
-.hero-logo,.section-title{text-shadow:0 0 18px rgba(216,192,138,.16),0 0 34px rgba(155,142,196,.08);}
-.hero-primary-cta,.hero-btn,.atlas-banner-btn{will-change:transform;animation:moonvaleCtaBreath 4.8s ease-in-out infinite;}
-@keyframes moonvaleCtaBreath{0%,100%{box-shadow:0 0 18px rgba(216,192,138,.12)}50%{box-shadow:0 0 30px rgba(216,192,138,.22),0 0 46px rgba(155,142,196,.08)}}
-.cinematic-banner,.realm-card,.collection-card,.cat-card,.nav-card,.product-card{will-change:transform;}
-.cinematic-banner::before,.realm-card::before,.collection-card{transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;}
-@media(max-width:700px){:where(section,[id]){scroll-margin-top:calc(72px + env(safe-area-inset-top));}footer{padding-top:28px!important}.footer-inner{grid-template-columns:1fr 1fr!important;gap:18px 20px!important}.footer-inner>div:first-child{grid-column:1/-1}.footer-bottom{margin-top:16px!important}.footer-copy{font-size:.66rem!important}#musicPlayer{width:30px!important;height:30px!important;min-height:30px!important;padding:0!important;right:calc(8px + env(safe-area-inset-right))!important;bottom:calc(8px + env(safe-area-inset-bottom))!important}#musicLabel,#musicVol{display:none!important}}
-@media(max-width:420px){.footer-inner{grid-template-columns:1fr!important;gap:14px!important}.footer-col h5{margin-bottom:7px!important}.footer-col ul li{margin-bottom:4px!important}}
-@media(prefers-reduced-motion:reduce){.hero-primary-cta,.hero-btn,.atlas-banner-btn{animation:none!important}}
-
+/* ── FOOTER ── */
+.site-footer{padding:clamp(3rem,7vw,5rem) clamp(1.4rem,5vw,4rem) clamp(2rem,4vw,2.6rem);background:var(--ink-soft);border-top:1px solid rgba(216,192,138,.18);}
+.footer__inner{max-width:1400px;margin:0 auto;}
+.footer__top{display:grid;gap:2.4rem 3rem;grid-template-columns:1.5fr repeat(4,auto);align-items:start;margin-bottom:2.4rem;}
+.footer__logo{font-family:var(--font-d);font-size:clamp(.95rem,1.5vw,1.15rem);letter-spacing:.3em;color:var(--gold);display:block;margin-bottom:.4rem;}
+.footer__tagline{font-style:italic;font-size:.95rem;color:var(--gold);margin-bottom:.5rem;}
+.footer__desc{color:var(--cream-dim);font-size:.9rem;line-height:1.65;margin-bottom:1.2rem;}
+.footer__socials{display:flex;gap:.6rem;}
+.footer__social-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(216,192,138,.3);display:flex;align-items:center;justify-content:center;color:var(--cream-dim);transition:border-color .3s,color .3s,background .3s;}
+.footer__social-btn:hover{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.1);}
+.footer__social-btn svg{width:14px;height:14px;fill:currentColor;}
+.footer__col h3{font-family:var(--font-d);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.footer__col ul{list-style:none;display:flex;flex-direction:column;gap:.65rem;}
+.footer__col a{color:var(--cream-dim);font-size:.9rem;transition:color .3s;}
+.footer__col a:hover{color:var(--gold-hi);}
+.footer__bottom{padding-top:1.6rem;border-top:1px solid rgba(245,241,232,.08);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.78rem;color:rgba(245,241,232,.3);}
+@media(max-width:1080px){.footer__top{grid-template-columns:1fr 1fr;}.footer__brand{grid-column:1/-1;}}
 </style>
 </head>
 <body>
 
-<canvas id="particles-canvas"></canvas>
-<div class="mist-layer"></div>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
-<div class="page-transition" id="pageTransition"></div>
-
-<!-- MUSIC -->
-<div id="musicPlayer" onclick="toggleMusic()">
-  <span id="musicIcon">♪</span>
-  <span id="musicLabel">MUSIC OFF</span>
-  <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.18" oninput="setVol(this.value)" onclick="event.stopPropagation()">
-</div>
-<audio id="bgAudio" loop preload="none">
-</audio>
-
 <!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="logo-nav">MOONVALE</a>
-    <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="ethernia.html" class="active">ETHERNIA</a></li>
-      <li><a href="fantasy.html">FANTASY</a></li>
-      <li><a href="lore-library.html">LORE LIBRARY</a></li>
-      <li><a href="artefacts.html">ARTEFACTS</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-      <li><span class="nav-lang">PT | EN | ES</span></li>
-    </ul>
-    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
-  </div>
+<nav class="nav">
+  <a href="index.html" class="nav__logo">MOONVALE</a>
+  <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav__links" id="navLinks">
+    <li><a href="index.html"        data-i18n="nav.home">Home</a></li>
+    <li><a href="ethernia.html" aria-current="page" data-i18n="nav.ethernia">Ethernia</a></li>
+    <li><a href="fantasy.html"      data-i18n="nav.fantasy">Fantasy</a></li>
+    <li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li>
+    <li><a href="artefacts.html"    data-i18n="nav.artefacts">Artefacts</a></li>
+    <li><a href="about.html"        data-i18n="nav.about">About</a></li>
+    <li class="lang-switch" role="group" aria-label="Language">
+      <button data-lang="pt">PT</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+    </li>
+  </ul>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" onclick="closeMenu()">HOME</a>
-  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
-  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
-  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
-  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
-  <a href="about.html" onclick="closeMenu()">ABOUT</a>
-</div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-img-wrap">
-    <img src="ethernia-hero.webp" alt="Ethernia — Realm of Light" draggable="false">
-    <div class="hero-img-overlay"></div>
+  <div class="hero__veil"></div>
+  <div class="hero__particles" id="particles"></div>
+  <div class="hero__content">
+    <h1 class="hero__title">ETHERNIA</h1>
+    <p class="hero__subtitle" data-i18n="hero.subtitle">Realm of Stars, Hope and Ancient Wonders</p>
+    <p class="hero__quote" data-i18n="hero.quote">Where light remembers the names of those who carried it.</p>
   </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">✦ &nbsp; THE REALM OF LIGHT &nbsp; ✦</p>
-    <h1 class="hero-title">ETHERNIA</h1>
-    <p class="hero-subtitle">Realm of Light, Hope and Forgotten Dreams</p>
-    <p class="hero-quote">Where light remembers what the world has forgotten.</p>
-    <div class="scroll-cue">
-      <div class="scroll-mouse"></div>
-      SCROLL TO DISCOVER
+  <a href="#celestial-realms" class="hero__scroll">
+    <span data-i18n="hero.scroll">Begin the Descent</span>
+    <span class="hero__scroll-line"></span>
+  </a>
+</section>
+
+<!-- THE CELESTIAL REALMS — art left / text right -->
+<section class="banner banner--right-text" id="celestial-realms">
+  <div class="banner__bg"></div>
+  <div class="banner__veil"></div>
+  <div class="banner__content">
+    <div class="banner__panel reveal">
+      <p class="eyebrow" data-i18n="realms.kicker">Regions of Ethernia</p>
+      <h2 data-i18n="realms.heading">The Celestial Realms</h2>
+      <p data-i18n="realms.body">Beyond the floating spires of Lumindor and the silver falls of Sylvarith lie lands shaped by starlight — each region a verse in Ethernia's endless hymn of dawn.</p>
+      <a class="btn-gold" href="lore-library/regions.html?realm=ethernia" data-i18n="realms.cta">Explore the Realms</a>
     </div>
   </div>
 </section>
 
-<!-- MINI LORE -->
-<div class="lore-section fade-in">
-  <div class="lore-ornament">
-    <div class="lore-line"></div>
-    <span class="lore-sym">✦</span>
-    <div class="lore-line right"></div>
-  </div>
-  <div class="lore-text">
-    <p>On the other side of the Astrael Sea, where Fantasy's shadows give way to dawn, lies Ethernia — a realm bathed in eternal golden light. Here, the sun never truly sets, and every dawn carries the memory of the first light that ever touched the world.</p>
-    <p>Long before the chronicles began, Ethernia was a single radiant garden, born from the first ray of dawn. As ages passed, that light scattered into five sacred kingdoms, each carrying a fragment of the original brilliance, each guarding its own promise of hope.</p>
-    <p>Five realms rose from that light: Lumindor's celestial capital crowned in gold, Sylvarith's ancient worldtree whose roots remember every story ever told, Elarion Vale's eternal gardens where flowers bloom beyond the reach of time, Aurelith Veil's frozen peaks beneath dancing auroras, and Elynthara's golden shores where lighthouses guide ships home.</p>
-    <p>Each kingdom holds a piece of the same eternal truth — that light, once kindled, is never truly lost. To walk through Ethernia is to walk through hope itself, ancient and unwavering, waiting patiently for those who seek it.</p>
-    <p style="color:var(--gold);font-style:italic;opacity:.9;">Where light remembers what the world has forgotten.</p>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<!-- NAVIGATION CARDS -->
-<section class="section fade-in">
-  <div class="section-header">
-    <div class="section-ornament">
-      <div class="section-ornament-line"></div>
-      <span class="section-ornament-sym">✦</span>
-      <h2 class="section-title">EXPLORE ETHERNIA</h2>
-      <span class="section-ornament-sym">✦</span>
-      <div class="section-ornament-line"></div>
+<!-- GUARDIANS OF THE LIGHT — art left / text right -->
+<section class="banner banner--right-text" id="guardians">
+  <div class="banner__bg"></div>
+  <div class="banner__veil"></div>
+  <div class="banner__content">
+    <div class="banner__panel reveal">
+      <p class="eyebrow" data-i18n="guardians.kicker">Characters of Ethernia</p>
+      <h2 data-i18n="guardians.heading">Guardians of the Light</h2>
+      <p data-i18n="guardians.body">Queens, knights and starbound wanderers stand watch over the realm's eternal dawn, each bearing a vow older than the cities they protect.</p>
+      <a class="btn-gold" href="lore-library/characters.html?realm=ethernia" data-i18n="guardians.cta">Meet the Guardians</a>
     </div>
-    <p class="section-sub">Choose your path into the light.</p>
-  </div>
-
-  <div class="nav-cards-grid">
-
-    <!-- REGIONS -->
-    <a href="ethernia/regions.html" class="nav-card">
-      <img src="ethernia-regions.webp" alt="Regions" class="nav-card-img">
-      <div class="nav-card-overlay"></div>
-      <div class="nav-card-content">
-        <span class="nav-card-sym">⌖</span>
-        <p class="nav-card-label">REGIONS</p>
-        <p class="nav-card-sub">The golden kingdoms</p>
-      </div>
-    </a>
-
-    <!-- CHARACTERS -->
-    <a href="ethernia/characters.html" class="nav-card">
-      <img src="ethernia-characters.webp" alt="Characters" class="nav-card-img">
-      <div class="nav-card-overlay"></div>
-      <div class="nav-card-content">
-        <span class="nav-card-sym">♔</span>
-        <p class="nav-card-label">CHARACTERS</p>
-        <p class="nav-card-sub">Bearers of light</p>
-      </div>
-    </a>
-
-    <!-- RELICS -->
-    <a href="ethernia/relics.html" class="nav-card">
-      <img src="ethernia-relics.webp" alt="Relics" class="nav-card-img">
-      <div class="nav-card-overlay"></div>
-      <div class="nav-card-content">
-        <span class="nav-card-sym">✧</span>
-        <p class="nav-card-label">RELICS</p>
-        <p class="nav-card-sub">Fragments of dawn</p>
-      </div>
-    </a>
-
-    <!-- CHRONICLES -->
-    <a href="ethernia/chronicles.html" class="nav-card">
-      <img src="ethernia-chronicles.webp" alt="Chronicles" class="nav-card-img">
-      <div class="nav-card-overlay"></div>
-      <div class="nav-card-content">
-        <span class="nav-card-sym">❦</span>
-        <p class="nav-card-label">CHRONICLES</p>
-        <p class="nav-card-sub">Tales of eternal light</p>
-      </div>
-    </a>
-
   </div>
 </section>
-  
+
+<!-- RELICS OF THE STARS — centered + vignette -->
+<section class="banner banner--center" id="relics">
+  <div class="banner__bg"></div>
+  <div class="banner__veil"></div>
+  <div class="banner__content">
+    <div class="banner__panel reveal">
+      <p class="eyebrow" data-i18n="relics.kicker">Relics of Ethernia</p>
+      <h2 data-i18n="relics.heading">Relics of the Stars</h2>
+      <p data-i18n="relics.body">Within halls of gold and starlit glass rest the instruments of Ethernia's oldest magic — artifacts that remember more than the hands that once held them.</p>
+      <a class="btn-gold" href="lore-library/relics.html?realm=ethernia" data-i18n="relics.cta">Discover the Relics</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHRONICLES OF ETHERNIA — art right / text left -->
+<section class="banner banner--left-text" id="chronicles">
+  <div class="banner__bg"></div>
+  <div class="banner__veil"></div>
+  <div class="banner__content">
+    <div class="banner__panel reveal">
+      <p class="eyebrow" data-i18n="chronicles.kicker">Chronicles of Ethernia</p>
+      <h2 data-i18n="chronicles.heading">Chronicles of Ethernia</h2>
+      <p data-i18n="chronicles.body">Every dawn is written somewhere — in the margins of an open book, beneath a sky that has not forgotten its first light.</p>
+      <a class="btn-gold" href="lore-library/chronicles.html?realm=ethernia" data-i18n="chronicles.cta">Read the Chronicles</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CINEMATIC BANNER — centered, no button -->
+<section class="banner banner--center banner--final" id="final-banner">
+  <div class="banner__bg"></div>
+  <div class="banner__veil"></div>
+  <div class="banner__content">
+    <div class="banner__panel reveal">
+      <h2 data-i18n="final.line">Every star leaves a light. Will you follow it?</h2>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <p class="footer-logo">MOONVALE</p>
-      <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
-      <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
-        </a>
-        <a href="#" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </a>
-        <a href="#" aria-label="Pinterest">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-        </a>
+<footer class="site-footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="footer__logo">MOONVALE</span>
+        <p class="footer__tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
+        <p class="footer__desc"    data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
+        <div class="footer__socials">
+          <a href="https://www.tiktok.com/@ethernia.f"        target="_blank" rel="noopener" aria-label="TikTok Ethernia" class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
+          <a href="https://www.tiktok.com/@fantasy.ia"        target="_blank" rel="noopener" aria-label="TikTok Fantasy"  class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg></a>
+          <a href="https://youtube.com/@fantasyy_ia"          target="_blank" rel="noopener" aria-label="YouTube"         class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.6 12 3.6 12 3.6s-7.54 0-9.38.45A3.02 3.02 0 0 0 .5 6.19C.06 8.04 0 12 0 12s.06 3.96.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.46 20.4 12 20.4 12 20.4s7.54 0 9.38-.45a3.02 3.02 0 0 0 2.12-2.14C23.94 15.96 24 12 24 12s-.06-3.96-.5-5.81zM9.75 15.52V8.48L15.86 12l-6.11 3.52z"/></svg></a>
+          <a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener" aria-label="Pinterest"       class="footer__social-btn"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+        </div>
       </div>
+      <div class="footer__col"><h3 data-i18n="footer.navigation">Navigation</h3><ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li></ul></div>
+      <div class="footer__col"><h3 data-i18n="footer.worlds">Worlds</h3><ul><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li></ul></div>
+      <div class="footer__col"><h3 data-i18n="footer.archive">Archive</h3><ul><li><a href="lore-library/regions.html" data-i18n="footer.regions">Regions</a></li><li><a href="lore-library/characters.html" data-i18n="footer.characters">Characters</a></li><li><a href="lore-library/relics.html" data-i18n="footer.relics">Relics</a></li><li><a href="lore-library/chronicles.html" data-i18n="footer.chronicles">Chronicles</a></li></ul></div>
+      <div class="footer__col"><h3 data-i18n="footer.connect">Connect</h3><ul><li><a href="https://www.tiktok.com/@ethernia.f" target="_blank" rel="noopener" data-i18n="footer.tiktok-ethernia">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia" target="_blank" rel="noopener" data-i18n="footer.tiktok-fantasy">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia" target="_blank" rel="noopener" data-i18n="footer.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener" data-i18n="footer.pinterest">Pinterest</a></li></ul></div>
     </div>
-    <div class="footer-col">
-      <h5 data-i18n="footer.navigation">NAVIGATION</h5>
-      <ul>
-        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
-        <li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li>
-        <li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li>
-        <li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li>
-        <li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li>
-        <li><a href="about.html" data-i18n="nav.about">About</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5 data-i18n="footer.worlds">WORLDS</h5>
-      <ul>
-        <li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li>
-        <li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li>
-        <li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5 data-i18n="footer.archive">ARCHIVE</h5>
-      <ul>
-        <li><a href="regions.html" data-i18n="archive.regions">Regions</a></li>
-        <li><a href="characters.html" data-i18n="archive.characters">Characters</a></li>
-        <li><a href="relics.html" data-i18n="archive.relics">Relics</a></li>
-        <li><a href="chronicles.html" data-i18n="archive.chronicles">Chronicles</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h5 data-i18n="footer.connect">CONNECT</h5>
-      <ul>
-        <li><a href="#">TikTok Ethernia</a></li>
-        <li><a href="#">TikTok Fantasy</a></li>
-        <li><a href="#">YouTube</a></li>
-        <li><a href="#">Pinterest</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
-    <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
+    <div class="footer__bottom"><span data-i18n="footer.copyright">© 2026 Moonvale Studio. All realms reserved.</span></div>
   </div>
 </footer>
 
-<script src="moonvale-i18n.js"></script>
 <script>
-// GOLD STAR PARTICLES
-(function(){
-  const c=document.getElementById('particles-canvas');
-  const ctx=c.getContext('2d');
-  let W,H;
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  resize();window.addEventListener('resize',resize,{passive:true});
-  const R=(a,b)=>a+Math.random()*(b-a);
-  class Star{
-    constructor(){this.reset(true);}
-    reset(init){
-      this.x=R(0,W);this.y=init?R(0,H):H+5;
-      this.size=R(.3,1.7);this.alpha=R(.05,.45);
-      this.da=R(.002,.008)*(Math.random()>.5?1:-1);
-      this.vx=R(-.05,.05);this.vy=R(-.07,.01);
-    }
-    update(){
-      this.x+=this.vx;this.y+=this.vy;this.alpha+=this.da;
-      if(this.alpha<.03||this.alpha>.5)this.da*=-1;
-      if(this.y<-5||this.x<-5||this.x>W+5)this.reset(false);
-    }
-    draw(){
-      ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-      ctx.fillStyle=`rgba(216,192,138,${this.alpha})`;ctx.fill();
-    }
+/* I18N */
+const T={
+  en:{
+    'nav.home':'Home','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'About',
+    'hero.subtitle':'Realm of Stars, Hope and Ancient Wonders',
+    'hero.quote':'Where light remembers the names of those who carried it.',
+    'hero.scroll':'Begin the Descent',
+    'realms.kicker':'Regions of Ethernia','realms.heading':'The Celestial Realms',
+    'realms.body':"Beyond the floating spires of Lumindor and the silver falls of Sylvarith lie lands shaped by starlight — each region a verse in Ethernia's endless hymn of dawn.",
+    'realms.cta':'Explore the Realms',
+    'guardians.kicker':'Characters of Ethernia','guardians.heading':'Guardians of the Light',
+    'guardians.body':"Queens, knights and starbound wanderers stand watch over the realm's eternal dawn, each bearing a vow older than the cities they protect.",
+    'guardians.cta':'Meet the Guardians',
+    'relics.kicker':'Relics of Ethernia','relics.heading':'Relics of the Stars',
+    'relics.body':"Within halls of gold and starlit glass rest the instruments of Ethernia's oldest magic — artifacts that remember more than the hands that once held them.",
+    'relics.cta':'Discover the Relics',
+    'chronicles.kicker':'Chronicles of Ethernia','chronicles.heading':'Chronicles of Ethernia',
+    'chronicles.body':'Every dawn is written somewhere — in the margins of an open book, beneath a sky that has not forgotten its first light.',
+    'chronicles.cta':'Read the Chronicles',
+    'final.line':'Every star leaves a light. Will you follow it?',
+    'footer.tagline':'Between Stars And Stories','footer.desc':'We are the bridge between worlds and imagination.',
+    'footer.navigation':'Navigation','footer.worlds':'Worlds','footer.atlas':'Atlas',
+    'footer.archive':'Archive','footer.regions':'Regions','footer.characters':'Characters','footer.relics':'Relics','footer.chronicles':'Chronicles',
+    'footer.connect':'Connect','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest',
+    'footer.copyright':'© 2026 Moonvale Studio. All realms reserved.'
+  },
+  pt:{
+    'nav.home':'Início','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Sobre',
+    'hero.subtitle':'Reino das Estrelas, Esperança e Maravilhas Ancestrais',
+    'hero.quote':'Onde a luz recorda os nomes de quem a carregou.',
+    'hero.scroll':'Iniciar a Descida',
+    'realms.kicker':'Regiões de Ethernia','realms.heading':'Os Reinos Celestiais',
+    'realms.body':'Para além dos pináculos flutuantes de Lumindor e das cascatas prateadas de Sylvarith, estendem-se terras moldadas pela luz das estrelas.',
+    'realms.cta':'Explorar os Reinos',
+    'guardians.kicker':'Personagens de Ethernia','guardians.heading':'Guardiões da Luz',
+    'guardians.body':'Rainhas, cavaleiros e andarilhos ligados às estrelas vigiam o amanhecer eterno do reino.',
+    'guardians.cta':'Conhecer os Guardiões',
+    'relics.kicker':'Relíquias de Ethernia','relics.heading':'Relíquias das Estrelas',
+    'relics.body':'Em salões de ouro e vidro estrelado repousam os instrumentos da magia mais antiga de Ethernia.',
+    'relics.cta':'Descobrir as Relíquias',
+    'chronicles.kicker':'Crónicas de Ethernia','chronicles.heading':'Crónicas de Ethernia',
+    'chronicles.body':'Todo o amanhecer é escrito nalgum lugar — nas margens de um livro aberto, sob um céu que não esqueceu a sua primeira luz.',
+    'chronicles.cta':'Ler as Crónicas',
+    'final.line':'Toda estrela deixa uma luz. Vais segui-la?',
+    'footer.tagline':'Entre Estrelas e Histórias','footer.desc':'Somos a ponte entre mundos e imaginação.',
+    'footer.navigation':'Navegação','footer.worlds':'Mundos','footer.atlas':'Atlas',
+    'footer.archive':'Arquivo','footer.regions':'Regiões','footer.characters':'Personagens','footer.relics':'Relíquias','footer.chronicles':'Crónicas',
+    'footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest',
+    'footer.copyright':'© 2026 Moonvale Studio. Todos os reinos reservados.'
+  },
+  es:{
+    'nav.home':'Inicio','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Acerca',
+    'hero.subtitle':'Reino de las Estrellas, la Esperanza y las Maravillas Ancestrales',
+    'hero.quote':'Donde la luz recuerda los nombres de quienes la llevaron.',
+    'hero.scroll':'Iniciar el Descenso',
+    'realms.kicker':'Regiones de Ethernia','realms.heading':'Los Reinos Celestiales',
+    'realms.body':'Más allá de las agujas flotantes de Lumindor y las cascadas plateadas de Sylvarith, se extienden tierras moldeadas por la luz de las estrellas.',
+    'realms.cta':'Explorar los Reinos',
+    'guardians.kicker':'Personajes de Ethernia','guardians.heading':'Guardianes de la Luz',
+    'guardians.body':'Reinas, caballeros y viajeros ligados a las estrellas vigilan el amanecer eterno del reino.',
+    'guardians.cta':'Conocer a los Guardianes',
+    'relics.kicker':'Reliquias de Ethernia','relics.heading':'Reliquias de las Estrellas',
+    'relics.body':'En salones de oro y cristal estrellado reposan los instrumentos de la magia más antigua de Ethernia.',
+    'relics.cta':'Descubrir las Reliquias',
+    'chronicles.kicker':'Crónicas de Ethernia','chronicles.heading':'Crónicas de Ethernia',
+    'chronicles.body':'Cada amanecer se escribe en algún lugar — en los márgenes de un libro abierto, bajo un cielo que no ha olvidado su primera luz.',
+    'chronicles.cta':'Leer las Crónicas',
+    'final.line':'Toda estrella deja una luz. ¿La seguirás?',
+    'footer.tagline':'Entre Estrellas e Historias','footer.desc':'Somos el puente entre mundos e imaginación.',
+    'footer.navigation':'Navegación','footer.worlds':'Mundos','footer.atlas':'Atlas',
+    'footer.archive':'Archivo','footer.regions':'Regiones','footer.characters':'Personajes','footer.relics':'Reliquias','footer.chronicles':'Crónicas',
+    'footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest',
+    'footer.copyright':'© 2026 Moonvale Studio. Todos los reinos reservados.'
   }
-  const n=window.innerWidth<600?40:80;
-  const stars=[];
-  for(let i=0;i<n;i++)stars.push(new Star());
-  function animate(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.update();s.draw();});requestAnimationFrame(animate);}
-  animate();
-})();
+};
+let lang='en';
+function applyLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=T[l][el.dataset.i18n];if(v!==undefined)el.textContent=v;});document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));}
+document.querySelectorAll('.lang-switch button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+applyLang('en');
 
-// CUSTOM CURSOR
-(function(){
-  const dot=document.getElementById('cursor-dot');
-  const ring=document.getElementById('cursor-ring');
-  if(!dot||!ring)return;
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
-  animRing();
-  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.transform='translate(-50%,-50%) scale(.6)';});
-  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.6)';ring.style.borderColor='var(--gold)';});
-    el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});
-  });
-})();
+/* NAV */
+const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');
+navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.classList.toggle('open',o);navToggle.setAttribute('aria-expanded',o);});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.classList.remove('open');navToggle.setAttribute('aria-expanded',false);}));
 
-// PAGE TRANSITION
-(function(){
-  const pt=document.getElementById('pageTransition');
-  document.querySelectorAll('a[href]').forEach(a=>{
-    const href=a.getAttribute('href');
-    if(!href||href.startsWith('#')||href.startsWith('http'))return;
-    a.addEventListener('click',e=>{e.preventDefault();pt.classList.add('out');setTimeout(()=>{window.location.href=href;},380);});
-  });
-  pt.style.opacity='1';pt.style.pointerEvents='auto';
-  setTimeout(()=>{pt.style.opacity='0';pt.style.pointerEvents='none';},50);
-})();
+/* PARTICLES */
+const prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(!prefersReduced){
+  const field=document.getElementById('particles');
+  for(let i=0;i<26;i++){
+    const p=document.createElement('span');p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.width=p.style.height=(1.5+Math.random()*2.5).toFixed(1)+'px';
+    p.style.animationDuration=(9+Math.random()*10)+'s';
+    p.style.animationDelay=(Math.random()*-14)+'s';
+    p.style.setProperty('--drift-x',(Math.random()*60-30)+'px');
+    field.appendChild(p);
+  }
+}
 
-// SCROLL REVEAL
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
-document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
-
-// RIPPLE
-document.addEventListener('click',e=>{
-  const t=e.target.closest('.nav-card');
-  if(!t)return;
-  const r=document.createElement('span');r.className='ripple';
-  const rect=t.getBoundingClientRect();const sz=Math.max(rect.width,rect.height);
-  r.style.cssText=`width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
-  t.appendChild(r);setTimeout(()=>r.remove(),500);
-});
-
-// MUSIC
-const audio=document.getElementById('bgAudio');
-const mLabel=document.getElementById('musicLabel');
-const mIcon=document.getElementById('musicIcon');
-let musicOn=false;audio.volume=0.18;
-function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
-function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent='MUSIC ON';mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent='MUSIC OFF';});}
-function fadeOut(){musicOn=false;mLabel.textContent='MUSIC OFF';mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
-function setVol(v){audio.volume=parseFloat(v);}
-
-// NAV
-function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+/* REVEAL */
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');io.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));}
 </script>
 </body>
 </html>
