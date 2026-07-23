@@ -132,10 +132,10 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 #final-banner .banner__bg{background-image:url('every-star-leaves-a-light-banner.webp');}
 
 @media(max-width:860px){
-  .hero{min-height:clamp(34rem,72svh,42rem);padding-top:clamp(5.5rem,13vh,7rem);}
+  .hero{min-height:min(72svh,34rem);padding-top:clamp(5.5rem,13vh,7rem);}
   .hero__scroll{display:flex;bottom:1.6rem;}
-  .banner{min-height:clamp(32rem,70svh,38rem);}
-  .banner--final{min-height:clamp(21rem,46svh,26rem);}
+  .banner{min-height:min(70svh,32rem);}
+  .banner--final{min-height:min(48svh,22rem);}
   .banner__content{padding:clamp(1.5rem,5vw,2.4rem);}
 }
 
