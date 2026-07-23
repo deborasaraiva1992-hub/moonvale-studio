@@ -7,7 +7,7 @@
 <meta name="description" content="Step into Ethernia, the realm of stars and ancient wonders — explore its celestial regions, guardians, relics and chronicles.">
 <meta property="og:title" content="Ethernia | Moonvale Studio">
 <meta property="og:description" content="Realm of Stars, Hope and Ancient Wonders.">
-<meta property="og:image" content="ethernia-hero.webp">
+<meta property="og:image" content="ethernia-hero-realm-of-light.webp">
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
   position:relative;min-height:100svh;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
   padding-top:clamp(6rem,15vh,10rem);text-align:center;overflow:hidden;
-  background-image:url('ethernia-hero.webp');
+  background-image:url('ethernia-hero-realm-of-light.webp');
   background-size:cover;background-position:center top;
 }
 .hero__veil{
@@ -83,11 +83,11 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 .hero__subtitle{margin-top:1.1rem;font-family:var(--font-d);font-size:clamp(.95rem,1.6vw,1.25rem);letter-spacing:.22em;text-transform:uppercase;color:var(--cream-dim);}
 .hero__quote{margin:2.4rem auto 0;max-width:560px;font-style:italic;font-weight:500;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--gold-hi);line-height:1.6;}
 .hero__quote::before,.hero__quote::after{content:'"';color:var(--gold-dim);}
-.hero__scroll{position:absolute;bottom:clamp(1.6rem,4vh,3rem);left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--cream-dim);}
+.hero__scroll{position:absolute;bottom:clamp(2.4rem,6vh,4rem);left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.7rem;color:var(--cream-dim);}
 .hero__scroll span{font-family:var(--font-d);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;}
-.hero__scroll-line{width:1px;height:46px;background:linear-gradient(180deg,var(--gold-hi),transparent);position:relative;overflow:hidden;}
-.hero__scroll-line::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:linear-gradient(180deg,transparent,var(--gold-hi));animation:scrollpulse 2.2s ease-in-out infinite;}
-@keyframes scrollpulse{0%{top:-100%}60%,100%{top:100%}}
+.hero__scroll-mouse{width:18px;height:28px;border:1px solid var(--gold-hi);border-radius:10px;position:relative;}
+.hero__scroll-mouse::after{content:'';position:absolute;top:5px;left:50%;width:2px;height:5px;border-radius:2px;background:var(--gold-hi);transform:translateX(-50%);animation:scrollpulse 2.2s ease-in-out infinite;}
+@keyframes scrollpulse{0%,100%{opacity:.25;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,9px)}}
 
 /* ── EYEBROW ── */
 .eyebrow{font-family:var(--font-d);font-size:clamp(.7rem,1.1vw,.82rem);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.6em;margin-bottom:1.1rem;}
@@ -125,18 +125,18 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 .banner--final .banner__panel h2{font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.45;letter-spacing:.05em;color:var(--gold-hi);font-style:italic;font-weight:500;font-family:var(--font-b);}
 
 /* section backgrounds */
-#celestial-realms .banner__bg{background-image:url('ethernia-banner-celestial-realms.webp');}
-#guardians .banner__bg{background-image:url('ethernia-banner-guardians-of-light.webp');}
-#relics .banner__bg{background-image:url('ethernia-banner-relics-of-stars.webp');}
-#chronicles .banner__bg{background-image:url('ethernia-banner-chronicles.webp');}
-#final-banner .banner__bg{background-image:url('ethernia-banner-final.webp');}
+#celestial-realms .banner__bg{background-image:url('celestial-realms-banner.webp');}
+#guardians .banner__bg{background-image:url('guardians-of-the-light-banner.webp');}
+#relics .banner__bg{background-image:url('relics-of-the-stars-banner.webp');}
+#chronicles .banner__bg{background-image:url('chronicles-of-ethernia-banner.webp');}
+#final-banner .banner__bg{background-image:url('every-star-leaves-a-light-banner.webp');}
 
 @media(max-width:860px){
-  .banner--right-text .banner__veil,.banner--left-text .banner__veil{background:linear-gradient(180deg,rgba(5,8,22,.4) 0%,rgba(5,8,22,.55) 55%,rgba(5,8,22,.92) 100%);}
-  .banner--right-text .banner__content,.banner--left-text .banner__content{justify-content:center;text-align:center;align-items:flex-end;padding-bottom:4rem;}
-  .banner--right-text .banner__panel,.banner--left-text .banner__panel{margin:0 auto;}
-  .banner--right-text .eyebrow,.banner--left-text .eyebrow{justify-content:center;}
-  .banner--right-text .eyebrow::before{order:0;}
+  .hero{min-height:clamp(34rem,72svh,42rem);padding-top:clamp(5.5rem,13vh,7rem);}
+  .hero__scroll{display:flex;bottom:1.6rem;}
+  .banner{min-height:clamp(32rem,70svh,38rem);}
+  .banner--final{min-height:clamp(21rem,46svh,26rem);}
+  .banner__content{padding:clamp(1.5rem,5vw,2.4rem);}
 }
 
 /* ── REVEAL ── */
@@ -193,8 +193,8 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
     <p class="hero__quote" data-i18n="hero.quote">Where light remembers the names of those who carried it.</p>
   </div>
   <a href="#celestial-realms" class="hero__scroll">
-    <span data-i18n="hero.scroll">Begin the Descent</span>
-    <span class="hero__scroll-line"></span>
+    <span data-i18n="hero.scroll">Scroll to Discover</span>
+    <span class="hero__scroll-mouse" aria-hidden="true"></span>
   </a>
 </section>
 
@@ -296,7 +296,7 @@ const T={
     'nav.home':'Home','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'About',
     'hero.subtitle':'Realm of Stars, Hope and Ancient Wonders',
     'hero.quote':'Where light remembers the names of those who carried it.',
-    'hero.scroll':'Begin the Descent',
+    'hero.scroll':'Scroll to Discover',
     'realms.kicker':'Regions of Ethernia','realms.heading':'The Celestial Realms',
     'realms.body':"Beyond the floating spires of Lumindor and the silver falls of Sylvarith lie lands shaped by starlight — each region a verse in Ethernia's endless hymn of dawn.",
     'realms.cta':'Explore the Realms',
@@ -320,7 +320,7 @@ const T={
     'nav.home':'Início','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Sobre',
     'hero.subtitle':'Reino das Estrelas, Esperança e Maravilhas Ancestrais',
     'hero.quote':'Onde a luz recorda os nomes de quem a carregou.',
-    'hero.scroll':'Iniciar a Descida',
+    'hero.scroll':'Descubra ao Rolar',
     'realms.kicker':'Regiões de Ethernia','realms.heading':'Os Reinos Celestiais',
     'realms.body':'Para além dos pináculos flutuantes de Lumindor e das cascatas prateadas de Sylvarith, estendem-se terras moldadas pela luz das estrelas.',
     'realms.cta':'Explorar os Reinos',
@@ -344,7 +344,7 @@ const T={
     'nav.home':'Inicio','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Acerca',
     'hero.subtitle':'Reino de las Estrellas, la Esperanza y las Maravillas Ancestrales',
     'hero.quote':'Donde la luz recuerda los nombres de quienes la llevaron.',
-    'hero.scroll':'Iniciar el Descenso',
+    'hero.scroll':'Desplázate para Descubrir',
     'realms.kicker':'Regiones de Ethernia','realms.heading':'Los Reinos Celestiales',
     'realms.body':'Más allá de las agujas flotantes de Lumindor y las cascadas plateadas de Sylvarith, se extienden tierras moldeadas por la luz de las estrellas.',
     'realms.cta':'Explorar los Reinos',
