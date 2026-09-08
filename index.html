@@ -673,6 +673,8 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 .cinematic-copy h3{line-height:1.1;text-wrap:balance;}
 .cinematic-copy p{text-wrap:pretty;}
 .journey-socials{max-width:500px;}
+.hidden-worlds-tags{margin-top:clamp(14px,2vw,22px);font-family:'Cinzel',serif;font-size:clamp(.52rem,.72vw,.62rem);letter-spacing:2px;color:var(--gold);opacity:.65;text-transform:uppercase;}
+@media(max-width:700px){.hidden-worlds-tags{display:none;}}
 footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,30px) + env(safe-area-inset-bottom))!important;}
 .footer-inner{max-width:1500px;grid-template-columns:minmax(260px,1.45fr) repeat(4,minmax(120px,.75fr));gap:clamp(18px,2.2vw,28px)!important;}
 .footer-col h5{font-size:.58rem!important;line-height:1.2;color:var(--gold)!important;opacity:.82!important;}
@@ -906,6 +908,25 @@ footer::before{opacity:.08;animation-duration:24s;}
     <button class="carousel-btn" id="carouselNext" aria-label="Next">›</button>
   </div>
   <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+
+<!-- HIDDEN WORLDS -->
+<section class="section fade-in">
+  <a href="lore-library.html" class="atlas-banner cinematic-banner hidden-worlds-banner">
+    <img src="hidden-worlds-banner.webp" alt="A golden gate opening onto a hidden realm beyond a library of secrets" loading="lazy">
+    <div class="cinematic-banner-overlay">
+      <div class="cinematic-copy">
+        <span class="banner-kicker" data-i18n="home.hidden.kicker">The Hidden Worlds</span>
+        <h3 data-i18n="home.hidden.title">There is more to Moonvale than what the stars have revealed.</h3>
+        <span class="atlas-banner-btn">
+          <span data-i18n="home.hidden.cta">DISCOVER WHAT LIES BEYOND</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+        <p class="hidden-worlds-tags" data-i18n="home.hidden.tags">STORIES &nbsp;✦&nbsp; ART &nbsp;✦&nbsp; CHARACTERS &nbsp;✦&nbsp; REALMS &nbsp;✦&nbsp; SECRETS</p>
+      </div>
+    </div>
+  </a>
 </section>
 
 
