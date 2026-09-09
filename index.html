@@ -772,11 +772,17 @@ footer::before{opacity:.08;animation-duration:24s;}
    above — no bespoke layout, so it inherits the same, already-responsive
    behavior instead of needing its own breakpoints. */
 
-/* ── FOOTER GRID FIX — Navigation is the longest list; give it its own full-
-   width row on the 2-column mobile grid instead of sharing a row with the
-   shorter Archive column. That mismatch was pushing Connect (the 3rd item)
-   down under Navigation only, leaving an empty gap under Archive. ── */
-@media(max-width:700px){.footer-inner>div:nth-child(2){grid-column:1/-1;}}
+/* ── FOOTER — brand full width, the 3 link columns side by side beneath it ── */
+@media(max-width:700px){
+  .footer-inner{grid-template-columns:repeat(3,1fr)!important;}
+  .footer-inner>div:first-child{grid-column:1/-1;}
+  .footer-col h5{font-size:.56rem!important;letter-spacing:1.6px!important;}
+  .footer-col ul li a{font-size:.68rem!important;line-height:1.3!important;}
+}
+@media(max-width:430px){
+  .footer-col h5{font-size:.5rem!important;letter-spacing:1px!important;}
+  .footer-col ul li a{font-size:.62rem!important;}
+}
 
 </style>
 </head>
