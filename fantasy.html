@@ -516,7 +516,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
       <ul>
-        <li><a href="regions.html" data-i18n="archive.regions">Regions</a></li>
+        <li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li>
         <li><a href="characters.html" data-i18n="archive.characters">Characters</a></li>
         <li><a href="relics.html" data-i18n="archive.relics">Relics</a></li>
         <li><a href="chronicles.html" data-i18n="archive.chronicles">Chronicles</a></li>
@@ -534,7 +534,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   </div>
   <div class="footer-bottom">
     <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
-    <div class="footer-language"><div class="language-picker" id="footerLanguagePicker"></div></div>
   </div>
 </footer>
 
@@ -650,7 +649,7 @@ function closeMenu(){document.getElementById('mobileMenu').classList.remove('ope
   }
   function sync(){document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===current()));}
   document.addEventListener('click',()=>document.querySelectorAll('.language-picker.open').forEach(p=>p.classList.remove('open')));
-  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker','footerLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
+  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
   window.addEventListener('moonvale:languagechange',sync);
 })();
 </script>

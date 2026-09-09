@@ -756,10 +756,10 @@ body{cursor:auto;background:radial-gradient(ellipse at 50% 0%,rgba(31,56,112,.2)
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(circle at 20% 18%,rgba(245,217,127,.18) 0 1px,transparent 2px),radial-gradient(circle at 78% 28%,rgba(180,211,255,.18) 0 1px,transparent 2px),radial-gradient(circle at 46% 74%,rgba(245,217,127,.12) 0 1px,transparent 2px);background-size:180px 180px,240px 240px,320px 320px;}
 .nav-links a[aria-current="page"]{color:var(--gold-hi);}
 .mobile-menu a[aria-current="page"]{color:var(--gold-hi);}
-.eth-hero{position:relative;min-height:clamp(620px,92svh,980px);display:grid;place-items:center;overflow:hidden;padding:calc(80px + env(safe-area-inset-top)) clamp(18px,5vw,80px) 56px;isolation:isolate;}
+.eth-hero{position:relative;min-height:clamp(620px,92svh,980px);display:grid;place-items:center;overflow:hidden;padding:calc(80px + env(safe-area-inset-top)) clamp(18px,5vw,80px) 56px;isolation:isolate;box-shadow:inset 0 -160px 140px -40px rgba(5,8,22,.85);}
 .eth-hero__image{position:absolute;inset:0;z-index:-3;overflow:hidden;}
 .eth-hero__image img{width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:saturate(1.05) contrast(1.02);transform:scale(1.03);animation:ethDrift 26s ease-in-out infinite alternate;}
-.eth-hero::before{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(5,8,22,.82),rgba(5,8,22,.18) 42%,rgba(5,8,22,.74)),linear-gradient(180deg,rgba(5,8,22,.7),transparent 34%,rgba(5,8,22,.92));}
+.eth-hero::before{content:'';position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(5,8,22,.82),rgba(5,8,22,.18) 42%,rgba(5,8,22,.74)),linear-gradient(180deg,rgba(5,8,22,.5) 0%,transparent 30%,rgba(5,8,22,.55) 72%,rgba(5,8,22,1) 100%);}
 .eth-hero::after{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 38%,rgba(245,217,127,.22),transparent 36%),radial-gradient(ellipse at 50% 12%,rgba(179,214,255,.18),transparent 50%);animation:bloom 6s ease-in-out infinite alternate;}
 /* A handful of slow-drifting sparkles behind the title — the site's
    ambient star canvas reads faintly against this bright sky, so the
@@ -792,7 +792,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 .eth-panel{max-width:min(590px,48%);padding:clamp(18px,2.6vw,34px);}.eth-banner--center .eth-panel{max-width:680px;}
 .eth-kicker{text-shadow:0 2px 12px rgba(0,0,0,.8);}
 .eth-panel h2{font-family:'Cinzel',serif;font-size:clamp(1.55rem,3.6vw,3.4rem);font-weight:400;letter-spacing:clamp(2px,.45vw,6px);line-height:1.1;color:var(--gold-hi);margin:10px 0 14px;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);}.eth-panel p{font-size:clamp(1rem,1.55vw,1.28rem);color:rgba(245,241,232,.9);line-height:1.55;margin:0 0 24px;text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.95);}.eth-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 24px;border:1px solid rgba(245,217,127,.5);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:2.6px;text-transform:uppercase;color:var(--gold-hi);background:rgba(5,8,22,.55);text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;}.eth-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(245,217,127,.35),transparent);transform:translateX(-120%);transition:transform .6s ease;}.eth-btn:hover,.eth-btn:focus-visible{transform:translateY(-2px);border-color:var(--gold-hi);box-shadow:0 0 24px rgba(216,192,138,.18);}.eth-btn:hover::before,.eth-btn:focus-visible::before{transform:translateX(120%);}
-.eth-final{min-height:clamp(180px,15vw,250px);height:clamp(180px,15vw,250px)}.eth-final .eth-panel{background:transparent;border:0;backdrop-filter:none;max-width:850px}.eth-final h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.55rem,3.5vw,3.25rem);line-height:1.45;text-shadow:0 0 26px rgba(245,217,127,.38),0 4px 28px rgba(0,0,0,.75);}
+.eth-final{min-height:clamp(180px,15vw,250px);height:clamp(180px,15vw,250px)}.eth-final .eth-panel{background:transparent;border:0;backdrop-filter:none;max-width:850px}
+/* Its art is brighter/more colorful than the other banners, so it
+   gets its own stronger shade, and its title now matches the same
+   Cinzel/gold/uppercase treatment as every other banner heading
+   instead of a different italic serif style. */
+.eth-final .eth-banner__shade{background:radial-gradient(ellipse at center,rgba(5,8,22,.74),rgba(5,8,22,.44) 48%,rgba(5,8,22,.14) 80%);}
+.eth-final h2{font-family:'Cinzel',serif;font-weight:400;text-transform:uppercase;color:var(--gold-hi);letter-spacing:clamp(2px,.45vw,5px);font-size:clamp(1.3rem,3vw,2.4rem);line-height:1.4;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}
 @keyframes ethDrift{to{transform:scale(1.075) translate3d(1.2%,-.8%,0)}}@keyframes bloom{to{opacity:.72}}@keyframes scrollFloat{50%{transform:translateY(-4px)}}@keyframes scrollDot{50%{transform:translate(-50%,11px);opacity:.2}}@keyframes frameGlow{0%,100%{box-shadow:inset 0 0 36px rgba(245,217,127,.055);border-color:rgba(245,217,127,.3);}50%{box-shadow:inset 0 0 52px rgba(245,217,127,.12);border-color:rgba(245,217,127,.48);}}@keyframes titleShimmer{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}@keyframes sparkleTwinkle{0%,100%{opacity:0;transform:scale(.4);}50%{opacity:1;transform:scale(1);}}
 @media(max-width:900px){.eth-hero{min-height:clamp(560px,76svh,760px);}.eth-hero__image img{object-position:center top}.eth-main{padding-inline:12px;gap:clamp(24px,4vw,40px)}.eth-banner--content{--content-frame-height:clamp(210px,53vw,255px);--content-frame-padding:clamp(12px,2.8vw,24px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto}.eth-banner__image{position:absolute;inset:0;min-height:0;aspect-ratio:auto}.eth-banner__image img{object-position:var(--pos-mobile,var(--pos,center))}.eth-banner__shade{background:linear-gradient(180deg,rgba(5,8,22,0) 10%,rgba(5,8,22,.1) 42%,rgba(5,8,22,.56) 100%)}.eth-banner__inner{min-height:inherit;display:flex;align-items:center;padding:clamp(12px,2.8vw,24px)}.eth-panel,.eth-banner--center .eth-panel{max-width:min(53%,360px);margin:0;padding:clamp(10px,1.8vw,16px)}.eth-panel h2{font-size:clamp(.92rem,2.8vw,1.35rem);letter-spacing:clamp(1px,.25vw,2px);margin:6px 0 8px}.eth-panel p{font-size:clamp(.78rem,1.9vw,.95rem);line-height:1.35;margin:0 0 12px}.eth-btn{min-height:44px;padding:10px 14px;font-size:clamp(.6rem,1.4vw,.7rem);letter-spacing:clamp(1px,.2vw,2px)}.eth-banner--right .eth-banner__inner{justify-content:flex-end;text-align:right}.eth-banner--left .eth-banner__inner{justify-content:flex-start;text-align:left}.eth-banner--center .eth-banner__inner{justify-content:center;text-align:center}.eth-banner--center .eth-panel{max-width:min(58%,390px)}.eth-kicker{margin-bottom:0}.eth-final{min-height:clamp(160px,43vw,205px);height:clamp(160px,43vw,205px);aspect-ratio:auto}.eth-final .eth-banner__image{position:absolute;inset:0;aspect-ratio:auto}.eth-final .eth-banner__inner{min-height:inherit;display:flex;align-items:center;}.eth-final .eth-panel{border:0;margin:auto;background:transparent}}
@@ -895,7 +901,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
       <ul>
-        <li><a href="regions.html" data-i18n="footer.link.regions">Regions</a></li>
+        <li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li>
         <li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li>
         <li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li>
         <li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li>
@@ -908,7 +914,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
   </div>
   <div class="footer-bottom">
     <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
-    <div class="footer-language"><div class="language-picker" id="footerLanguagePicker"></div></div>
   </div>
 </footer>
 
@@ -1087,7 +1092,7 @@ window.addEventListener('moonvale:languagechange',syncMusicLabel);
   }
   function sync(){document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===current()));}
   document.addEventListener('click',()=>document.querySelectorAll('.language-picker.open').forEach(p=>p.classList.remove('open')));
-  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker','footerLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
+  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
   window.addEventListener('moonvale:languagechange',()=>{sync();const t={en:['TREASURES OF MOONVALE','Relics, kingdoms and visions forged in story.'],pt:['TESOUROS DE MOONVALE','Relíquias, reinos e visões forjados em história.'],es:['TESOROS DE MOONVALE','Reliquias, reinos y visiones forjados en historia.']};const l=current();const a=document.querySelector('[data-i18n="home.featured"]');const b=document.querySelector('[data-i18n="home.featured.sub"]');if(a)a.textContent=t[l]?.[0]||t.en[0];if(b)b.textContent=t[l]?.[1]||t.en[1];});
 })();
 
