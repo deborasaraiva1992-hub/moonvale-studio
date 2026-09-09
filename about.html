@@ -64,11 +64,12 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .hero-bg{position:relative;width:100%;}
 .hero-bg img{width:100%;height:auto;display:block;object-fit:contain;object-position:center top;animation:heroKen 26s ease-in-out infinite alternate;will-change:transform;}
 @keyframes heroKen{0%{transform:scale(1);}100%{transform:scale(1.05);}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.5) 0%,rgba(5,8,22,.1) 30%,rgba(5,8,22,.4) 65%,rgba(5,8,22,1) 100%);}
+/* Full-width horizontal band, darkest where the (vertically-centered)
+   text sits, fading back out top and bottom — no box, no blur, just a
+   shadow the text reads against. */
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.5) 0%,rgba(5,8,22,.12) 22%,rgba(5,8,22,.6) 42%,rgba(5,8,22,.66) 58%,rgba(5,8,22,.32) 78%,rgba(5,8,22,1) 100%);}
 .hero-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px;margin:0 auto;}
-/* Discreet dark panel behind just the text — the busy artwork stays
-   fully visible everywhere else, matching the reference. */
-.hero-text-panel{background:rgba(5,8,22,.4);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border:1px solid rgba(216,192,138,.14);border-radius:14px;padding:clamp(16px,2.6vw,30px) clamp(20px,4vw,48px);max-width:640px;text-align:center;}
+.hero-text-panel{padding:0 clamp(12px,3vw,32px);max-width:640px;text-align:center;}
 .hero-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.5rem,.85vw,.6rem);letter-spacing:5px;color:var(--gold);opacity:.85;margin-bottom:12px;}
 .hero-title{font-family:'Cinzel',serif;font-size:clamp(1.7rem,4.4vw,3.1rem);font-weight:400;letter-spacing:4px;line-height:1.1;margin-bottom:12px;color:var(--gold-hi);text-shadow:0 0 40px rgba(245,217,127,.32);text-wrap:balance;}
 .hero-subtitle{font-size:clamp(.72rem,1.3vw,.95rem);color:var(--dim);font-style:italic;font-weight:300;line-height:1.55;max-width:440px;margin:0 auto;}
