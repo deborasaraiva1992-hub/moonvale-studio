@@ -766,21 +766,14 @@ footer::before{opacity:.08;animation-duration:24s;}
    distance and makes every banner read as one family instead of four sizes. */
 .atlas-banner img,.journey-banner img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;}
 @media(max-width:1024px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9;}}
-@media(max-width:700px){.atlas-banner img,.journey-banner img{aspect-ratio:4/3;}}
-@media(max-width:420px){.atlas-banner img,.journey-banner img{aspect-ratio:1/1;}}
 
 /* ── HIDDEN WORLDS — text sized and centered to fill the artwork's dark zone ──
-   Placed last so it wins over both the shared banner rules above and the
-   legacy .cinematic-copy p{display:-webkit-box;...} line-clamp rules earlier
-   in this file (those match on element+class specificity, which beats a
-   single class alone, regardless of source order). The composition here is
-   asymmetric — dark library on the left, lit doorway on the right — so unlike
-   the other banners it keeps its own wider ratio on mobile instead of
-   narrowing toward square, or the text zone gets crowded out by the art. */
-.hidden-worlds-banner img{aspect-ratio:2/1;}
-@media(max-width:1024px){.hidden-worlds-banner img{aspect-ratio:16/9;}}
-@media(max-width:700px){.hidden-worlds-banner img{aspect-ratio:16/10;}}
-@media(max-width:420px){.hidden-worlds-banner img{aspect-ratio:4/3;}}
+   Placed last so it wins over the legacy .cinematic-copy p{display:-webkit-
+   box;...} line-clamp rules earlier in this file (those match on
+   element+class specificity, which beats a single class alone, regardless of
+   source order). Shares the same 2:1 / 16:9 ratio as the other banners above
+   — no need for its own narrower mobile ratio now that the shared one no
+   longer narrows past 16:9. */
 
 .hidden-worlds-banner .cinematic-banner-overlay{justify-content:center;text-align:center;background:linear-gradient(90deg,rgba(5,8,22,.96) 0%,rgba(5,8,22,.92) 38%,rgba(5,8,22,.55) 60%,rgba(5,8,22,.05) 80%);}
 .hidden-worlds-copy{max-width:min(460px,46%);width:100%;display:flex;flex-direction:column;align-items:center;background:none;border-left:none;padding:0;}
