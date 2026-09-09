@@ -804,6 +804,12 @@ footer::before{opacity:.08;animation-duration:24s;}
   .cinematic-copy p.hidden-worlds-tags{font-size:.44rem;letter-spacing:.8px;margin-top:9px;}
 }
 
+/* ── FOOTER GRID FIX — Navigation is the longest list; give it its own full-
+   width row on the 2-column mobile grid instead of sharing a row with the
+   shorter Archive column. That mismatch was pushing Connect (the 3rd item)
+   down under Navigation only, leaving an empty gap under Archive. ── */
+@media(max-width:700px){.footer-inner>div:nth-child(2){grid-column:1/-1;}}
+
 </style>
 </head>
 <body>
@@ -1088,7 +1094,7 @@ footer::before{opacity:.08;animation-duration:24s;}
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.navigation">NAVIGATION</h5>
-      <ul><li><a href="index.html" data-i18n="footer.link.home">Home</a></li><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li><li><a href="atlas.html" data-i18n="footer.link.atlas">Atlas</a></li><li><a href="artefacts.html" data-i18n="footer.link.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="footer.link.about">About</a></li></ul>
+      <ul><li><a href="index.html" data-i18n="footer.link.home">Home</a></li><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="footer.link.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="footer.link.about">About</a></li></ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
@@ -1097,6 +1103,7 @@ footer::before{opacity:.08;animation-duration:24s;}
         <li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li>
         <li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li>
         <li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li>
+        <li><a href="atlas.html" data-i18n="footer.link.atlas">Atlas</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1106,7 +1113,6 @@ footer::before{opacity:.08;animation-duration:24s;}
   </div>
   <div class="footer-bottom">
     <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
-    <div class="footer-language"><div class="language-picker" id="footerLanguagePicker"></div></div>
   </div>
 </footer>
 
@@ -1199,9 +1205,15 @@ if(window.innerWidth>900){
 
 // ── SCROLL REVEAL ──
 const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
 },{threshold:.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+// Safety net: text should never stay invisible because a reveal animation
+// didn't fire (e.g. the page restored from the browser's back/forward
+// cache, or the observer missed an element already in view on load).
+function revealStuckFadeIns(){document.querySelectorAll('.fade-in:not(.visible)').forEach(el=>el.classList.add('visible'));}
+setTimeout(revealStuckFadeIns,2500);
+window.addEventListener('pageshow',e=>{if(e.persisted)revealStuckFadeIns();});
 
 // ── RIPPLE + HAPTIC ──
 document.addEventListener('click',e=>{
@@ -1284,7 +1296,7 @@ window.addEventListener('moonvale:languagechange',syncMusicLabel);
   }
   function sync(){document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===current()));}
   document.addEventListener('click',()=>document.querySelectorAll('.language-picker.open').forEach(p=>p.classList.remove('open')));
-  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker','footerLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
+  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
   window.addEventListener('moonvale:languagechange',()=>{sync();const t={en:['TREASURES OF MOONVALE','Relics, kingdoms and visions forged in story.'],pt:['TESOUROS DE MOONVALE','Relíquias, reinos e visões forjados em história.'],es:['TESOROS DE MOONVALE','Reliquias, reinos y visiones forjados en historia.']};const l=current();const a=document.querySelector('[data-i18n="home.featured"]');const b=document.querySelector('[data-i18n="home.featured.sub"]');if(a)a.textContent=t[l]?.[0]||t.en[0];if(b)b.textContent=t[l]?.[1]||t.en[1];});
 })();
 
