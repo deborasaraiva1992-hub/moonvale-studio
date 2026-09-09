@@ -494,6 +494,13 @@ document.addEventListener('click',e=>{
       });
     });
   });
+
+  // Honor ?realm=ethernia|fantasy so links from Ethernia/Fantasy arrive pre-filtered
+  const urlRealm=new URLSearchParams(location.search).get('realm');
+  if(urlRealm==='ethernia'||urlRealm==='fantasy'){
+    const match=document.querySelector('.filter-btn[data-filter="'+urlRealm+'"]');
+    if(match)match.click();
+  }
 })();
 
 const audio=document.getElementById('bgAudio');
