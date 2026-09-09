@@ -56,6 +56,13 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .section-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:6px;color:var(--gold);opacity:.8;margin-bottom:14px;}
 .section-eyebrow .line{width:34px;height:1px;background:var(--gold);opacity:.5;}
 .section-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:4px;font-weight:400;color:var(--gold-hi);text-wrap:balance;}
+/* "TWO WORLDS. ONE UNIVERSE." — one compact gold line with flanking
+   marks and rules, matching the studio reference exactly (text, gold
+   color and font), instead of a small eyebrow above a large heading. */
+.worlds-title{display:flex;align-items:center;justify-content:center;gap:12px;font-family:'Cinzel',serif;font-size:clamp(.72rem,1.5vw,1rem);letter-spacing:clamp(2px,.5vw,4px);font-weight:400;color:var(--gold);margin:0;}
+.worlds-title .line{width:clamp(24px,4vw,42px);height:1px;background:var(--gold);opacity:.55;flex:none;}
+.worlds-title .mark{color:var(--gold-hi);font-size:.85em;}
+@media(max-width:600px){.worlds-title{gap:8px;}.worlds-title .line{width:20px;}}
 .section-divider{width:100%;max-width:1300px;margin:0 auto;border:none;border-top:1px solid rgba(216,192,138,.08);}
 
 /* ── HERO — same "no-crop, image sets the height" approach as Home, instead
@@ -319,8 +326,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 <!-- TWO WORLDS, ONE UNIVERSE -->
 <section class="section fade-in" aria-labelledby="worldsTitle">
   <div class="section-header">
-    <div class="section-eyebrow"><span class="line"></span><span>✦</span><span class="line"></span></div>
-    <h2 class="section-title" id="worldsTitle">TWO WORLDS. ONE UNIVERSE.</h2>
+    <h2 class="worlds-title" id="worldsTitle"><span class="line"></span><span class="mark">✦</span><span>TWO WORLDS. ONE UNIVERSE.</span><span class="mark">✦</span><span class="line"></span></h2>
   </div>
   <div class="realm-pair">
     <a href="ethernia.html" class="realm-mini eth">
