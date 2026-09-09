@@ -257,7 +257,7 @@ nav{
   transition:transform .35s,box-shadow .35s,border-color .35s;
   text-decoration:none;display:block;
 }
-.collection-card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 24px rgba(216,192,138,.15);}
+.collection-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 24px rgba(216,192,138,.15);}
 .collection-card img{width:100%;height:100%;object-fit:cover;}
 .collection-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,8,22,.7) 0%,transparent 50%);pointer-events:none;}
 /* crystal reflection */
@@ -767,42 +767,10 @@ footer::before{opacity:.08;animation-duration:24s;}
 .atlas-banner img,.journey-banner img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;}
 @media(max-width:1024px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9;}}
 
-/* ── HIDDEN WORLDS — text sized and centered to fill the artwork's dark zone ──
-   Placed last so it wins over the legacy .cinematic-copy p{display:-webkit-
-   box;...} line-clamp rules earlier in this file (those match on
-   element+class specificity, which beats a single class alone, regardless of
-   source order). Shares the same 2:1 / 16:9 ratio as the other banners above
-   — no need for its own narrower mobile ratio now that the shared one no
-   longer narrows past 16:9. */
-
-.hidden-worlds-banner .cinematic-banner-overlay{justify-content:center;text-align:center;background:linear-gradient(90deg,rgba(5,8,22,.96) 0%,rgba(5,8,22,.92) 38%,rgba(5,8,22,.55) 60%,rgba(5,8,22,.05) 80%);}
-.hidden-worlds-copy{max-width:min(460px,46%);width:100%;display:flex;flex-direction:column;align-items:center;background:none;border-left:none;padding:0;}
-.hidden-worlds-mark{color:var(--gold-hi);font-size:clamp(1.1rem,1.7vw,1.5rem);margin-bottom:10px;text-shadow:0 0 20px rgba(245,217,127,.5);}
-.hidden-worlds-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.62rem,.85vw,.78rem);letter-spacing:7px;color:var(--gold);opacity:.85;margin-bottom:8px;}
-.hidden-worlds-title{font-family:'Cinzel',serif;font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);letter-spacing:2px;line-height:1.08;color:var(--gold-hi);text-shadow:0 0 32px rgba(245,217,127,.32);margin-bottom:16px;text-wrap:balance;}
-.hidden-worlds-rule{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.hidden-worlds-rule i{width:30px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.55;}
-.hidden-worlds-rule i:last-child{background:linear-gradient(90deg,var(--gold),transparent);}
-.hidden-worlds-rule b{color:var(--gold);font-size:.68rem;font-weight:400;opacity:.75;}
-.cinematic-copy p.hidden-worlds-sub{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:clamp(.95rem,1.3vw,1.12rem);color:rgba(245,241,232,.82);font-style:italic;line-height:1.55;margin-bottom:clamp(22px,3vw,32px);max-width:36ch;}
-.hidden-worlds-cta{margin:0 auto;border-radius:8px;}
-.cinematic-copy p.hidden-worlds-tags{margin-top:clamp(16px,2.4vw,26px);font-family:'Cinzel',serif;font-size:clamp(.52rem,.72vw,.62rem);letter-spacing:2px;color:var(--gold);opacity:.65;text-transform:uppercase;text-align:center;display:block;}
-@media(max-width:900px){.hidden-worlds-copy{max-width:min(420px,54%);}}
-@media(max-width:700px){
-  .hidden-worlds-banner .cinematic-banner-overlay{padding:20px;}
-  .hidden-worlds-copy{max-width:60%;}
-  .hidden-worlds-title{font-size:clamp(1.5rem,6vw,2.1rem);}
-  .cinematic-copy p.hidden-worlds-sub{font-size:.85rem;margin-bottom:16px;}
-  .cinematic-copy p.hidden-worlds-tags{font-size:.5rem;letter-spacing:1.2px;margin-top:12px;}
-}
-@media(max-width:420px){
-  .hidden-worlds-copy{max-width:80%;}
-  .hidden-worlds-mark{font-size:1rem;margin-bottom:6px;}
-  .hidden-worlds-eyebrow{letter-spacing:5px;}
-  .hidden-worlds-title{font-size:clamp(1.25rem,7vw,1.7rem);}
-  .cinematic-copy p.hidden-worlds-sub{font-size:.78rem;line-height:1.4;}
-  .cinematic-copy p.hidden-worlds-tags{font-size:.44rem;letter-spacing:.8px;margin-top:9px;}
-}
+/* Hidden Worlds now reuses the exact same .cinematic-copy / .banner-kicker /
+   h3 / p / .atlas-banner-btn pattern as the Atlas and Lore Library banners
+   above — no bespoke layout, so it inherits the same, already-responsive
+   behavior instead of needing its own breakpoints. */
 
 /* ── FOOTER GRID FIX — Navigation is the longest list; give it its own full-
    width row on the 2-column mobile grid instead of sharing a row with the
@@ -965,17 +933,14 @@ footer::before{opacity:.08;animation-duration:24s;}
   <a href="lore-library.html" class="atlas-banner cinematic-banner hidden-worlds-banner">
     <img src="hidden-worlds-banner.webp" alt="A golden gate opening onto a hidden realm beyond a library of secrets" loading="lazy">
     <div class="cinematic-banner-overlay">
-      <div class="cinematic-copy hidden-worlds-copy">
-        <span class="hidden-worlds-mark" aria-hidden="true">✦</span>
-        <span class="hidden-worlds-eyebrow" data-i18n="home.hidden.eyebrow">THE</span>
-        <h3 class="hidden-worlds-title" data-i18n="home.hidden.name">HIDDEN WORLDS</h3>
-        <span class="hidden-worlds-rule" aria-hidden="true"><i></i><b>✦</b><i></i></span>
-        <p class="hidden-worlds-sub" data-i18n="home.hidden.desc">There is more to Moonvale than what the stars have revealed.</p>
-        <span class="atlas-banner-btn hidden-worlds-cta">
+      <div class="cinematic-copy">
+        <span class="banner-kicker" data-i18n="home.hidden.kicker">The Hidden Worlds</span>
+        <h3 data-i18n="home.hidden.title">There is more to Moonvale than what the stars have revealed.</h3>
+        <p data-i18n="home.hidden.desc">Stories, art, characters and secrets — waiting just beyond the veil.</p>
+        <span class="atlas-banner-btn">
           <span data-i18n="home.hidden.cta">DISCOVER WHAT LIES BEYOND</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
-        <p class="hidden-worlds-tags" data-i18n="home.hidden.tags">STORIES &nbsp;✦&nbsp; ART &nbsp;✦&nbsp; CHARACTERS &nbsp;✦&nbsp; REALMS &nbsp;✦&nbsp; SECRETS</p>
       </div>
     </div>
   </a>
