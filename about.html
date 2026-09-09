@@ -132,17 +132,15 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .realm-mini.fan:hover .realm-mini-btn{background:rgba(155,142,196,.12);border-color:var(--fan);}
 @media(max-width:700px){.realm-pair{grid-template-columns:1fr;}.realm-mini{aspect-ratio:16/12;}}
 
-/* ── WHAT WE CREATE ── */
-.pillars-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.6vw,22px);}
-.pillar{text-align:center;padding:clamp(16px,2.4vw,30px) clamp(8px,1.8vw,18px);border:1px solid rgba(216,192,138,.14);border-radius:10px;background:rgba(255,255,255,.02);transition:border-color .3s,box-shadow .3s,transform .3s;}
-.pillar:hover{border-color:rgba(245,217,127,.5);box-shadow:0 14px 34px rgba(0,0,0,.3),0 0 30px rgba(216,192,138,.16);transform:translateY(-4px);}
-.pillar-icon{width:clamp(46px,5.4vw,64px);height:clamp(46px,5.4vw,64px);margin:0 auto clamp(10px,1.6vw,18px);border-radius:50%;border:1px solid rgba(245,217,127,.55);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 32% 28%,rgba(245,217,127,.4),rgba(216,192,138,.08) 55%,transparent 75%);box-shadow:0 0 18px rgba(245,217,127,.22),inset 0 0 12px rgba(245,217,127,.12);animation:pillarGlow 5s ease-in-out infinite;}
-.pillar-icon svg{width:44%;height:44%;color:var(--gold-hi);filter:drop-shadow(0 0 5px rgba(245,217,127,.7));}
-@keyframes pillarGlow{0%,100%{box-shadow:0 0 18px rgba(245,217,127,.22),inset 0 0 12px rgba(245,217,127,.12);}50%{box-shadow:0 0 28px rgba(245,217,127,.4),inset 0 0 16px rgba(245,217,127,.2);}}
-.pillar-title{font-family:'Cinzel',serif;font-size:clamp(.56rem,.85vw,.72rem);letter-spacing:clamp(1px,.3vw,2.5px);color:var(--gold-hi);margin-bottom:8px;white-space:nowrap;}
-.pillar-text{font-size:clamp(.68rem,1vw,.82rem);color:var(--dim);font-style:italic;line-height:1.55;}
-@media(max-width:560px){.pillars-grid{grid-template-columns:repeat(3,1fr);}.pillar-title{white-space:normal;}}
-@media(max-width:400px){.pillars-grid{grid-template-columns:repeat(2,1fr);}}
+/* ── WHAT WE CREATE — single banner image (art bakes in the title,
+   icons and labels itself, per the studio reference), sized to the
+   same width/height footprint the 5-card row used to occupy. No
+   overlay copy needed here — the banner is self-contained. ── */
+.create-banner{border:1px double rgba(216,192,138,.32);border-radius:14px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.45);}
+.create-banner img{width:100%;height:auto;aspect-ratio:5.6/1;object-fit:cover;display:block;}
+@media(max-width:700px){.create-banner img{aspect-ratio:2.4/1;}}
+@media(max-width:430px){.create-banner img{aspect-ratio:1.4/1;}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 @media(prefers-reduced-motion:reduce){.pillar-icon{animation:none;}}
 
 /* ── FULL-WIDTH CENTERED BANNERS (Story continues / Welcome) ── */
@@ -339,38 +337,12 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 
 <hr class="section-divider">
 
-<!-- WHAT WE CREATE -->
+<!-- WHAT WE CREATE — single banner image (art carries the title, all
+     5 icons and their labels itself); no code-drawn cards or icons. -->
 <section class="section fade-in" aria-labelledby="createTitle">
-  <div class="section-header">
-    <div class="section-eyebrow"><span class="line"></span><span>✦</span><span class="line"></span></div>
-    <h2 class="section-title" id="createTitle">WHAT WE CREATE</h2>
-  </div>
-  <div class="pillars-grid">
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20h16M5 20V9l3-3 3 3v11M13 20V6l3-3 3 3v14"/></svg></div>
-      <p class="pillar-title">WORLDS</p>
-      <p class="pillar-text">Epic realms with their own histories, cultures and secrets.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20c4-9 10-14 16-16-1 7-6 14-16 16Z"/><path d="M8 16l8-8"/></svg></div>
-      <p class="pillar-title">STORIES</p>
-      <p class="pillar-text">Chronicles, legends and forgotten tales.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l4 6-4 12-4-12 4-6Z"/><path d="M4 9h16"/></svg></div>
-      <p class="pillar-title">ART</p>
-      <p class="pillar-text">Cinematic art, characters and breathtaking landscapes.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M15 9l-3.5 2-1.5 4 3.5-2 1.5-4Z"/></svg></div>
-      <p class="pillar-title">ARTEFACTS</p>
-      <p class="pillar-text">Objects born from stories, made to be part of your world.</p>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v3M12 18v3M4 12h3M17 12h3"/><rect x="7" y="7" width="10" height="10" rx="2"/></svg></div>
-      <p class="pillar-title">DISCOVERY</p>
-      <p class="pillar-text">A universe that grows with every step you take.</p>
-    </div>
+  <h2 class="sr-only" id="createTitle">What We Create</h2>
+  <div class="create-banner">
+    <img src="about-what-we-create-banner.webp" alt="What We Create: Worlds — epic realms with their own histories, cultures and secrets. Stories — chronicles, legends and forgotten tales. Art — cinematic art, characters and breathtaking landscapes. Artefacts — objects born from stories, made to be part of your world. Discovery — a universe that grows with every step you take." loading="lazy">
   </div>
 </section>
 
