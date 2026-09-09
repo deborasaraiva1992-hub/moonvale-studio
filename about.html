@@ -91,27 +91,38 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .split-copy p{font-size:clamp(.95rem,1.3vw,1.08rem);color:rgba(245,241,232,.8);line-height:1.85;font-weight:300;margin-bottom:16px;}
 .split-copy p:last-child{margin-bottom:0;}
 .split-copy em{color:var(--gold-hi);font-style:italic;}
-/* Manifesto is its own 3-up variant: image / copy / a compass emblem
-   carrying the pull-quote, matching the studio reference layout. */
-.split.manifesto{grid-template-columns:1fr 1.3fr .8fr;}
-.manifesto-emblem{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;}
-.manifesto-compass{width:clamp(84px,8vw,116px);height:clamp(84px,8vw,116px);color:var(--gold-hi);filter:drop-shadow(0 0 10px rgba(245,217,127,.35));animation:pillarGlow 6s ease-in-out infinite;border-radius:50%;}
-.manifesto-compass svg{width:100%;height:100%;}
-.manifesto-quote{font-style:italic;color:var(--gold);opacity:.92;font-size:clamp(.92rem,1.2vw,1.05rem);line-height:1.6;max-width:220px;}
-@media(max-width:900px){
-  .split.manifesto{grid-template-columns:1fr 1fr;}
-  .manifesto-emblem{grid-column:1/-1;flex-direction:row;justify-content:center;max-width:420px;margin:0 auto;text-align:left;}
-  .manifesto-quote{max-width:none;}
-}
 @media(max-width:820px){
   .split,.split.reverse{grid-template-columns:1fr;}
   .split.reverse .split-media{order:1;}
   .split.reverse .split-copy{order:2;}
   .split-media{aspect-ratio:16/10;}
 }
+
+/* Our Manifesto is one framed banner — image, copy and the compass
+   emblem all inside a single bordered card so the image fills the
+   same height as the text instead of floating short with empty
+   space beneath it, matching the studio reference. */
+.manifesto-banner{display:grid;grid-template-columns:.95fr 1.35fr .8fr;border:1px double rgba(216,192,138,.32);border-radius:14px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.45);background:rgba(255,255,255,.015);}
+.manifesto-banner-media{position:relative;min-height:340px;}
+.manifesto-banner-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.manifesto-banner-copy{padding:clamp(24px,3.4vw,48px);border-left:1px solid rgba(216,192,138,.14);border-right:1px solid rgba(216,192,138,.14);display:flex;flex-direction:column;justify-content:center;}
+.manifesto-banner-copy .section-eyebrow{justify-content:flex-start;margin-bottom:18px;}
+.manifesto-banner-emblem{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:clamp(20px,3vw,36px);}
+.manifesto-compass{width:clamp(76px,7.5vw,108px);height:clamp(76px,7.5vw,108px);color:var(--gold-hi);border-radius:50%;filter:drop-shadow(0 0 10px rgba(245,217,127,.4));animation:pillarGlow 6s ease-in-out infinite;}
+.manifesto-compass svg{width:100%;height:100%;}
+.manifesto-quote{font-style:italic;color:var(--gold);opacity:.92;font-size:clamp(.88rem,1.15vw,1rem);line-height:1.6;max-width:200px;}
+@media(max-width:900px){
+  .manifesto-banner{grid-template-columns:1fr 1fr;}
+  .manifesto-banner-media{min-height:280px;}
+  .manifesto-banner-emblem{grid-column:1/-1;flex-direction:row;border-top:1px solid rgba(216,192,138,.14);}
+  .manifesto-quote{max-width:none;text-align:left;}
+}
 @media(max-width:700px){
-  .split.manifesto{grid-template-columns:1fr;}
-  .manifesto-emblem{flex-direction:column;text-align:center;max-width:none;}
+  .manifesto-banner{grid-template-columns:1fr;}
+  .manifesto-banner-media{min-height:220px;}
+  .manifesto-banner-copy{border-left:none;border-right:none;border-top:1px solid rgba(216,192,138,.14);border-bottom:1px solid rgba(216,192,138,.14);}
+  .manifesto-banner-emblem{flex-direction:column;}
+  .manifesto-quote{text-align:center;}
 }
 @media(prefers-reduced-motion:reduce){.manifesto-compass{animation:none;}}
 
@@ -294,26 +305,25 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 
 <!-- OUR MANIFESTO -->
 <section class="section fade-in" aria-labelledby="manifestoTitle">
-  <div class="section-header">
-    <div class="section-eyebrow"><span class="line"></span><span>✦ OUR MANIFESTO</span><span class="line"></span></div>
-  </div>
-  <div class="split manifesto">
-    <div class="split-media">
+  <div class="manifesto-banner">
+    <div class="manifesto-banner-media">
       <img src="about-manifesto.webp" alt="A candlelit library with a globe and tall arched window, the heart of Moonvale's archive" loading="lazy">
     </div>
-    <div class="split-copy">
+    <div class="manifesto-banner-copy">
+      <div class="section-eyebrow" id="manifestoTitle"><span class="line"></span><span>✦ OUR MANIFESTO ✦</span><span class="line"></span></div>
       <p>Moonvale began with a simple belief: <em>that fantasy is not an escape from reality, but another way of seeing it.</em></p>
       <p>Every legend carries truth. Every shadow holds memory. Every light points toward something worth protecting.</p>
       <p>We built Moonvale to be the place where those truths live — not as entertainment, but as a living archive of imagined worlds that feel as real as the one we inhabit.</p>
     </div>
-    <div class="manifesto-emblem">
+    <div class="manifesto-banner-emblem">
       <div class="manifesto-compass" aria-hidden="true">
-        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
-          <circle cx="50" cy="50" r="46"/>
-          <circle cx="50" cy="50" r="35" stroke-opacity=".5"/>
-          <path d="M50 6v10M50 84v10M6 50h10M84 50h10" stroke-opacity=".7"/>
-          <path d="M50 26 L60 50 L50 74 L40 50 Z" fill="currentColor" fill-opacity=".18"/>
-          <circle cx="50" cy="50" r="3" fill="currentColor"/>
+        <svg viewBox="0 0 120 120" fill="none" stroke="currentColor">
+          <circle cx="60" cy="60" r="44" stroke-width=".8" stroke-opacity=".45"/>
+          <path d="M60 4v18M60 98v18M4 60h18M98 60h18" stroke-width="1" stroke-opacity=".8"/>
+          <path d="M24 24l10 10M86 24l-10 10M24 96l10-10M86 96l-10-10" stroke-width=".8" stroke-opacity=".4"/>
+          <path d="M60 16 L66 54 L104 60 L66 66 L60 104 L54 66 L16 60 L54 54 Z" stroke-width=".8" stroke-opacity=".65"/>
+          <path d="M60 34 L67 53 L86 60 L67 67 L60 86 L53 67 L34 60 L53 53 Z" fill="currentColor" fill-opacity=".3" stroke-width=".6" stroke-opacity=".6"/>
+          <circle cx="60" cy="60" r="3.5" fill="currentColor"/>
         </svg>
       </div>
       <p class="manifesto-quote">✧ A portal between what is and what could be.</p>
