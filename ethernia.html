@@ -687,7 +687,7 @@ footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,3
 .realm-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 .realm-card-content{bottom:clamp(14px,2.2vw,32px);left:clamp(14px,2.8vw,36px);right:clamp(14px,2.8vw,36px);padding:clamp(13px,1.8vw,22px);}
 footer{padding-top:clamp(22px,2.6vw,34px)!important;padding-bottom:calc(clamp(16px,2vw,24px) + env(safe-area-inset-bottom))!important;}
-.footer-inner{grid-template-columns:minmax(240px,1.25fr) repeat(4,minmax(112px,.7fr));gap:clamp(14px,1.8vw,22px)!important;align-items:start;}
+.footer-inner{grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(14px,1.8vw,22px)!important;align-items:start;}
 .footer-logo{margin-bottom:4px!important}.footer-tagline{margin-bottom:6px!important}.footer-desc{margin-bottom:8px!important;line-height:1.45!important}.footer-social{gap:9px!important}.footer-col h5{margin-bottom:8px!important}.footer-col ul li{margin-bottom:4px!important}.footer-bottom{margin-top:clamp(12px,1.6vw,18px)!important;padding-top:10px!important}.footer-copy{line-height:1.35!important}
 @media(max-width:700px){.realm-grid{grid-template-columns:1fr}.realm-card{aspect-ratio:3/2;min-height:0!important}.realm-card-content{max-width:86%;padding:9px 10px}.footer-inner{gap:10px 14px!important}.footer-social a{width:30px!important;height:30px!important}.footer-bottom{margin-top:10px!important;padding-top:9px!important}.footer-language{transform:scale(.92);transform-origin:left center}}
 @media(max-width:380px){footer{padding-top:22px!important}.footer-desc{display:none}.footer-social{margin-top:4px!important}.footer-inner{gap:10px!important}}
@@ -697,7 +697,7 @@ footer{padding-top:clamp(22px,2.6vw,34px)!important;padding-bottom:calc(clamp(16
 /* ── PRODUCTION-READY HOMEPAGE FINAL RHYTHM ── */
 @media(min-width:1025px){.hero-logo{font-size:clamp(3.1rem,7.15vw,6.85rem);margin-bottom:clamp(10px,1.1vw,16px)}.hero-tagline{margin-bottom:clamp(14px,1.55vw,24px)}.hero-description{margin-bottom:clamp(22px,2.25vw,34px)}.hero-primary-cta{min-height:48px;padding-inline:clamp(30px,3.2vw,46px)}.realm-card{aspect-ratio:3/2}.realm-card-content{bottom:clamp(16px,2vw,30px)}}
 footer{padding-top:clamp(18px,2.2vw,30px)!important;padding-bottom:calc(clamp(12px,1.7vw,20px) + env(safe-area-inset-bottom))!important;}
-.footer-inner{gap:clamp(10px,1.45vw,18px)!important;grid-template-columns:minmax(230px,1.18fr) repeat(4,minmax(104px,.66fr));}
+.footer-inner{gap:clamp(10px,1.45vw,18px)!important;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr)!important;}
 .footer-logo{line-height:1.1!important}.footer-tagline{line-height:1.25!important}.footer-desc{max-width:360px!important}.footer-col h5{margin-bottom:6px!important}.footer-col ul li{margin-bottom:3px!important}.footer-col ul li a{line-height:1.25!important}.footer-bottom{margin-top:10px!important;padding-top:8px!important}.footer-copy{font-size:.66rem!important}.footer-language .lang-globe{width:32px;height:32px}
 @media(max-width:700px){footer{padding-top:18px!important;padding-bottom:calc(16px + env(safe-area-inset-bottom))!important}.footer-inner{gap:8px 12px!important}.footer-col h5{margin-bottom:5px!important}.footer-col ul li{margin-bottom:2px!important}.footer-bottom{margin-top:8px!important;padding-top:8px!important}.footer-copy{font-size:.62rem!important}.realm-card{aspect-ratio:3/2}.realm-card img{object-fit:cover!important}.realm-card-content{bottom:9px;left:10px;right:10px}}
 @media(max-width:430px){.footer-inner{grid-template-columns:1fr 1fr!important}.footer-inner>div:first-child{grid-column:1/-1}.footer-social{gap:7px!important}.footer-social a{width:28px!important;height:28px!important}.footer-col ul li a{font-size:.72rem!important}.footer-language .lang-globe{width:30px;height:30px}}
@@ -769,7 +769,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 /* One soft, symmetric vignette (not several stacked gradients) so the
    darkening reads as a single natural frame instead of patches — plus
    a bottom fade so the image still melts into the page background. */
-.eth-hero__image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 78% at 50% 42%,transparent 42%,rgba(5,8,22,.5) 100%),linear-gradient(180deg,transparent 82%,rgba(5,8,22,.9) 100%);}
+/* Dark AT the text's own position (center), fading OUT toward the
+   edges — the previous version had this backwards (transparent
+   center, dark edges), which is exactly where the text sits, so it
+   nearly disappeared against the bright sky. */
+.eth-hero__image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 68% 62% at 50% 42%,rgba(5,8,22,.62) 0%,rgba(5,8,22,.3) 55%,transparent 85%),linear-gradient(180deg,transparent 82%,rgba(5,8,22,.9) 100%);}
 .eth-hero__image::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(245,217,127,.2),transparent 36%),radial-gradient(ellipse at 50% 12%,rgba(179,214,255,.16),transparent 50%);animation:bloom 6s ease-in-out infinite alternate;pointer-events:none;}
 /* A handful of slow-drifting sparkles behind the title — the site's
    ambient star canvas reads faintly against this bright sky, so the
@@ -781,7 +785,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 /* Shifted toward the left/center of the frame — the guardian stands
    on the right side of the art, and centering the text dead-center
    used to run it straight over her. */
-.eth-hero__content{position:absolute;inset:0;top:calc(72px + env(safe-area-inset-top));right:24%;z-index:2;max-width:740px;margin-left:clamp(16px,5vw,56px);text-align:center;text-shadow:0 3px 20px rgba(0,0,0,.85),0 1px 6px rgba(0,0,0,.9);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(12px,2.4vw,28px) clamp(12px,3vw,32px);pointer-events:none;}
+.eth-hero__content{position:absolute;inset:0;top:calc(72px + env(safe-area-inset-top));z-index:2;max-width:740px;margin-inline:auto;text-align:center;text-shadow:0 3px 20px rgba(0,0,0,.85),0 1px 6px rgba(0,0,0,.9);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(12px,2.4vw,28px) clamp(12px,3vw,32px);pointer-events:none;}
 .eth-scroll{pointer-events:auto;}
 .eth-eyebrow,.eth-kicker{font-family:'Cinzel',serif;font-size:clamp(.62rem,1.05vw,.82rem);letter-spacing:clamp(2.6px,.55vw,6px);color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;}
 .eth-eyebrow::before,.eth-eyebrow::after,.eth-kicker::before,.eth-kicker::after{content:'';width:clamp(28px,5vw,68px);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7;}
@@ -800,7 +804,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 .eth-banner__shade{position:absolute;inset:0;z-index:-1;background:var(--shade);}
 .eth-banner__inner{min-height:inherit;display:flex;align-items:center;padding:clamp(28px,6vw,88px);}
 .eth-banner--content .eth-banner__image{inset:var(--content-overlay-inset);height:var(--content-image-height);}.eth-banner--content .eth-banner__inner{padding:var(--content-frame-padding);}
-.eth-banner--right .eth-banner__inner{justify-content:flex-end;text-align:right}.eth-banner--left .eth-banner__inner{justify-content:flex-start}.eth-banner--center .eth-banner__inner{justify-content:center;text-align:center}.eth-banner--right{--shade:linear-gradient(90deg,transparent 22%,rgba(5,8,22,.18) 52%,rgba(5,8,22,.4) 78%,rgba(5,8,22,.62) 100%);}.eth-banner--left{--shade:linear-gradient(90deg,rgba(5,8,22,.62) 0%,rgba(5,8,22,.4) 22%,rgba(5,8,22,.18) 48%,transparent 78%);}.eth-banner--center{--shade:radial-gradient(ellipse 70% 80% at center,rgba(5,8,22,.34),rgba(5,8,22,.14) 55%,transparent 85%);}
+.eth-banner--right .eth-banner__inner{justify-content:flex-end;text-align:right}.eth-banner--left .eth-banner__inner{justify-content:flex-start}.eth-banner--center .eth-banner__inner{justify-content:center;text-align:center}.eth-banner--right{--shade:linear-gradient(90deg,transparent 10%,rgba(5,8,22,.06) 35%,rgba(5,8,22,.2) 58%,rgba(5,8,22,.38) 80%,rgba(5,8,22,.55) 100%);}.eth-banner--left{--shade:linear-gradient(90deg,rgba(5,8,22,.55) 0%,rgba(5,8,22,.38) 20%,rgba(5,8,22,.2) 42%,rgba(5,8,22,.06) 65%,transparent 90%);}.eth-banner--center{--shade:radial-gradient(ellipse 74% 84% at center,rgba(5,8,22,.28),rgba(5,8,22,.1) 60%,transparent 88%);}
 /* Text floats free on the shade — no boxed/blurred panel, just a
    confident text-shadow so it stays crisp against any artwork. */
 .eth-panel{max-width:min(590px,48%);padding:clamp(18px,2.6vw,34px);}.eth-banner--center .eth-panel{max-width:680px;}
@@ -929,7 +933,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
       </ul>
     </div>
     <div class="footer-col">
-      <h5 data-i18n="footer.connect">CONNECT</h5>
+      <h5 data-i18n="footer.connect">CONTACT</h5>
       <ul><li><a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.eth">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.fan">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" data-i18n="social.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" data-i18n="social.pinterest">Pinterest</a></li></ul>
     </div>
   </div>
