@@ -58,7 +58,7 @@
       'ethernia.chronicles.title':'CHRONICLES OF ETHERNIA',
       'ethernia.chronicles.desc':'Stories carried across the heavens.',
       'ethernia.chronicles.cta':'READ THE CHRONICLES',
-      'ethernia.final.statement':'EVERY STAR LEAVES A LIGHT. WILL YOU FOLLOW IT?',
+      'ethernia.final.line1':'EVERY STAR','ethernia.final.line2':'LEAVES A LIGHT.','ethernia.final.line3':'WILL YOU FOLLOW IT?',
       'music.off':'MUSIC OFF','music.on':'MUSIC ON'
     },
     pt:{
@@ -116,7 +116,7 @@
       'ethernia.chronicles.title':'CRÓNICAS DE ETHERNIA',
       'ethernia.chronicles.desc':'Histórias transportadas pelos céus.',
       'ethernia.chronicles.cta':'LER AS CRÓNICAS',
-      'ethernia.final.statement':'CADA ESTRELA DEIXA UMA LUZ. VAIS SEGUI-LA?',
+      'ethernia.final.line1':'CADA ESTRELA','ethernia.final.line2':'DEIXA UMA LUZ.','ethernia.final.line3':'VAIS SEGUI-LA?',
       'music.off':'MÚSICA OFF','music.on':'MÚSICA ON'
     },
     es:{
@@ -174,7 +174,7 @@
       'ethernia.chronicles.title':'CRÓNICAS DE ETHERNIA',
       'ethernia.chronicles.desc':'Historias llevadas a través de los cielos.',
       'ethernia.chronicles.cta':'LEER LAS CRÓNICAS',
-      'ethernia.final.statement':'CADA ESTRELLA DEJA UNA LUZ. ¿LA SEGUIRÁS?',
+      'ethernia.final.line1':'CADA ESTRELLA','ethernia.final.line2':'DEJA UNA LUZ.','ethernia.final.line3':'¿LA SEGUIRÁS?',
       'music.off':'MÚSICA OFF','music.on':'MÚSICA ON'
     }
   };
