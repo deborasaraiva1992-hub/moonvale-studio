@@ -773,8 +773,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
    edges — the previous version had this backwards (transparent
    center, dark edges), which is exactly where the text sits, so it
    nearly disappeared against the bright sky. */
-.eth-hero__image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 68% 62% at 50% 42%,rgba(5,8,22,.62) 0%,rgba(5,8,22,.3) 55%,transparent 85%),linear-gradient(180deg,transparent 82%,rgba(5,8,22,.9) 100%);}
-.eth-hero__image::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(245,217,127,.2),transparent 36%),radial-gradient(ellipse at 50% 12%,rgba(179,214,255,.16),transparent 50%);animation:bloom 6s ease-in-out infinite alternate;pointer-events:none;}
+/* The img below has its own filter (saturate/contrast), which per spec
+   gives it a stacking context of its own — that put it in the same
+   paint step as these pseudo-elements and, being later in the DOM, it
+   was painting OVER the vignette/bloom, silently canceling them out.
+   Explicit z-index here forces the correct order back. */
+.eth-hero__image::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 76% 70% at 50% 42%,rgba(5,8,22,.86) 0%,rgba(5,8,22,.58) 52%,rgba(5,8,22,.18) 82%,transparent 96%),linear-gradient(180deg,transparent 60%,rgba(5,8,22,.5) 78%,rgba(5,8,22,.88) 90%,rgba(5,8,22,1) 100%);}
+.eth-hero__image::after{content:'';position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 38%,rgba(245,217,127,.2),transparent 36%),radial-gradient(ellipse at 50% 12%,rgba(179,214,255,.16),transparent 50%);animation:bloom 6s ease-in-out infinite alternate;pointer-events:none;}
 /* A handful of slow-drifting sparkles behind the title — the site's
    ambient star canvas reads faintly against this bright sky, so the
    hero gets its own small, deliberate accents. */
@@ -785,14 +790,14 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 /* Shifted toward the left/center of the frame — the guardian stands
    on the right side of the art, and centering the text dead-center
    used to run it straight over her. */
-.eth-hero__content{position:absolute;inset:0;top:calc(72px + env(safe-area-inset-top));z-index:2;max-width:740px;margin-inline:auto;text-align:center;text-shadow:0 3px 20px rgba(0,0,0,.85),0 1px 6px rgba(0,0,0,.9);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(12px,2.4vw,28px) clamp(12px,3vw,32px);pointer-events:none;}
+.eth-hero__content{position:absolute;inset:0;top:calc(72px + env(safe-area-inset-top));z-index:2;max-width:740px;margin-inline:auto;text-align:center;text-shadow:0 0 1px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,.98),0 3px 14px rgba(0,0,0,.9),0 8px 32px rgba(0,0,0,.7);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(12px,2.4vw,28px) clamp(12px,3vw,32px);pointer-events:none;}
 .eth-scroll{pointer-events:auto;}
 .eth-eyebrow,.eth-kicker{font-family:'Cinzel',serif;font-size:clamp(.62rem,1.05vw,.82rem);letter-spacing:clamp(2.6px,.55vw,6px);color:var(--gold);text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;}
 .eth-eyebrow::before,.eth-eyebrow::after,.eth-kicker::before,.eth-kicker::after{content:'';width:clamp(28px,5vw,68px);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.7;}
-.eth-hero h1{font-family:'Cinzel',serif;font-size:clamp(2.1rem,5.6vw,4.6rem);font-weight:400;letter-spacing:clamp(3px,.9vw,10px);line-height:1;margin:0 0 18px;color:var(--gold-hi);background:linear-gradient(100deg,var(--gold) 0%,#fff7dc 18%,var(--gold-hi) 36%,var(--gold) 54%,#fff7dc 72%,var(--gold-hi) 90%,var(--gold) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 22px rgba(245,217,127,.28)) drop-shadow(0 2px 5px rgba(0,0,0,.45));animation:titleShimmer 9s ease-in-out infinite;}
+.eth-hero h1{font-family:'Cinzel',serif;font-size:clamp(2.1rem,5.6vw,4.6rem);font-weight:400;letter-spacing:clamp(3px,.9vw,10px);line-height:1;margin:0 0 18px;color:var(--gold-hi);background:linear-gradient(100deg,var(--gold) 0%,#fff7dc 18%,var(--gold-hi) 36%,var(--gold) 54%,#fff7dc 72%,var(--gold-hi) 90%,var(--gold) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 2px rgba(5,8,22,.92)) drop-shadow(0 0 6px rgba(5,8,22,.7)) drop-shadow(0 0 22px rgba(245,217,127,.3)) drop-shadow(0 3px 10px rgba(0,0,0,.7));animation:titleShimmer 9s ease-in-out infinite;}
 .eth-subtitle{font-family:'Cinzel',serif;font-size:clamp(.64rem,1.3vw,1rem);letter-spacing:clamp(1.4px,.35vw,4px);text-transform:uppercase;color:rgba(245,241,232,.82);}
 .eth-quote{font-size:clamp(.8rem,1.6vw,1.24rem);font-style:italic;color:rgba(245,217,127,.92);max-width:520px;margin:22px auto 0;line-height:1.45;}
-.eth-scroll{position:static;display:flex;flex-direction:column;gap:9px;align-items:center;width:max-content;margin:clamp(22px,3.6vh,38px) auto 0;font-family:'Cinzel',serif;font-size:clamp(.58rem,.7vw,.72rem);letter-spacing:4px;color:var(--gold);text-decoration:none;text-shadow:0 1px 12px rgba(5,8,22,.72);transition:opacity .35s ease,visibility .35s ease;animation:scrollFloat 2.8s ease-in-out infinite;}
+.eth-scroll{position:static;display:flex;flex-direction:column;gap:9px;align-items:center;width:max-content;margin:clamp(22px,3.6vh,38px) auto 0;font-family:'Cinzel',serif;font-size:clamp(.58rem,.7vw,.72rem);letter-spacing:4px;color:var(--gold);text-decoration:none;text-shadow:0 0 1px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,.95),0 3px 16px rgba(5,8,22,.85);transition:opacity .35s ease,visibility .35s ease;animation:scrollFloat 2.8s ease-in-out infinite;}
 .eth-scroll i{display:block;position:relative;width:23px;height:34px;border:1px solid rgba(245,217,127,.82);border-radius:14px;box-shadow:0 0 12px rgba(245,217,127,.1);}.eth-scroll i::after{content:'✦';position:absolute;top:5px;left:50%;font-size:8px;line-height:8px;color:var(--gold-hi);text-shadow:0 0 8px rgba(245,217,127,.8);transform:translateX(-50%);animation:scrollDot 1.8s ease-in-out infinite;}.eth-scroll.is-hidden{opacity:0;visibility:hidden;pointer-events:none;}
 .eth-main{padding:clamp(18px,3vw,48px) clamp(12px,4vw,56px);display:grid;gap:clamp(34px,5vw,76px);}
 .eth-banner{position:relative;min-height:clamp(300px,26vw,410px);max-width:1760px;width:100%;margin:auto;border-radius:18px;overflow:hidden;border:1px solid rgba(216,192,138,.34);box-shadow:0 28px 90px rgba(0,0,0,.52),0 0 46px rgba(216,192,138,.09);isolation:isolate;background:#050816;}
