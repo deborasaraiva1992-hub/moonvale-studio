@@ -765,7 +765,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
    lower edge. ── */
 .eth-hero{position:relative;min-height:auto;padding-top:calc(72px + env(safe-area-inset-top));overflow:hidden;isolation:isolate;}
 .eth-hero__image{position:relative;width:100%;z-index:0;overflow:hidden;}
-.eth-hero__image img{width:100%;height:auto;max-height:min(60svh,620px);display:block;margin-inline:auto;object-fit:contain;filter:saturate(1.05) contrast(1.02);}
+.eth-hero__image img{width:100%;height:auto;display:block;object-fit:contain;filter:saturate(1.05) contrast(1.02);}
 /* One soft, symmetric vignette (not several stacked gradients) so the
    darkening reads as a single natural frame instead of patches — plus
    a bottom fade so the image still melts into the page background. */
