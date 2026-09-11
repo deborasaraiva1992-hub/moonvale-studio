@@ -766,14 +766,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 .eth-hero{position:relative;min-height:auto;padding-top:calc(72px + env(safe-area-inset-top));overflow:hidden;isolation:isolate;}
 .eth-hero__image{position:relative;width:100%;z-index:0;overflow:hidden;}
 .eth-hero__image img{width:100%;height:auto;display:block;object-fit:contain;filter:saturate(1.05) contrast(1.02);}
-/* Desktop only: cap the hero's height by its OWN width (aspect-ratio)
-   rather than viewport height (svh) - a fixed vh-based cap looked fine
-   in a maximized full-screen window but produced huge, inconsistent
-   letterbox bars in a smaller, non-maximized browser window, since
-   window height and width don't scale together. Aspect-ratio ties the
-   height to the same width that's already correct, so it stays
-   proportional no matter how tall or short the actual window is. */
-@media(min-width:901px){.eth-hero__image{aspect-ratio:2.3/1;}.eth-hero__image img{height:100%;}}
+/* No height cap here, by design: the guardian's gown runs all the way
+   to the image's own bottom edge and the floating islands/moon sit
+   high in the sky, so there's no safe margin to crop from either end
+   without cutting something that matters. Tried three different
+   techniques to shrink this on desktop (svh cap, aspect-ratio cap,
+   cover-crop) - all either broke on non-maximized windows or cut into
+   the art. Left at its natural, full-width, uncropped size. */
 /* One soft, symmetric vignette (not several stacked gradients) so the
    darkening reads as a single natural frame instead of patches — plus
    a bottom fade so the image still melts into the page background. */
