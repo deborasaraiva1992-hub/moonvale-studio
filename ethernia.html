@@ -822,11 +822,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 .eth-panel{max-width:min(590px,48%);padding:clamp(18px,2.6vw,34px);}.eth-banner--center .eth-panel{max-width:680px;}
 .eth-kicker{text-shadow:0 2px 12px rgba(0,0,0,.8);}
 .eth-panel h2{font-family:'Cinzel',serif;font-size:clamp(1.55rem,3.6vw,3.4rem);font-weight:400;letter-spacing:clamp(2px,.45vw,6px);line-height:1.1;color:var(--gold-hi);margin:10px 0 14px;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);}.eth-panel p{font-size:clamp(1rem,1.55vw,1.28rem);color:rgba(245,241,232,.9);line-height:1.55;margin:0 0 24px;text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.95);}.eth-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 24px;border:1px solid rgba(245,217,127,.5);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:2.6px;text-transform:uppercase;color:var(--gold-hi);background:rgba(5,8,22,.55);text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;}.eth-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(245,217,127,.35),transparent);transform:translateX(-120%);transition:transform .6s ease;}.eth-btn:hover,.eth-btn:focus-visible{transform:translateY(-2px);border-color:var(--gold-hi);box-shadow:0 0 24px rgba(216,192,138,.18);}.eth-btn:hover::before,.eth-btn:focus-visible::before{transform:translateX(120%);}
-/* Sized by aspect-ratio instead of a fixed height clamp, matching
-   the source art's own ~2:1 ratio closely so object-fit:cover barely
-   has to crop it at any width — the fixed short height used before
-   forced a much wider crop than the image itself. */
-.eth-final{aspect-ratio:2.8/1;height:auto;min-height:0;}
 /* Centered, but kept narrow enough that it sits over the castle in
    the middle of the composition without reaching the guardian on the
    right — verified at each breakpoint below. */
