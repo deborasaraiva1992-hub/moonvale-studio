@@ -78,12 +78,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .fan-panel{max-width:min(590px,48%);padding:clamp(18px,2.6vw,34px);}.fan-banner--center .fan-panel{max-width:680px;}
 .fan-kicker{text-shadow:0 2px 12px rgba(0,0,0,.8);}
 .fan-panel h2{font-family:'Cinzel',serif;font-size:clamp(1.55rem,3.6vw,3.4rem);font-weight:400;letter-spacing:clamp(2px,.45vw,6px);line-height:1.1;color:var(--gold-hi);margin:10px 0 14px;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);}.fan-panel p{font-size:clamp(1rem,1.55vw,1.28rem);color:rgba(245,241,232,.9);line-height:1.55;margin:0 0 24px;text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.95);}.fan-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 24px;border:1px solid rgba(155,142,196,.5);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:2.6px;text-transform:uppercase;color:var(--gold-hi);background:rgba(5,8,22,.55);text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;}.fan-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(155,142,196,.35),transparent);transform:translateX(-120%);transition:transform .6s ease;}.fan-btn:hover,.fan-btn:focus-visible{transform:translateY(-2px);border-color:var(--fan);box-shadow:0 0 24px rgba(155,142,196,.18);}.fan-btn:hover::before,.fan-btn:focus-visible::before{transform:translateX(120%);}
-.fan-final{aspect-ratio:3.6/1;height:auto;min-height:0;}
+.fan-final{aspect-ratio:2.8/1;height:auto;min-height:0;}
 .fan-final .fan-banner__inner{position:absolute;inset:0;justify-content:center;text-align:center;flex-direction:column;gap:18px;}
-.fan-final .fan-panel{background:transparent;border:0;backdrop-filter:none;max-width:440px;padding:clamp(14px,2vw,24px);}
+.fan-final .fan-panel{background:transparent;border:0;backdrop-filter:none;max-width:400px;padding:clamp(14px,2vw,24px);}
 .fan-final .fan-banner__shade{background:radial-gradient(ellipse 42% 80% at 50% 50%,rgba(5,8,22,.5),transparent 75%);}
 .fan-final h2{font-family:'Cinzel',serif;font-weight:400;text-transform:uppercase;color:var(--gold-hi);letter-spacing:clamp(1px,.26vw,3px);font-size:clamp(.95rem,2.05vw,1.8rem);line-height:1.6;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);white-space:nowrap;margin:0;}
-.fan-final .fan-btn{margin-top:4px;}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}
 @keyframes sparkleTwinkle{0%,100%{opacity:0;transform:scale(.4);}50%{opacity:1;transform:scale(1);}}
 @keyframes bloom{to{opacity:.72}}
@@ -93,7 +92,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 @keyframes frameGlow{0%,100%{box-shadow:inset 0 0 36px rgba(155,142,196,.055);border-color:rgba(155,142,196,.3);}50%{box-shadow:inset 0 0 52px rgba(155,142,196,.12);border-color:rgba(155,142,196,.48);}}
 @keyframes ethDrift{to{transform:scale(1.075) translate3d(1.2%,-.8%,0)}}
 @media(max-width:900px){.fan-hero__content{max-width:none;padding:0 20px;}.fan-hero h1{font-size:clamp(1.6rem,7vw,2.4rem);letter-spacing:clamp(2px,.7vw,6px);margin-bottom:clamp(0px,.8vw,6px);}.fan-subtitle{font-size:clamp(.56rem,2vw,.8rem);}.fan-quote{font-size:clamp(.7rem,2.2vw,1rem);margin-top:clamp(4px,1.4vw,10px);}.fan-scroll{margin-top:clamp(4px,.8vh,10px);}.fan-main{padding-inline:12px;gap:clamp(24px,4vw,40px)}.fan-banner--content{--content-frame-height:clamp(210px,53vw,255px);--content-frame-padding:clamp(12px,2.8vw,24px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto}.fan-banner__image{position:absolute;inset:0;min-height:0;aspect-ratio:auto}.fan-banner__image img{object-position:var(--pos-mobile,var(--pos,center))}.fan-banner__shade{background:linear-gradient(180deg,rgba(5,8,22,0) 10%,rgba(5,8,22,.1) 42%,rgba(5,8,22,.56) 100%)}.fan-banner__inner{min-height:inherit;display:flex;align-items:center;padding:clamp(12px,2.8vw,24px)}.fan-panel,.fan-banner--center .fan-panel{max-width:min(53%,360px);margin:0;padding:clamp(10px,1.8vw,16px)}.fan-panel h2{font-size:clamp(.92rem,2.8vw,1.35rem);letter-spacing:clamp(1px,.25vw,2px);margin:6px 0 8px}.fan-panel p{font-size:clamp(.78rem,1.9vw,.95rem);line-height:1.35;margin:0 0 12px}.fan-btn{min-height:44px;padding:10px 14px;font-size:clamp(.6rem,1.4vw,.7rem);letter-spacing:clamp(1px,.2vw,2px)}.fan-banner--right .fan-banner__inner{justify-content:flex-end;text-align:right}.fan-banner--left .fan-banner__inner{justify-content:flex-start;text-align:left}.fan-banner--center .fan-banner__inner{justify-content:center;text-align:center}.fan-banner--center .fan-panel{max-width:min(58%,390px)}.fan-kicker{margin-bottom:0}.fan-final{aspect-ratio:2/1;height:auto;min-height:0;}.fan-final .fan-banner__image{position:absolute;inset:0;aspect-ratio:auto}.fan-final .fan-banner__inner{position:absolute;inset:0;display:flex;align-items:center;}.fan-final .fan-panel{border:0;margin:0;background:transparent;max-width:78%}}
-@media(max-width:520px){.fan-banner--content{--content-frame-radius:12px;--content-frame-padding:10px;--content-frame-height:clamp(210px,53vw,245px);min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto}.fan-banner::before{inset:5px;border-radius:9px}.fan-panel,.fan-banner--center .fan-panel{max-width:60%;padding:10px}.fan-banner--center .fan-panel{max-width:64%}.fan-panel h2{font-size:clamp(.9rem,3.6vw,1.05rem);line-height:1.08}.fan-panel p{font-size:clamp(.74rem,2.8vw,.84rem);line-height:1.28;margin-bottom:9px}.fan-btn{min-height:44px;padding:8px 9px;font-size:clamp(.6rem,2vw,.66rem);letter-spacing:1px}.fan-final{aspect-ratio:1.8/1;height:auto;min-height:0;}.fan-final .fan-panel{max-width:84%}.fan-final h2{font-size:clamp(.82rem,3.6vw,1.05rem);line-height:1.5}.fan-scroll{display:flex;gap:7px;font-size:.6rem;letter-spacing:3px}.fan-scroll i{width:18px;height:27px}.fan-scroll i::after{top:4px;font-size:7px;line-height:7px}}
+@media(max-width:520px){.fan-banner--content{--content-frame-radius:12px;--content-frame-padding:10px;--content-frame-height:clamp(210px,53vw,245px);min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto}.fan-banner::before{inset:5px;border-radius:9px}.fan-panel,.fan-banner--center .fan-panel{max-width:60%;padding:10px}.fan-banner--center .fan-panel{max-width:64%}.fan-panel h2{font-size:clamp(.9rem,3.6vw,1.05rem);line-height:1.08}.fan-panel p{font-size:clamp(.74rem,2.8vw,.84rem);line-height:1.28;margin-bottom:9px}.fan-btn{min-height:44px;padding:8px 9px;font-size:clamp(.6rem,2vw,.66rem);letter-spacing:1px}.fan-final{aspect-ratio:1.8/1;height:auto;min-height:0;}.fan-final .fan-panel{max-width:84%}.fan-final h2{font-size:clamp(.58rem,2.5vw,.74rem);line-height:1.5}.fan-scroll{display:flex;gap:7px;font-size:.6rem;letter-spacing:3px}.fan-scroll i{width:18px;height:27px}.fan-scroll i::after{top:4px;font-size:7px;line-height:7px}}
 @media(min-width:1800px){.fan-banner--content{min-height:340px;height:340px}}
 @media(prefers-reduced-motion:reduce){.fan-hero__image img{transform:none!important}}
 
@@ -198,6 +197,73 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 @media(max-width:420px){.footer-inner{grid-template-columns:1fr!important;gap:14px!important}.footer-col h5{margin-bottom:7px!important}.footer-col ul li{margin-bottom:4px!important}}
 @media(prefers-reduced-motion:reduce){.fan-btn{animation:none!important}}
 
+/* ── Footer/nav parity with Home & Ethernia (later density passes) ── */
+footer{padding:clamp(28px,3.4vw,44px) clamp(16px,4vw,76px) calc(clamp(20px,2.5vw,30px) + env(safe-area-inset-bottom))!important;}
+.footer-inner{max-width:1500px;grid-template-columns:minmax(260px,1.45fr) repeat(4,minmax(120px,.75fr));gap:clamp(18px,2.2vw,28px)!important;}
+.footer-col h5{font-size:.58rem!important;line-height:1.2;color:var(--gold)!important;opacity:.82!important;}
+.footer-col ul li a{font-size:.78rem!important;letter-spacing:.01em!important;color:rgba(245,241,232,.68)!important;}
+.footer-bottom{max-width:1500px!important;}
+@media(max-width:1024px){.footer-inner{grid-template-columns:1.2fr repeat(2,1fr)!important}.footer-inner>div:first-child{grid-row:span 2}}
+@media(max-width:700px){.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr))!important}.footer-inner>div:first-child{grid-column:1/-1;grid-row:auto}.footer-desc{max-width:34rem}.footer-bottom{align-items:flex-start!important;text-align:left!important}}
+@media(max-width:380px){.footer-inner{grid-template-columns:1fr!important}}
+@media(max-width:700px){.footer-social{margin-top:8px}.footer-col ul{columns:1}.footer-bottom{gap:10px}}
+@media(max-width:430px){.footer-inner{gap:12px!important}.footer-col h5{font-size:.55rem!important}.footer-col ul li a{font-size:.74rem!important}}
+footer{padding-top:clamp(22px,2.6vw,34px)!important;padding-bottom:calc(clamp(16px,2vw,24px) + env(safe-area-inset-bottom))!important;}
+.footer-inner{grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(14px,1.8vw,22px)!important;align-items:start;}
+.footer-logo{margin-bottom:4px!important}
+.footer-tagline{margin-bottom:6px!important}
+.footer-desc{margin-bottom:8px!important;line-height:1.45!important}
+.footer-social{gap:9px!important}
+.footer-col h5{margin-bottom:8px!important}
+.footer-col ul li{margin-bottom:4px!important}
+.footer-bottom{margin-top:clamp(12px,1.6vw,18px)!important;padding-top:10px!important}
+.footer-copy{line-height:1.35!important}
+@media(max-width:700px){.footer-inner{gap:10px 14px!important}.footer-social a{width:30px!important;height:30px!important}.footer-bottom{margin-top:10px!important;padding-top:9px!important}.footer-language{transform:scale(.92);transform-origin:left center}}
+@media(max-width:380px){footer{padding-top:22px!important}.footer-desc{display:none}.footer-social{margin-top:4px!important}.footer-inner{gap:10px!important}}
+footer{padding-top:clamp(18px,2.2vw,30px)!important;padding-bottom:calc(clamp(12px,1.7vw,20px) + env(safe-area-inset-bottom))!important;}
+
+.footer-inner{gap:clamp(10px,1.45vw,18px)!important;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr)!important;}
+.footer-logo{line-height:1.1!important}
+.footer-tagline{line-height:1.25!important}
+.footer-desc{max-width:360px!important}
+.footer-col h5{margin-bottom:6px!important}
+.footer-col ul li{margin-bottom:3px!important}
+.footer-col ul li a{line-height:1.25!important}
+.footer-bottom{margin-top:10px!important;padding-top:8px!important}
+.footer-copy{font-size:.66rem!important}
+.footer-language .lang-globe{width:32px;height:32px}
+@media(max-width:700px){footer{padding-top:18px!important;padding-bottom:calc(16px + env(safe-area-inset-bottom))!important}.footer-inner{gap:8px 12px!important}.footer-col h5{margin-bottom:5px!important}.footer-col ul li{margin-bottom:2px!important}.footer-bottom{margin-top:8px!important;padding-top:8px!important}.footer-copy{font-size:.62rem!important}}
+@media(max-width:430px){.footer-inner{grid-template-columns:1fr 1fr!important}.footer-inner>div:first-child{grid-column:1/-1}.footer-social{gap:7px!important}.footer-social a{width:28px!important;height:28px!important}.footer-col ul li a{font-size:.72rem!important}.footer-language .lang-globe{width:30px;height:30px}}
+@media(max-width:340px){.footer-inner{grid-template-columns:1fr!important}.footer-bottom{gap:6px!important}}
+footer{padding-top:clamp(10px,1.3vw,18px)!important;padding-bottom:calc(clamp(6px,.9vw,12px) + env(safe-area-inset-bottom))!important;}
+.footer-inner{gap:clamp(5px,.8vw,11px)!important;}
+.footer-logo{margin-bottom:1px!important;}
+.footer-tagline{margin-bottom:2px!important;}
+.footer-desc{margin-bottom:4px!important;}
+.footer-social{margin-top:0!important;}
+.footer-col h5{margin-bottom:2px!important;}
+.footer-col ul li{margin-bottom:0!important;}
+.footer-bottom{margin-top:4px!important;padding-top:4px!important;}
+@media(max-width:700px){footer{padding-top:10px!important;padding-bottom:calc(8px + env(safe-area-inset-bottom))!important}.footer-inner{gap:5px 8px!important}.footer-col h5{margin-bottom:2px!important}.footer-col ul li{margin-bottom:0!important}.footer-bottom{margin-top:4px!important;padding-top:4px!important}}
+@media(max-width:380px){footer{padding-top:8px!important}.footer-inner{gap:4px 8px!important}.footer-desc{margin-bottom:3px!important}.footer-bottom{margin-top:3px!important;padding-top:3px!important}}
+footer::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 28%,rgba(245,217,127,.18) 0 1px,transparent 2px),radial-gradient(circle at 74% 42%,rgba(245,241,232,.12) 0 1px,transparent 2px),radial-gradient(circle at 48% 76%,rgba(216,192,138,.1) 0 1px,transparent 2px);background-size:170px 170px,230px 230px,310px 310px;opacity:.08;animation:ambientDust 24s linear infinite;}
+footer{position:relative;overflow:hidden;}
+@keyframes ambientDust{0%{background-position:0 0,0 0,0 0}100%{background-position:170px -170px,-230px 230px,310px -310px}}
+@media(prefers-reduced-motion:reduce){footer::before{animation:none!important}}
+.nav-links a[aria-current="page"]{color:var(--gold-hi);}
+.mobile-menu a[aria-current="page"]{color:var(--gold-hi);}
+nav{padding-top:calc(16px + env(safe-area-inset-top));padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
+@media(max-width:900px){nav{padding-top:calc(14px + env(safe-area-inset-top));}}
+@media(max-width:600px){nav{padding-top:calc(12px + env(safe-area-inset-top));}}
+.nav-links{gap:clamp(16px,2.2vw,34px);}
+.nav-links a{font-size:clamp(.62rem,.68vw,.74rem);}
+.mobile-menu{padding-top:env(safe-area-inset-top);}
+footer{border-top:1px solid rgba(216,192,138,.08);}
+.footer-inner>div:first-child{grid-column:auto!important;}
+@media(max-width:900px){.footer-inner{grid-template-columns:repeat(4,1fr)!important;}.footer-inner>div:first-child{grid-column:1/-1!important;}}
+@media(max-width:700px){.footer-col h5{font-size:.56rem!important;letter-spacing:1.6px!important;}.footer-col ul li a{font-size:.68rem!important;line-height:1.3!important;}}
+@media(max-width:430px){.footer-col h5{font-size:.5rem!important;letter-spacing:1px!important;}.footer-col ul li a{font-size:.62rem!important;}}
+
 </style>
 </head>
 <body>
@@ -261,11 +327,11 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   </div>
 </section>
 <div class="fan-main">
-<section id="five-kingdoms" class="fan-banner fan-banner--content fan-banner--left fade-in" style="--pos:center;--pos-mobile:center" aria-labelledby="kingdoms-title"><div class="fan-banner__image"><img src="five-kingdoms.webp" alt="The five kingdoms of Fantasy" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><span class="fan-kicker">☾</span><h2 id="kingdoms-title" data-i18n="fantasy.kingdoms.title">THE FIVE KINGDOMS</h2><p data-i18n="fantasy.kingdoms.desc">Five great realms shaped by power, mystery and ancient bloodlines.</p><a class="fan-btn" href="regions.html?realm=fantasy" data-i18n="fantasy.kingdoms.cta">EXPLORE KINGDOMS</a></div></div></section>
-<section id="hall-of-legends" class="fan-banner fan-banner--content fan-banner--left fade-in" style="--pos:center;--pos-mobile:center" aria-labelledby="legends-title"><div class="fan-banner__image"><img src="hall-of-legends.webp" alt="Wanderers and guardians of Fantasy" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><span class="fan-kicker">☾</span><h2 id="legends-title" data-i18n="fantasy.legends.title">HALL OF LEGENDS</h2><p data-i18n="fantasy.legends.desc">Meet the wanderers, heroes and guardians who shaped the fate of the realms.</p><a class="fan-btn" href="characters.html?realm=fantasy" data-i18n="fantasy.legends.cta">VIEW ALL CHARACTERS</a></div></div></section>
+<section id="five-kingdoms" class="fan-banner fan-banner--content fan-banner--left fade-in" style="--pos:center 15%;--pos-mobile:center 15%" aria-labelledby="kingdoms-title"><div class="fan-banner__image"><img src="five-kingdoms.webp" alt="The five kingdoms of Fantasy" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><span class="fan-kicker">☾</span><h2 id="kingdoms-title" data-i18n="fantasy.kingdoms.title">THE FIVE KINGDOMS</h2><p data-i18n="fantasy.kingdoms.desc">Five great realms shaped by power, mystery and ancient bloodlines.</p><a class="fan-btn" href="regions.html?realm=fantasy" data-i18n="fantasy.kingdoms.cta">EXPLORE KINGDOMS</a></div></div></section>
+<section id="hall-of-legends" class="fan-banner fan-banner--content fan-banner--left fade-in" style="--pos:center 10%;--pos-mobile:center 10%" aria-labelledby="legends-title"><div class="fan-banner__image"><img src="hall-of-legends.webp" alt="Wanderers and guardians of Fantasy" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><span class="fan-kicker">☾</span><h2 id="legends-title" data-i18n="fantasy.legends.title">HALL OF LEGENDS</h2><p data-i18n="fantasy.legends.desc">Meet the wanderers, heroes and guardians who shaped the fate of the realms.</p><a class="fan-btn" href="characters.html?realm=fantasy" data-i18n="fantasy.legends.cta">VIEW ALL CHARACTERS</a></div></div></section>
 <section id="relics-of-power" class="fan-banner fan-banner--content fan-banner--left fade-in" style="--pos:center;--pos-mobile:center" aria-labelledby="relics-title"><div class="fan-banner__image"><img src="relics-of-power.webp" alt="Ancient artefacts of Fantasy" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><span class="fan-kicker">☾</span><h2 id="relics-title" data-i18n="fantasy.relics.title">RELICS OF POWER</h2><p data-i18n="fantasy.relics.desc">Ancient artefacts forged in forgotten times, each holding a fragment of unimaginable power.</p><a class="fan-btn" href="relics.html?realm=fantasy" data-i18n="fantasy.relics.cta">OPEN RELIC ARCHIVE</a></div></div></section>
 <section id="chronicles-of-fantasy" class="fan-banner fan-banner--content fan-banner--left fade-in" style="--pos:center;--pos-mobile:center" aria-labelledby="chronicles-title"><div class="fan-banner__image"><img src="chronicles-of-fantasy.webp" alt="The chronicles of Fantasy" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><span class="fan-kicker">☾</span><h2 id="chronicles-title" data-i18n="fantasy.chronicles.title">CHRONICLES OF FANTASY</h2><p data-i18n="fantasy.chronicles.desc">Stories written in shadow, preserved in archives older than any kingdom.</p><a class="fan-btn" href="chronicles.html?realm=fantasy" data-i18n="fantasy.chronicles.cta">READ THE CHRONICLES</a></div></div></section>
-<section id="final-shadow" class="fan-banner fan-banner--center fan-final fade-in" style="--pos:center" aria-labelledby="final-title"><div class="fan-banner__image"><img src="final-shadow.webp" alt="A shadowed Fantasy landscape beneath the moon" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><h2 id="final-title"><span data-i18n="fantasy.final.line1">EVERY SHADOW GUARDS A MEMORY.</span><br><span data-i18n="fantasy.final.line2">WILL YOU REMEMBER?</span></h2><a class="fan-btn" href="lore-library.html" data-i18n="fantasy.final.cta">ENTER THE ARCHIVE</a></div></div></section>
+<section id="final-shadow" class="fan-banner fan-banner--center fan-final fade-in" style="--pos:center" aria-labelledby="final-title"><div class="fan-banner__image"><img src="final-shadow.webp" alt="A shadowed Fantasy landscape beneath the moon" loading="lazy"></div><div class="fan-banner__shade"></div><div class="fan-banner__inner"><div class="fan-panel reveal"><h2 id="final-title"><span data-i18n="fantasy.final.line1">EVERY SHADOW GUARDS A MEMORY.</span><br><span data-i18n="fantasy.final.line2">WILL YOU REMEMBER?</span></h2></div></div></section>
 </div>
 
 <!-- FOOTER -->
@@ -290,29 +356,29 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
     <div class="footer-col">
       <h5 data-i18n="footer.navigation">NAVIGATION</h5>
       <ul>
-        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
-        <li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li>
-        <li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li>
-        <li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li>
-        <li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li>
-        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="index.html" data-i18n="footer.link.home">Home</a></li>
+        <li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li>
+        <li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li>
+        <li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li>
+        <li><a href="artefacts.html" data-i18n="footer.link.artefacts">Artefacts</a></li>
+        <li><a href="about.html" data-i18n="footer.link.about">About</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.worlds">WORLDS</h5>
       <ul>
-        <li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li>
-        <li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li>
-        <li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li>
+        <li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li>
+        <li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li>
+        <li><a href="atlas.html" data-i18n="footer.link.atlas">Atlas</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
       <ul>
         <li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li>
-        <li><a href="characters.html" data-i18n="archive.characters">Characters</a></li>
-        <li><a href="relics.html" data-i18n="archive.relics">Relics</a></li>
-        <li><a href="chronicles.html" data-i18n="archive.chronicles">Chronicles</a></li>
+        <li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li>
+        <li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li>
+        <li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li>
       </ul>
     </div>
     <div class="footer-col">
