@@ -761,10 +761,10 @@ footer::before{opacity:.08;animation-duration:24s;}
    Single source of truth for cinematic-banner image height, applied last so it
    wins over the earlier aspect-ratio experiments above. Every full-width banner
    (Atlas, Lore Library, Continue the Journey, Hidden Worlds) now shares one
-   consistent 2:1 ratio — Moonvale's own banner spec — instead of each rendering
+   consistent 2.3:1 ratio — Moonvale's own banner spec — instead of each rendering
    at its source image's native ratio. Shortens the section-to-section scroll
    distance and makes every banner read as one family instead of four sizes. */
-.atlas-banner img,.journey-banner img{width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;object-position:center;}
+.atlas-banner img,.journey-banner img{width:100%;height:auto;aspect-ratio:2.3/1;object-fit:cover;object-position:center;}
 @media(max-width:1024px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9;}}
 
 /* Hidden Worlds now reuses the exact same .cinematic-copy / .banner-kicker /
