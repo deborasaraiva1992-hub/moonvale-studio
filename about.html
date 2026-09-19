@@ -112,6 +112,14 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
   .manifesto-banner img{aspect-ratio:3/4;}
   .manifesto-banner-copy{width:100%;background:linear-gradient(to top,rgba(5,8,22,.9) 0%,rgba(5,8,22,.6) 60%,transparent 100%);}
 }
+/* Desktop only: break Manifesto/Behind out to full viewport width and
+   drop the card frame, matching the Hero's edge-to-edge treatment —
+   plus a bottom fade so the art blends into the page's dark background
+   instead of ending in a hard edge. Mobile (≤820px) above is untouched. */
+@media(min-width:821px){
+  .manifesto-banner,.behind-banner{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border:0;border-radius:0;box-shadow:none;}
+  .manifesto-banner::after,.behind-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.75) 70%,rgba(5,8,22,1) 100%);pointer-events:none;}
+}
 
 /* ── TWO WORLDS ── */
 .realm-pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,28px);}
@@ -164,6 +172,12 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .wide-banner-copy p{font-size:clamp(.92rem,1.3vw,1.08rem);color:var(--dim);font-style:italic;line-height:1.7;}
 .wide-banner-copy h3{font-family:'Cinzel',serif;font-size:clamp(1.2rem,2.4vw,1.7rem);letter-spacing:2px;color:var(--gold-hi);margin-bottom:10px;text-wrap:balance;}
 @media(max-width:700px){.wide-banner img{aspect-ratio:4/3;}.wide-banner-copy p{font-size:.85rem;}}
+/* Desktop only: same full-bleed, frameless treatment as Manifesto/Behind
+   above, matching the Hero. Mobile (≤700px) above is untouched. */
+@media(min-width:701px){
+  .wide-banner{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border:0;border-radius:0;box-shadow:none;}
+  .wide-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.75) 70%,rgba(5,8,22,1) 100%);pointer-events:none;}
+}
 
 .welcome-banner .wide-banner-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.3) 0%,rgba(5,8,22,.35) 45%,rgba(5,8,22,.88) 100%);}
 .welcome-mark{color:var(--gold);font-size:1.3rem;margin-bottom:14px;display:block;}
