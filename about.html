@@ -21,6 +21,7 @@ html{scroll-behavior:smooth;}
   --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
   --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
   --fan:#9b8ec4;
+  --banner-gutter:clamp(20px,3vw,48px);
 }
 body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;padding-bottom:env(safe-area-inset-bottom);}
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
@@ -117,7 +118,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
    plus a bottom fade so the art blends into the page's dark background
    instead of ending in a hard edge. Mobile (≤820px) above is untouched. */
 @media(min-width:821px){
-  .manifesto-banner,.behind-banner{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border:0;border-radius:0;box-shadow:none;}
+  .manifesto-banner,.behind-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
   .manifesto-banner::after,.behind-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.75) 70%,rgba(5,8,22,1) 100%);pointer-events:none;}
 }
 
@@ -144,7 +145,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
    half — and taller per the reference (near-square instead of the
    thin 16:11 strip). Mobile (≤700px) above is untouched. */
 @media(min-width:701px){
-  .realm-pair{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);}
+  .realm-pair{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));}
   .realm-mini{aspect-ratio:1.8/1;}
 }
 
@@ -162,6 +163,13 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
    fixed-ratio image, so the labels drop out from under the art
    entirely and lay out as their own grid beneath it — no dependence
    on exactly how the final banner crops on a phone. */
+/* Desktop only: same full-bleed-with-gutter, frameless treatment as
+   Manifesto/Behind/Wide/Two-Worlds above — width matches the other
+   banners, ratio (5.6/1) unchanged since it was already right.
+   Mobile (≤700px) below is untouched. */
+@media(min-width:701px){
+  .create-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
+}
 @media(max-width:700px){
   .create-banner{display:flex;flex-direction:column;}
   .create-banner img{aspect-ratio:16/9;}
@@ -183,7 +191,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 /* Desktop only: same full-bleed, frameless treatment as Manifesto/Behind
    above, matching the Hero. Mobile (≤700px) above is untouched. */
 @media(min-width:701px){
-  .wide-banner{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);border:0;border-radius:0;box-shadow:none;}
+  .wide-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
   .wide-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.75) 70%,rgba(5,8,22,1) 100%);pointer-events:none;}
 }
 
