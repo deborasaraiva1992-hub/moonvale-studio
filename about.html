@@ -139,6 +139,14 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .realm-mini:hover .realm-mini-btn{background:rgba(216,192,138,.12);border-color:var(--gold);}
 .realm-mini.fan:hover .realm-mini-btn{background:rgba(155,142,196,.12);border-color:var(--fan);}
 @media(max-width:700px){.realm-pair{grid-template-columns:1fr;}.realm-mini{aspect-ratio:16/12;}}
+/* Desktop only: break the pair out to the same full viewport width as
+   the Manifesto/Behind/Wide banners above and below, each card taking
+   half — and taller per the reference (near-square instead of the
+   thin 16:11 strip). Mobile (≤700px) above is untouched. */
+@media(min-width:701px){
+  .realm-pair{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);}
+  .realm-mini{aspect-ratio:1/1;}
+}
 
 /* ── WHAT WE CREATE — single banner image supplies the art (icons,
    border, decoration) only; the title and the 5 labels/descriptions
