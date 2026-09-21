@@ -169,6 +169,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
    Mobile (≤700px) below is untouched. */
 @media(min-width:701px){
   .create-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
+  /* The art's own reserved dark strip isn't reliably tall enough for
+     the title+description text at every width, so add a real fade
+     behind it — same technique as the other banners — instead of
+     depending on exactly where each future redraw leaves empty space. */
+  .create-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:44%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.6) 40%,rgba(5,8,22,.94) 100%);pointer-events:none;}
 }
 @media(max-width:700px){
   .create-banner{display:flex;flex-direction:column;}
