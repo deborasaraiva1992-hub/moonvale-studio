@@ -21,6 +21,7 @@ html{scroll-behavior:smooth;}
   --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
   --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
   --fan:#9b8ec4;
+  --banner-gutter:clamp(20px,3vw,48px);
 }
 body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;padding-bottom:env(safe-area-inset-bottom);}
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
@@ -86,7 +87,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
    space built in on the left for the copy), the mirror of the
    Manifesto banner below. ── */
 .behind-banner{position:relative;border:1px double rgba(216,192,138,.32);border-radius:14px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.45);}
-.behind-banner img{width:100%;height:auto;aspect-ratio:2.3/1;object-fit:cover;display:block;}
+.behind-banner img{width:100%;height:auto;aspect-ratio:2.8/1;object-fit:cover;display:block;}
 .behind-banner-copy{position:absolute;top:0;left:0;bottom:0;width:min(44%,460px);display:flex;flex-direction:column;justify-content:center;padding:clamp(18px,3vw,40px) clamp(20px,4vw,52px);text-align:left;}
 .behind-banner-copy .section-eyebrow{justify-content:flex-start;margin-bottom:16px;}
 .behind-banner-copy p{font-size:clamp(.8rem,1.05vw,.92rem);color:rgba(245,241,232,.82);line-height:1.7;font-weight:300;margin-bottom:12px;}
@@ -112,6 +113,14 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
   .manifesto-banner img{aspect-ratio:3/4;}
   .manifesto-banner-copy{width:100%;background:linear-gradient(to top,rgba(5,8,22,.9) 0%,rgba(5,8,22,.6) 60%,transparent 100%);}
 }
+/* Desktop only: break Manifesto/Behind out to full viewport width and
+   drop the card frame, matching the Hero's edge-to-edge treatment —
+   plus a bottom fade so the art blends into the page's dark background
+   instead of ending in a hard edge. Mobile (≤820px) above is untouched. */
+@media(min-width:821px){
+  .manifesto-banner,.behind-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
+  .manifesto-banner::after,.behind-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.75) 70%,rgba(5,8,22,1) 100%);pointer-events:none;}
+}
 
 /* ── TWO WORLDS ── */
 .realm-pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,28px);}
@@ -131,14 +140,22 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .realm-mini:hover .realm-mini-btn{background:rgba(216,192,138,.12);border-color:var(--gold);}
 .realm-mini.fan:hover .realm-mini-btn{background:rgba(155,142,196,.12);border-color:var(--fan);}
 @media(max-width:700px){.realm-pair{grid-template-columns:1fr;}.realm-mini{aspect-ratio:16/12;}}
+/* Desktop only: break the pair out to the same full viewport width as
+   the Manifesto/Behind/Wide banners above and below, each card taking
+   half — and taller per the reference (near-square instead of the
+   thin 16:11 strip). Mobile (≤700px) above is untouched. */
+@media(min-width:701px){
+  .realm-pair{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));}
+  .realm-mini{aspect-ratio:1.8/1;}
+}
 
 /* ── WHAT WE CREATE — single banner image supplies the art (icons,
    border, decoration) only; the title and the 5 labels/descriptions
    stay real, translatable text overlaid on top, so the language
    switcher keeps working instead of text being baked into a picture. */
 .create-banner{position:relative;border:1px double rgba(216,192,138,.32);border-radius:14px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.45);}
-.create-banner img{width:100%;height:auto;aspect-ratio:5.6/1;object-fit:cover;display:block;}
-.create-labels{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;padding:0 clamp(6px,1.4vw,18px) clamp(10px,2vw,22px);}
+.create-banner img{width:100%;height:auto;aspect-ratio:2000/508;object-fit:cover;display:block;}
+.create-labels{position:absolute;left:0;right:0;top:64%;bottom:1%;z-index:2;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:0 clamp(6px,1.4vw,18px);}
 .create-item{text-align:center;padding:0 clamp(4px,1vw,12px);}
 .create-item-title{font-family:'Cinzel',serif;font-size:clamp(.5rem,.85vw,.7rem);letter-spacing:clamp(1px,.3vw,2.5px);color:var(--gold-hi);margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.7);}
 .create-item-text{font-size:clamp(.56rem,.85vw,.76rem);color:rgba(245,241,232,.82);font-style:italic;line-height:1.35;text-shadow:0 1px 4px rgba(0,0,0,.7);}
@@ -146,9 +163,16 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
    fixed-ratio image, so the labels drop out from under the art
    entirely and lay out as their own grid beneath it — no dependence
    on exactly how the final banner crops on a phone. */
+/* Desktop only: same full-bleed-with-gutter, frameless treatment as
+   Manifesto/Behind/Wide/Two-Worlds above — width matches the other
+   banners, ratio (5.6/1) unchanged since it was already right.
+   Mobile (≤700px) below is untouched. */
+@media(min-width:701px){
+  .create-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
+}
 @media(max-width:700px){
   .create-banner{display:flex;flex-direction:column;}
-  .create-banner img{aspect-ratio:16/9;}
+  .create-banner img{aspect-ratio:2000/508;}
   .create-labels{position:relative;inset:auto;grid-template-columns:repeat(2,1fr);align-items:start;gap:16px 10px;padding:18px clamp(14px,4vw,28px);background:rgba(255,255,255,.02);border-top:1px solid rgba(216,192,138,.14);}
   .create-item-title{text-shadow:none;}
   .create-item-text{text-shadow:none;}
@@ -158,12 +182,18 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 
 /* ── FULL-WIDTH CENTERED BANNERS (Story continues / Welcome) ── */
 .wide-banner{position:relative;border-radius:14px;overflow:hidden;border:1px double rgba(216,192,138,.3);box-shadow:0 28px 70px rgba(0,0,0,.45);}
-.wide-banner img{width:100%;height:auto;aspect-ratio:2.3/1;object-fit:cover;display:block;}
+.wide-banner img{width:100%;height:auto;aspect-ratio:2.8/1;object-fit:cover;display:block;}
 .wide-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,8,22,.35) 0%,rgba(5,8,22,.25) 40%,rgba(5,8,22,.82) 100%);display:flex;align-items:center;justify-content:center;text-align:center;}
 .wide-banner-copy{max-width:640px;padding:clamp(20px,3vw,36px);}
 .wide-banner-copy p{font-size:clamp(.92rem,1.3vw,1.08rem);color:var(--dim);font-style:italic;line-height:1.7;}
 .wide-banner-copy h3{font-family:'Cinzel',serif;font-size:clamp(1.2rem,2.4vw,1.7rem);letter-spacing:2px;color:var(--gold-hi);margin-bottom:10px;text-wrap:balance;}
 @media(max-width:700px){.wide-banner img{aspect-ratio:4/3;}.wide-banner-copy p{font-size:.85rem;}}
+/* Desktop only: same full-bleed, frameless treatment as Manifesto/Behind
+   above, matching the Hero. Mobile (≤700px) above is untouched. */
+@media(min-width:701px){
+  .wide-banner{width:calc(100vw - var(--banner-gutter)*2);margin-left:calc(50% - 50vw + var(--banner-gutter));margin-right:calc(50% - 50vw + var(--banner-gutter));border:0;border-radius:0;box-shadow:none;}
+  .wide-banner::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(to bottom,rgba(5,8,22,0) 0%,rgba(5,8,22,.75) 70%,rgba(5,8,22,1) 100%);pointer-events:none;}
+}
 
 .welcome-banner .wide-banner-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.3) 0%,rgba(5,8,22,.35) 45%,rgba(5,8,22,.88) 100%);}
 .welcome-mark{color:var(--gold);font-size:1.3rem;margin-bottom:14px;display:block;}
@@ -358,7 +388,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
     <h2 class="worlds-title" id="createTitle"><span class="line"></span><span class="mark">✦</span><span data-i18n="about.create.title">WHAT WE CREATE</span><span class="mark">✦</span><span class="line"></span></h2>
   </div>
   <div class="create-banner">
-    <img src="about-what-we-create-banner.webp" alt="Five glowing gold icons on a dark starlit background: a castle, a quill, a gem, a compass and an arched doorway" loading="lazy">
+    <img src="about-what-we-create-banner.webp?v=5" alt="Five glowing gold icons on a dark starlit background: a castle, a quill, a gem, a compass and an arched doorway" loading="lazy">
     <div class="create-labels">
       <div class="create-item">
         <p class="create-item-title" data-i18n="about.create.worlds.title">WORLDS</p>
