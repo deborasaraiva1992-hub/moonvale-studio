@@ -277,10 +277,12 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   .manifesto-banner img{animation:heroKen 24s ease-in-out infinite alternate;will-change:transform;}
   .behind-banner img{animation:heroKen 28s ease-in-out infinite alternate;will-change:transform;}
   .wide-banner img{animation:heroKen 32s ease-in-out infinite alternate;will-change:transform;}
-  .create-banner img{animation:heroKen 36s ease-in-out infinite alternate;will-change:transform;}
+  /* create-banner keeps no Ken Burns / shimmer: zooming its image
+     shifted its baked-in gold panel dividers out from under the
+     fixed .create-labels grid, reading as the frame being cut. */
 
   /* Sparse twinkling starlight over the night-sky banners. */
-  .manifesto-banner::before,.behind-banner::before,.wide-banner::before{
+  .manifesto-banner::before,.behind-banner::before,.wide-banner::before,.hero-bg::before{
     content:'';position:absolute;inset:0;pointer-events:none;
     background:
       radial-gradient(circle at 12% 20%,rgba(255,255,255,.9) 0 1px,transparent 2px),
@@ -294,43 +296,78 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   }
   .behind-banner::before{animation-duration:6.5s;animation-delay:-2s;}
   .wide-banner::before{animation-duration:4.2s;animation-delay:-1s;}
+  /* Hero stars: its own scatter (upper sky, away from the moon) plus
+     z-index so it sits above .hero-overlay's darkening gradient. */
+  .hero-bg::before{
+    z-index:1;
+    background:
+      radial-gradient(circle at 8% 8%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 58% 6%,rgba(255,255,255,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 70% 14%,rgba(255,255,255,.9) 0 1px,transparent 2px),
+      radial-gradient(circle at 82% 9%,rgba(216,192,138,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 91% 20%,rgba(255,255,255,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 75% 28%,rgba(255,255,255,.6) 0 1px,transparent 2px),
+      radial-gradient(circle at 20% 5%,rgba(255,255,255,.6) 0 1px,transparent 2px);
+    animation-duration:5.8s;animation-delay:-1.6s;
+  }
   @keyframes starTwinkle{0%,100%{opacity:.35;}50%{opacity:1;}}
 
   /* Moon halo on the About Hero, positioned over the moon's measured
      coordinates in about-hero.webp (center 31.1%, 12.3%; radius ~6.7%
-     of width). Sits on .hero-overlay so it isn't muted by the
-     darkening gradient beneath it. */
-  .hero-overlay::before{
-    content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+     of width). Lives on .hero-bg (no top padding, so percentages
+     match the image exactly) with z-index:1 so it sits above
+     .hero-overlay's darkening gradient instead of being muted by it. */
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;z-index:1;
     background:radial-gradient(circle at 31.1% 12.3%,rgba(255,255,255,.55) 0%,rgba(255,255,255,.2) 7%,transparent 15%);
     animation:moonGlow 6s ease-in-out infinite;
   }
   @keyframes moonGlow{0%,100%{opacity:.7;}50%{opacity:1;}}
 
-  /* Comet glints on the Story Continues banner, over the two comet
-     heads measured in about-story-continues-banner.webp. More
-     specific than .wide-banner::before above, so it replaces the
-     generic star field with these two instead, rather than stacking
-     both. */
+  /* Story Continues: stars + the two comet heads together (measured
+     in about-story-continues-banner.webp), replacing the generic
+     .wide-banner::before star field for this specific banner. */
   .story-banner::before{
-    content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
     background:
       radial-gradient(circle at 23.5% 19.7%,rgba(255,255,255,.85) 0%,rgba(180,210,255,.4) 4%,transparent 9%),
-      radial-gradient(circle at 81.5% 12.6%,rgba(255,255,255,.85) 0%,rgba(180,210,255,.4) 4%,transparent 9%);
+      radial-gradient(circle at 81.5% 12.6%,rgba(255,255,255,.85) 0%,rgba(180,210,255,.4) 4%,transparent 9%),
+      radial-gradient(circle at 12% 30%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 45% 12%,rgba(255,255,255,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 60% 25%,rgba(216,192,138,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 70% 35%,rgba(255,255,255,.6) 0 1px,transparent 2px),
+      radial-gradient(circle at 92% 32%,rgba(255,255,255,.7) 0 1px,transparent 2px);
     animation:cometGlint 3.2s ease-in-out infinite;
   }
   @keyframes cometGlint{0%,100%{opacity:.55;}50%{opacity:1;}}
 
-  /* Slow diagonal shimmer sweep across the gold-framed cards. */
-  .realm-mini::after,.create-banner::after{
+  /* Welcome banner: stars + its own moon (measured at 90.4%, 16.3%
+     in about-welcome-banner.webp), same idea as the Hero's halo. */
+  .welcome-banner::before{
+    background:
+      radial-gradient(circle at 90.4% 16.3%,rgba(255,255,255,.5) 0%,rgba(255,255,255,.18) 6%,transparent 13%),
+      radial-gradient(circle at 10% 15%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 22% 32%,rgba(255,255,255,.6) 0 1px,transparent 2px),
+      radial-gradient(circle at 38% 10%,rgba(216,192,138,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 68% 8%,rgba(255,255,255,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 80% 35%,rgba(255,255,255,.6) 0 1px,transparent 2px);
+    animation-duration:5s;animation-delay:-2.4s;
+  }
+
+  /* Slow diagonal shimmer sweep across the Two Worlds cards. */
+  .realm-mini::after{
     content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
     background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);
     background-size:250% 250%;background-position:130% -30%;
     animation:shimmerSweep 8s ease-in-out infinite;
   }
-  .create-banner::after{animation-duration:11s;animation-delay:-4s;}
   @keyframes shimmerSweep{0%{background-position:130% -30%;}50%{background-position:-30% 130%;}100%{background-position:130% -30%;}}
+
+  /* Live candle flicker over Behind Moonvale — real elements (not a
+     pseudo-element) so each one flickers on its own timing. */
+  .candle-flicker{display:block;position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle,rgba(255,205,120,.95) 0%,rgba(255,150,60,.45) 45%,transparent 72%);animation:candleFlicker 1.6s ease-in-out infinite;animation-delay:var(--d);}
+  @keyframes candleFlicker{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(.88);}25%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}50%{opacity:.72;transform:translate(-50%,-50%) scale(.94);}75%{opacity:.95;transform:translate(-50%,-50%) scale(1.04);}}
 }
+.candle-flicker{display:none;}
 
 #musicPlayer{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.92);border:1px solid rgba(216,192,138,.25);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
 #musicPlayer:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(216,192,138,.15);}
@@ -491,6 +528,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 <section class="section fade-in" aria-labelledby="behindTitle">
   <div class="behind-banner">
     <img src="about-behind-scenes-banner.webp" alt="A creator's desk scattered with character sketches, candlelight and a moonlit window beyond" loading="lazy">
+    <span class="candle-flicker" style="--x:50.5%;--y:66%;--d:0s"></span>
+    <span class="candle-flicker" style="--x:54%;--y:63%;--d:-.4s"></span>
+    <span class="candle-flicker" style="--x:65%;--y:78%;--d:-.9s"></span>
+    <span class="candle-flicker" style="--x:68%;--y:53%;--d:-1.3s"></span>
+    <span class="candle-flicker" style="--x:96%;--y:75%;--d:-.6s"></span>
     <div class="behind-banner-copy">
       <div class="section-eyebrow" id="behindTitle"><span class="line"></span><span>✦ <span data-i18n="about.behind.title">BEHIND MOONVALE</span> ✦</span><span class="line"></span></div>
       <p data-i18n="about.behind.p1">Moonvale was born from a love for fantasy, visual storytelling and the worlds that exist beyond the page.</p>
