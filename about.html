@@ -196,6 +196,13 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 }
 
 .welcome-banner .wide-banner-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.3) 0%,rgba(5,8,22,.35) 45%,rgba(5,8,22,.88) 100%);}
+/* Move the text up into the dark, empty band of sky above the
+   horizon glow (per reference) instead of dead-center in the frame.
+   padding-bottom is expressed as %, which CSS resolves against the
+   box's width — since height is fixed to width/2.8 by the image's
+   aspect-ratio, this percentage still reliably lands at the same
+   fraction of the visible height at any viewport width. */
+.story-banner .wide-banner-overlay{align-items:center;padding-bottom:18%;}
 .welcome-mark{color:var(--gold);font-size:1.3rem;margin-bottom:14px;display:block;}
 .welcome-eyebrow{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:5px;color:var(--dim);opacity:.85;margin-bottom:10px;}
 .welcome-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,3.2vw,2.4rem);letter-spacing:3px;color:var(--text);margin-bottom:22px;text-wrap:balance;}
@@ -435,7 +442,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 
 <!-- THE STORY IS STILL BEING WRITTEN -->
 <section class="section fade-in">
-  <div class="wide-banner">
+  <div class="wide-banner story-banner">
     <img src="about-story-continues-banner.webp" alt="A lone traveler watching a comet cross the night sky over Moonvale" loading="lazy">
     <div class="wide-banner-overlay">
       <div class="wide-banner-copy">
