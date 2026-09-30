@@ -267,8 +267,70 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 .page-transition.out{opacity:1;pointer-events:auto;}
 .pt-logo{font-family:'Cinzel',serif;font-size:1.5rem;letter-spacing:6px;color:var(--gold);opacity:0;transition:opacity .3s ease .2s;}
 .page-transition.out .pt-logo{opacity:1;}
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-in{opacity:0;transform:translateY(24px) scale(.97);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0) scale(1);}
+
+/* ── PREMIUM BANNER EFFECTS (desktop only — mobile untouched) ── */
+@media(min-width:701px){
+  /* Slow Ken Burns drift, reusing the Hero's own keyframe, with a
+     different duration per banner so they don't all breathe in sync. */
+  .manifesto-banner img{animation:heroKen 24s ease-in-out infinite alternate;will-change:transform;}
+  .behind-banner img{animation:heroKen 28s ease-in-out infinite alternate;will-change:transform;}
+  .wide-banner img{animation:heroKen 32s ease-in-out infinite alternate;will-change:transform;}
+  .create-banner img{animation:heroKen 36s ease-in-out infinite alternate;will-change:transform;}
+
+  /* Sparse twinkling starlight over the night-sky banners. */
+  .manifesto-banner::before,.behind-banner::before,.wide-banner::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 20%,rgba(255,255,255,.9) 0 1px,transparent 2px),
+      radial-gradient(circle at 27% 55%,rgba(255,255,255,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 41% 15%,rgba(216,192,138,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 63% 38%,rgba(255,255,255,.6) 0 1px,transparent 2px),
+      radial-gradient(circle at 78% 22%,rgba(216,192,138,.7) 0 1px,transparent 2px),
+      radial-gradient(circle at 89% 60%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+      radial-gradient(circle at 55% 70%,rgba(255,255,255,.5) 0 1px,transparent 2px);
+    animation:starTwinkle 5s ease-in-out infinite;
+  }
+  .behind-banner::before{animation-duration:6.5s;animation-delay:-2s;}
+  .wide-banner::before{animation-duration:4.2s;animation-delay:-1s;}
+  @keyframes starTwinkle{0%,100%{opacity:.35;}50%{opacity:1;}}
+
+  /* Moon halo on the About Hero, positioned over the moon's measured
+     coordinates in about-hero.webp (center 31.1%, 12.3%; radius ~6.7%
+     of width). Sits on .hero-overlay so it isn't muted by the
+     darkening gradient beneath it. */
+  .hero-overlay::before{
+    content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+    background:radial-gradient(circle at 31.1% 12.3%,rgba(255,255,255,.55) 0%,rgba(255,255,255,.2) 7%,transparent 15%);
+    animation:moonGlow 6s ease-in-out infinite;
+  }
+  @keyframes moonGlow{0%,100%{opacity:.7;}50%{opacity:1;}}
+
+  /* Comet glints on the Story Continues banner, over the two comet
+     heads measured in about-story-continues-banner.webp. More
+     specific than .wide-banner::before above, so it replaces the
+     generic star field with these two instead, rather than stacking
+     both. */
+  .story-banner::before{
+    content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+    background:
+      radial-gradient(circle at 23.5% 19.7%,rgba(255,255,255,.85) 0%,rgba(180,210,255,.4) 4%,transparent 9%),
+      radial-gradient(circle at 81.5% 12.6%,rgba(255,255,255,.85) 0%,rgba(180,210,255,.4) 4%,transparent 9%);
+    animation:cometGlint 3.2s ease-in-out infinite;
+  }
+  @keyframes cometGlint{0%,100%{opacity:.55;}50%{opacity:1;}}
+
+  /* Slow diagonal shimmer sweep across the gold-framed cards. */
+  .realm-mini::after,.create-banner::after{
+    content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+    background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);
+    background-size:250% 250%;background-position:130% -30%;
+    animation:shimmerSweep 8s ease-in-out infinite;
+  }
+  .create-banner::after{animation-duration:11s;animation-delay:-4s;}
+  @keyframes shimmerSweep{0%{background-position:130% -30%;}50%{background-position:-30% 130%;}100%{background-position:130% -30%;}}
+}
 
 #musicPlayer{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.92);border:1px solid rgba(216,192,138,.25);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
 #musicPlayer:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(216,192,138,.15);}
@@ -562,6 +624,19 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   pt.style.opacity='1';pt.style.pointerEvents='auto';
   setTimeout(()=>{pt.style.opacity='0';pt.style.pointerEvents='none';},50);
 })();
+
+// ── CARD TILT (desktop/hover-capable only) ──
+if(window.matchMedia('(hover: hover)').matches){
+  document.querySelectorAll('.realm-mini').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5;
+      const py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`translateY(-5px) perspective(800px) rotateX(${(-py*6).toFixed(2)}deg) rotateY(${(px*8).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+  });
+}
 
 // ── SCROLL REVEAL (with a safety net so text never stays stuck invisible) ──
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
