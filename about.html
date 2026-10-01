@@ -304,16 +304,15 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   .hero-bg::before{
     z-index:1;mix-blend-mode:screen;
     background:
-      radial-gradient(circle at 6.5% 9.3%,rgba(255,255,255,.3),transparent 1.6%),
-      radial-gradient(circle at 74.7% 2.3%,rgba(255,255,255,.32),transparent 1.6%),
-      radial-gradient(circle at 82.6% 11.6%,rgba(255,255,255,.3),transparent 1.6%),
-      radial-gradient(circle at 68.2% 11.8%,rgba(216,192,138,.3),transparent 1.6%),
-      radial-gradient(circle at 56.3% 20.9%,rgba(255,255,255,.28),transparent 1.6%),
-      radial-gradient(circle at 58.5% 27.7%,rgba(255,255,255,.26),transparent 1.6%);
-    animation:heroStarGlow 5.8s ease-in-out infinite;animation-delay:-1.6s;
+      radial-gradient(circle at 22% 10%,rgba(245,217,127,.18) 0 1px,transparent 2px),
+      radial-gradient(circle at 74% 5%,rgba(245,241,232,.18) 0 1px,transparent 2px),
+      radial-gradient(circle at 62% 20%,rgba(216,192,138,.14) 0 1px,transparent 2px);
+    background-size:260px 260px,340px 340px,420px 420px;
+    animation:heroStarGlow 9s ease-in-out infinite;
+    opacity:.42;
   }
   @keyframes starTwinkle{0%,100%{opacity:.35;}50%{opacity:1;}}
-  @keyframes heroStarGlow{0%,100%{opacity:.25;}50%{opacity:.45;}}
+  @keyframes heroStarGlow{0%,100%{opacity:.28;transform:translate3d(0,0,0);}50%{opacity:.52;transform:translate3d(0,-4px,0);}}
 
   /* Moon halo on the About Hero, positioned over the moon's measured
      coordinates in about-hero.webp (center 31.1%, 12.3%; radius ~6.7%
