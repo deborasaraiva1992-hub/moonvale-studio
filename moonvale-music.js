@@ -36,7 +36,7 @@
   let fadeTimer=null;
 
   const savedVolRaw=parseFloat(localStorage.getItem(VOL_KEY));
-  let targetVol=(!isNaN(savedVolRaw)&&savedVolRaw>=0&&savedVolRaw<=1)?savedVolRaw:0.18;
+  let targetVol=(!isNaN(savedVolRaw)&&savedVolRaw>=0&&savedVolRaw<=1)?savedVolRaw:0.14;
   audio.volume=0;
   if(mVol)mVol.value=String(targetVol);
 
@@ -54,6 +54,7 @@
 
   function fadeIn(){
     musicOn=true;
+    audio.muted=false;
     if(fadeTimer)clearInterval(fadeTimer);
     audio.volume=0;
     audio.play().then(()=>{
@@ -108,8 +109,50 @@
     }
   }catch(e){}
 
-  if(localStorage.getItem(ON_KEY)==='1'){
-    fadeIn();
+  // Music plays by default for every visitor, softly — unless they've
+  // explicitly turned it off before (an explicit '0', as opposed to never
+  // having touched the toggle at all). Browsers block audible autoplay
+  // without a user gesture, so the honest version of "already on" is: show
+  // the ON state right away, start a muted loop immediately (muted autoplay
+  // is always allowed), and quietly lift the mute — gently fading up,
+  // never a jump — the instant the visitor does anything else on the page.
+  // Almost nobody looks at a page without touching it, so in practice it
+  // reads as already playing. A click on the player itself is left to its
+  // own handler instead of being double-handled here.
+  const shouldAutoStart=localStorage.getItem(ON_KEY)!=='0';
+  if(shouldAutoStart){
+    musicOn=true;
+    audio.muted=true;
+    audio.volume=0;
+    audio.play().catch(()=>{});
+    localStorage.setItem(ON_KEY,'1');
+    updateLabel();
+
+    function rampUp(){
+      if(fadeTimer)clearInterval(fadeTimer);
+      let v=0;audio.volume=0;
+      fadeTimer=setInterval(()=>{
+        v=Math.min(v+.01,targetVol);audio.volume=v;
+        if(v>=targetVol)clearInterval(fadeTimer);
+      },60);
+    }
+    function autoEnableOnce(e){
+      if(player.contains(e.target))return;
+      if(!audio.muted&&!audio.paused)return;
+      audio.muted=false;
+      if(audio.paused){
+        audio.play().then(rampUp).catch(()=>{
+          musicOn=false;
+          localStorage.setItem(ON_KEY,'0');
+          updateLabel();
+        });
+      }else{
+        rampUp();
+      }
+    }
+    ['click','keydown','touchend'].forEach(evt=>{
+      document.addEventListener(evt,autoEnableOnce,{once:true,passive:true});
+    });
   }else{
     updateLabel();
   }
