@@ -297,22 +297,15 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   }
   .behind-banner::before{animation-duration:6.5s;animation-delay:-2s;}
   .wide-banner::before{animation-duration:4.2s;animation-delay:-1s;}
-  /* Hero stars: glow over the handful of large, distinctly bright
-     stars already drawn in about-hero.webp (measured positions),
-     not a generic scatter — plus z-index so it sits above
-     .hero-overlay's darkening gradient. */
-  .hero-bg::before{
-    z-index:1;mix-blend-mode:screen;
-    background:
-      radial-gradient(circle at 22% 10%,rgba(245,217,127,.18) 0 1px,transparent 2px),
-      radial-gradient(circle at 74% 5%,rgba(245,241,232,.18) 0 1px,transparent 2px),
-      radial-gradient(circle at 62% 20%,rgba(216,192,138,.14) 0 1px,transparent 2px);
-    background-size:260px 260px,340px 340px,420px 420px;
-    animation:heroStarGlow 9s ease-in-out infinite;
-    opacity:.42;
-  }
+  /* Hero sky sparkle: a dense cluster of small independently-twinkling
+     stars confined to the band of the Hero art that's already richly
+     starred (measured via pixel analysis of about-hero.webp), giving
+     that patch a "living, shimmering" quality instead of a flat static
+     illustration. Positioned as a .hero child (sibling of .hero-overlay)
+     so no z-index/stacking-context gymnastics are needed — it simply
+     paints after .hero-overlay in source order. */
+  #hero-sparkle-canvas{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;mix-blend-mode:screen;}
   @keyframes starTwinkle{0%,100%{opacity:.35;}50%{opacity:1;}}
-  @keyframes heroStarGlow{0%,100%{opacity:.28;transform:translate3d(0,0,0);}50%{opacity:.52;transform:translate3d(0,-4px,0);}}
 
   /* Moon halo on the About Hero, positioned over the moon's measured
      coordinates in about-hero.webp (center 31.1%, 12.3%; radius ~6.7%
@@ -369,7 +362,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   .candle-flicker{display:block;position:absolute;left:var(--x);top:var(--y);width:16px;height:16px;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(circle,rgba(255,205,120,.95) 0%,rgba(255,150,60,.45) 45%,transparent 72%);animation:candleFlicker 1.6s ease-in-out infinite;animation-delay:var(--d);}
   @keyframes candleFlicker{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(.88);}25%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}50%{opacity:.72;transform:translate(-50%,-50%) scale(.94);}75%{opacity:.95;transform:translate(-50%,-50%) scale(1.04);}}
 }
-.candle-flicker{display:none;}
+@media(max-width:700px){.candle-flicker{display:none;}#hero-sparkle-canvas{display:none;}}
 
 #musicPlayer{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.92);border:1px solid rgba(216,192,138,.25);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
 #musicPlayer:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(216,192,138,.15);}
@@ -427,7 +420,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"><img src="about-hero.webp" alt="A figure looking out over Moonvale from a balcony between two towers, moon rising in the distance" draggable="false"></div>
+  <div class="hero-bg"><img src="about-hero.webp" alt="A figure looking out over Moonvale from a balcony between two towers, moon rising in the distance" draggable="false"><canvas id="hero-sparkle-canvas"></canvas></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-text-panel">
@@ -637,6 +630,37 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   const n=window.innerWidth<600?35:70;const stars=[];
   for(let i=0;i<n;i++)stars.push(new Star());
   function animate(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.update();s.draw();});requestAnimationFrame(animate);}
+  animate();
+})();
+
+// ── HERO SKY SPARKLE — dense twinkling cluster confined to the
+// already-starry band of about-hero.webp (measured via pixel analysis:
+// roughly the top 28% of the image, weighted toward its right half),
+// so that patch reads as a living, shimmering night sky. ──
+(function(){
+  if(window.matchMedia('(max-width:700px)').matches)return;
+  const wrap=document.querySelector('.hero-bg');
+  const c=document.getElementById('hero-sparkle-canvas');
+  if(!wrap||!c)return;
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){W=c.width=wrap.clientWidth;H=c.height=wrap.clientHeight;}
+  resize();window.addEventListener('resize',resize,{passive:true});
+  const R=(a,b)=>a+Math.random()*(b-a);
+  class Sparkle{
+    constructor(){
+      this.x=(Math.random()<.65?R(.45,1):R(0,1))*W;
+      this.y=R(0,.28)*H;
+      this.size=R(.5,1.8);
+      this.alpha=R(.1,.6);
+      this.da=R(.003,.012)*(Math.random()>.5?1:-1);
+    }
+    update(){this.alpha+=this.da;if(this.alpha<.05||this.alpha>.85)this.da*=-1;}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=`rgba(255,252,240,${this.alpha})`;ctx.shadowColor=`rgba(255,241,189,${this.alpha})`;ctx.shadowBlur=this.size*3.5;ctx.fill();ctx.shadowBlur=0;}
+  }
+  const sparkles=[];
+  for(let i=0;i<40;i++)sparkles.push(new Sparkle());
+  function animate(){ctx.clearRect(0,0,W,H);sparkles.forEach(s=>{s.update();s.draw();});requestAnimationFrame(animate);}
   animate();
 })();
 
