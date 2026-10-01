@@ -396,6 +396,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);}
 </footer>
 
 <script src="moonvale-i18n.js"></script>
+<script src="moonvale-music.js"></script>
 <script>
 // PURPLE STAR PARTICLES
 (function(){
@@ -457,7 +458,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);}
   document.querySelectorAll('a[href]').forEach(a=>{
     const href=a.getAttribute('href');
     if(!href||href.startsWith('#')||href.startsWith('http'))return;
-    a.addEventListener('click',e=>{e.preventDefault();pt.classList.add('out');setTimeout(()=>{window.location.href=href;},380);});
+    a.addEventListener('click',e=>{e.preventDefault();pt.classList.add('out');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();setTimeout(()=>{window.location.href=href;},380);});
   });
   pt.style.opacity='1';pt.style.pointerEvents='auto';
   setTimeout(()=>{pt.style.opacity='0';pt.style.pointerEvents='none';},50);
@@ -478,14 +479,6 @@ document.addEventListener('click',e=>{
 });
 
 // MUSIC
-const audio=document.getElementById('bgAudio');
-const mLabel=document.getElementById('musicLabel');
-const mIcon=document.getElementById('musicIcon');
-let musicOn=false;audio.volume=0.18;
-function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
-function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent='MUSIC ON';mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent='MUSIC OFF';});}
-function fadeOut(){musicOn=false;mLabel.textContent='MUSIC OFF';mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
-function setVol(v){audio.volume=parseFloat(v);}
 
 // NAV
 function openMenu(){document.getElementById('mobileMenu').classList.add('open');}

@@ -956,6 +956,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
 
 
 <script src="moonvale-i18n.js"></script>
+<script src="moonvale-music.js"></script>
 <script>
 // ── LOADING SCREEN ──
 window.addEventListener('load',()=>{
@@ -1009,7 +1010,7 @@ window.addEventListener('load',()=>{
     if(!href||href.startsWith('#')||href.startsWith('http'))return;
     a.addEventListener('click',e=>{
       e.preventDefault();
-      pt.classList.add('out');
+      pt.classList.add('out');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();
       setTimeout(()=>{window.location.href=href;},450);
     });
   });
@@ -1095,21 +1096,6 @@ document.addEventListener('click',e=>{
   buildDots();update();
 })();
 
-// ── MUSIC ──
-const audio=document.getElementById('bgAudio');
-const mLabel=document.getElementById('musicLabel');
-const mIcon=document.getElementById('musicIcon');
-let musicOn=false;audio.volume=0.18;
-function toggleMusic(){if(musicOn){fadeOut();}else{fadeIn();}}
-function fadeIn(){musicOn=true;audio.volume=0;audio.play().then(()=>{mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.on']||'MUSIC ON');mIcon.textContent='♫';let v=0;const f=setInterval(()=>{v=Math.min(v+.01,.18);audio.volume=v;if(v>=.18)clearInterval(f);},60);}).catch(()=>{musicOn=false;mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.off']||'MUSIC OFF');});}
-function fadeOut(){musicOn=false;mLabel.textContent=(window.MoonvaleI18n?.translations?.[window.MoonvaleI18n.getLanguage()]?.['music.off']||'MUSIC OFF');mIcon.textContent='♪';let v=audio.volume;const f=setInterval(()=>{v=Math.max(v-.01,0);audio.volume=v;if(v<=0){audio.pause();clearInterval(f);}},60);}
-function syncMusicLabel(){
-  const lang=(window.MoonvaleI18n&&window.MoonvaleI18n.getLanguage&&window.MoonvaleI18n.getLanguage())||'en';
-  const key=musicOn?'music.on':'music.off';
-  mLabel.textContent=(window.MoonvaleI18n?.translations?.[lang]?.[key]||window.MoonvaleI18n?.translations?.en?.[key]||(musicOn?'MUSIC ON':'MUSIC OFF'));
-}
-function setVol(v){audio.volume=parseFloat(v);}
-window.addEventListener('moonvale:languagechange',syncMusicLabel);
 
 
 
