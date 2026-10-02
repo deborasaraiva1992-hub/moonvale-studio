@@ -214,3 +214,23 @@
   document.addEventListener('DOMContentLoaded',()=>{apply(lang());document.querySelectorAll('.nav-lang,.footer-lang-row,.footer-lang').forEach(el=>{el.addEventListener('click',cycle);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();cycle();}});});});
   window.MoonvaleI18n={apply,setLanguage:apply,getLanguage:lang,translations:base};
 })();
+
+/* ── LANGUAGE PICKER (globe icon + dropdown), shared across every page ── */
+(function(){
+  const labels={pt:'Português',en:'English',es:'Español'};
+  const order=['pt','en','es'];
+  const globe='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.55 3.6 5.55 3.6 9s-1.2 6.45-3.6 9M12 3c-2.4 2.55-3.6 5.55-3.6 9s1.2 6.45 3.6 9"/></svg>';
+  function current(){return (window.MoonvaleI18n&&window.MoonvaleI18n.getLanguage&&window.MoonvaleI18n.getLanguage())||localStorage.getItem('moonvale.language')||'en';}
+  function render(root){
+    if(!root)return;
+    root.innerHTML='<button class="lang-globe" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">'+globe+'</button><div class="lang-menu" role="menu"></div>';
+    const menu=root.querySelector('.lang-menu');
+    order.forEach(code=>{const b=document.createElement('button');b.type='button';b.className='lang-option';b.dataset.lang=code;b.textContent=labels[code];b.setAttribute('role','menuitem');menu.appendChild(b);});
+    root.querySelector('.lang-globe').addEventListener('click',e=>{e.stopPropagation();document.querySelectorAll('.language-picker.open').forEach(p=>{if(p!==root)p.classList.remove('open');});root.classList.toggle('open');root.querySelector('.lang-globe').setAttribute('aria-expanded',root.classList.contains('open'));});
+    menu.addEventListener('click',e=>{const btn=e.target.closest('.lang-option');if(!btn)return;window.MoonvaleI18n?.setLanguage(btn.dataset.lang);root.classList.remove('open');sync();});
+  }
+  function sync(){document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===current()));}
+  document.addEventListener('click',()=>document.querySelectorAll('.language-picker.open').forEach(p=>p.classList.remove('open')));
+  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
+  window.addEventListener('moonvale:languagechange',sync);
+})();

@@ -329,7 +329,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 .footer-lang-row{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:2px;color:var(--gold);opacity:.55;cursor:pointer;}
 
 /* ── MOBILE MENU ── */
-.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;padding-top:env(safe-area-inset-top);}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:1001;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;padding-top:env(safe-area-inset-top);}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:4px;text-decoration:none;color:var(--text);transition:color .25s;}
 .mobile-menu a:hover{color:var(--gold);}
@@ -938,7 +938,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
       <ul>
-        <li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li>
+        <li><a href="regions.html" data-i18n="footer.link.regions">Regions</a></li>
         <li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li>
         <li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li>
         <li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li>
@@ -1099,25 +1099,6 @@ document.addEventListener('click',e=>{
 
 
 
-// ── PREMIUM LANGUAGE SELECTOR ──
-(function(){
-  const labels={pt:'Português',en:'English',es:'Español'};
-  const order=['pt','en','es'];
-  const globe='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.55 3.6 5.55 3.6 9s-1.2 6.45-3.6 9M12 3c-2.4 2.55-3.6 5.55-3.6 9s1.2 6.45 3.6 9"/></svg>';
-  function current(){return (window.MoonvaleI18n&&window.MoonvaleI18n.getLanguage&&window.MoonvaleI18n.getLanguage())||localStorage.getItem('moonvale.language')||'en';}
-  function render(root){
-    if(!root)return;
-    root.innerHTML='<button class="lang-globe" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">'+globe+'</button><div class="lang-menu" role="menu"></div>';
-    const menu=root.querySelector('.lang-menu');
-    order.forEach(code=>{const b=document.createElement('button');b.type='button';b.className='lang-option';b.dataset.lang=code;b.textContent=labels[code];b.setAttribute('role','menuitem');menu.appendChild(b);});
-    root.querySelector('.lang-globe').addEventListener('click',e=>{e.stopPropagation();document.querySelectorAll('.language-picker.open').forEach(p=>{if(p!==root)p.classList.remove('open');});root.classList.toggle('open');root.querySelector('.lang-globe').setAttribute('aria-expanded',root.classList.contains('open'));});
-    menu.addEventListener('click',e=>{const btn=e.target.closest('.lang-option');if(!btn)return;window.MoonvaleI18n?.setLanguage(btn.dataset.lang);root.classList.remove('open');sync();});
-  }
-  function sync(){document.querySelectorAll('.lang-option').forEach(b=>b.classList.toggle('active',b.dataset.lang===current()));}
-  document.addEventListener('click',()=>document.querySelectorAll('.language-picker.open').forEach(p=>p.classList.remove('open')));
-  document.addEventListener('DOMContentLoaded',()=>{['navLanguagePicker','mobileLanguagePicker'].forEach(id=>render(document.getElementById(id)));sync();});
-  window.addEventListener('moonvale:languagechange',()=>{sync();const t={en:['TREASURES OF MOONVALE','Relics, kingdoms and visions forged in story.'],pt:['TESOUROS DE MOONVALE','Relíquias, reinos e visões forjados em história.'],es:['TESOROS DE MOONVALE','Reliquias, reinos y visiones forjados en historia.']};const l=current();const a=document.querySelector('[data-i18n="home.featured"]');const b=document.querySelector('[data-i18n="home.featured.sub"]');if(a)a.textContent=t[l]?.[0]||t.en[0];if(b)b.textContent=t[l]?.[1]||t.en[1];});
-})();
 
 // ── NAV ──
 function openMenu(){const menu=document.getElementById('mobileMenu');menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.querySelector('.hamburger')?.setAttribute('aria-expanded','true');}
