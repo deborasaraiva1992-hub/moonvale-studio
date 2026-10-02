@@ -520,9 +520,19 @@ const T={
   es:{'nav.home':'Inicio','nav.ethernia':'Ethernia','nav.fantasy':'Fantasy','nav.lore':'Lore Library','nav.artefacts':'Artefacts','nav.about':'Acerca','hero.eyebrow':'CARTOGRAFÍA DE LOS MUNDOS','hero.pretitle':'EL ATLAS DE','hero.sub':'Explora los reinos. Descubre las leyendas.','hero.body':'Las estrellas recuerdan cada camino. Selecciona un lugar marcado para descubrir su historia, misterios y leyendas olvidadas.','hero.cta':'EXPLORAR EL MAPA','hero.scroll':'COMENZAR EL VIAJE','filter.all':'TODOS LOS REINOS','beacon.text':'SELECCIONA UN REINO PARA COMENZAR','banner.title':'LAS ESTRELLAS RECUERDAN','banner.text':'Reinos antiguos conectados por la luz de las estrellas, sombras y leyendas olvidadas.','banner.cta':'ENTRAR EN LA LORE LIBRARY','panel.lore':'LEER EL LORE','panel.open':'EXPLORAR REGIÓN →','footer.tagline':'Entre Estrellas e Historias','footer.desc':'Somos el puente entre mundos e imaginación.','footer.navigation':'Navegación','footer.worlds':'Mundos','footer.atlas':'Atlas','footer.archive':'Archivo','footer.regions':'Regiones','footer.characters':'Personajes','footer.relics':'Reliquias','footer.chronicles':'Crónicas','footer.connect':'Conectar','footer.tiktok-ethernia':'TikTok Ethernia','footer.tiktok-fantasy':'TikTok Fantasy','footer.youtube':'YouTube','footer.pinterest':'Pinterest','footer.copyright':'© 2026 Moonvale Studio. Todos os direitos reservados.'}
 };
 let lang='en';
-function applyLang(l){lang=l;document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=T[l][el.dataset.i18n];if(v!==undefined)el.textContent=v;});document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));}
+function applyLang(l){lang=l;localStorage.setItem('moonvale.language',l);document.documentElement.lang=l;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=T[l][el.dataset.i18n];if(v!==undefined)el.textContent=v;});document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));}
 document.querySelectorAll('.lang-switch button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
-applyLang('en');
+function detectAtlasLanguage(){
+  const stored=localStorage.getItem('moonvale.language');
+  if(stored&&T[stored])return stored;
+  const langs=navigator.languages||[navigator.language||'en'];
+  for(const l of langs){
+    const code=l.toLowerCase().slice(0,2);
+    if(T[code])return code;
+  }
+  return'en';
+}
+applyLang(detectAtlasLanguage());
 
 /* ── NAV ── */
 const navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');

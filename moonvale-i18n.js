@@ -193,7 +193,15 @@
       'music.off':'MÚSICA OFF','music.on':'MÚSICA ON'
     }
   };
-  function lang(){return localStorage.getItem(KEY)||'en'}
+  function detectLanguage(){
+    const langs=navigator.languages||[navigator.language||'en'];
+    for(const l of langs){
+      const code=l.toLowerCase().slice(0,2);
+      if(order.includes(code))return code;
+    }
+    return'en';
+  }
+  function lang(){return localStorage.getItem(KEY)||detectLanguage();}
   function apply(l){
     localStorage.setItem(KEY,l);document.documentElement.lang=l;
     document.querySelectorAll('[data-i18n]').forEach(el=>{const v=base[l]?.[el.dataset.i18n]||base.en[el.dataset.i18n];if(v)el.textContent=v;});
