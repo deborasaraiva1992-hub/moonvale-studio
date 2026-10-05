@@ -94,15 +94,20 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .behind-banner-copy p{font-size:clamp(.78rem,1vw,.9rem);color:rgba(245,241,232,.82);line-height:1.48;font-weight:300;margin-bottom:6px;}
 .behind-banner-copy p:last-child{margin-bottom:0;}
 @media(max-width:820px){
-  /* Stop overlaying the copy on the image — this art is richly detailed
-     edge to edge with no built-in empty space to read text against once
-     the desktop's side-by-side split collapses to one column. Instead,
-     stack: full uncropped image on top (same ratio as desktop — nothing
-     hidden), plain text panel below, exactly like .create-banner already
-     does with its labels at this same breakpoint. */
-  .behind-banner{display:flex;flex-direction:column;}
-  .behind-banner-copy{position:static;width:100%;background:rgba(8,11,24,.97);padding:20px clamp(18px,5vw,28px);}
-  .behind-banner-copy p{font-size:.78rem;line-height:1.5;margin-bottom:8px;}
+  /* Same technique Home uses for its cinematic banners: the copy stays
+     anchored to its own side with a directional gradient fade into the
+     image (never goes full-width/full-bottom), image keeps a gentle
+     landscape ratio. Behind's copy has 3 real paragraphs rather than
+     Home's one-line blurb, so instead of Home's line-clamp/truncation
+     the text shrinks to fit the full manifesto without losing any of it. */
+  .behind-banner img{aspect-ratio:3/2;}
+  .behind-banner-copy{
+    width:min(78%,300px);
+    background:linear-gradient(to right,rgba(5,8,22,.94) 0%,rgba(5,8,22,.78) 60%,transparent 100%);
+    padding:8px clamp(14px,4vw,22px);
+  }
+  .behind-banner-copy .section-eyebrow{margin-bottom:3px;font-size:.46rem;letter-spacing:1.6px;}
+  .behind-banner-copy p{font-size:.56rem;line-height:1.24;margin-bottom:3px;}
 }
 
 /* Our Manifesto is a single wide banner image (the studio's own art —
@@ -118,11 +123,17 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .manifesto-banner-copy em{color:var(--gold-hi);font-style:italic;}
 .manifesto-quote{font-style:italic;color:var(--gold);opacity:.92;margin-top:4px;}
 @media(max-width:820px){
-  /* Same reasoning as Behind Moonvale below: stack instead of overlay. */
-  .manifesto-banner{display:flex;flex-direction:column;}
-  .manifesto-banner-copy{position:static;width:100%;background:rgba(8,11,24,.97);padding:20px clamp(18px,5vw,28px);}
-  .manifesto-banner-copy .section-eyebrow{margin-bottom:10px;}
-  .manifesto-banner-copy p{font-size:.78rem;line-height:1.5;margin-bottom:8px;}
+  /* Same technique as Behind Moonvale above: anchored side + gradient
+     fade, like Home's cinematic banners, with the font shrunk to fit
+     the full manifesto instead of truncating it. */
+  .manifesto-banner img{aspect-ratio:3/2;}
+  .manifesto-banner-copy{
+    width:min(78%,300px);
+    background:linear-gradient(to left,rgba(5,8,22,.94) 0%,rgba(5,8,22,.78) 60%,transparent 100%);
+    padding:8px clamp(14px,4vw,22px);
+  }
+  .manifesto-banner-copy .section-eyebrow{margin-bottom:3px;font-size:.46rem;letter-spacing:1.6px;}
+  .manifesto-banner-copy p{font-size:.56rem;line-height:1.24;margin-bottom:3px;}
 }
 /* Desktop only: break Manifesto/Behind out to full viewport width and
    drop the card frame, matching the Hero's edge-to-edge treatment —
