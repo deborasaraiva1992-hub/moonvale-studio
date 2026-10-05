@@ -134,7 +134,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.22);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
 @keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
 
-.mobile-menu{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:1001;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:4px;text-decoration:none;color:var(--text);transition:color .25s;}
 .mobile-menu a:hover{color:var(--gold);}
@@ -234,6 +234,16 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 @media(max-width:420px){.footer-inner{grid-template-columns:1fr!important;gap:14px!important}.footer-col h5{margin-bottom:7px!important}.footer-col ul li{margin-bottom:4px!important}}
 @media(prefers-reduced-motion:reduce){.hero-primary-cta,.hero-btn,.atlas-banner-btn{animation:none!important}}
 
+.language-picker{position:relative;display:inline-flex;align-items:center;justify-content:center;z-index:1200;}
+.nav-mobile-picker{display:none;}
+.lang-globe{width:36px;height:36px;border:1px solid rgba(216,192,138,.28);border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(245,217,127,.28),rgba(155,142,196,.12) 42%,rgba(5,8,22,.88) 72%);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 18px rgba(216,192,138,.08);transition:transform .25s,border-color .25s,box-shadow .25s;}
+.lang-globe:hover,.language-picker.open .lang-globe{transform:translateY(-1px);border-color:var(--gold);box-shadow:0 0 22px rgba(216,192,138,.2),0 0 34px rgba(155,142,196,.1);}
+.lang-globe svg{width:17px;height:17px;}
+.lang-menu{position:absolute;top:calc(100% + 12px);right:0;min-width:168px;padding:8px;border:1px double rgba(216,192,138,.38);background:linear-gradient(145deg,rgba(8,11,28,.98),rgba(17,13,31,.96));box-shadow:0 18px 42px rgba(0,0,0,.48),0 0 28px rgba(216,192,138,.1);border-radius:10px;opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:opacity .22s,transform .22s;}
+.language-picker.open .lang-menu{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}
+.lang-option{width:100%;border:0;background:transparent;color:var(--dim);font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:1.8px;padding:11px 12px;text-align:left;cursor:pointer;border-radius:7px;transition:background .2s,color .2s;}
+.lang-option:hover,.lang-option.active{background:rgba(216,192,138,.1);color:var(--gold-hi);}
+@media(max-width:900px){.nav-mobile-picker{display:flex;margin-left:auto}.language-picker.nav-mobile{position:fixed;top:calc(12px + env(safe-area-inset-top));right:68px}.nav-inner>.language-picker{margin-left:auto}.nav-links+.language-picker{display:flex}}
 </style>
 </head>
 <body>
@@ -256,26 +266,27 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   <div class="nav-inner">
     <a href="index.html" class="logo-nav">MOONVALE</a>
     <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
-      <li><a href="ethernia.html">ETHERNIA</a></li>
-      <li><a href="fantasy.html">FANTASY</a></li>
-      <li><a href="lore-library.html" class="active">LORE LIBRARY</a></li>
-      <li><a href="artefacts.html">ARTEFACTS</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-      <li><span class="nav-lang">PT | EN | ES</span></li>
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+      <li><a href="ethernia.html" data-i18n="nav.ethernia">ETHERNIA</a></li>
+      <li><a href="fantasy.html" data-i18n="nav.fantasy">FANTASY</a></li>
+      <li><a href="lore-library.html" data-i18n="nav.lore" class="active">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+      <li><div class="language-picker" id="navLanguagePicker"></div></li>
     </ul>
+    <div class="language-picker nav-mobile-picker" id="mobileLanguagePicker"></div>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" onclick="closeMenu()">HOME</a>
-  <a href="ethernia.html" onclick="closeMenu()">ETHERNIA</a>
-  <a href="fantasy.html" onclick="closeMenu()">FANTASY</a>
-  <a href="lore-library.html" onclick="closeMenu()">LORE LIBRARY</a>
-  <a href="artefacts.html" onclick="closeMenu()">ARTEFACTS</a>
-  <a href="about.html" onclick="closeMenu()">ABOUT</a>
+  <a href="index.html" data-i18n="nav.home" onclick="closeMenu()">HOME</a>
+  <a href="ethernia.html" data-i18n="nav.ethernia" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" data-i18n="nav.fantasy" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" data-i18n="nav.lore" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" data-i18n="nav.artefacts" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="about.html" data-i18n="nav.about" onclick="closeMenu()">ABOUT</a>
 </div>
 
 <!-- HERO -->
@@ -359,31 +370,30 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
       <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
       <div class="footer-social">
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+        <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.pinterest.com/moonvalestudio/" aria-label="Pinterest" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
       </div>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.navigation">NAVIGATION</h5>
-      <ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="nav.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="nav.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="nav.about">About</a></li></ul>
+      <ul><li><a href="index.html" data-i18n="footer.link.home">Home</a></li><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="footer.link.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="footer.link.about">About</a></li></ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.worlds">WORLDS</h5>
-      <ul><li><a href="ethernia.html" data-i18n="nav.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="nav.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.atlas">Atlas</a></li></ul>
+      <ul><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.link.atlas">Atlas</a></li></ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.archive">ARCHIVE</h5>
-      <ul><li><a href="regions.html" data-i18n="archive.regions">Regions</a></li><li><a href="characters.html" data-i18n="archive.characters">Characters</a></li><li><a href="relics.html" data-i18n="archive.relics">Relics</a></li><li><a href="chronicles.html" data-i18n="archive.chronicles">Chronicles</a></li></ul>
+      <ul><li><a href="regions.html" data-i18n="footer.link.regions">Regions</a></li><li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li><li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li><li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li></ul>
     </div>
     <div class="footer-col">
       <h5 data-i18n="footer.connect">CONNECT</h5>
-      <ul><li><a href="#">TikTok Ethernia</a></li><li><a href="#">TikTok Fantasy</a></li><li><a href="#">YouTube</a></li><li><a href="#">Pinterest</a></li></ul>
+      <ul><li><a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.eth">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.fan">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" data-i18n="social.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" data-i18n="social.pinterest">Pinterest</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
-    <p class="footer-lang-row">PT &nbsp;|&nbsp; EN &nbsp;|&nbsp; ES</p>
   </div>
 </footer>
 
