@@ -253,7 +253,7 @@ footer{position:relative;overflow:hidden;}
 .mobile-menu a[aria-current="page"]{color:var(--gold-hi);}
 nav{padding-top:calc(16px + env(safe-area-inset-top));padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:900px){nav{padding-top:calc(14px + env(safe-area-inset-top));}}
-@media(max-width:600px){nav{padding-top:calc(12px + env(safe-area-inset-top));}}
+@media(max-width:600px){nav{padding-top:calc(12px + env(safe-area-inset-top));}.lang-globe{width:34px;height:34px;}}
 .nav-links{gap:clamp(16px,2.2vw,34px);}
 .nav-links a{font-size:clamp(.62rem,.68vw,.74rem);}
 .mobile-menu{padding-top:env(safe-area-inset-top);}
@@ -295,7 +295,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);}
       <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
       <li><div class="language-picker" id="navLanguagePicker"></div></li>
     </ul>
-    <div class="language-picker nav-mobile-picker" id="mobileLanguagePicker"></div>
+    <div class="language-picker nav-mobile-picker nav-mobile" id="mobileLanguagePicker"></div>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
