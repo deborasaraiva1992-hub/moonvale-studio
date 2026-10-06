@@ -205,18 +205,12 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
   .create-banner>img{display:none;}
   .create-labels{position:static;inset:auto;display:flex;flex-direction:column;grid-template-columns:none;gap:0;padding:0;background:none;border-top:none;}
   .create-item{display:flex;align-items:center;gap:14px;text-align:left;padding:10px 16px;border-bottom:1px solid rgba(216,192,138,.12);}
-  /* Each panel in the source art has its own baked-in ornate gold
-     frame with diagonal corner flourishes; cropping at the exact 20%
-     panel boundaries sliced straight through those diagonals, reading
-     as a crooked/cut-off border. Inset 18% into each panel instead, so
-     the crop lands inside the panel's own frame (no CSS border needed,
-     the art already frames it) and never touches a corner decoration. */
-  .create-item::before{content:'';flex:none;width:58px;height:58px;border-radius:8px;background-image:url('about-what-we-create-banner.webp');background-size:781.25% 156%;background-repeat:no-repeat;}
-  .create-item:nth-child(1)::before{background-position:4.13% 0%;}
-  .create-item:nth-child(2)::before{background-position:27.06% 0%;}
+  .create-item::before{content:'';flex:none;width:58px;height:58px;border-radius:8px;border:1px solid rgba(216,192,138,.35);background-image:url('about-what-we-create-banner.webp');background-size:500% 156%;background-repeat:no-repeat;}
+  .create-item:nth-child(1)::before{background-position:0% 0%;}
+  .create-item:nth-child(2)::before{background-position:25% 0%;}
   .create-item:nth-child(3)::before{background-position:50% 0%;}
-  .create-item:nth-child(4)::before{background-position:72.94% 0%;}
-  .create-item:nth-child(5)::before{background-position:95.87% 0%;}
+  .create-item:nth-child(4)::before{background-position:75% 0%;}
+  .create-item:nth-child(5)::before{background-position:100% 0%;}
   .create-item-title{text-shadow:none;font-size:.68rem;margin-bottom:2px;}
   .create-item-text{text-shadow:none;font-size:.68rem;line-height:1.3;}
 }
