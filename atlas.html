@@ -140,7 +140,11 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .ocean-shimmer{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.5;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 40%,rgba(180,220,255,.07) 48%,rgba(210,235,255,.12) 50%,rgba(180,220,255,.07) 52%,transparent 60%);background-size:260% 260%;animation:shimmerSweep 26s linear infinite;}
 @keyframes shimmerSweep{0%{background-position:0% 0%}100%{background-position:100% 100%}}
 
-@media(prefers-reduced-motion:reduce){.forest-motes circle,.leviathan-ripple,.ocean-shimmer{animation:none!important;}}
+/* waterfall glints — golden sparkle catching the light at the biggest cascades */
+.waterfall-glint{pointer-events:none;transform-box:fill-box;transform-origin:center;animation:wfGlint 2.8s ease-in-out infinite;}
+@keyframes wfGlint{0%,100%{opacity:.2;transform:scale(.7) rotate(0deg)}50%{opacity:1;transform:scale(1.2) rotate(25deg)}}
+
+@media(prefers-reduced-motion:reduce){.forest-motes circle,.leviathan-ripple,.ocean-shimmer,.waterfall-glint{animation:none!important;}}
 
 /* vignette + film grain, topmost polish layers */
 .atlas-vignette{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(ellipse at center,transparent 54%,rgba(2,4,14,.5) 100%);mix-blend-mode:multiply;}
@@ -628,6 +632,58 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
           <circle cx="788" cy="635" r="3" fill="rgba(220,100,100,.5)"/>
           <rect fill="rgba(5,8,22,.75)" x="706" y="651" width="164" height="14" rx="3" ry="3"/>
           <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="788" y="661" letter-spacing="1">THE FORSAKEN RELIQUARY</text>
+        </g>
+
+        <!-- ══════════════════════════════════
+             WATERFALL GLINTS — golden sparkle at the biggest cascade per region
+        ══════════════════════════════════ -->
+        <g class="waterfall-glint" style="animation-delay:0s">
+          <circle cx="154" cy="389" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="154" y1="377" x2="154" y2="401" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="142" y1="389" x2="166" y2="389" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="154" cy="389" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:.4s">
+          <circle cx="266" cy="425" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="266" y1="413" x2="266" y2="437" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="254" y1="425" x2="278" y2="425" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="266" cy="425" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:.8s">
+          <circle cx="92" cy="686" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="92" y1="674" x2="92" y2="698" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="80" y1="686" x2="104" y2="686" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="92" cy="686" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:1.2s">
+          <circle cx="297" cy="681" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="297" y1="669" x2="297" y2="693" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="285" y1="681" x2="309" y2="681" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="297" cy="681" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:1.6s">
+          <circle cx="1137" cy="164" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="1137" y1="152" x2="1137" y2="176" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="1125" y1="164" x2="1149" y2="164" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="1137" cy="164" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:2s">
+          <circle cx="1106" cy="358" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="1106" y1="346" x2="1106" y2="370" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="1094" y1="358" x2="1118" y2="358" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="1106" cy="358" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:2.4s">
+          <circle cx="1024" cy="379" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="1024" y1="367" x2="1024" y2="391" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="1012" y1="379" x2="1036" y2="379" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="1024" cy="379" r="2.4" fill="#fffef2"/>
+        </g>
+        <g class="waterfall-glint" style="animation-delay:2.8s">
+          <circle cx="1178" cy="666" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
+          <line x1="1178" y1="654" x2="1178" y2="678" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="1166" y1="666" x2="1190" y2="666" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="1178" cy="666" r="2.4" fill="#fffef2"/>
         </g>
       </svg>
 
