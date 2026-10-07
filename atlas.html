@@ -140,11 +140,19 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .ocean-shimmer{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.5;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 40%,rgba(180,220,255,.07) 48%,rgba(210,235,255,.12) 50%,rgba(180,220,255,.07) 52%,transparent 60%);background-size:260% 260%;animation:shimmerSweep 26s linear infinite;}
 @keyframes shimmerSweep{0%{background-position:0% 0%}100%{background-position:100% 100%}}
 
-/* waterfall glints — golden sparkle catching the light at the biggest cascades */
-.waterfall-glint{pointer-events:none;transform-box:fill-box;transform-origin:center;animation:wfGlint 2.8s ease-in-out infinite;}
-@keyframes wfGlint{0%,100%{opacity:.2;transform:scale(.7) rotate(0deg)}50%{opacity:1;transform:scale(1.2) rotate(25deg)}}
+/* city lights — twinkling lamp/window glints scattered across each city */
+.city-lights{pointer-events:none;}
+.city-lights circle{animation:lampTwinkle 3.2s ease-in-out infinite;filter:url(#cometGlow);transform-box:fill-box;transform-origin:center;}
+@keyframes lampTwinkle{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.8)}}
 
-@media(prefers-reduced-motion:reduce){.forest-motes circle,.leviathan-ripple,.ocean-shimmer,.waterfall-glint{animation:none!important;}}
+/* volcano — rising smoke + pulsing lava glow at Drakenfell's crater */
+.volcano-fx{pointer-events:none;}
+.lava-glow{animation:lavaPulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+@keyframes lavaPulse{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+.volcano-smoke{animation:smokeRise 8s ease-in infinite;transform-box:fill-box;transform-origin:center;}
+@keyframes smokeRise{0%{transform:translateY(0) scale(.6);opacity:0}20%{opacity:.55}70%{opacity:.3}100%{transform:translateY(-90px) scale(2.6);opacity:0}}
+
+@media(prefers-reduced-motion:reduce){.forest-motes circle,.leviathan-ripple,.ocean-shimmer,.city-lights circle,.lava-glow,.volcano-smoke{animation:none!important;}}
 
 /* vignette + film grain, topmost polish layers */
 .atlas-vignette{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(ellipse at center,transparent 54%,rgba(2,4,14,.5) 100%);mix-blend-mode:multiply;}
@@ -386,6 +394,11 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
             <stop offset="0%" stop-color="#e8a94a" stop-opacity=".65"/>
             <stop offset="100%" stop-color="#e8a94a" stop-opacity="0"/>
           </radialGradient>
+          <radialGradient id="glowLava" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff6a2b" stop-opacity=".95"/>
+            <stop offset="45%" stop-color="#ff8a3d" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#ff8a3d" stop-opacity="0"/>
+          </radialGradient>
         </defs>
 
         <!-- ROUTES -->
@@ -415,6 +428,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark eth" data-key="aurelith-veil">
           <circle class="region-wash" cx="328" cy="56" r="130" fill="url(#washGold)"/>
           <circle class="city-glow" cx="328" cy="56" r="22" fill="url(#glowGold)"/>
+          <g class="city-lights">
+            <circle cx="310" cy="51" r="1.3" fill="#ffe9a8" style="animation-delay:0s"/>
+            <circle cx="337" cy="43" r="1.6" fill="#ffd77a" style="animation-delay:.6s"/>
+            <circle cx="321" cy="67" r="1.9" fill="#fff3c4" style="animation-delay:1.2s"/>
+            <circle cx="345" cy="61" r="1.3" fill="#ffe9a8" style="animation-delay:1.8s"/>
+            <circle cx="307" cy="71" r="1.6" fill="#ffd77a" style="animation-delay:2.4s"/>
+            <circle cx="331" cy="37" r="1.9" fill="#fff3c4" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="328" cy="56" r="58"/>
           <circle class="pulse-outer" cx="328" cy="56" r="10" style="animation-delay:0s"/>
           <circle class="pulse-inner" cx="328" cy="56" r="3.5" filter="url(#cityGlow)"/>
@@ -424,6 +445,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark eth" data-key="sylvarith">
           <circle class="region-wash" cx="297" cy="225" r="130" fill="url(#washGold)"/>
           <circle class="city-glow" cx="297" cy="225" r="22" fill="url(#glowGold)"/>
+          <g class="city-lights">
+            <circle cx="279" cy="220" r="1.3" fill="#ffe9a8" style="animation-delay:0s"/>
+            <circle cx="306" cy="212" r="1.6" fill="#ffd77a" style="animation-delay:.6s"/>
+            <circle cx="290" cy="236" r="1.9" fill="#fff3c4" style="animation-delay:1.2s"/>
+            <circle cx="314" cy="230" r="1.3" fill="#ffe9a8" style="animation-delay:1.8s"/>
+            <circle cx="276" cy="240" r="1.6" fill="#ffd77a" style="animation-delay:2.4s"/>
+            <circle cx="300" cy="206" r="1.9" fill="#fff3c4" style="animation-delay:3s"/>
+          </g>
           <g class="forest-motes">
             <circle cx="280" cy="228" r="3.2" fill="#d8ec8e" filter="url(#cometGlow)" style="animation-delay:0s"/>
             <circle cx="296" cy="233" r="2.6" fill="#c8e894" filter="url(#cometGlow)" style="animation-delay:1s"/>
@@ -441,6 +470,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark eth" data-key="lumindor">
           <circle class="region-wash" cx="276" cy="364" r="130" fill="url(#washGold)"/>
           <circle class="city-glow" cx="276" cy="364" r="22" fill="url(#glowGold)"/>
+          <g class="city-lights">
+            <circle cx="258" cy="359" r="1.3" fill="#ffe9a8" style="animation-delay:0s"/>
+            <circle cx="285" cy="351" r="1.6" fill="#ffd77a" style="animation-delay:.6s"/>
+            <circle cx="269" cy="375" r="1.9" fill="#fff3c4" style="animation-delay:1.2s"/>
+            <circle cx="293" cy="369" r="1.3" fill="#ffe9a8" style="animation-delay:1.8s"/>
+            <circle cx="255" cy="379" r="1.6" fill="#ffd77a" style="animation-delay:2.4s"/>
+            <circle cx="279" cy="345" r="1.9" fill="#fff3c4" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="276" cy="364" r="60"/>
           <circle class="pulse-outer" cx="276" cy="364" r="10" style="animation-delay:1.4s"/>
           <circle class="pulse-inner" cx="276" cy="364" r="3.5" filter="url(#cityGlow)"/>
@@ -450,6 +487,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark eth" data-key="elarion-vale">
           <circle class="region-wash" cx="236" cy="532" r="130" fill="url(#washGold)"/>
           <circle class="city-glow" cx="236" cy="532" r="22" fill="url(#glowGold)"/>
+          <g class="city-lights">
+            <circle cx="218" cy="527" r="1.3" fill="#ffe9a8" style="animation-delay:0s"/>
+            <circle cx="245" cy="519" r="1.6" fill="#ffd77a" style="animation-delay:.6s"/>
+            <circle cx="229" cy="543" r="1.9" fill="#fff3c4" style="animation-delay:1.2s"/>
+            <circle cx="253" cy="537" r="1.3" fill="#ffe9a8" style="animation-delay:1.8s"/>
+            <circle cx="215" cy="547" r="1.6" fill="#ffd77a" style="animation-delay:2.4s"/>
+            <circle cx="239" cy="513" r="1.9" fill="#fff3c4" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="236" cy="532" r="52"/>
           <circle class="pulse-outer" cx="236" cy="532" r="10" style="animation-delay:2.1s"/>
           <circle class="pulse-inner" cx="236" cy="532" r="3.5" filter="url(#cityGlow)"/>
@@ -459,6 +504,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark eth" data-key="elynthara">
           <circle class="region-wash" cx="399" cy="686" r="130" fill="url(#washGold)"/>
           <circle class="city-glow" cx="399" cy="686" r="22" fill="url(#glowGold)"/>
+          <g class="city-lights">
+            <circle cx="381" cy="681" r="1.3" fill="#ffe9a8" style="animation-delay:0s"/>
+            <circle cx="408" cy="673" r="1.6" fill="#ffd77a" style="animation-delay:.6s"/>
+            <circle cx="392" cy="697" r="1.9" fill="#fff3c4" style="animation-delay:1.2s"/>
+            <circle cx="416" cy="691" r="1.3" fill="#ffe9a8" style="animation-delay:1.8s"/>
+            <circle cx="378" cy="701" r="1.6" fill="#ffd77a" style="animation-delay:2.4s"/>
+            <circle cx="402" cy="667" r="1.9" fill="#fff3c4" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="399" cy="686" r="52"/>
           <circle class="pulse-outer" cx="399" cy="686" r="10" style="animation-delay:2.8s"/>
           <circle class="pulse-inner" cx="399" cy="686" r="3.5" filter="url(#cityGlow)"/>
@@ -472,6 +525,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark fan" data-key="drakenfell">
           <circle class="region-wash" cx="1229" cy="123" r="130" fill="url(#washPurple)"/>
           <circle class="city-glow" cx="1229" cy="123" r="22" fill="url(#glowPurple)"/>
+          <g class="city-lights">
+            <circle cx="1211" cy="118" r="1.3" fill="#ffcf8a" style="animation-delay:0s"/>
+            <circle cx="1238" cy="110" r="1.6" fill="#ffb366" style="animation-delay:.6s"/>
+            <circle cx="1222" cy="134" r="1.9" fill="#ffdca0" style="animation-delay:1.2s"/>
+            <circle cx="1246" cy="128" r="1.3" fill="#ffcf8a" style="animation-delay:1.8s"/>
+            <circle cx="1208" cy="138" r="1.6" fill="#ffb366" style="animation-delay:2.4s"/>
+            <circle cx="1232" cy="104" r="1.9" fill="#ffdca0" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="1229" cy="123" r="60"/>
           <circle class="pulse-outer" cx="1229" cy="123" r="10" style="animation-delay:.4s"/>
           <circle class="pulse-inner" cx="1229" cy="123" r="3.5" filter="url(#cityGlow)"/>
@@ -481,6 +542,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark fan" data-key="nocthaven">
           <circle class="region-wash" cx="1229" cy="328" r="130" fill="url(#washPurple)"/>
           <circle class="city-glow" cx="1229" cy="328" r="22" fill="url(#glowPurple)"/>
+          <g class="city-lights">
+            <circle cx="1211" cy="323" r="1.3" fill="#ffcf8a" style="animation-delay:0s"/>
+            <circle cx="1238" cy="315" r="1.6" fill="#ffb366" style="animation-delay:.6s"/>
+            <circle cx="1222" cy="339" r="1.9" fill="#ffdca0" style="animation-delay:1.2s"/>
+            <circle cx="1246" cy="333" r="1.3" fill="#ffcf8a" style="animation-delay:1.8s"/>
+            <circle cx="1208" cy="343" r="1.6" fill="#ffb366" style="animation-delay:2.4s"/>
+            <circle cx="1232" cy="309" r="1.9" fill="#ffdca0" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="1229" cy="328" r="65"/>
           <circle class="pulse-outer" cx="1229" cy="328" r="10" style="animation-delay:1.1s"/>
           <circle class="pulse-inner" cx="1229" cy="328" r="3.5" filter="url(#cityGlow)"/>
@@ -490,6 +559,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark fan" data-key="eldermere">
           <circle class="region-wash" cx="1004" cy="256" r="130" fill="url(#washPurple)"/>
           <circle class="city-glow" cx="1004" cy="256" r="22" fill="url(#glowPurple)"/>
+          <g class="city-lights">
+            <circle cx="986" cy="251" r="1.3" fill="#ffcf8a" style="animation-delay:0s"/>
+            <circle cx="1013" cy="243" r="1.6" fill="#ffb366" style="animation-delay:.6s"/>
+            <circle cx="997" cy="267" r="1.9" fill="#ffdca0" style="animation-delay:1.2s"/>
+            <circle cx="1021" cy="261" r="1.3" fill="#ffcf8a" style="animation-delay:1.8s"/>
+            <circle cx="983" cy="271" r="1.6" fill="#ffb366" style="animation-delay:2.4s"/>
+            <circle cx="1007" cy="237" r="1.9" fill="#ffdca0" style="animation-delay:3s"/>
+          </g>
           <g class="forest-motes">
             <circle cx="988" cy="259" r="3.2" fill="#8ef0d8" filter="url(#cometGlow)" style="animation-delay:.3s"/>
             <circle cx="1002" cy="264" r="2.6" fill="#6fe0c9" filter="url(#cometGlow)" style="animation-delay:1.3s"/>
@@ -507,6 +584,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark fan" data-key="velmorra">
           <circle class="region-wash" cx="1208" cy="502" r="130" fill="url(#washPurple)"/>
           <circle class="city-glow" cx="1208" cy="502" r="22" fill="url(#glowPurple)"/>
+          <g class="city-lights">
+            <circle cx="1190" cy="497" r="1.3" fill="#ffcf8a" style="animation-delay:0s"/>
+            <circle cx="1217" cy="489" r="1.6" fill="#ffb366" style="animation-delay:.6s"/>
+            <circle cx="1201" cy="513" r="1.9" fill="#ffdca0" style="animation-delay:1.2s"/>
+            <circle cx="1225" cy="507" r="1.3" fill="#ffcf8a" style="animation-delay:1.8s"/>
+            <circle cx="1187" cy="517" r="1.6" fill="#ffb366" style="animation-delay:2.4s"/>
+            <circle cx="1211" cy="483" r="1.9" fill="#ffdca0" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="1208" cy="502" r="58"/>
           <circle class="pulse-outer" cx="1208" cy="502" r="10" style="animation-delay:2.5s"/>
           <circle class="pulse-inner" cx="1208" cy="502" r="3.5" filter="url(#cityGlow)"/>
@@ -516,6 +601,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark fan" data-key="blacktide-harbor">
           <circle class="region-wash" cx="1260" cy="748" r="130" fill="url(#washPurple)"/>
           <circle class="city-glow" cx="1260" cy="748" r="22" fill="url(#glowPurple)"/>
+          <g class="city-lights">
+            <circle cx="1242" cy="743" r="1.3" fill="#ffcf8a" style="animation-delay:0s"/>
+            <circle cx="1269" cy="735" r="1.6" fill="#ffb366" style="animation-delay:.6s"/>
+            <circle cx="1253" cy="759" r="1.9" fill="#ffdca0" style="animation-delay:1.2s"/>
+            <circle cx="1277" cy="753" r="1.3" fill="#ffcf8a" style="animation-delay:1.8s"/>
+            <circle cx="1239" cy="763" r="1.6" fill="#ffb366" style="animation-delay:2.4s"/>
+            <circle cx="1263" cy="729" r="1.9" fill="#ffdca0" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="1260" cy="748" r="65"/>
           <circle class="pulse-outer" cx="1260" cy="748" r="10" style="animation-delay:3.2s"/>
           <circle class="pulse-inner" cx="1260" cy="748" r="3.5" filter="url(#cityGlow)"/>
@@ -559,6 +652,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="saltscar" data-type="pirate">
           <circle class="mystery-glow" cx="952" cy="799" r="40" fill="url(#glowAmber)"/>
+          <g class="city-lights">
+            <circle cx="934" cy="794" r="1.3" fill="#ffcf8a" style="animation-delay:0s"/>
+            <circle cx="961" cy="786" r="1.6" fill="#ffb366" style="animation-delay:.6s"/>
+            <circle cx="945" cy="810" r="1.9" fill="#ffdca0" style="animation-delay:1.2s"/>
+            <circle cx="969" cy="804" r="1.3" fill="#ffcf8a" style="animation-delay:1.8s"/>
+            <circle cx="931" cy="814" r="1.6" fill="#ffb366" style="animation-delay:2.4s"/>
+            <circle cx="955" cy="780" r="1.9" fill="#ffdca0" style="animation-delay:3s"/>
+          </g>
           <circle class="landmark-hit" cx="952" cy="799" r="40"/>
           <circle cx="952" cy="799" r="9" fill="none" stroke="rgba(232,169,74,.6)" stroke-width="1.2" style="animation:pulseOut 3.2s ease-in-out infinite;animation-delay:1.6s"/>
           <circle cx="952" cy="799" r="3.5" fill="rgba(232,169,74,.75)"/>
@@ -635,55 +736,13 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
 
         <!-- ══════════════════════════════════
-             WATERFALL GLINTS — golden sparkle at the biggest cascade per region
+             DRAKENFELL VOLCANO — rising smoke + pulsing lava glow
         ══════════════════════════════════ -->
-        <g class="waterfall-glint" style="animation-delay:0s">
-          <circle cx="154" cy="389" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="154" y1="377" x2="154" y2="401" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="142" y1="389" x2="166" y2="389" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="154" cy="389" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:.4s">
-          <circle cx="266" cy="425" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="266" y1="413" x2="266" y2="437" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="254" y1="425" x2="278" y2="425" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="266" cy="425" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:.8s">
-          <circle cx="92" cy="686" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="92" y1="674" x2="92" y2="698" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="80" y1="686" x2="104" y2="686" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="92" cy="686" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:1.2s">
-          <circle cx="297" cy="681" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="297" y1="669" x2="297" y2="693" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="285" y1="681" x2="309" y2="681" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="297" cy="681" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:1.6s">
-          <circle cx="1137" cy="164" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="1137" y1="152" x2="1137" y2="176" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="1125" y1="164" x2="1149" y2="164" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="1137" cy="164" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:2s">
-          <circle cx="1106" cy="358" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="1106" y1="346" x2="1106" y2="370" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="1094" y1="358" x2="1118" y2="358" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="1106" cy="358" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:2.4s">
-          <circle cx="1024" cy="379" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="1024" y1="367" x2="1024" y2="391" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="1012" y1="379" x2="1036" y2="379" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="1024" cy="379" r="2.4" fill="#fffef2"/>
-        </g>
-        <g class="waterfall-glint" style="animation-delay:2.8s">
-          <circle cx="1178" cy="666" r="11" fill="rgba(4,8,20,.4)" filter="url(#cityGlow)"/>
-          <line x1="1178" y1="654" x2="1178" y2="678" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <line x1="1166" y1="666" x2="1190" y2="666" stroke="#fff8dc" stroke-width="2.2" stroke-linecap="round"/>
-          <circle cx="1178" cy="666" r="2.4" fill="#fffef2"/>
+        <g class="volcano-fx">
+          <circle class="lava-glow" cx="1341" cy="108" r="16" fill="url(#glowLava)"/>
+          <circle class="volcano-smoke" cx="1338" cy="92" r="10" fill="rgba(210,210,220,.4)" filter="url(#cityGlow)" style="animation-delay:0s"/>
+          <circle class="volcano-smoke" cx="1350" cy="88" r="8" fill="rgba(225,225,232,.35)" filter="url(#cityGlow)" style="animation-delay:2.6s"/>
+          <circle class="volcano-smoke" cx="1344" cy="95" r="12" fill="rgba(195,195,208,.35)" filter="url(#cityGlow)" style="animation-delay:5.2s"/>
         </g>
       </svg>
 
