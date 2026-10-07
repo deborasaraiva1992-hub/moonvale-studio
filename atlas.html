@@ -31,6 +31,7 @@ button{font:inherit;background:none;border:none;color:inherit;cursor:pointer;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16px + env(safe-area-inset-top));background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.08);z-index:1000;}
+nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:clamp(18px,3vw,46px);}
 .logo-nav{font-family:'Cinzel',serif;font-size:clamp(.92rem,1.2vw,1.18rem);letter-spacing:clamp(3px,.45vw,5px);color:var(--gold);text-decoration:none;white-space:nowrap;}
 .nav-links{display:flex;gap:clamp(16px,2.2vw,34px);align-items:center;list-style:none;}
@@ -99,9 +100,9 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .atlas-frame img{width:100%;display:block;user-select:none;pointer-events:none;position:relative;z-index:1;}
 
 /* CANVASES */
-.atlas-mist{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.13;}
+.atlas-mist{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.13;transition:transform .35s ease-out;}
 .atlas-const{position:absolute;inset:0;z-index:4;pointer-events:none;}
-.atlas-particles{position:absolute;inset:0;z-index:8;pointer-events:none;}
+.atlas-particles{position:absolute;inset:0;z-index:8;pointer-events:none;transition:transform .35s ease-out;}
 
 /* LANDMARKS SVG */
 .atlas-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;overflow:visible;}
@@ -113,6 +114,22 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 @keyframes pulseIn{0%,100%{opacity:.9;r:3.5}50%{opacity:.3;r:2.5}}
 .landmark-label-bg{fill:rgba(5,8,22,.75);rx:3;ry:3;}
 .landmark-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;text-anchor:middle;dominant-baseline:middle;fill:#d8c08a;pointer-events:none;}
+
+/* AAA POLISH — region wash, city bloom, mystery rays, route comets */
+.region-wash{pointer-events:none;opacity:0;transition:opacity .6s ease;}
+.landmark:hover .region-wash{opacity:1;}
+.city-glow{pointer-events:none;animation:cityBreath 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+@keyframes cityBreath{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}
+.mystery-glow{pointer-events:none;animation:cityBreath 4.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.ray-burst{pointer-events:none;transform-box:fill-box;animation:rayRotate 18s linear infinite,rayFlicker 3.4s ease-in-out infinite;}
+@keyframes rayRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes rayFlicker{0%,100%{opacity:.5}50%{opacity:1}}
+.route-comet{pointer-events:none;}
+@media(prefers-reduced-motion:reduce){.city-glow,.mystery-glow,.ray-burst{animation:none!important;}}
+
+/* vignette + film grain, topmost polish layers */
+.atlas-vignette{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(ellipse at center,transparent 54%,rgba(2,4,14,.5) 100%);mix-blend-mode:multiply;}
+.atlas-grain{position:absolute;inset:0;z-index:10;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
 /* BEACON */
 .beacon-ring{fill:none;stroke:#d8c08a;stroke-width:1;animation:beaconP 2.5s ease-in-out infinite;}
@@ -225,7 +242,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 .cinematic-banner,.realm-card,.collection-card,.cat-card,.nav-card,.product-card{will-change:transform;}
 .cinematic-banner::before,.realm-card::before,.collection-card{transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;}
 @media(max-width:700px){:where(section,[id]){scroll-margin-top:calc(72px + env(safe-area-inset-top));}footer{padding-top:28px!important}.footer-inner{grid-template-columns:1fr 1fr!important;gap:18px 20px!important}.footer-inner>div:first-child{grid-column:1/-1}.footer-bottom{margin-top:16px!important}.footer-copy{font-size:.66rem!important}#musicPlayer{width:30px!important;height:30px!important;min-height:30px!important;padding:0!important;right:calc(8px + env(safe-area-inset-right))!important;bottom:calc(8px + env(safe-area-inset-bottom))!important}#musicLabel,#musicVol{display:none!important}}
-@media(max-width:420px){.footer-inner{grid-template-columns:1fr!important;gap:14px!important}.footer-col h5{margin-bottom:7px!important}.footer-col ul li{margin-bottom:4px!important}}
+@media(max-width:420px){.footer-inner{gap:14px!important}.footer-col h5{margin-bottom:7px!important}.footer-col ul li{margin-bottom:4px!important}}
 @media(prefers-reduced-motion:reduce){.hero-primary-cta,.hero-btn,.atlas-banner-btn{animation:none!important}}
 
 #musicPlayer{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:24px;z-index:2000;display:flex;align-items:center;gap:10px;background:rgba(5,8,22,.92);border:1px solid rgba(216,192,138,.25);border-radius:50px;padding:10px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .3s,box-shadow .3s;user-select:none;}
@@ -236,6 +253,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 #musicVol::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;background:var(--gold);border-radius:50%;}
 @media(max-width:600px){#musicPlayer{bottom:calc(14px + env(safe-area-inset-bottom));right:14px;padding:0;border-radius:50%;width:42px;height:42px;justify-content:center;}#musicLabel,#musicVol{display:none;}}
 
+/* Footer responsive unification, matching Home/Fantasy/Ethernia - an
+   earlier !important rule above (line 228) forced a 2-column mobile
+   grid before this page got the shared layout; this restores the
+   4-equal-columns-with-full-width-brand pattern every other page uses. */
+.footer-inner>div:first-child{grid-column:auto!important;}
+@media(max-width:900px){.footer-inner{grid-template-columns:repeat(4,1fr)!important;}.footer-inner>div:first-child{grid-column:1/-1!important;}}
+@media(max-width:700px){.footer-col h5{font-size:.56rem!important;letter-spacing:1.6px!important;}.footer-col ul li a{font-size:.68rem!important;line-height:1.3!important;}}
+@media(max-width:430px){.footer-col h5{font-size:.5rem!important;letter-spacing:1px!important;}.footer-col ul li a{font-size:.62rem!important;}}
 </style>
 </head>
 <body>
@@ -260,7 +285,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       <li><a href="about.html" data-i18n="nav.about">About</a></li>
       <li><div class="language-picker" id="navLanguagePicker"></div></li>
     </ul>
-    <div class="language-picker nav-mobile-picker" id="mobileLanguagePicker"></div>
+    <div class="language-picker nav-mobile-picker nav-mobile" id="mobileLanguagePicker"></div>
     <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -309,166 +334,263 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 
       <svg class="atlas-svg" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" id="atlasSvg">
 
+        <defs>
+          <filter id="cityGlow" x="-150%" y="-150%" width="400%" height="400%">
+            <feGaussianBlur stdDeviation="4.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="cometGlow" x="-300%" y="-300%" width="700%" height="700%">
+            <feGaussianBlur stdDeviation="2.2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <radialGradient id="washGold" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f5d97f" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#f5d97f" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="washPurple" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#9b8ec4" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#9b8ec4" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowGold" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffe9b0" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#ffe9b0" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c9b8ff" stop-opacity=".8"/>
+            <stop offset="100%" stop-color="#c9b8ff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="glowRed" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff8f8f" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#ff8f8f" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
         <!-- ROUTES -->
-        <line id="rt-lum-ely"  class="route-line" x1="369" y1="451" x2="568" y2="614" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-syl-lum"  class="route-line" x1="138" y1="379" x2="369" y2="451" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-dra-vel"  class="route-line" x1="845" y1="205" x2="1167" y2="451" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-noc-bla"  class="route-line" x1="1260" y1="205" x2="1382" y2="840" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-eld-vel"  class="route-line" x1="952" y1="451" x2="1167" y2="451" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-lum-ely"  class="route-line" x1="374" y1="440" x2="502" y2="655" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-syl-lum"  class="route-line" x1="179" y1="302" x2="374" y2="440" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-dra-vel"  class="route-line" x1="1178" y1="246" x2="1260" y2="543" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-noc-bla"  class="route-line" x1="1352" y1="328" x2="1280" y2="850" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-eld-vel"  class="route-line" x1="1167" y1="440" x2="1260" y2="543" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+
+        <!-- ROUTE COMETS (travelling light along active routes) -->
+        <circle class="route-comet" id="comet-rt-lum-ely" r="2.4" fill="#fff6d8" filter="url(#cometGlow)" opacity="0"/>
+        <circle class="route-comet" id="comet-rt-syl-lum" r="2.4" fill="#fff6d8" filter="url(#cometGlow)" opacity="0"/>
+        <circle class="route-comet" id="comet-rt-dra-vel" r="2.4" fill="#e7defc" filter="url(#cometGlow)" opacity="0"/>
+        <circle class="route-comet" id="comet-rt-noc-bla" r="2.4" fill="#e7defc" filter="url(#cometGlow)" opacity="0"/>
+        <circle class="route-comet" id="comet-rt-eld-vel" r="2.4" fill="#e7defc" filter="url(#cometGlow)" opacity="0"/>
 
         <!-- BEACON -->
         <g id="mapBeacon" style="transition:opacity .6s">
-          <circle class="beacon-ring" cx="768" cy="530" r="20"/>
-          <circle cx="768" cy="530" r="4" fill="#d8c08a" opacity=".85"/>
-          <text class="beacon-text" x="768" y="568" data-i18n="beacon.text">SELECT A REALM TO BEGIN</text>
+          <circle class="beacon-ring" cx="778" cy="471" r="20"/>
+          <circle cx="778" cy="471" r="4" fill="#d8c08a" opacity=".85"/>
+          <text class="beacon-text" x="778" y="509" data-i18n="beacon.text">SELECT A REALM TO BEGIN</text>
         </g>
 
         <!-- ══════════════════════════════════
-             ETHERNIA REGIONS (green)
+             ETHERNIA REGIONS (gold)
         ══════════════════════════════════ -->
         <g class="landmark eth" data-key="aurelith-veil">
-          <circle class="landmark-hit" cx="338" cy="174" r="58"/>
-          <circle class="pulse-outer" cx="338" cy="174" r="10" style="animation-delay:0s"/>
-          <circle class="pulse-inner" cx="338" cy="174" r="3.5"/>
-          <rect class="landmark-label-bg" x="276" y="196" width="124" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="338" y="204">AURELITH VEIL</text>
+          <circle class="region-wash" cx="256" cy="113" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="256" cy="113" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="256" cy="113" r="58"/>
+          <circle class="pulse-outer" cx="256" cy="113" r="10" style="animation-delay:0s"/>
+          <circle class="pulse-inner" cx="256" cy="113" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="194" y="135" width="124" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="256" y="143">AURELITH VEIL</text>
         </g>
         <g class="landmark eth" data-key="sylvarith">
-          <circle class="landmark-hit" cx="138" cy="379" r="55"/>
-          <circle class="pulse-outer" cx="138" cy="379" r="10" style="animation-delay:.7s"/>
-          <circle class="pulse-inner" cx="138" cy="379" r="3.5"/>
-          <rect class="landmark-label-bg" x="94" y="401" width="88" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="138" y="409">SYLVARITH</text>
+          <circle class="region-wash" cx="179" cy="302" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="179" cy="302" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="179" cy="302" r="55"/>
+          <circle class="pulse-outer" cx="179" cy="302" r="10" style="animation-delay:.7s"/>
+          <circle class="pulse-inner" cx="179" cy="302" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="135" y="324" width="88" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="179" y="332">SYLVARITH</text>
         </g>
         <g class="landmark eth" data-key="lumindor">
-          <circle class="landmark-hit" cx="369" cy="451" r="60"/>
-          <circle class="pulse-outer" cx="369" cy="451" r="10" style="animation-delay:1.4s"/>
-          <circle class="pulse-inner" cx="369" cy="451" r="3.5"/>
-          <rect class="landmark-label-bg" x="322" y="473" width="94" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="369" y="481">LUMINDOR</text>
+          <circle class="region-wash" cx="374" cy="440" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="374" cy="440" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="374" cy="440" r="60"/>
+          <circle class="pulse-outer" cx="374" cy="440" r="10" style="animation-delay:1.4s"/>
+          <circle class="pulse-inner" cx="374" cy="440" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="327" y="462" width="94" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="374" y="470">LUMINDOR</text>
         </g>
         <g class="landmark eth" data-key="elarion-vale">
-          <circle class="landmark-hit" cx="277" cy="676" r="52"/>
-          <circle class="pulse-outer" cx="277" cy="676" r="10" style="animation-delay:2.1s"/>
-          <circle class="pulse-inner" cx="277" cy="676" r="3.5"/>
-          <rect class="landmark-label-bg" x="219" y="698" width="116" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="277" y="706">ELARION VALE</text>
+          <circle class="region-wash" cx="225" cy="594" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="225" cy="594" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="225" cy="594" r="52"/>
+          <circle class="pulse-outer" cx="225" cy="594" r="10" style="animation-delay:2.1s"/>
+          <circle class="pulse-inner" cx="225" cy="594" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="167" y="616" width="116" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="225" y="624">ELARION VALE</text>
         </g>
         <g class="landmark eth" data-key="elynthara">
-          <circle class="landmark-hit" cx="568" cy="614" r="52"/>
-          <circle class="pulse-outer" cx="568" cy="614" r="10" style="animation-delay:2.8s"/>
-          <circle class="pulse-inner" cx="568" cy="614" r="3.5"/>
-          <rect class="landmark-label-bg" x="514" y="636" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="568" y="644">ELYNTHARA</text>
+          <circle class="region-wash" cx="502" cy="655" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="502" cy="655" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="502" cy="655" r="52"/>
+          <circle class="pulse-outer" cx="502" cy="655" r="10" style="animation-delay:2.8s"/>
+          <circle class="pulse-inner" cx="502" cy="655" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="448" y="677" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="502" y="685">ELYNTHARA</text>
         </g>
 
         <!-- ══════════════════════════════════
-             FANTASY REGIONS (green)
+             FANTASY REGIONS (purple)
         ══════════════════════════════════ -->
         <g class="landmark fan" data-key="drakenfell">
-          <circle class="landmark-hit" cx="845" cy="205" r="60"/>
-          <circle class="pulse-outer" cx="845" cy="205" r="10" style="animation-delay:.4s"/>
-          <circle class="pulse-inner" cx="845" cy="205" r="3.5"/>
-          <rect class="landmark-label-bg" x="791" y="227" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="845" y="235">DRAKENFELL</text>
+          <circle class="region-wash" cx="1178" cy="246" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1178" cy="246" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1178" cy="246" r="60"/>
+          <circle class="pulse-outer" cx="1178" cy="246" r="10" style="animation-delay:.4s"/>
+          <circle class="pulse-inner" cx="1178" cy="246" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1124" y="268" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1178" y="276">DRAKENFELL</text>
         </g>
         <g class="landmark fan" data-key="nocthaven">
-          <circle class="landmark-hit" cx="1260" cy="205" r="65"/>
-          <circle class="pulse-outer" cx="1260" cy="205" r="10" style="animation-delay:1.1s"/>
-          <circle class="pulse-inner" cx="1260" cy="205" r="3.5"/>
-          <rect class="landmark-label-bg" x="1206" y="227" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1260" y="235">NOCTHAVEN</text>
+          <circle class="region-wash" cx="1352" cy="328" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1352" cy="328" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1352" cy="328" r="65"/>
+          <circle class="pulse-outer" cx="1352" cy="328" r="10" style="animation-delay:1.1s"/>
+          <circle class="pulse-inner" cx="1352" cy="328" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1298" y="350" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1352" y="358">NOCTHAVEN</text>
         </g>
         <g class="landmark fan" data-key="eldermere">
-          <circle class="landmark-hit" cx="952" cy="451" r="58"/>
-          <circle class="pulse-outer" cx="952" cy="451" r="10" style="animation-delay:1.8s"/>
-          <circle class="pulse-inner" cx="952" cy="451" r="3.5"/>
-          <rect class="landmark-label-bg" x="902" y="473" width="100" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="952" y="481">ELDERMERE</text>
+          <circle class="region-wash" cx="1167" cy="440" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1167" cy="440" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1167" cy="440" r="58"/>
+          <circle class="pulse-outer" cx="1167" cy="440" r="10" style="animation-delay:1.8s"/>
+          <circle class="pulse-inner" cx="1167" cy="440" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1117" y="462" width="100" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1167" y="470">ELDERMERE</text>
         </g>
         <g class="landmark fan" data-key="velmorra">
-          <circle class="landmark-hit" cx="1167" cy="451" r="58"/>
-          <circle class="pulse-outer" cx="1167" cy="451" r="10" style="animation-delay:2.5s"/>
-          <circle class="pulse-inner" cx="1167" cy="451" r="3.5"/>
-          <rect class="landmark-label-bg" x="1119" y="473" width="96" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1167" y="481">VELMORRA</text>
+          <circle class="region-wash" cx="1260" cy="543" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1260" cy="543" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1260" cy="543" r="58"/>
+          <circle class="pulse-outer" cx="1260" cy="543" r="10" style="animation-delay:2.5s"/>
+          <circle class="pulse-inner" cx="1260" cy="543" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1212" y="565" width="96" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1260" y="573">VELMORRA</text>
         </g>
         <g class="landmark fan" data-key="blacktide-harbor">
-          <circle class="landmark-hit" cx="1382" cy="840" r="65"/>
-          <circle class="pulse-outer" cx="1382" cy="840" r="10" style="animation-delay:3.2s"/>
-          <circle class="pulse-inner" cx="1382" cy="840" r="3.5"/>
-          <rect class="landmark-label-bg" x="1304" y="862" width="156" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1382" y="870">BLACKTIDE HARBOR</text>
+          <circle class="region-wash" cx="1280" cy="850" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1280" cy="850" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1280" cy="850" r="65"/>
+          <circle class="pulse-outer" cx="1280" cy="850" r="10" style="animation-delay:3.2s"/>
+          <circle class="pulse-inner" cx="1280" cy="850" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1202" y="872" width="156" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1280" y="880">BLACKTIDE HARBOR</text>
         </g>
 
         <!-- ══════════════════════════════════
              LIGHTHOUSES — pink
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="lighthouse-dawn" data-type="lighthouse">
-          <circle class="landmark-hit" cx="430" cy="584" r="38"/>
-          <circle cx="430" cy="584" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:.3s"/>
-          <circle cx="430" cy="584" r="3" fill="rgba(255,200,220,.85)"/>
-          <rect fill="rgba(5,8,22,.75)" x="358" y="600" width="144" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="430" y="610" letter-spacing="1">DAWN'S LAST LANTERN</text>
+          <circle class="landmark-hit" cx="399" cy="748" r="38"/>
+          <circle cx="399" cy="748" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:.3s"/>
+          <circle cx="399" cy="748" r="3" fill="rgba(255,200,220,.85)"/>
+          <rect fill="rgba(5,8,22,.75)" x="327" y="764" width="144" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="399" y="774" letter-spacing="1">DAWN'S LAST LANTERN</text>
         </g>
         <g class="landmark special" data-key="lighthouse-tide" data-type="lighthouse">
-          <circle class="landmark-hit" cx="1440" cy="875" r="38"/>
-          <circle cx="1440" cy="875" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:1.3s"/>
-          <circle cx="1440" cy="875" r="3" fill="rgba(255,200,220,.85)"/>
-          <rect fill="rgba(5,8,22,.75)" x="1360" y="891" width="160" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="1440" y="901" letter-spacing="1">THE TIDEWATCH TOWER</text>
+          <circle class="landmark-hit" cx="1188" cy="732" r="38"/>
+          <circle cx="1188" cy="732" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:1.3s"/>
+          <circle cx="1188" cy="732" r="3" fill="rgba(255,200,220,.85)"/>
+          <rect fill="rgba(5,8,22,.75)" x="1108" y="748" width="160" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="1188" y="758" letter-spacing="1">THE TIDEWATCH TOWER</text>
         </g>
 
         <!-- ══════════════════════════════════
-             SEA MONSTERS near Ethernia — blue/purple
+             SEA MONSTERS — blue/purple
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="leviathan" data-type="creature">
-          <circle class="landmark-hit" cx="72" cy="820" r="40"/>
-          <circle cx="72" cy="820" r="9" fill="none" stroke="rgba(140,100,220,.6)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:.8s"/>
-          <circle cx="72" cy="820" r="3.5" fill="rgba(140,100,220,.7)"/>
-          <rect fill="rgba(5,8,22,.75)" x="14" y="836" width="116" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="72" y="846" letter-spacing="1">THE ANCIENT LEVIATHAN</text>
+          <circle class="landmark-hit" cx="809" cy="799" r="40"/>
+          <circle cx="809" cy="799" r="9" fill="none" stroke="rgba(140,100,220,.6)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:.8s"/>
+          <circle cx="809" cy="799" r="3.5" fill="rgba(140,100,220,.7)"/>
+          <rect fill="rgba(5,8,22,.75)" x="751" y="815" width="116" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="809" y="825" letter-spacing="1">THE ANCIENT LEVIATHAN</text>
         </g>
         <g class="landmark special" data-key="colossus" data-type="creature">
-          <circle class="landmark-hit" cx="100" cy="880" r="40"/>
-          <circle cx="100" cy="880" r="9" fill="none" stroke="rgba(140,100,220,.5)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:2s"/>
-          <circle cx="100" cy="880" r="3.5" fill="rgba(140,100,220,.65)"/>
-          <rect fill="rgba(5,8,22,.75)" x="28" y="896" width="144" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="100" y="906" letter-spacing="1">THE DREAMING COLOSSUS</text>
+          <circle class="landmark-hit" cx="870" cy="870" r="40"/>
+          <circle cx="870" cy="870" r="9" fill="none" stroke="rgba(140,100,220,.5)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:2s"/>
+          <circle cx="870" cy="870" r="3.5" fill="rgba(140,100,220,.65)"/>
+          <rect fill="rgba(5,8,22,.75)" x="798" y="886" width="144" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="870" y="896" letter-spacing="1">THE DREAMING COLOSSUS</text>
         </g>
 
         <!-- ══════════════════════════════════
-             MYSTERIOUS ISLANDS — red
+             MYSTERIOUS POINTS — red, with ray bursts (Astral Sea / paid-tier teasers)
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="astrael-crossing" data-type="mystery">
-          <circle class="landmark-hit" cx="660" cy="310" r="38"/>
-          <circle cx="660" cy="310" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
-          <circle cx="660" cy="310" r="3" fill="rgba(220,100,100,.6)"/>
-          <rect fill="rgba(5,8,22,.75)" x="586" y="326" width="148" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="660" y="336" letter-spacing="1">THE ASTRAEL CROSSING</text>
+          <circle class="mystery-glow" cx="952" cy="532" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:952px 532px">
+            <line x1="952" y1="532" x2="952" y2="494" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="952" y1="532" x2="952" y2="570" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="952" y1="532" x2="914" y2="532" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="952" y1="532" x2="990" y2="532" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="952" y1="532" x2="925" y2="505" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="952" y1="532" x2="979" y2="559" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          </g>
+          <circle class="landmark-hit" cx="952" cy="532" r="38"/>
+          <circle cx="952" cy="532" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
+          <circle cx="952" cy="532" r="3" fill="rgba(220,100,100,.6)"/>
+          <rect fill="rgba(5,8,22,.75)" x="878" y="548" width="148" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="952" y="558" letter-spacing="1">THE ASTRAEL CROSSING</text>
         </g>
         <g class="landmark special" data-key="drowned-compass" data-type="mystery">
-          <circle class="landmark-hit" cx="580" cy="430" r="38"/>
-          <circle cx="580" cy="430" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
-          <circle cx="580" cy="430" r="3" fill="rgba(220,100,100,.55)"/>
-          <rect fill="rgba(5,8,22,.75)" x="500" y="446" width="160" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="580" y="456" letter-spacing="1">THE DROWNED COMPASS</text>
+          <circle class="mystery-glow" cx="809" cy="625" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:809px 625px">
+            <line x1="809" y1="625" x2="809" y2="587" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="809" y1="625" x2="809" y2="663" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="809" y1="625" x2="771" y2="625" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="809" y1="625" x2="847" y2="625" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="809" y1="625" x2="782" y2="598" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="809" y1="625" x2="836" y2="652" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          </g>
+          <circle class="landmark-hit" cx="809" cy="625" r="38"/>
+          <circle cx="809" cy="625" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
+          <circle cx="809" cy="625" r="3" fill="rgba(220,100,100,.55)"/>
+          <rect fill="rgba(5,8,22,.75)" x="729" y="641" width="160" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="809" y="651" letter-spacing="1">THE DROWNED COMPASS</text>
         </g>
         <g class="landmark special" data-key="isle-whispered" data-type="mystery">
-          <circle class="landmark-hit" cx="760" cy="860" r="38"/>
-          <circle cx="760" cy="860" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
-          <circle cx="760" cy="860" r="3" fill="rgba(220,100,100,.55)"/>
-          <rect fill="rgba(5,8,22,.75)" x="678" y="876" width="164" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="760" y="886" letter-spacing="1">ISLE OF WHISPERED OATHS</text>
+          <circle class="mystery-glow" cx="758" cy="205" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:758px 205px">
+            <line x1="758" y1="205" x2="758" y2="167" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="205" x2="758" y2="243" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="205" x2="720" y2="205" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="205" x2="796" y2="205" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="205" x2="731" y2="178" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="758" y1="205" x2="785" y2="232" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          </g>
+          <circle class="landmark-hit" cx="758" cy="205" r="38"/>
+          <circle cx="758" cy="205" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
+          <circle cx="758" cy="205" r="3" fill="rgba(220,100,100,.55)"/>
+          <rect fill="rgba(5,8,22,.75)" x="676" y="221" width="164" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="758" y="231" letter-spacing="1">ISLE OF WHISPERED OATHS</text>
         </g>
         <g class="landmark special" data-key="forsaken-reliquary" data-type="mystery">
-          <circle class="landmark-hit" cx="860" cy="890" r="38"/>
-          <circle cx="860" cy="890" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
-          <circle cx="860" cy="890" r="3" fill="rgba(220,100,100,.5)"/>
-          <rect fill="rgba(5,8,22,.75)" x="778" y="906" width="164" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="860" y="916" letter-spacing="1">THE FORSAKEN RELIQUARY</text>
+          <circle class="mystery-glow" cx="881" cy="717" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:881px 717px">
+            <line x1="881" y1="717" x2="881" y2="679" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="881" y1="717" x2="881" y2="755" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="881" y1="717" x2="843" y2="717" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="881" y1="717" x2="919" y2="717" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="881" y1="717" x2="854" y2="690" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="881" y1="717" x2="908" y2="744" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          </g>
+          <circle class="landmark-hit" cx="881" cy="717" r="38"/>
+          <circle cx="881" cy="717" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
+          <circle cx="881" cy="717" r="3" fill="rgba(220,100,100,.5)"/>
+          <rect fill="rgba(5,8,22,.75)" x="799" y="733" width="164" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="881" y="743" letter-spacing="1">THE FORSAKEN RELIQUARY</text>
         </g>
       </svg>
+
+      <div class="atlas-vignette"></div>
+      <div class="atlas-grain"></div>
 
       <div class="zoom-controls">
         <button class="zoom-btn" id="zoomIn">+</button>
@@ -666,14 +788,14 @@ window.addEventListener('resize',resizeParticles);
 animateParticles();
 
 const LANDMARK_CENTERS={
-  'aurelith-veil':{x:338,y:174},'sylvarith':{x:138,y:379},'lumindor':{x:369,y:451},
-  'elarion-vale':{x:277,y:676},'elynthara':{x:568,y:614},
-  'drakenfell':{x:845,y:205},'nocthaven':{x:1260,y:205},'eldermere':{x:952,y:451},
-  'velmorra':{x:1167,y:451},'blacktide-harbor':{x:1382,y:840},
-  'lighthouse-dawn':{x:430,y:584},'lighthouse-tide':{x:1440,y:875},
-  'leviathan':{x:72,y:820},'colossus':{x:100,y:880},
-  'astrael-crossing':{x:660,y:310},'drowned-compass':{x:580,y:430},
-  'isle-whispered':{x:760,y:860},'forsaken-reliquary':{x:860,y:890}
+  'aurelith-veil':{x:256,y:113},'sylvarith':{x:179,y:302},'lumindor':{x:374,y:440},
+  'elarion-vale':{x:225,y:594},'elynthara':{x:502,y:655},
+  'drakenfell':{x:1178,y:246},'nocthaven':{x:1352,y:328},'eldermere':{x:1167,y:440},
+  'velmorra':{x:1260,y:543},'blacktide-harbor':{x:1280,y:850},
+  'lighthouse-dawn':{x:399,y:748},'lighthouse-tide':{x:1188,y:732},
+  'leviathan':{x:809,y:799},'colossus':{x:870,y:870},
+  'astrael-crossing':{x:952,y:532},'drowned-compass':{x:809,y:625},
+  'isle-whispered':{x:758,y:205},'forsaken-reliquary':{x:881,y:717}
 };
 
 const SPECIAL_TOOLTIPS={
@@ -828,11 +950,61 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* ── ZOOM ── */
-let scale=1;
+/* ── ZOOM + KEN BURNS (slow ambient breathing, merged with manual zoom so they never fight) ── */
+let scale=1,kenBurnsScale=1;
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('zoomIn').addEventListener('click',()=>{scale=Math.min(scale+.15,2.2);applyZoom();});
 document.getElementById('zoomOut').addEventListener('click',()=>{scale=Math.max(scale-.15,1);applyZoom();});
-function applyZoom(){const img=document.getElementById('atlasImg'),svg=document.getElementById('atlasSvg');[img,svg].forEach(el=>{el.style.transform=`scale(${scale})`;el.style.transformOrigin='center center';});}
+function applyZoom(){const img=document.getElementById('atlasImg'),svg=document.getElementById('atlasSvg');[img,svg].forEach(el=>{el.style.transform=`scale(${scale*kenBurnsScale})`;el.style.transformOrigin='center center';});}
+if(!reducedMotion){
+  let kbRunning=false;
+  const kbFrame=document.getElementById('atlasFrame');
+  if(kbFrame&&'IntersectionObserver'in window){
+    new IntersectionObserver(entries=>{entries.forEach(e=>kbRunning=e.isIntersecting);},{threshold:.1}).observe(kbFrame);
+  } else kbRunning=true;
+  (function kenBurnsLoop(t){
+    if(kbRunning){kenBurnsScale=1+0.018*Math.sin(t/9000);applyZoom();}
+    requestAnimationFrame(kenBurnsLoop);
+  })(0);
+}
+
+/* ── ROUTE COMETS (travelling light along the active route) ── */
+(function(){
+  if(reducedMotion)return;
+  const routes=['rt-lum-ely','rt-syl-lum','rt-dra-vel','rt-noc-bla','rt-eld-vel'];
+  (function frame(t){
+    routes.forEach((id,i)=>{
+      const line=document.getElementById(id),comet=document.getElementById('comet-'+id);
+      if(!line||!comet)return;
+      const op=parseFloat(line.style.opacity||0);
+      if(!op){comet.setAttribute('opacity','0');return;}
+      const x1=+line.getAttribute('x1'),y1=+line.getAttribute('y1'),x2=+line.getAttribute('x2'),y2=+line.getAttribute('y2');
+      const dur=1700,p=((t+i*300)%dur)/dur;
+      const ease=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+      comet.setAttribute('cx',x1+(x2-x1)*ease);
+      comet.setAttribute('cy',y1+(y2-y1)*ease);
+      comet.setAttribute('opacity',Math.min(op*1.8,1));
+    });
+    requestAnimationFrame(frame);
+  })(0);
+})();
+
+/* ── PARALLAX DEPTH (mouse) ── */
+(function(){
+  if(reducedMotion)return;
+  const frameEl=document.getElementById('atlasFrame'),mist=document.getElementById('mistCanvas'),particles=document.getElementById('particleCanvas');
+  if(!frameEl)return;
+  frameEl.addEventListener('mousemove',e=>{
+    const r=frameEl.getBoundingClientRect();
+    const px=(e.clientX-r.left)/r.width-0.5,py=(e.clientY-r.top)/r.height-0.5;
+    if(mist)mist.style.transform=`translate(${px*10}px,${py*8}px)`;
+    if(particles)particles.style.transform=`translate(${px*-6}px,${py*-5}px)`;
+  });
+  frameEl.addEventListener('mouseleave',()=>{
+    if(mist)mist.style.transform='';
+    if(particles)particles.style.transform='';
+  });
+})();
 
 /* ── MIST ── */
 (function(){
