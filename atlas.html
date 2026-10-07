@@ -127,6 +127,21 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .route-comet{pointer-events:none;}
 @media(prefers-reduced-motion:reduce){.city-glow,.mystery-glow,.ray-burst{animation:none!important;}}
 
+/* forest motes — fireflies/pollen drifting up from the ancient trees */
+.forest-motes{pointer-events:none;}
+.forest-motes circle{animation:moteFloat 6s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+@keyframes moteFloat{0%{transform:translateY(0) scale(.5);opacity:0}15%{opacity:.9}55%{transform:translateY(-42px) scale(1);opacity:.65}100%{transform:translateY(-60px) scale(.4);opacity:0}}
+
+/* leviathan ripple — expanding water ring synced with its pulse */
+.leviathan-ripple{fill:none;stroke:rgba(150,190,230,.4);stroke-width:1;animation:ripplePulse 4s ease-out infinite;transform-box:fill-box;transform-origin:center;}
+@keyframes ripplePulse{0%{transform:scale(.3);opacity:.6}80%{opacity:0}100%{transform:scale(2.6);opacity:0}}
+
+/* ocean shimmer — faint light sweeping across the whole sea */
+.ocean-shimmer{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.5;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 40%,rgba(180,220,255,.07) 48%,rgba(210,235,255,.12) 50%,rgba(180,220,255,.07) 52%,transparent 60%);background-size:260% 260%;animation:shimmerSweep 26s linear infinite;}
+@keyframes shimmerSweep{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+
+@media(prefers-reduced-motion:reduce){.forest-motes circle,.leviathan-ripple,.ocean-shimmer{animation:none!important;}}
+
 /* vignette + film grain, topmost polish layers */
 .atlas-vignette{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(ellipse at center,transparent 54%,rgba(2,4,14,.5) 100%);mix-blend-mode:multiply;}
 .atlas-grain{position:absolute;inset:0;z-index:10;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
@@ -405,6 +420,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark eth" data-key="sylvarith">
           <circle class="region-wash" cx="297" cy="225" r="130" fill="url(#washGold)"/>
           <circle class="city-glow" cx="297" cy="225" r="22" fill="url(#glowGold)"/>
+          <g class="forest-motes">
+            <circle cx="280" cy="228" r="3.2" fill="#d8ec8e" filter="url(#cometGlow)" style="animation-delay:0s"/>
+            <circle cx="296" cy="233" r="2.6" fill="#c8e894" filter="url(#cometGlow)" style="animation-delay:1s"/>
+            <circle cx="310" cy="226" r="3.6" fill="#e6f2a8" filter="url(#cometGlow)" style="animation-delay:2s"/>
+            <circle cx="288" cy="220" r="2.8" fill="#d8ec8e" filter="url(#cometGlow)" style="animation-delay:3s"/>
+            <circle cx="305" cy="235" r="3" fill="#c8e894" filter="url(#cometGlow)" style="animation-delay:4s"/>
+            <circle cx="292" cy="240" r="2.4" fill="#e6f2a8" filter="url(#cometGlow)" style="animation-delay:5s"/>
+          </g>
           <circle class="landmark-hit" cx="297" cy="225" r="55"/>
           <circle class="pulse-outer" cx="297" cy="225" r="10" style="animation-delay:.7s"/>
           <circle class="pulse-inner" cx="297" cy="225" r="3.5" filter="url(#cityGlow)"/>
@@ -463,6 +486,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <g class="landmark fan" data-key="eldermere">
           <circle class="region-wash" cx="1004" cy="256" r="130" fill="url(#washPurple)"/>
           <circle class="city-glow" cx="1004" cy="256" r="22" fill="url(#glowPurple)"/>
+          <g class="forest-motes">
+            <circle cx="988" cy="259" r="3.2" fill="#8ef0d8" filter="url(#cometGlow)" style="animation-delay:.3s"/>
+            <circle cx="1002" cy="264" r="2.6" fill="#6fe0c9" filter="url(#cometGlow)" style="animation-delay:1.3s"/>
+            <circle cx="1016" cy="257" r="3.6" fill="#a8f2e0" filter="url(#cometGlow)" style="animation-delay:2.3s"/>
+            <circle cx="996" cy="251" r="2.8" fill="#8ef0d8" filter="url(#cometGlow)" style="animation-delay:3.3s"/>
+            <circle cx="1012" cy="266" r="3" fill="#6fe0c9" filter="url(#cometGlow)" style="animation-delay:4.3s"/>
+            <circle cx="999" cy="271" r="2.4" fill="#a8f2e0" filter="url(#cometGlow)" style="animation-delay:5.3s"/>
+          </g>
           <circle class="landmark-hit" cx="1004" cy="256" r="58"/>
           <circle class="pulse-outer" cx="1004" cy="256" r="10" style="animation-delay:1.8s"/>
           <circle class="pulse-inner" cx="1004" cy="256" r="3.5" filter="url(#cityGlow)"/>
@@ -510,6 +541,8 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
              SEA MONSTERS — blue/purple
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="leviathan" data-type="creature">
+          <circle class="leviathan-ripple" cx="655" cy="799" r="14" style="animation-delay:0s"/>
+          <circle class="leviathan-ripple" cx="655" cy="799" r="14" style="animation-delay:2s"/>
           <circle class="landmark-hit" cx="655" cy="799" r="40"/>
           <circle cx="655" cy="799" r="9" fill="none" stroke="rgba(140,100,220,.6)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:.8s"/>
           <circle cx="655" cy="799" r="3.5" fill="rgba(140,100,220,.7)"/>
@@ -598,6 +631,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
       </svg>
 
+      <div class="ocean-shimmer"></div>
       <div class="atlas-vignette"></div>
       <div class="atlas-grain"></div>
 
