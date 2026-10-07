@@ -363,14 +363,18 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
             <stop offset="0%" stop-color="#ff8f8f" stop-opacity=".55"/>
             <stop offset="100%" stop-color="#ff8f8f" stop-opacity="0"/>
           </radialGradient>
+          <radialGradient id="glowAmber" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e8a94a" stop-opacity=".65"/>
+            <stop offset="100%" stop-color="#e8a94a" stop-opacity="0"/>
+          </radialGradient>
         </defs>
 
         <!-- ROUTES -->
-        <line id="rt-lum-ely"  class="route-line" x1="374" y1="440" x2="502" y2="655" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-syl-lum"  class="route-line" x1="179" y1="302" x2="374" y2="440" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-dra-vel"  class="route-line" x1="1178" y1="246" x2="1260" y2="543" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-noc-bla"  class="route-line" x1="1352" y1="328" x2="1280" y2="850" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
-        <line id="rt-eld-vel"  class="route-line" x1="1167" y1="440" x2="1260" y2="543" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-lum-ely"  class="route-line" x1="276" y1="364" x2="399" y2="686" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-syl-lum"  class="route-line" x1="297" y1="225" x2="276" y2="364" stroke="#d8c08a" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-dra-vel"  class="route-line" x1="1229" y1="123" x2="1208" y2="502" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-noc-bla"  class="route-line" x1="1229" y1="328" x2="1260" y2="748" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
+        <line id="rt-eld-vel"  class="route-line" x1="1004" y1="256" x2="1208" y2="502" stroke="#9b8ec4" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="6 4" fill="none" opacity="0" style="transition:opacity .6s"/>
 
         <!-- ROUTE COMETS (travelling light along active routes) -->
         <circle class="route-comet" id="comet-rt-lum-ely" r="2.4" fill="#fff6d8" filter="url(#cometGlow)" opacity="0"/>
@@ -381,211 +385,216 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 
         <!-- BEACON -->
         <g id="mapBeacon" style="transition:opacity .6s">
-          <circle class="beacon-ring" cx="778" cy="471" r="20"/>
-          <circle cx="778" cy="471" r="4" fill="#d8c08a" opacity=".85"/>
-          <text class="beacon-text" x="778" y="509" data-i18n="beacon.text">SELECT A REALM TO BEGIN</text>
+          <circle class="beacon-ring" cx="758" cy="471" r="20"/>
+          <circle cx="758" cy="471" r="4" fill="#d8c08a" opacity=".85"/>
+          <text class="beacon-text" x="758" y="509" data-i18n="beacon.text">SELECT A REALM TO BEGIN</text>
         </g>
 
         <!-- ══════════════════════════════════
              ETHERNIA REGIONS (gold)
         ══════════════════════════════════ -->
         <g class="landmark eth" data-key="aurelith-veil">
-          <circle class="region-wash" cx="256" cy="113" r="130" fill="url(#washGold)"/>
-          <circle class="city-glow" cx="256" cy="113" r="22" fill="url(#glowGold)"/>
-          <circle class="landmark-hit" cx="256" cy="113" r="58"/>
-          <circle class="pulse-outer" cx="256" cy="113" r="10" style="animation-delay:0s"/>
-          <circle class="pulse-inner" cx="256" cy="113" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="194" y="135" width="124" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="256" y="143">AURELITH VEIL</text>
+          <circle class="region-wash" cx="328" cy="56" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="328" cy="56" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="328" cy="56" r="58"/>
+          <circle class="pulse-outer" cx="328" cy="56" r="10" style="animation-delay:0s"/>
+          <circle class="pulse-inner" cx="328" cy="56" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="266" y="78" width="124" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="328" y="86">AURELITH VEIL</text>
         </g>
         <g class="landmark eth" data-key="sylvarith">
-          <circle class="region-wash" cx="179" cy="302" r="130" fill="url(#washGold)"/>
-          <circle class="city-glow" cx="179" cy="302" r="22" fill="url(#glowGold)"/>
-          <circle class="landmark-hit" cx="179" cy="302" r="55"/>
-          <circle class="pulse-outer" cx="179" cy="302" r="10" style="animation-delay:.7s"/>
-          <circle class="pulse-inner" cx="179" cy="302" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="135" y="324" width="88" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="179" y="332">SYLVARITH</text>
+          <circle class="region-wash" cx="297" cy="225" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="297" cy="225" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="297" cy="225" r="55"/>
+          <circle class="pulse-outer" cx="297" cy="225" r="10" style="animation-delay:.7s"/>
+          <circle class="pulse-inner" cx="297" cy="225" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="253" y="247" width="88" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="297" y="255">SYLVARITH</text>
         </g>
         <g class="landmark eth" data-key="lumindor">
-          <circle class="region-wash" cx="374" cy="440" r="130" fill="url(#washGold)"/>
-          <circle class="city-glow" cx="374" cy="440" r="22" fill="url(#glowGold)"/>
-          <circle class="landmark-hit" cx="374" cy="440" r="60"/>
-          <circle class="pulse-outer" cx="374" cy="440" r="10" style="animation-delay:1.4s"/>
-          <circle class="pulse-inner" cx="374" cy="440" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="327" y="462" width="94" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="374" y="470">LUMINDOR</text>
+          <circle class="region-wash" cx="276" cy="364" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="276" cy="364" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="276" cy="364" r="60"/>
+          <circle class="pulse-outer" cx="276" cy="364" r="10" style="animation-delay:1.4s"/>
+          <circle class="pulse-inner" cx="276" cy="364" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="229" y="386" width="94" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="276" y="394">LUMINDOR</text>
         </g>
         <g class="landmark eth" data-key="elarion-vale">
-          <circle class="region-wash" cx="225" cy="594" r="130" fill="url(#washGold)"/>
-          <circle class="city-glow" cx="225" cy="594" r="22" fill="url(#glowGold)"/>
-          <circle class="landmark-hit" cx="225" cy="594" r="52"/>
-          <circle class="pulse-outer" cx="225" cy="594" r="10" style="animation-delay:2.1s"/>
-          <circle class="pulse-inner" cx="225" cy="594" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="167" y="616" width="116" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="225" y="624">ELARION VALE</text>
+          <circle class="region-wash" cx="236" cy="532" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="236" cy="532" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="236" cy="532" r="52"/>
+          <circle class="pulse-outer" cx="236" cy="532" r="10" style="animation-delay:2.1s"/>
+          <circle class="pulse-inner" cx="236" cy="532" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="178" y="554" width="116" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="236" y="562">ELARION VALE</text>
         </g>
         <g class="landmark eth" data-key="elynthara">
-          <circle class="region-wash" cx="502" cy="655" r="130" fill="url(#washGold)"/>
-          <circle class="city-glow" cx="502" cy="655" r="22" fill="url(#glowGold)"/>
-          <circle class="landmark-hit" cx="502" cy="655" r="52"/>
-          <circle class="pulse-outer" cx="502" cy="655" r="10" style="animation-delay:2.8s"/>
-          <circle class="pulse-inner" cx="502" cy="655" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="448" y="677" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="502" y="685">ELYNTHARA</text>
+          <circle class="region-wash" cx="399" cy="686" r="130" fill="url(#washGold)"/>
+          <circle class="city-glow" cx="399" cy="686" r="22" fill="url(#glowGold)"/>
+          <circle class="landmark-hit" cx="399" cy="686" r="52"/>
+          <circle class="pulse-outer" cx="399" cy="686" r="10" style="animation-delay:2.8s"/>
+          <circle class="pulse-inner" cx="399" cy="686" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="345" y="708" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="399" y="716">ELYNTHARA</text>
         </g>
 
         <!-- ══════════════════════════════════
              FANTASY REGIONS (purple)
         ══════════════════════════════════ -->
         <g class="landmark fan" data-key="drakenfell">
-          <circle class="region-wash" cx="1178" cy="246" r="130" fill="url(#washPurple)"/>
-          <circle class="city-glow" cx="1178" cy="246" r="22" fill="url(#glowPurple)"/>
-          <circle class="landmark-hit" cx="1178" cy="246" r="60"/>
-          <circle class="pulse-outer" cx="1178" cy="246" r="10" style="animation-delay:.4s"/>
-          <circle class="pulse-inner" cx="1178" cy="246" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="1124" y="268" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1178" y="276">DRAKENFELL</text>
+          <circle class="region-wash" cx="1229" cy="123" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1229" cy="123" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1229" cy="123" r="60"/>
+          <circle class="pulse-outer" cx="1229" cy="123" r="10" style="animation-delay:.4s"/>
+          <circle class="pulse-inner" cx="1229" cy="123" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1175" y="145" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1229" y="153">DRAKENFELL</text>
         </g>
         <g class="landmark fan" data-key="nocthaven">
-          <circle class="region-wash" cx="1352" cy="328" r="130" fill="url(#washPurple)"/>
-          <circle class="city-glow" cx="1352" cy="328" r="22" fill="url(#glowPurple)"/>
-          <circle class="landmark-hit" cx="1352" cy="328" r="65"/>
-          <circle class="pulse-outer" cx="1352" cy="328" r="10" style="animation-delay:1.1s"/>
-          <circle class="pulse-inner" cx="1352" cy="328" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="1298" y="350" width="108" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1352" y="358">NOCTHAVEN</text>
+          <circle class="region-wash" cx="1229" cy="328" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1229" cy="328" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1229" cy="328" r="65"/>
+          <circle class="pulse-outer" cx="1229" cy="328" r="10" style="animation-delay:1.1s"/>
+          <circle class="pulse-inner" cx="1229" cy="328" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1175" y="350" width="108" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1229" y="358">NOCTHAVEN</text>
         </g>
         <g class="landmark fan" data-key="eldermere">
-          <circle class="region-wash" cx="1167" cy="440" r="130" fill="url(#washPurple)"/>
-          <circle class="city-glow" cx="1167" cy="440" r="22" fill="url(#glowPurple)"/>
-          <circle class="landmark-hit" cx="1167" cy="440" r="58"/>
-          <circle class="pulse-outer" cx="1167" cy="440" r="10" style="animation-delay:1.8s"/>
-          <circle class="pulse-inner" cx="1167" cy="440" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="1117" y="462" width="100" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1167" y="470">ELDERMERE</text>
+          <circle class="region-wash" cx="1004" cy="256" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1004" cy="256" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1004" cy="256" r="58"/>
+          <circle class="pulse-outer" cx="1004" cy="256" r="10" style="animation-delay:1.8s"/>
+          <circle class="pulse-inner" cx="1004" cy="256" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="954" y="278" width="100" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1004" y="286">ELDERMERE</text>
         </g>
         <g class="landmark fan" data-key="velmorra">
-          <circle class="region-wash" cx="1260" cy="543" r="130" fill="url(#washPurple)"/>
-          <circle class="city-glow" cx="1260" cy="543" r="22" fill="url(#glowPurple)"/>
-          <circle class="landmark-hit" cx="1260" cy="543" r="58"/>
-          <circle class="pulse-outer" cx="1260" cy="543" r="10" style="animation-delay:2.5s"/>
-          <circle class="pulse-inner" cx="1260" cy="543" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="1212" y="565" width="96" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1260" y="573">VELMORRA</text>
+          <circle class="region-wash" cx="1208" cy="502" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1208" cy="502" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1208" cy="502" r="58"/>
+          <circle class="pulse-outer" cx="1208" cy="502" r="10" style="animation-delay:2.5s"/>
+          <circle class="pulse-inner" cx="1208" cy="502" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1160" y="524" width="96" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1208" y="532">VELMORRA</text>
         </g>
         <g class="landmark fan" data-key="blacktide-harbor">
-          <circle class="region-wash" cx="1280" cy="850" r="130" fill="url(#washPurple)"/>
-          <circle class="city-glow" cx="1280" cy="850" r="22" fill="url(#glowPurple)"/>
-          <circle class="landmark-hit" cx="1280" cy="850" r="65"/>
-          <circle class="pulse-outer" cx="1280" cy="850" r="10" style="animation-delay:3.2s"/>
-          <circle class="pulse-inner" cx="1280" cy="850" r="3.5" filter="url(#cityGlow)"/>
-          <rect class="landmark-label-bg" x="1202" y="872" width="156" height="16" rx="3" ry="3"/>
-          <text class="landmark-label" x="1280" y="880">BLACKTIDE HARBOR</text>
+          <circle class="region-wash" cx="1260" cy="748" r="130" fill="url(#washPurple)"/>
+          <circle class="city-glow" cx="1260" cy="748" r="22" fill="url(#glowPurple)"/>
+          <circle class="landmark-hit" cx="1260" cy="748" r="65"/>
+          <circle class="pulse-outer" cx="1260" cy="748" r="10" style="animation-delay:3.2s"/>
+          <circle class="pulse-inner" cx="1260" cy="748" r="3.5" filter="url(#cityGlow)"/>
+          <rect class="landmark-label-bg" x="1182" y="770" width="156" height="16" rx="3" ry="3"/>
+          <text class="landmark-label" x="1260" y="778">BLACKTIDE HARBOR</text>
         </g>
 
         <!-- ══════════════════════════════════
              LIGHTHOUSES — pink
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="lighthouse-dawn" data-type="lighthouse">
-          <circle class="landmark-hit" cx="399" cy="748" r="38"/>
-          <circle cx="399" cy="748" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:.3s"/>
-          <circle cx="399" cy="748" r="3" fill="rgba(255,200,220,.85)"/>
-          <rect fill="rgba(5,8,22,.75)" x="327" y="764" width="144" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="399" y="774" letter-spacing="1">DAWN'S LAST LANTERN</text>
+          <circle class="landmark-hit" cx="471" cy="630" r="38"/>
+          <circle cx="471" cy="630" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:.3s"/>
+          <circle cx="471" cy="630" r="3" fill="rgba(255,200,220,.85)"/>
+          <rect fill="rgba(5,8,22,.75)" x="399" y="646" width="144" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="471" y="656" letter-spacing="1">DAWN'S LAST LANTERN</text>
         </g>
         <g class="landmark special" data-key="lighthouse-tide" data-type="lighthouse">
-          <circle class="landmark-hit" cx="1188" cy="732" r="38"/>
-          <circle cx="1188" cy="732" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:1.3s"/>
-          <circle cx="1188" cy="732" r="3" fill="rgba(255,200,220,.85)"/>
-          <rect fill="rgba(5,8,22,.75)" x="1108" y="748" width="160" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="1188" y="758" letter-spacing="1">THE TIDEWATCH TOWER</text>
+          <circle class="landmark-hit" cx="1362" cy="686" r="38"/>
+          <circle cx="1362" cy="686" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:1.3s"/>
+          <circle cx="1362" cy="686" r="3" fill="rgba(255,200,220,.85)"/>
+          <rect fill="rgba(5,8,22,.75)" x="1282" y="702" width="160" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="1362" y="712" letter-spacing="1">THE TIDEWATCH TOWER</text>
         </g>
 
         <!-- ══════════════════════════════════
              SEA MONSTERS — blue/purple
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="leviathan" data-type="creature">
-          <circle class="landmark-hit" cx="809" cy="799" r="40"/>
-          <circle cx="809" cy="799" r="9" fill="none" stroke="rgba(140,100,220,.6)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:.8s"/>
-          <circle cx="809" cy="799" r="3.5" fill="rgba(140,100,220,.7)"/>
-          <rect fill="rgba(5,8,22,.75)" x="751" y="815" width="116" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="809" y="825" letter-spacing="1">THE ANCIENT LEVIATHAN</text>
+          <circle class="landmark-hit" cx="655" cy="799" r="40"/>
+          <circle cx="655" cy="799" r="9" fill="none" stroke="rgba(140,100,220,.6)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:.8s"/>
+          <circle cx="655" cy="799" r="3.5" fill="rgba(140,100,220,.7)"/>
+          <rect fill="rgba(5,8,22,.75)" x="597" y="815" width="116" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="655" y="825" letter-spacing="1">THE ANCIENT LEVIATHAN</text>
         </g>
-        <g class="landmark special" data-key="colossus" data-type="creature">
-          <circle class="landmark-hit" cx="870" cy="870" r="40"/>
-          <circle cx="870" cy="870" r="9" fill="none" stroke="rgba(140,100,220,.5)" stroke-width="1.2" style="animation:pulseOut 4s ease-in-out infinite;animation-delay:2s"/>
-          <circle cx="870" cy="870" r="3.5" fill="rgba(140,100,220,.65)"/>
-          <rect fill="rgba(5,8,22,.75)" x="798" y="886" width="144" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(160,120,240,.9)" text-anchor="middle" x="870" y="896" letter-spacing="1">THE DREAMING COLOSSUS</text>
+
+        <!-- ══════════════════════════════════
+             SALTSCAR — lawless pirate port, amber
+        ══════════════════════════════════ -->
+        <g class="landmark special" data-key="saltscar" data-type="pirate">
+          <circle class="mystery-glow" cx="952" cy="799" r="40" fill="url(#glowAmber)"/>
+          <circle class="landmark-hit" cx="952" cy="799" r="40"/>
+          <circle cx="952" cy="799" r="9" fill="none" stroke="rgba(232,169,74,.6)" stroke-width="1.2" style="animation:pulseOut 3.2s ease-in-out infinite;animation-delay:1.6s"/>
+          <circle cx="952" cy="799" r="3.5" fill="rgba(232,169,74,.75)"/>
+          <rect fill="rgba(5,8,22,.75)" x="907" y="815" width="90" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(232,185,110,.9)" text-anchor="middle" x="952" y="825" letter-spacing="1">SALTSCAR</text>
         </g>
 
         <!-- ══════════════════════════════════
              MYSTERIOUS POINTS — red, with ray bursts (Astral Sea / paid-tier teasers)
         ══════════════════════════════════ -->
-        <g class="landmark special" data-key="astrael-crossing" data-type="mystery">
-          <circle class="mystery-glow" cx="952" cy="532" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:952px 532px">
-            <line x1="952" y1="532" x2="952" y2="494" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="952" y1="532" x2="952" y2="570" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="952" y1="532" x2="914" y2="532" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="952" y1="532" x2="990" y2="532" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="952" y1="532" x2="925" y2="505" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="952" y1="532" x2="979" y2="559" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+        <g class="landmark special" data-key="astral-crossing" data-type="mystery">
+          <circle class="mystery-glow" cx="788" cy="307" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:788px 307px">
+            <line x1="788" y1="307" x2="788" y2="269" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="307" x2="788" y2="345" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="307" x2="750" y2="307" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="307" x2="826" y2="307" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="307" x2="761" y2="280" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="788" y1="307" x2="815" y2="334" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
           </g>
-          <circle class="landmark-hit" cx="952" cy="532" r="38"/>
-          <circle cx="952" cy="532" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
-          <circle cx="952" cy="532" r="3" fill="rgba(220,100,100,.6)"/>
-          <rect fill="rgba(5,8,22,.75)" x="878" y="548" width="148" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="952" y="558" letter-spacing="1">THE ASTRAEL CROSSING</text>
+          <circle class="landmark-hit" cx="788" cy="307" r="38"/>
+          <circle cx="788" cy="307" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
+          <circle cx="788" cy="307" r="3" fill="rgba(220,100,100,.6)"/>
+          <rect fill="rgba(5,8,22,.75)" x="714" y="323" width="148" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="788" y="333" letter-spacing="1">THE ASTRAL CROSSING</text>
         </g>
         <g class="landmark special" data-key="drowned-compass" data-type="mystery">
-          <circle class="mystery-glow" cx="809" cy="625" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:809px 625px">
-            <line x1="809" y1="625" x2="809" y2="587" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="809" y1="625" x2="809" y2="663" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="809" y1="625" x2="771" y2="625" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="809" y1="625" x2="847" y2="625" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="809" y1="625" x2="782" y2="598" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="809" y1="625" x2="836" y2="652" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          <circle class="mystery-glow" cx="625" cy="553" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:625px 553px">
+            <line x1="625" y1="553" x2="625" y2="515" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="625" y1="553" x2="625" y2="591" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="625" y1="553" x2="587" y2="553" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="625" y1="553" x2="663" y2="553" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="625" y1="553" x2="598" y2="526" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="625" y1="553" x2="652" y2="580" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
           </g>
-          <circle class="landmark-hit" cx="809" cy="625" r="38"/>
-          <circle cx="809" cy="625" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
-          <circle cx="809" cy="625" r="3" fill="rgba(220,100,100,.55)"/>
-          <rect fill="rgba(5,8,22,.75)" x="729" y="641" width="160" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="809" y="651" letter-spacing="1">THE DROWNED COMPASS</text>
+          <circle class="landmark-hit" cx="625" cy="553" r="38"/>
+          <circle cx="625" cy="553" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
+          <circle cx="625" cy="553" r="3" fill="rgba(220,100,100,.55)"/>
+          <rect fill="rgba(5,8,22,.75)" x="545" y="569" width="160" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="625" y="579" letter-spacing="1">THE DROWNED COMPASS</text>
         </g>
         <g class="landmark special" data-key="isle-whispered" data-type="mystery">
-          <circle class="mystery-glow" cx="758" cy="205" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:758px 205px">
-            <line x1="758" y1="205" x2="758" y2="167" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="205" x2="758" y2="243" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="205" x2="720" y2="205" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="205" x2="796" y2="205" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="205" x2="731" y2="178" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="758" y1="205" x2="785" y2="232" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          <circle class="mystery-glow" cx="758" cy="133" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:758px 133px">
+            <line x1="758" y1="133" x2="758" y2="95" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="133" x2="758" y2="171" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="133" x2="720" y2="133" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="133" x2="796" y2="133" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="758" y1="133" x2="731" y2="106" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="758" y1="133" x2="785" y2="160" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
           </g>
-          <circle class="landmark-hit" cx="758" cy="205" r="38"/>
-          <circle cx="758" cy="205" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
-          <circle cx="758" cy="205" r="3" fill="rgba(220,100,100,.55)"/>
-          <rect fill="rgba(5,8,22,.75)" x="676" y="221" width="164" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="758" y="231" letter-spacing="1">ISLE OF WHISPERED OATHS</text>
+          <circle class="landmark-hit" cx="758" cy="133" r="38"/>
+          <circle cx="758" cy="133" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
+          <circle cx="758" cy="133" r="3" fill="rgba(220,100,100,.55)"/>
+          <rect fill="rgba(5,8,22,.75)" x="676" y="149" width="164" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="758" y="159" letter-spacing="1">ISLE OF WHISPERED OATHS</text>
         </g>
         <g class="landmark special" data-key="forsaken-reliquary" data-type="mystery">
-          <circle class="mystery-glow" cx="881" cy="717" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:881px 717px">
-            <line x1="881" y1="717" x2="881" y2="679" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="881" y1="717" x2="881" y2="755" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="881" y1="717" x2="843" y2="717" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="881" y1="717" x2="919" y2="717" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="881" y1="717" x2="854" y2="690" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="881" y1="717" x2="908" y2="744" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+          <circle class="mystery-glow" cx="788" cy="635" r="46" fill="url(#glowRed)"/>
+          <g class="ray-burst" style="transform-origin:788px 635px">
+            <line x1="788" y1="635" x2="788" y2="597" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="635" x2="788" y2="673" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="635" x2="750" y2="635" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="635" x2="826" y2="635" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
+            <line x1="788" y1="635" x2="761" y2="608" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
+            <line x1="788" y1="635" x2="815" y2="662" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
           </g>
-          <circle class="landmark-hit" cx="881" cy="717" r="38"/>
-          <circle cx="881" cy="717" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
-          <circle cx="881" cy="717" r="3" fill="rgba(220,100,100,.5)"/>
-          <rect fill="rgba(5,8,22,.75)" x="799" y="733" width="164" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="881" y="743" letter-spacing="1">THE FORSAKEN RELIQUARY</text>
+          <circle class="landmark-hit" cx="788" cy="635" r="38"/>
+          <circle cx="788" cy="635" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
+          <circle cx="788" cy="635" r="3" fill="rgba(220,100,100,.5)"/>
+          <rect fill="rgba(5,8,22,.75)" x="706" y="651" width="164" height="14" rx="3" ry="3"/>
+          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(220,130,130,.85)" text-anchor="middle" x="788" y="661" letter-spacing="1">THE FORSAKEN RELIQUARY</text>
         </g>
       </svg>
 
@@ -788,22 +797,22 @@ window.addEventListener('resize',resizeParticles);
 animateParticles();
 
 const LANDMARK_CENTERS={
-  'aurelith-veil':{x:256,y:113},'sylvarith':{x:179,y:302},'lumindor':{x:374,y:440},
-  'elarion-vale':{x:225,y:594},'elynthara':{x:502,y:655},
-  'drakenfell':{x:1178,y:246},'nocthaven':{x:1352,y:328},'eldermere':{x:1167,y:440},
-  'velmorra':{x:1260,y:543},'blacktide-harbor':{x:1280,y:850},
-  'lighthouse-dawn':{x:399,y:748},'lighthouse-tide':{x:1188,y:732},
-  'leviathan':{x:809,y:799},'colossus':{x:870,y:870},
-  'astrael-crossing':{x:952,y:532},'drowned-compass':{x:809,y:625},
-  'isle-whispered':{x:758,y:205},'forsaken-reliquary':{x:881,y:717}
+  'aurelith-veil':{x:328,y:56},'sylvarith':{x:297,y:225},'lumindor':{x:276,y:364},
+  'elarion-vale':{x:236,y:532},'elynthara':{x:399,y:686},
+  'drakenfell':{x:1229,y:123},'nocthaven':{x:1229,y:328},'eldermere':{x:1004,y:256},
+  'velmorra':{x:1208,y:502},'blacktide-harbor':{x:1260,y:748},
+  'lighthouse-dawn':{x:471,y:630},'lighthouse-tide':{x:1362,y:686},
+  'leviathan':{x:655,y:799},'saltscar':{x:952,y:799},
+  'astral-crossing':{x:788,y:307},'drowned-compass':{x:625,y:553},
+  'isle-whispered':{x:758,y:133},'forsaken-reliquary':{x:788,y:635}
 };
 
 const SPECIAL_TOOLTIPS={
   'lighthouse-dawn':   {name:"Dawn's Last Lantern",  sub:'A beacon that never dims, even on moonless nights.',         realm:'ETHERNIA', color:'rgba(255,200,220,.9)'},
   'lighthouse-tide':   {name:'The Tidewatch Tower',  sub:'Built by hands unknown. Lit by fire unknown.',               realm:'FANTASY',  color:'rgba(255,200,220,.9)'},
   'leviathan':         {name:'The Ancient Leviathan',sub:'It stirs only when the stars misalign.',                     realm:'ETHERNIA', color:'rgba(160,120,240,.9)'},
-  'colossus':          {name:'The Dreaming Colossus', sub:'Asleep beneath the waves since the First Age.',              realm:'ETHERNIA', color:'rgba(160,120,240,.9)'},
-  'astrael-crossing':  {name:'The Astrael Crossing',  sub:'Where the two seas and the two skies meet as one.',         realm:'???',      color:'rgba(220,130,130,.9)'},
+  'saltscar':          {name:'Saltscar', sub:'A lawless port carved from salt and shipwrecks — loyal to no crown.',    realm:'???',      color:'rgba(232,169,74,.9)'},
+  'astral-crossing':   {name:'The Astral Crossing',  sub:'Where the two seas and the two skies meet as one.',         realm:'???',      color:'rgba(220,130,130,.9)'},
   'drowned-compass':   {name:'The Drowned Compass',   sub:'Sailors who follow it are never seen again.',               realm:'???',      color:'rgba(220,130,130,.9)'},
   'isle-whispered':    {name:'Isle of Whispered Oaths',sub:'An island that appears only to those who seek it.',        realm:'???',      color:'rgba(220,130,130,.9)'},
   'forsaken-reliquary':{name:'The Forsaken Reliquary',sub:'A ruin with no origin. A purpose no one remembers.',        realm:'???',      color:'rgba(220,130,130,.9)'},
