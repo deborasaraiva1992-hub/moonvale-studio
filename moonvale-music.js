@@ -4,11 +4,13 @@
   const TRACKS={
     general:'audio/moonvale-theme.mp3',
     ethernia:'audio/moonvale-theme.mp3',
-    fantasy:'audio/moonvale-theme.mp3'
+    fantasy:'audio/moonvale-theme.mp3',
+    atlas:'audio/atlas-ambience.mp3'
   };
 
   function detectZone(){
     const file=location.pathname.split('/').pop();
+    if(file==='atlas.html')return'atlas';
     if(file==='ethernia.html')return'ethernia';
     if(file==='fantasy.html')return'fantasy';
     if(document.querySelector('.realm-ethernia'))return'ethernia';
