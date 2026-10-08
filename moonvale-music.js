@@ -71,7 +71,7 @@
     audio.play().then(()=>{
       if(mIcon)mIcon.textContent='♫';
       updateLabel();
-      localStorage.setItem(ON_KEY,'1');
+      sessionStorage.setItem(ON_KEY,'1');
       broadcastState();
       let v=0;
       fadeTimer=setInterval(()=>{
@@ -89,7 +89,7 @@
     musicOn=false;
     if(mIcon)mIcon.textContent='♪';
     updateLabel();
-    localStorage.setItem(ON_KEY,'0');
+    sessionStorage.setItem(ON_KEY,'0');
     broadcastState();
     if(fadeTimer)clearInterval(fadeTimer);
     let v=audio.volume;
@@ -125,22 +125,26 @@
   }catch(e){}
 
   // Music plays by default for every visitor, softly — unless they've
-  // explicitly turned it off before (an explicit '0', as opposed to never
-  // having touched the toggle at all). Browsers block audible autoplay
-  // without a user gesture, so the honest version of "already on" is: show
-  // the ON state right away, start a muted loop immediately (muted autoplay
-  // is always allowed), and quietly lift the mute — gently fading up,
-  // never a jump — the instant the visitor does anything else on the page.
-  // Almost nobody looks at a page without touching it, so in practice it
-  // reads as already playing. A click on the player itself is left to its
-  // own handler instead of being double-handled here.
-  const shouldAutoStart=localStorage.getItem(ON_KEY)!=='0';
+  // explicitly turned it off earlier in this same browser session (an
+  // explicit '0' in sessionStorage, as opposed to never having touched the
+  // toggle at all). A fresh visit (new tab/session) always tries again,
+  // regardless of what an earlier session chose — only that one session's
+  // own off-choice sticks, so the person can turn it off without that
+  // blocking autoplay forever. Browsers block audible autoplay without a
+  // user gesture, so the honest version of "already on" is: show the ON
+  // state right away, start a muted loop immediately (muted autoplay is
+  // always allowed), and quietly lift the mute — gently fading up, never a
+  // jump — the instant the visitor does anything else on the page. Almost
+  // nobody looks at a page without touching it, so in practice it reads as
+  // already playing. A click on the player itself is left to its own
+  // handler instead of being double-handled here.
+  const shouldAutoStart=sessionStorage.getItem(ON_KEY)!=='0';
   if(shouldAutoStart){
     musicOn=true;
     audio.muted=true;
     audio.volume=0;
     audio.play().catch(()=>{});
-    localStorage.setItem(ON_KEY,'1');
+    sessionStorage.setItem(ON_KEY,'1');
     updateLabel();
 
     function rampUp(){
@@ -151,22 +155,29 @@
         if(v>=targetVol)clearInterval(fadeTimer);
       },60);
     }
+    const unlockEvents=['click','keydown','touchstart','touchend','pointerdown'];
+    function stopListening(){
+      unlockEvents.forEach(evt=>document.removeEventListener(evt,autoEnableOnce));
+    }
+    // Not {once:true}: a rejected play() shouldn't burn this event type's
+    // only chance — scroll/wheel are deliberately excluded above since
+    // browsers don't treat them as a real user gesture for audio unlock,
+    // so keep retrying on the gesture types that actually count until one
+    // of them succeeds.
     function autoEnableOnce(e){
       if(player.contains(e.target))return;
-      if(!audio.muted&&!audio.paused)return;
+      if(!audio.muted&&!audio.paused){stopListening();return;}
       audio.muted=false;
       if(audio.paused){
-        audio.play().then(rampUp).catch(()=>{
-          musicOn=false;
-          localStorage.setItem(ON_KEY,'0');
-          updateLabel();
+        audio.play().then(()=>{stopListening();rampUp();}).catch(()=>{
+          audio.muted=true;
         });
       }else{
-        rampUp();
+        stopListening();rampUp();
       }
     }
-    ['click','keydown','touchstart','touchend','pointerdown','scroll','wheel'].forEach(evt=>{
-      document.addEventListener(evt,autoEnableOnce,{once:true,passive:true});
+    unlockEvents.forEach(evt=>{
+      document.addEventListener(evt,autoEnableOnce,{passive:true});
     });
   }else{
     updateLabel();
