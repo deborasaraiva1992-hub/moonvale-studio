@@ -300,6 +300,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   <input type="range" id="musicVol" min="0" max="1" step="0.05" value="0.14" oninput="setVol(this.value)" onclick="event.stopPropagation()">
 </div>
 <audio id="bgAudio" loop preload="none"></audio>
+<audio id="atlasAmbience" src="audio/atlas-ambience.mp3" loop preload="none"></audio>
 
 <!-- NAV -->
 <nav>
@@ -1215,24 +1216,54 @@ if(!reducedMotion){
   resize();window.addEventListener('resize',resize);draw();
 })();
 
-/* ── CONSTELLATIONS (mouse hover) ── */
+/* ── CONSTELLATIONS (always-on faint twinkle + brighter reveal on hover/touch) ── */
 (function(){
   const frame=document.getElementById('atlasFrame'),c=document.getElementById('constCanvas');
   if(!c||!frame)return;
-  const ctx=c.getContext('2d');let mouse=null,stars=[];
-  function resize(){c.width=frame.offsetWidth;c.height=frame.offsetHeight;stars=Array.from({length:90},()=>({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*.5+.2}));}
-  frame.addEventListener('mousemove',e=>{const r=frame.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top};});
-  frame.addEventListener('mouseleave',()=>{mouse=null;});
-  function draw(){ctx.clearRect(0,0,c.width,c.height);
-    if(mouse){const radius=130;
-      stars.forEach(s=>{const dx=s.x-mouse.x,dy=s.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<radius){const a=(1-dist/radius)*.7;ctx.beginPath();ctx.arc(s.x,s.y,s.r+1,0,Math.PI*2);ctx.fillStyle=`rgba(216,192,138,${a})`;ctx.fill();
-          stars.forEach(s2=>{const dx2=s.x-s2.x,dy2=s.y-s2.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);
-            if(d2<65&&d2>0){const d3=Math.sqrt((s2.x-mouse.x)**2+(s2.y-mouse.y)**2);
-              if(d3<radius){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s2.x,s2.y);ctx.strokeStyle=`rgba(216,192,138,${a*.22})`;ctx.lineWidth=.5;ctx.stroke();}}});
-        }});
+  const ctx=c.getContext('2d');let pointer=null,stars=[];
+  function resize(){
+    c.width=frame.offsetWidth;c.height=frame.offsetHeight;
+    stars=Array.from({length:90},()=>({
+      x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*.5+.2,
+      phase:Math.random()*Math.PI*2,speed:.015+Math.random()*.02
+    }));
+  }
+  function setPointer(e){const r=frame.getBoundingClientRect();pointer={x:e.clientX-r.left,y:e.clientY-r.top};}
+  frame.addEventListener('pointermove',setPointer);
+  frame.addEventListener('pointerdown',setPointer);
+  frame.addEventListener('pointerleave',()=>{pointer=null;});
+  frame.addEventListener('pointerup',()=>{pointer=null;});
+  frame.addEventListener('pointercancel',()=>{pointer=null;});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    const radius=150;
+    stars.forEach(s=>{
+      s.phase+=s.speed;
+      const idle=.12+.13*Math.abs(Math.sin(s.phase));
+      let a=idle;
+      if(pointer){
+        const dx=s.x-pointer.x,dy=s.y-pointer.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<radius)a=Math.max(idle,(1-dist/radius)*.85);
+      }
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r+1,0,Math.PI*2);ctx.fillStyle=`rgba(216,192,138,${a})`;ctx.fill();
+    });
+    if(pointer){
+      stars.forEach(s=>{
+        const dx=s.x-pointer.x,dy=s.y-pointer.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<radius){
+          const a=(1-dist/radius)*.7;
+          stars.forEach(s2=>{
+            const dx2=s.x-s2.x,dy2=s.y-s2.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);
+            if(d2<65&&d2>0){
+              const d3=Math.sqrt((s2.x-pointer.x)**2+(s2.y-pointer.y)**2);
+              if(d3<radius){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s2.x,s2.y);ctx.strokeStyle=`rgba(216,192,138,${a*.22})`;ctx.lineWidth=.5;ctx.stroke();}
+            }
+          });
+        }
+      });
     }
-    requestAnimationFrame(draw);}
+    requestAnimationFrame(draw);
+  }
   resize();window.addEventListener('resize',resize);draw();
 })();
 
@@ -1246,6 +1277,58 @@ if('IntersectionObserver' in window){
 const routeStyle=document.createElement('style');
 routeStyle.textContent='@keyframes dashDraw{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}';
 document.head.appendChild(routeStyle);
+
+/* ── OCEAN AMBIENCE LAYER — plays softly underneath the shared theme music,
+     only on this page. Follows the same on/off + volume as the main music
+     player (via the 'moonvale:musicstate' event moonvale-music.js fires)
+     instead of having a control of its own. ── */
+(function(){
+  const amb=document.getElementById('atlasAmbience');
+  if(!amb)return;
+  const player=document.getElementById('musicPlayer');
+  const ON_KEY='moonvale.musicOn',VOL_KEY='moonvale.musicVol',AMB_RATIO=.55;
+  function mainVol(){
+    const raw=parseFloat(localStorage.getItem(VOL_KEY));
+    return(!isNaN(raw)&&raw>=0&&raw<=1)?raw:0.14;
+  }
+  let targetAmbVol=mainVol()*AMB_RATIO,fadeTimer=null;
+  amb.volume=0;
+  function rampTo(vol){
+    if(fadeTimer)clearInterval(fadeTimer);
+    fadeTimer=setInterval(()=>{
+      const v=amb.volume;
+      const next=vol>v?Math.min(v+.01,vol):Math.max(v-.01,vol);
+      amb.volume=Math.max(0,Math.min(1,next));
+      if(next===vol){clearInterval(fadeTimer);if(vol<=0)amb.pause();}
+    },60);
+  }
+  if(localStorage.getItem(ON_KEY)!=='0'){
+    amb.muted=true;amb.volume=0;
+    amb.play().catch(()=>{});
+    function enableAmbience(e){
+      if(player&&player.contains(e.target))return;
+      if(!amb.muted&&!amb.paused)return;
+      amb.muted=false;
+      if(amb.paused){amb.play().then(()=>rampTo(targetAmbVol)).catch(()=>{});}
+      else{rampTo(targetAmbVol);}
+    }
+    ['click','keydown','touchstart','touchend','pointerdown','scroll','wheel'].forEach(evt=>{
+      document.addEventListener(evt,enableAmbience,{once:true,passive:true});
+    });
+  }
+  window.addEventListener('moonvale:musicstate',e=>{
+    const on=e.detail&&e.detail.on;
+    const vol=(e.detail&&typeof e.detail.vol==='number')?e.detail.vol:mainVol();
+    targetAmbVol=vol*AMB_RATIO;
+    if(on){
+      amb.muted=false;
+      if(amb.paused){amb.play().then(()=>rampTo(targetAmbVol)).catch(()=>{});}
+      else{rampTo(targetAmbVol);}
+    }else{
+      rampTo(0);
+    }
+  });
+})();
 </script>
 <script src="moonvale-music.js"></script>
 </body>

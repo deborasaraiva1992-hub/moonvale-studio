@@ -1,16 +1,17 @@
 (function(){
   // One track per zone. Ethernia/Fantasy point at the general theme for now —
   // once their dedicated files are added to audio/, just update these two paths.
+  // Atlas plays this same general theme too — it layers its own ocean ambience
+  // underneath separately (see the inline script in atlas.html), rather than
+  // replacing the theme with a different zone track.
   const TRACKS={
     general:'audio/moonvale-theme.mp3',
     ethernia:'audio/moonvale-theme.mp3',
-    fantasy:'audio/moonvale-theme.mp3',
-    atlas:'audio/atlas-ambience.mp3'
+    fantasy:'audio/moonvale-theme.mp3'
   };
 
   function detectZone(){
     const file=location.pathname.split('/').pop();
-    if(file==='atlas.html')return'atlas';
     if(file==='ethernia.html')return'ethernia';
     if(file==='fantasy.html')return'fantasy';
     if(document.querySelector('.realm-ethernia'))return'ethernia';
@@ -54,6 +55,14 @@
     if(mLabel)mLabel.textContent=musicOn?label('music.on','MUSIC ON'):label('music.off','MUSIC OFF');
   }
 
+  // Fires whenever the shared background-music on/off state actually changes,
+  // and whenever its target volume changes — so a page can layer extra ambience
+  // underneath it (see atlas.html) and keep that layer in sync with the single
+  // visible music toggle/slider, without this file needing to know about it.
+  function broadcastState(){
+    try{window.dispatchEvent(new CustomEvent('moonvale:musicstate',{detail:{on:musicOn,vol:targetVol}}));}catch(e){}
+  }
+
   function fadeIn(){
     musicOn=true;
     audio.muted=false;
@@ -63,6 +72,7 @@
       if(mIcon)mIcon.textContent='♫';
       updateLabel();
       localStorage.setItem(ON_KEY,'1');
+      broadcastState();
       let v=0;
       fadeTimer=setInterval(()=>{
         v=Math.min(v+.01,targetVol);audio.volume=v;
@@ -71,6 +81,7 @@
     }).catch(()=>{
       musicOn=false;
       updateLabel();
+      broadcastState();
     });
   }
 
@@ -79,6 +90,7 @@
     if(mIcon)mIcon.textContent='♪';
     updateLabel();
     localStorage.setItem(ON_KEY,'0');
+    broadcastState();
     if(fadeTimer)clearInterval(fadeTimer);
     let v=audio.volume;
     fadeTimer=setInterval(()=>{
@@ -94,6 +106,7 @@
     targetVol=vol;
     audio.volume=vol;
     localStorage.setItem(VOL_KEY,String(vol));
+    broadcastState();
   }
   window.toggleMusic=toggleMusic;
   window.setVol=setVol;
