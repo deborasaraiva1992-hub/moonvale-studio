@@ -235,6 +235,13 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .wide-banner-copy{max-width:760px;padding:clamp(20px,3vw,36px);}
 .wide-banner-copy p{font-size:clamp(.92rem,1.3vw,1.08rem);color:var(--dim);font-style:italic;line-height:1.7;}
 .wide-banner-copy h3{font-family:'Cinzel',serif;font-size:clamp(1.2rem,2.4vw,1.7rem);letter-spacing:2px;color:var(--gold-hi);margin-bottom:10px;text-wrap:balance;}
+.welcome-mark{color:var(--gold);font-size:1.3rem;margin-bottom:14px;display:block;}
+.welcome-eyebrow{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:5px;color:var(--dim);opacity:.85;margin-bottom:10px;}
+.welcome-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,3.2vw,2.4rem);letter-spacing:3px;color:var(--text);margin-bottom:22px;text-wrap:balance;}
+.welcome-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 34px;border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);backdrop-filter:blur(6px);transition:all .3s;position:relative;overflow:hidden;}
+.welcome-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(245,217,127,.14),transparent);transform:skewX(-20deg);transition:left .5s;}
+.welcome-cta:hover::before{left:150%;}
+.welcome-cta:hover{border-color:var(--gold);background:rgba(216,192,138,.12);box-shadow:0 0 28px rgba(216,192,138,.18);}
 @media(max-width:700px){
   /* A mild, barely-there crop (2.2/1 vs the native 2.8/1) instead of
      the exact native ratio - that left the card too short, leaving no
@@ -242,10 +249,10 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
   .wide-banner img{aspect-ratio:2.2/1;}
   .wide-banner-copy p{font-size:.52rem;line-height:1.35;}
   .wide-banner-copy h3{font-size:.72rem;margin-bottom:4px;letter-spacing:.5px;}
-  .welcome-mark{font-size:.8rem;margin-bottom:4px;}
-  .welcome-eyebrow{font-size:.4rem;margin-bottom:4px;letter-spacing:1.5px;}
-  .welcome-title{font-size:.8rem;margin-bottom:8px;letter-spacing:.5px;}
-  .welcome-cta{padding:6px 16px;font-size:.42rem;}
+  .welcome-mark{font-size:.72rem;margin-bottom:4px;}
+  .welcome-eyebrow{font-size:.36rem;margin-bottom:4px;letter-spacing:1.5px;}
+  .welcome-title{font-size:.72rem;margin-bottom:6px;letter-spacing:.5px;}
+  .welcome-cta{padding:6px 14px;font-size:.4rem;}
 }
 /* Desktop only: same full-bleed, frameless treatment as Manifesto/Behind
    above, matching the Hero. Mobile (≤700px) above is untouched. */
@@ -262,13 +269,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
    aspect-ratio, this percentage still reliably lands at the same
    fraction of the visible height at any viewport width. */
 .story-banner .wide-banner-overlay{align-items:center;padding-bottom:8.5%;}
-.welcome-mark{color:var(--gold);font-size:1.3rem;margin-bottom:14px;display:block;}
-.welcome-eyebrow{font-family:'Cinzel',serif;font-size:.64rem;letter-spacing:5px;color:var(--dim);opacity:.85;margin-bottom:10px;}
-.welcome-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,3.2vw,2.4rem);letter-spacing:3px;color:var(--text);margin-bottom:22px;text-wrap:balance;}
-.welcome-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 34px;border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:3px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);backdrop-filter:blur(6px);transition:all .3s;position:relative;overflow:hidden;}
-.welcome-cta::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(245,217,127,.14),transparent);transform:skewX(-20deg);transition:left .5s;}
-.welcome-cta:hover::before{left:150%;}
-.welcome-cta:hover{border-color:var(--gold);background:rgba(216,192,138,.12);box-shadow:0 0 28px rgba(216,192,138,.18);}
 
 /* ── FOOTER (matches Home — brand beside the four nav columns in one row
    once there's room; brand drops to its own full-width row below 900px
