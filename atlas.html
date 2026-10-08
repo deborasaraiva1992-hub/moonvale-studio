@@ -1286,7 +1286,7 @@ document.head.appendChild(routeStyle);
   const amb=document.getElementById('atlasAmbience');
   if(!amb)return;
   const player=document.getElementById('musicPlayer');
-  const ON_KEY='moonvale.musicOn',VOL_KEY='moonvale.musicVol',AMB_RATIO=.55;
+  const ON_KEY='moonvale.musicOn',VOL_KEY='moonvale.musicVol',AMB_RATIO=1.4;
   function mainVol(){
     const raw=parseFloat(localStorage.getItem(VOL_KEY));
     return(!isNaN(raw)&&raw>=0&&raw<=1)?raw:0.14;
@@ -1305,15 +1305,23 @@ document.head.appendChild(routeStyle);
   if(localStorage.getItem(ON_KEY)!=='0'){
     amb.muted=true;amb.volume=0;
     amb.play().catch(()=>{});
+    const unlockEvents=['click','keydown','touchstart','touchend','pointerdown'];
+    function stopListening(){
+      unlockEvents.forEach(evt=>document.removeEventListener(evt,enableAmbience));
+    }
+    // Not {once:true} — see the matching note in moonvale-music.js: scroll/
+    // wheel aren't real user-gesture events for audio unlock, and a once-
+    // only listener on a gesture type that happens to get rejected would
+    // never get a second chance. Keep retrying until one actually works.
     function enableAmbience(e){
       if(player&&player.contains(e.target))return;
-      if(!amb.muted&&!amb.paused)return;
+      if(!amb.muted&&!amb.paused){stopListening();return;}
       amb.muted=false;
-      if(amb.paused){amb.play().then(()=>rampTo(targetAmbVol)).catch(()=>{});}
-      else{rampTo(targetAmbVol);}
+      if(amb.paused){amb.play().then(()=>{stopListening();rampTo(targetAmbVol);}).catch(()=>{amb.muted=true;});}
+      else{stopListening();rampTo(targetAmbVol);}
     }
-    ['click','keydown','touchstart','touchend','pointerdown','scroll','wheel'].forEach(evt=>{
-      document.addEventListener(evt,enableAmbience,{once:true,passive:true});
+    unlockEvents.forEach(evt=>{
+      document.addEventListener(evt,enableAmbience,{passive:true});
     });
   }
   window.addEventListener('moonvale:musicstate',e=>{

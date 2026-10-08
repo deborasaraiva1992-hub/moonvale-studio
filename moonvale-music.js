@@ -151,22 +151,29 @@
         if(v>=targetVol)clearInterval(fadeTimer);
       },60);
     }
+    const unlockEvents=['click','keydown','touchstart','touchend','pointerdown'];
+    function stopListening(){
+      unlockEvents.forEach(evt=>document.removeEventListener(evt,autoEnableOnce));
+    }
+    // Not {once:true}: a rejected play() shouldn't burn this event type's
+    // only chance — scroll/wheel are deliberately excluded above since
+    // browsers don't treat them as a real user gesture for audio unlock,
+    // so keep retrying on the gesture types that actually count until one
+    // of them succeeds.
     function autoEnableOnce(e){
       if(player.contains(e.target))return;
-      if(!audio.muted&&!audio.paused)return;
+      if(!audio.muted&&!audio.paused){stopListening();return;}
       audio.muted=false;
       if(audio.paused){
-        audio.play().then(rampUp).catch(()=>{
-          musicOn=false;
-          localStorage.setItem(ON_KEY,'0');
-          updateLabel();
+        audio.play().then(()=>{stopListening();rampUp();}).catch(()=>{
+          audio.muted=true;
         });
       }else{
-        rampUp();
+        stopListening();rampUp();
       }
     }
-    ['click','keydown','touchstart','touchend','pointerdown','scroll','wheel'].forEach(evt=>{
-      document.addEventListener(evt,autoEnableOnce,{once:true,passive:true});
+    unlockEvents.forEach(evt=>{
+      document.addEventListener(evt,autoEnableOnce,{passive:true});
     });
   }else{
     updateLabel();
