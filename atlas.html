@@ -137,7 +137,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 /* CANVASES */
 .atlas-mist{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.13;transition:transform .35s ease-out;}
 .atlas-const{position:absolute;inset:0;z-index:4;pointer-events:none;}
-.atlas-particles{position:absolute;inset:0;z-index:8;pointer-events:none;transition:transform .35s ease-out;}
 
 /* LANDMARKS SVG */
 .atlas-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;overflow:visible;}
@@ -388,7 +387,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       <img src="atlas-map.webp" alt="Moonvale Atlas of Realms" draggable="false" id="atlasImg">
       <canvas class="atlas-mist"      id="mistCanvas"></canvas>
       <canvas class="atlas-const"     id="constCanvas"></canvas>
-      <canvas class="atlas-particles" id="particleCanvas"></canvas>
 
       <svg class="atlas-svg" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" id="atlasSvg">
 
@@ -881,62 +879,6 @@ let selectedKey=null, selectedIdx=0;
 const tooltip=document.getElementById('atlasTooltip'),ttRealm=document.getElementById('ttRealm'),ttName=document.getElementById('ttName'),ttSub=document.getElementById('ttSub');
 function moveTT(e){const tw=230,th=110;let x=e.clientX+16,y=e.clientY-20;if(x+tw>window.innerWidth)x=e.clientX-tw-16;if(y+th>window.innerHeight)y=e.clientY-th-10;tooltip.style.left=x+'px';tooltip.style.top=y+'px';}
 
-/* ── MAGIC DUST PARTICLES ── */
-const particleCanvas=document.getElementById('particleCanvas');
-const pCtx=particleCanvas.getContext('2d');
-let particles=[];
-function resizeParticles(){particleCanvas.width=particleCanvas.offsetWidth;particleCanvas.height=particleCanvas.offsetHeight;}
-
-function spawnDust(svgX,svgY){
-  // Convert SVG coords to canvas coords
-  const frame=document.getElementById('atlasFrame');
-  const scaleX=frame.offsetWidth/1536;
-  const scaleY=frame.offsetHeight/1024;
-  const cx=svgX*scaleX;
-  const cy=svgY*scaleY;
-  const count=72;
-  for(let i=0;i<count;i++){
-    const angle=Math.random()*Math.PI*2;
-    const speed=1.2+Math.random()*4.5;
-    const size=0.8+Math.random()*3.2;
-    const life=0.7+Math.random()*0.8;
-    const twinkle=Math.random()>.5;
-    particles.push({
-      x:cx,y:cy,
-      vx:Math.cos(angle)*speed,
-      vy:Math.sin(angle)*speed-(Math.random()*1.5),
-      size,life,maxLife:life,
-      twinkle,twinkleSpeed:0.08+Math.random()*0.12,twinklePhase:Math.random()*Math.PI*2,
-      gravity:0.04+Math.random()*0.04,
-      fade:0.012+Math.random()*0.018
-    });
-  }
-}
-
-function animateParticles(){
-  pCtx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
-  particles=particles.filter(p=>p.life>0);
-  for(const p of particles){
-    p.x+=p.vx; p.y+=p.vy; p.vy+=p.gravity;
-    p.vx*=0.97; p.vy*=0.97;
-    p.life-=p.fade;
-    const alpha=(p.life/p.maxLife);
-    const twink=p.twinkle?0.4+0.6*Math.abs(Math.sin(p.twinklePhase+=p.twinkleSpeed)):1;
-    const finalAlpha=Math.min(alpha*twink,1);
-    const r=188+Math.random()*20|0;
-    const g=160+Math.random()*30|0;
-    const b=80+Math.random()*60|0;
-    pCtx.beginPath();
-    pCtx.arc(p.x,p.y,p.size*alpha,0,Math.PI*2);
-    pCtx.fillStyle=`rgba(${r},${g},${b},${finalAlpha})`;
-    pCtx.fill();
-  }
-  requestAnimationFrame(animateParticles);
-}
-resizeParticles();
-window.addEventListener('resize',resizeParticles);
-animateParticles();
-
 const LANDMARK_CENTERS={
   'aurelith-veil':{x:328,y:56},'sylvarith':{x:297,y:225},'lumindor':{x:276,y:364},
   'elarion-vale':{x:236,y:532},'elynthara':{x:399,y:686},
@@ -988,13 +930,11 @@ document.querySelectorAll('.landmark').forEach(g=>{
     if(outer&&key!==selectedKey){outer.style.stroke='#d8c08a';outer.style.opacity='';}
   });
   g.addEventListener('click',e=>{
-    if(center) spawnDust(center.x,center.y);
     if(data) selectRegion(key);
     else if(special) showSpecial(special);
   });
   g.addEventListener('touchstart',e=>{
     e.preventDefault();
-    if(center) spawnDust(center.x,center.y);
     if(data) selectRegion(key);
     else if(special) showSpecial(special);
   },{passive:false});
@@ -1079,8 +1019,6 @@ function updateDots(idx){document.querySelectorAll('.dyn-dot').forEach((d,i)=>d.
 document.querySelectorAll('.dyn-dot').forEach((dot,i)=>{
   dot.addEventListener('click',()=>{
     const key=REGION_KEYS[i%REGION_KEYS.length];
-    const center=LANDMARK_CENTERS[key];
-    if(center)spawnDust(center.x,center.y);
     selectRegion(key);
   });
 });
@@ -1177,17 +1115,15 @@ if(!reducedMotion){
 /* ── PARALLAX DEPTH (mouse) ── */
 (function(){
   if(reducedMotion)return;
-  const frameEl=document.getElementById('atlasFrame'),mist=document.getElementById('mistCanvas'),particles=document.getElementById('particleCanvas');
+  const frameEl=document.getElementById('atlasFrame'),mist=document.getElementById('mistCanvas');
   if(!frameEl)return;
   frameEl.addEventListener('mousemove',e=>{
     const r=frameEl.getBoundingClientRect();
     const px=(e.clientX-r.left)/r.width-0.5,py=(e.clientY-r.top)/r.height-0.5;
     if(mist)mist.style.transform=`translate(${px*10}px,${py*8}px)`;
-    if(particles)particles.style.transform=`translate(${px*-6}px,${py*-5}px)`;
   });
   frameEl.addEventListener('mouseleave',()=>{
     if(mist)mist.style.transform='';
-    if(particles)particles.style.transform='';
   });
 })();
 
