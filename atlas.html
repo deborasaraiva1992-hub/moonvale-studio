@@ -69,31 +69,29 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .btn-outline{display:inline-flex;align-items:center;gap:.5em;padding:.82em 2em;font-family:var(--font-d);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);border-radius:1px;transition:border-color .3s,color .3s,background .3s;}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold-hi);background:rgba(216,192,138,.06);}
 
-/* HERO */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(5rem,12vh,9rem) clamp(1.4rem,5vw,4rem) clamp(3rem,6vw,5rem);overflow:hidden;background-image:url('atlas-banner.webp');background-size:cover;background-position:center center;}
-.hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,22,.75) 0%,rgba(5,8,22,.38) 40%,rgba(5,8,22,.62) 100%);pointer-events:none;}
-/* On narrow screens, full-bleed cover would crop the wide hero image's sides.
-   Show it complete instead: reserve its native-aspect-ratio height with a
-   spacer, switch to width-locked (uncropped) sizing, and let the text flow
-   below it rather than over it. */
-@media(max-width:860px){
-  .hero{min-height:auto;padding-top:0;padding-bottom:clamp(6rem,20vw,8rem);justify-content:flex-start;background-size:100% auto;background-position:top center;background-repeat:no-repeat;}
-  .hero::before{content:'';display:block;width:100%;padding-top:41.41%;}
-  .hero__veil{top:0;right:0;left:0;bottom:auto;height:41.41vw;background:linear-gradient(180deg,rgba(5,8,22,.4) 0%,rgba(5,8,22,.08) 55%,rgba(5,8,22,1) 100%);}
-}
-.hero__content{position:relative;z-index:2;max-width:680px;}
+/* HERO — same mechanics as Ethernia/Fantasy's hero: a real <img> shown
+   complete (width:100%, height:auto, never cropped) at every screen size,
+   with text overlaid on a darkened band via a confident text-shadow
+   instead of forcing a 100vh cover-crop that cuts into the art. Content
+   trimmed to the exact set the approved reference mockup shows (eyebrow,
+   pretitle, title, rule, subtitle, CTA) — no body paragraph, no scroll
+   cue — so it fits the image's own height without overflowing it. */
+.hero{position:relative;min-height:auto;padding-top:calc(72px + env(safe-area-inset-top));overflow:hidden;isolation:isolate;}
+.hero__image{position:relative;width:100%;z-index:0;overflow:hidden;}
+.hero__image img{width:100%;height:auto;display:block;object-fit:contain;filter:saturate(1.05) contrast(1.02);}
+.hero__image::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 74% 66% at 50% 42%,rgba(5,8,22,.62) 0%,rgba(5,8,22,.36) 52%,rgba(5,8,22,.1) 82%,transparent 96%),linear-gradient(180deg,transparent 70%,rgba(5,8,22,.32) 82%,rgba(5,8,22,.72) 92%,rgba(5,8,22,1) 100%);}
+.hero__image::after{content:'';position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 38%,rgba(216,192,138,.2),transparent 36%),radial-gradient(ellipse at 50% 12%,rgba(179,214,255,.14),transparent 50%);animation:heroBloom 6s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes heroBloom{to{opacity:.72}}
+.hero__content{position:absolute;inset:0;top:calc(72px + env(safe-area-inset-top));z-index:2;max-width:680px;margin-inline:auto;text-align:center;text-shadow:0 0 1px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,.98),0 3px 14px rgba(0,0,0,.9),0 8px 32px rgba(0,0,0,.7);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(12px,2.4vw,28px) clamp(12px,3vw,32px);pointer-events:none;}
+.hero__content a{pointer-events:auto;}
 .hero__eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.32em;color:var(--gold);opacity:.8;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
 .hero__eyebrow::before,.hero__eyebrow::after{content:'✦';}
 .hero__pretitle{font-family:var(--font-d);font-size:clamp(.95rem,2vw,1.5rem);letter-spacing:.22em;color:var(--gold-hi);margin-bottom:.3rem;}
-.hero__title{font-family:var(--font-d);font-size:clamp(2.8rem,8vw,6rem);letter-spacing:.08em;font-weight:400;background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-hi) 35%,var(--cream) 52%,var(--gold-hi) 68%,var(--gold-dim) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite;margin-bottom:1.2rem;}
+.hero__title{font-family:var(--font-d);font-size:clamp(2.8rem,8vw,6rem);letter-spacing:.08em;font-weight:400;background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-hi) 35%,var(--cream) 52%,var(--gold-hi) 68%,var(--gold-dim) 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 2px rgba(5,8,22,.92)) drop-shadow(0 0 6px rgba(5,8,22,.7)) drop-shadow(0 0 22px rgba(216,192,138,.3)) drop-shadow(0 3px 10px rgba(0,0,0,.7));animation:shimmer 8s linear infinite;margin-bottom:1.2rem;}
 @keyframes shimmer{0%{background-position:0%}100%{background-position:-220%}}
 .hero__rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 1.4rem;}
-.hero__sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--cream-dim);font-style:italic;margin-bottom:.9rem;}
-.hero__body{font-size:clamp(.9rem,1.3vw,1.05rem);color:rgba(245,241,232,.5);max-width:460px;margin:0 auto 2.6rem;line-height:1.8;}
-.hero__scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.6rem;font-family:var(--font-d);font-size:.58rem;letter-spacing:.22em;color:rgba(245,241,232,.35);z-index:2;}
-.scroll-line{width:1px;height:36px;background:linear-gradient(180deg,var(--gold),transparent);position:relative;overflow:hidden;}
-.scroll-line::after{content:'';position:absolute;left:0;top:-100%;width:100%;height:100%;background:linear-gradient(180deg,transparent,var(--gold));animation:spulse 2.2s ease-in-out infinite;}
-@keyframes spulse{0%{top:-100%}60%,100%{top:100%}}
+.hero__sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--cream-dim);font-style:italic;margin-bottom:1.6rem;}
+@media(max-width:860px){.hero{padding-bottom:124px;}.hero__content{max-width:none;padding:0 20px;}.hero__eyebrow{margin-bottom:.6rem;}.hero__pretitle{margin-bottom:.2rem;}.hero__title{margin-bottom:.6rem;}.hero__rule{margin:.5rem auto .8rem;}.hero__sub{margin-bottom:1rem;}}
 
 /* MAP SECTION */
 #map-section{padding-top:0;}
@@ -343,19 +341,14 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 
 <!-- HERO -->
 <section class="hero" id="heroAtlas">
-  <div class="hero__veil"></div>
+  <div class="hero__image"><img src="atlas-banner.webp" alt="An astrologer's study overlooking the realms of Moonvale, with an open map of mountains and seas beneath a starlit sky" width="3840" height="1590" fetchpriority="high" draggable="false"></div>
   <div class="hero__content">
     <p class="hero__eyebrow" data-i18n="hero.eyebrow">CARTOGRAPHY OF WORLDS</p>
     <p class="hero__pretitle" data-i18n="hero.pretitle">THE ATLAS OF</p>
     <h1 class="hero__title">MOONVALE</h1>
     <div class="hero__rule"></div>
     <p class="hero__sub"  data-i18n="hero.sub">Explore the realms. Discover the legends.</p>
-    <p class="hero__body" data-i18n="hero.body">The stars remember every path. Select a marked location to uncover its history, mysteries and forgotten legends.</p>
     <a href="#map-section" class="btn-gold" data-i18n="hero.cta">✦ EXPLORE THE MAP</a>
-  </div>
-  <div class="hero__scroll" aria-hidden="true">
-    <span data-i18n="hero.scroll">BEGIN YOUR JOURNEY</span>
-    <span class="scroll-line"></span>
   </div>
 </section>
 
