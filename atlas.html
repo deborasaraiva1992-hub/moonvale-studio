@@ -1032,7 +1032,6 @@ function selectRegion(key){
   // update banner
   showRegionBanner(data);
   updateDots(selectedIdx);
-  setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),320);
 }
 
 function showRegionBanner(data){
@@ -1059,7 +1058,6 @@ function showSpecial(special){
   document.getElementById('dynPage').style.display='none';
   document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
-  setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),320);
 }
 
 function showUnknown(){
@@ -1071,7 +1069,6 @@ function showUnknown(){
   document.getElementById('dynLore').style.display='none';document.getElementById('dynPage').style.display='none';
   document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
-  setTimeout(()=>document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'start'}),320);
 }
 
 document.getElementById('dynClose').addEventListener('click',()=>{
