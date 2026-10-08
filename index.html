@@ -795,6 +795,24 @@ footer::before{opacity:.08;animation-duration:24s;}
   .footer-col ul li a{font-size:.62rem!important;}
 }
 
+/* The mobile hero had more copy (tagline + description) than Ethernia/
+   Fantasy's (just a short quote), so even after their same "no-crop"
+   treatment it needed noticeably more vertical room than the image
+   itself provides - the excess spilled onto plain dark background
+   below the art, reading as a big empty gap before the CTA/scroll cue.
+   Compact every piece on mobile so the whole block fits back within
+   the image's own height, matching those pages' proportions instead
+   of stretching the hero taller than them. */
+@media(max-width:900px){
+  .hero-logo{font-size:clamp(1.7rem,6.6vw,2.4rem)!important;margin-bottom:2px!important;}
+  .hero-tagline{margin-bottom:4px!important;}
+  .hero-description{font-size:.66rem!important;line-height:1.25!important;margin-bottom:6px!important;}
+  .hero-primary-cta{padding:6px 14px!important;font-size:.54rem!important;min-height:30px!important;}
+  .scroll-cue{margin-top:4px!important;gap:3px!important;font-size:.52rem!important;}
+  .scroll-mouse{width:15px!important;height:22px!important;border-width:1px!important;}
+  .scroll-mouse::after{width:2px!important;height:3px!important;}
+}
+
 </style>
 </head>
 <body>
