@@ -79,7 +79,7 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .hero{position:relative;min-height:auto;padding-top:calc(72px + env(safe-area-inset-top));overflow:hidden;isolation:isolate;}
 .hero__image{position:relative;width:100%;z-index:0;overflow:hidden;}
 .hero__image img{width:100%;height:auto;display:block;object-fit:contain;filter:saturate(1.05) contrast(1.02);}
-.hero__image::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 58% at 50% 38%,rgba(5,8,22,.9) 0%,rgba(5,8,22,.68) 42%,rgba(5,8,22,.3) 74%,transparent 92%),linear-gradient(180deg,transparent 55%,rgba(5,8,22,.55) 75%,rgba(5,8,22,.88) 88%,rgba(5,8,22,1) 100%);}
+.hero__image::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 68% 54% at 50% 36%,rgba(5,8,22,.96) 0%,rgba(5,8,22,.86) 48%,rgba(5,8,22,.45) 76%,transparent 94%),linear-gradient(180deg,transparent 50%,rgba(5,8,22,.6) 72%,rgba(5,8,22,.9) 86%,rgba(5,8,22,1) 100%);}
 .hero__content{position:absolute;inset:0;top:calc(72px + env(safe-area-inset-top));z-index:2;max-width:680px;margin-inline:auto;text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.9),0 1px 3px rgba(0,0,0,.95);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:clamp(12px,2.4vw,28px) clamp(12px,3vw,32px);pointer-events:none;}
 .hero__content a{pointer-events:auto;}
 .hero__eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.32em;color:var(--gold-hi);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
@@ -91,7 +91,21 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .hero__sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--cream);font-style:italic;margin-bottom:1.6rem;}
 .hero__content .btn-outline{border-color:var(--gold-hi);background:rgba(5,8,22,.5);}
 .hero__content .btn-outline:hover{background:rgba(5,8,22,.7);}
-@media(max-width:860px){.hero{padding-bottom:124px;}.hero__content{max-width:none;padding:0 20px;}.hero__eyebrow{margin-bottom:.6rem;}.hero__pretitle{margin-bottom:.2rem;}.hero__title{margin-bottom:.6rem;}.hero__rule{margin:.5rem auto .8rem;}.hero__sub{margin-bottom:1rem;}}
+/* Mobile: sized and spaced to match the Ethernia/Fantasy mobile hero
+   proportions — much smaller title, tight gaps, compact CTA — so the
+   whole block stays well clear of the illustrated map table near the
+   bottom of the art, instead of the desktop-scaled text overflowing
+   into it. */
+@media(max-width:860px){
+  .hero{padding-bottom:64px;}
+  .hero__content{max-width:none;padding:0 20px;}
+  .hero__eyebrow{font-size:.52rem;letter-spacing:.24em;margin-bottom:.5rem;}
+  .hero__pretitle{font-size:clamp(.7rem,2.6vw,.95rem);margin-bottom:.15rem;}
+  .hero__title{font-size:clamp(1.9rem,8.5vw,2.6rem);margin-bottom:.4rem;}
+  .hero__rule{margin:.4rem auto .6rem;}
+  .hero__sub{font-size:clamp(.78rem,2.6vw,.95rem);margin-bottom:.8rem;}
+  .hero__content .btn-outline{padding:.6em 1.3em;font-size:.6rem;letter-spacing:.12em;}
+}
 
 /* MAP SECTION */
 #map-section{padding-top:0;}
