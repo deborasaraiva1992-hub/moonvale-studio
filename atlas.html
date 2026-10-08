@@ -965,13 +965,6 @@ function animateParticles(){
     pCtx.arc(p.x,p.y,p.size*alpha,0,Math.PI*2);
     pCtx.fillStyle=`rgba(${r},${g},${b},${finalAlpha})`;
     pCtx.fill();
-    // sparkle cross on large particles
-    if(p.size>2.5&&alpha>0.4){
-      pCtx.strokeStyle=`rgba(255,240,180,${finalAlpha*0.5})`;
-      pCtx.lineWidth=0.5;
-      pCtx.beginPath();pCtx.moveTo(p.x-p.size*1.5,p.y);pCtx.lineTo(p.x+p.size*1.5,p.y);pCtx.stroke();
-      pCtx.beginPath();pCtx.moveTo(p.x,p.y-p.size*1.5);pCtx.lineTo(p.x,p.y+p.size*1.5);pCtx.stroke();
-    }
   }
   requestAnimationFrame(animateParticles);
 }
