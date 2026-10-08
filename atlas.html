@@ -156,11 +156,8 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .city-glow{pointer-events:none;animation:cityBreath 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
 @keyframes cityBreath{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}
 .mystery-glow{pointer-events:none;animation:cityBreath 4.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
-.ray-burst{pointer-events:none;transform-box:fill-box;animation:rayRotate 18s linear infinite,rayFlicker 3.4s ease-in-out infinite;}
-@keyframes rayRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes rayFlicker{0%,100%{opacity:.5}50%{opacity:1}}
 .route-comet{pointer-events:none;}
-@media(prefers-reduced-motion:reduce){.city-glow,.mystery-glow,.ray-burst{animation:none!important;}}
+@media(prefers-reduced-motion:reduce){.city-glow,.mystery-glow{animation:none!important;}}
 
 /* forest motes — fireflies/pollen drifting up from the ancient trees */
 .forest-motes{pointer-events:none;}
@@ -706,14 +703,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="astral-crossing" data-type="mystery">
           <circle class="mystery-glow" cx="788" cy="307" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:788px 307px">
-            <line x1="788" y1="307" x2="788" y2="269" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="788" y2="345" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="750" y2="307" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="826" y2="307" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="761" y2="280" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="815" y2="334" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="788" cy="307" r="38"/>
           <circle cx="788" cy="307" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
           <circle cx="788" cy="307" r="3" fill="rgba(220,100,100,.6)"/>
@@ -722,14 +711,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
         <g class="landmark special" data-key="drowned-compass" data-type="mystery">
           <circle class="mystery-glow" cx="625" cy="553" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:625px 553px">
-            <line x1="625" y1="553" x2="625" y2="515" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="625" y2="591" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="587" y2="553" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="663" y2="553" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="598" y2="526" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="652" y2="580" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="625" cy="553" r="38"/>
           <circle cx="625" cy="553" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
           <circle cx="625" cy="553" r="3" fill="rgba(220,100,100,.55)"/>
@@ -738,14 +719,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
         <g class="landmark special" data-key="isle-whispered" data-type="mystery">
           <circle class="mystery-glow" cx="758" cy="133" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:758px 133px">
-            <line x1="758" y1="133" x2="758" y2="95" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="758" y2="171" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="720" y2="133" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="796" y2="133" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="731" y2="106" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="785" y2="160" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="758" cy="133" r="38"/>
           <circle cx="758" cy="133" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
           <circle cx="758" cy="133" r="3" fill="rgba(220,100,100,.55)"/>
@@ -754,14 +727,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
         <g class="landmark special" data-key="forsaken-reliquary" data-type="mystery">
           <circle class="mystery-glow" cx="788" cy="635" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:788px 635px">
-            <line x1="788" y1="635" x2="788" y2="597" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="788" y2="673" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="750" y2="635" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="826" y2="635" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="761" y2="608" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="815" y2="662" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="788" cy="635" r="38"/>
           <circle cx="788" cy="635" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
           <circle cx="788" cy="635" r="3" fill="rgba(220,100,100,.5)"/>
