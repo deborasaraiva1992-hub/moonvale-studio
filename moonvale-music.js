@@ -152,7 +152,7 @@
         rampUp();
       }
     }
-    ['click','keydown','touchend'].forEach(evt=>{
+    ['click','keydown','touchstart','touchend','pointerdown','scroll','wheel'].forEach(evt=>{
       document.addEventListener(evt,autoEnableOnce,{once:true,passive:true});
     });
   }else{

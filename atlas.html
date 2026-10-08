@@ -96,6 +96,8 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 /* ATLAS FRAME */
 .atlas-outer{max-width:1440px;margin:0 auto;padding:0 clamp(.6rem,2vw,2rem);}
 .atlas-frame{position:relative;width:100%;border:1px solid rgba(216,192,138,.4);border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(216,192,138,.06),0 0 80px rgba(0,0,0,.9),0 0 40px rgba(216,192,138,.05);cursor:crosshair;}
+.atlas-frame.zoomed{cursor:grab;touch-action:none;}
+.atlas-frame.zoomed.panning{cursor:grabbing;}
 .atlas-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(216,192,138,.07) 0%,transparent 35%),radial-gradient(ellipse at bottom right,rgba(216,192,138,.05) 0%,transparent 35%);pointer-events:none;z-index:3;}
 .atlas-frame img{width:100%;display:block;user-select:none;pointer-events:none;position:relative;z-index:1;}
 
@@ -1108,12 +1110,50 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* ── ZOOM + KEN BURNS (slow ambient breathing, merged with manual zoom so they never fight) ── */
-let scale=1,kenBurnsScale=1;
+/* ── ZOOM + PAN + KEN BURNS (slow ambient breathing, merged with manual zoom so they never fight) ── */
+let scale=1,kenBurnsScale=1,panX=0,panY=0;
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.getElementById('zoomIn').addEventListener('click',()=>{scale=Math.min(scale+.15,2.2);applyZoom();});
-document.getElementById('zoomOut').addEventListener('click',()=>{scale=Math.max(scale-.15,1);applyZoom();});
-function applyZoom(){const img=document.getElementById('atlasImg'),svg=document.getElementById('atlasSvg');[img,svg].forEach(el=>{el.style.transform=`scale(${scale*kenBurnsScale})`;el.style.transformOrigin='center center';});}
+const atlasFrameEl=document.getElementById('atlasFrame');
+function clampPan(){
+  const rect=atlasFrameEl.getBoundingClientRect();
+  const maxX=Math.max(0,(scale-1)/2*rect.width);
+  const maxY=Math.max(0,(scale-1)/2*rect.height);
+  panX=Math.min(maxX,Math.max(-maxX,panX));
+  panY=Math.min(maxY,Math.max(-maxY,panY));
+}
+document.getElementById('zoomIn').addEventListener('click',()=>{scale=Math.min(scale+.15,2.2);clampPan();applyZoom();updatePanAbility();});
+document.getElementById('zoomOut').addEventListener('click',()=>{scale=Math.max(scale-.15,1);if(scale<=1){panX=0;panY=0;}clampPan();applyZoom();updatePanAbility();});
+function applyZoom(){const img=document.getElementById('atlasImg'),svg=document.getElementById('atlasSvg');[img,svg].forEach(el=>{el.style.transform=`translate(${panX}px,${panY}px) scale(${scale*kenBurnsScale})`;el.style.transformOrigin='center center';});}
+function updatePanAbility(){atlasFrameEl.classList.toggle('zoomed',scale>1.001);}
+
+/* ── DRAG TO PAN (mouse + touch, via Pointer Events) — only active once zoomed in ── */
+(function(){
+  let dragging=false,dragMoved=false,startX=0,startY=0,panStartX=0,panStartY=0;
+  atlasFrameEl.addEventListener('pointerdown',e=>{
+    if(scale<=1.001)return;
+    if(e.target.closest('.zoom-controls'))return;
+    dragging=true;dragMoved=false;
+    startX=e.clientX;startY=e.clientY;panStartX=panX;panStartY=panY;
+  });
+  atlasFrameEl.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-startX,dy=e.clientY-startY;
+    if(!dragMoved&&(Math.abs(dx)>3||Math.abs(dy)>3)){
+      dragMoved=true;
+      atlasFrameEl.classList.add('panning');
+      try{atlasFrameEl.setPointerCapture(e.pointerId);}catch(err){}
+    }
+    if(!dragMoved)return;
+    panX=panStartX+dx;panY=panStartY+dy;
+    clampPan();
+    applyZoom();
+  });
+  function endDrag(){dragging=false;atlasFrameEl.classList.remove('panning');}
+  atlasFrameEl.addEventListener('pointerup',endDrag);
+  atlasFrameEl.addEventListener('pointercancel',endDrag);
+  atlasFrameEl.addEventListener('pointerleave',endDrag);
+  window.addEventListener('resize',()=>{clampPan();applyZoom();});
+})();
 if(!reducedMotion){
   let kbRunning=false;
   const kbFrame=document.getElementById('atlasFrame');
