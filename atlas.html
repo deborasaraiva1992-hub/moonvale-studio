@@ -85,10 +85,10 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .hero__eyebrow{font-family:var(--font-d);font-size:.65rem;letter-spacing:.32em;color:var(--gold-hi);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:.7em;}
 .hero__eyebrow::before,.hero__eyebrow::after{content:'✦';}
 .hero__pretitle{font-family:var(--font-d);font-size:clamp(.95rem,2vw,1.5rem);letter-spacing:.22em;color:var(--gold-hi);margin-bottom:.3rem;}
-.hero__title{font-family:var(--font-d);font-size:clamp(2.8rem,8vw,6rem);letter-spacing:.08em;font-weight:400;background:linear-gradient(135deg,var(--gold-hi) 0%,#fff7dc 20%,var(--gold-hi) 40%,#fff7dc 60%,var(--gold-hi) 80%,#fff7dc 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 2px rgba(5,8,22,.92)) drop-shadow(0 0 8px rgba(5,8,22,.75)) drop-shadow(0 0 26px rgba(245,217,127,.45)) drop-shadow(0 3px 10px rgba(0,0,0,.75));animation:shimmer 8s linear infinite;margin-bottom:1.2rem;}
+.hero__title{font-family:var(--font-d);font-size:clamp(2.8rem,8vw,6rem);letter-spacing:.08em;font-weight:400;background:linear-gradient(135deg,var(--gold-hi) 0%,#fff7dc 20%,var(--gold-hi) 40%,#fff7dc 60%,var(--gold-hi) 80%,#fff7dc 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 0 2px rgba(5,8,22,.92)) drop-shadow(0 0 8px rgba(5,8,22,.75)) drop-shadow(0 0 26px rgba(245,217,127,.45)) drop-shadow(0 3px 10px rgba(0,0,0,.75));animation:shimmer 8s linear infinite;margin-bottom:.5rem;}
 @keyframes shimmer{0%{background-position:0%}100%{background-position:-220%}}
-.hero__rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 1.4rem;}
-.hero__sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--cream);font-style:italic;margin-bottom:1.6rem;}
+.hero__rule{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.4rem auto .7rem;}
+.hero__sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--cream);font-style:italic;margin-bottom:.9rem;}
 .hero__content .btn-outline{border-color:var(--gold-hi);background:rgba(5,8,22,.5);}
 .hero__content .btn-outline:hover{background:rgba(5,8,22,.7);}
 /* Mobile: sized and spaced to match the Ethernia/Fantasy mobile hero
@@ -101,9 +101,9 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
   .hero__content{max-width:none;padding:0 20px;}
   .hero__eyebrow{font-size:.52rem;letter-spacing:.24em;margin-bottom:.5rem;}
   .hero__pretitle{font-size:clamp(.7rem,2.6vw,.95rem);margin-bottom:.15rem;}
-  .hero__title{font-size:clamp(1.9rem,8.5vw,2.6rem);margin-bottom:.4rem;}
-  .hero__rule{margin:.4rem auto .6rem;}
-  .hero__sub{font-size:clamp(.78rem,2.6vw,.95rem);margin-bottom:.8rem;}
+  .hero__title{font-size:clamp(1.9rem,8.5vw,2.6rem);margin-bottom:.2rem;}
+  .hero__rule{margin:.25rem auto .35rem;}
+  .hero__sub{font-size:clamp(.78rem,2.6vw,.95rem);margin-bottom:.5rem;}
   .hero__content .btn-outline{padding:.6em 1.3em;font-size:.6rem;letter-spacing:.12em;}
 }
 
@@ -116,16 +116,27 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 
 /* ATLAS FRAME */
 .atlas-outer{margin:0 auto;padding:0 clamp(.6rem,2vw,2rem);}
-.atlas-frame{position:relative;width:100%;border:1px solid rgba(216,192,138,.4);border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(216,192,138,.06),0 0 80px rgba(0,0,0,.9),0 0 40px rgba(216,192,138,.05);cursor:zoom-in;}
+.atlas-frame{position:relative;width:100%;border:1px solid rgba(216,192,138,.4);border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px rgba(216,192,138,.06),0 0 80px rgba(0,0,0,.9),0 0 40px rgba(216,192,138,.05);}
 .atlas-frame.zoomed{cursor:grab;touch-action:none;}
 .atlas-frame.zoomed.panning{cursor:grabbing;}
+/* A magical sparkle follows the cursor instead of a plain OS icon — only
+   on devices with a real mouse (touch just keeps its default behavior,
+   nothing to hide there since there's no hover cursor to replace). */
+@media(hover:hover) and (pointer:fine){.atlas-frame:not(.zoomed){cursor:none;}}
+.atlas-cursor-glow{position:absolute;top:0;left:0;width:0;height:0;pointer-events:none;z-index:9;opacity:0;transition:opacity .25s ease;}
+.atlas-cursor-glow.active{opacity:1;}
+.atlas-frame.zoomed .atlas-cursor-glow{opacity:0!important;}
+.atlas-cursor-glow::before{content:'';position:absolute;top:-20px;left:-20px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.5) 0%,rgba(216,192,138,.2) 45%,transparent 75%);filter:blur(1px);animation:cursorGlowPulse 2.4s ease-in-out infinite;}
+.atlas-cursor-glow::after{content:'✦';position:absolute;top:-10px;left:-10px;width:20px;height:20px;line-height:20px;text-align:center;font-size:14px;color:#fff7dc;text-shadow:0 0 6px rgba(245,217,127,.95),0 0 16px rgba(245,217,127,.65);animation:cursorGlowSpin 7s linear infinite;}
+@keyframes cursorGlowPulse{0%,100%{transform:scale(1);opacity:.8;}50%{transform:scale(1.3);opacity:1;}}
+@keyframes cursorGlowSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@media(prefers-reduced-motion:reduce){.atlas-cursor-glow::before,.atlas-cursor-glow::after{animation:none;}}
 .atlas-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(216,192,138,.07) 0%,transparent 35%),radial-gradient(ellipse at bottom right,rgba(216,192,138,.05) 0%,transparent 35%);pointer-events:none;z-index:3;}
 .atlas-frame img{width:100%;display:block;user-select:none;pointer-events:none;position:relative;z-index:1;}
 
 /* CANVASES */
 .atlas-mist{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.13;transition:transform .35s ease-out;}
 .atlas-const{position:absolute;inset:0;z-index:4;pointer-events:none;}
-.atlas-particles{position:absolute;inset:0;z-index:8;pointer-events:none;transition:transform .35s ease-out;}
 
 /* LANDMARKS SVG */
 .atlas-svg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;overflow:visible;}
@@ -144,11 +155,8 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .city-glow{pointer-events:none;animation:cityBreath 5s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
 @keyframes cityBreath{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}
 .mystery-glow{pointer-events:none;animation:cityBreath 4.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
-.ray-burst{pointer-events:none;transform-box:fill-box;animation:rayRotate 18s linear infinite,rayFlicker 3.4s ease-in-out infinite;}
-@keyframes rayRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes rayFlicker{0%,100%{opacity:.5}50%{opacity:1}}
 .route-comet{pointer-events:none;}
-@media(prefers-reduced-motion:reduce){.city-glow,.mystery-glow,.ray-burst{animation:none!important;}}
+@media(prefers-reduced-motion:reduce){.city-glow,.mystery-glow{animation:none!important;}}
 
 /* forest motes — fireflies/pollen drifting up from the ancient trees */
 .forest-motes{pointer-events:none;}
@@ -375,10 +383,10 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   </div>
   <div class="atlas-outer reveal">
     <div class="atlas-frame" id="atlasFrame">
+      <div class="atlas-cursor-glow" id="atlasCursorGlow" aria-hidden="true"></div>
       <img src="atlas-map.webp" alt="Moonvale Atlas of Realms" draggable="false" id="atlasImg">
       <canvas class="atlas-mist"      id="mistCanvas"></canvas>
       <canvas class="atlas-const"     id="constCanvas"></canvas>
-      <canvas class="atlas-particles" id="particleCanvas"></canvas>
 
       <svg class="atlas-svg" viewBox="0 0 1536 1024" preserveAspectRatio="xMidYMid meet" id="atlasSvg">
 
@@ -693,14 +701,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         ══════════════════════════════════ -->
         <g class="landmark special" data-key="astral-crossing" data-type="mystery">
           <circle class="mystery-glow" cx="788" cy="307" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:788px 307px">
-            <line x1="788" y1="307" x2="788" y2="269" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="788" y2="345" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="750" y2="307" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="826" y2="307" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="761" y2="280" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="788" y1="307" x2="815" y2="334" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="788" cy="307" r="38"/>
           <circle cx="788" cy="307" r="8" fill="none" stroke="rgba(220,100,100,.5)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:.2s"/>
           <circle cx="788" cy="307" r="3" fill="rgba(220,100,100,.6)"/>
@@ -709,14 +709,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
         <g class="landmark special" data-key="drowned-compass" data-type="mystery">
           <circle class="mystery-glow" cx="625" cy="553" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:625px 553px">
-            <line x1="625" y1="553" x2="625" y2="515" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="625" y2="591" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="587" y2="553" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="663" y2="553" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="598" y2="526" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="625" y1="553" x2="652" y2="580" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="625" cy="553" r="38"/>
           <circle cx="625" cy="553" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:1.4s"/>
           <circle cx="625" cy="553" r="3" fill="rgba(220,100,100,.55)"/>
@@ -725,14 +717,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
         <g class="landmark special" data-key="isle-whispered" data-type="mystery">
           <circle class="mystery-glow" cx="758" cy="133" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:758px 133px">
-            <line x1="758" y1="133" x2="758" y2="95" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="758" y2="171" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="720" y2="133" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="796" y2="133" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="731" y2="106" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="758" y1="133" x2="785" y2="160" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="758" cy="133" r="38"/>
           <circle cx="758" cy="133" r="8" fill="none" stroke="rgba(220,100,100,.45)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:2.6s"/>
           <circle cx="758" cy="133" r="3" fill="rgba(220,100,100,.55)"/>
@@ -741,14 +725,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         </g>
         <g class="landmark special" data-key="forsaken-reliquary" data-type="mystery">
           <circle class="mystery-glow" cx="788" cy="635" r="46" fill="url(#glowRed)"/>
-          <g class="ray-burst" style="transform-origin:788px 635px">
-            <line x1="788" y1="635" x2="788" y2="597" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="788" y2="673" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="750" y2="635" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="826" y2="635" stroke="rgba(220,130,130,.4)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="761" y2="608" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-            <line x1="788" y1="635" x2="815" y2="662" stroke="rgba(220,130,130,.3)" stroke-width="1"/>
-          </g>
           <circle class="landmark-hit" cx="788" cy="635" r="38"/>
           <circle cx="788" cy="635" r="8" fill="none" stroke="rgba(220,100,100,.4)" stroke-width="1" style="animation:pulseOut 3.5s ease-in-out infinite;animation-delay:3.8s"/>
           <circle cx="788" cy="635" r="3" fill="rgba(220,100,100,.5)"/>
@@ -903,69 +879,6 @@ let selectedKey=null, selectedIdx=0;
 const tooltip=document.getElementById('atlasTooltip'),ttRealm=document.getElementById('ttRealm'),ttName=document.getElementById('ttName'),ttSub=document.getElementById('ttSub');
 function moveTT(e){const tw=230,th=110;let x=e.clientX+16,y=e.clientY-20;if(x+tw>window.innerWidth)x=e.clientX-tw-16;if(y+th>window.innerHeight)y=e.clientY-th-10;tooltip.style.left=x+'px';tooltip.style.top=y+'px';}
 
-/* ── MAGIC DUST PARTICLES ── */
-const particleCanvas=document.getElementById('particleCanvas');
-const pCtx=particleCanvas.getContext('2d');
-let particles=[];
-function resizeParticles(){particleCanvas.width=particleCanvas.offsetWidth;particleCanvas.height=particleCanvas.offsetHeight;}
-
-function spawnDust(svgX,svgY){
-  // Convert SVG coords to canvas coords
-  const frame=document.getElementById('atlasFrame');
-  const scaleX=frame.offsetWidth/1536;
-  const scaleY=frame.offsetHeight/1024;
-  const cx=svgX*scaleX;
-  const cy=svgY*scaleY;
-  const count=72;
-  for(let i=0;i<count;i++){
-    const angle=Math.random()*Math.PI*2;
-    const speed=1.2+Math.random()*4.5;
-    const size=0.8+Math.random()*3.2;
-    const life=0.7+Math.random()*0.8;
-    const twinkle=Math.random()>.5;
-    particles.push({
-      x:cx,y:cy,
-      vx:Math.cos(angle)*speed,
-      vy:Math.sin(angle)*speed-(Math.random()*1.5),
-      size,life,maxLife:life,
-      twinkle,twinkleSpeed:0.08+Math.random()*0.12,twinklePhase:Math.random()*Math.PI*2,
-      gravity:0.04+Math.random()*0.04,
-      fade:0.012+Math.random()*0.018
-    });
-  }
-}
-
-function animateParticles(){
-  pCtx.clearRect(0,0,particleCanvas.width,particleCanvas.height);
-  particles=particles.filter(p=>p.life>0);
-  for(const p of particles){
-    p.x+=p.vx; p.y+=p.vy; p.vy+=p.gravity;
-    p.vx*=0.97; p.vy*=0.97;
-    p.life-=p.fade;
-    const alpha=(p.life/p.maxLife);
-    const twink=p.twinkle?0.4+0.6*Math.abs(Math.sin(p.twinklePhase+=p.twinkleSpeed)):1;
-    const finalAlpha=Math.min(alpha*twink,1);
-    const r=188+Math.random()*20|0;
-    const g=160+Math.random()*30|0;
-    const b=80+Math.random()*60|0;
-    pCtx.beginPath();
-    pCtx.arc(p.x,p.y,p.size*alpha,0,Math.PI*2);
-    pCtx.fillStyle=`rgba(${r},${g},${b},${finalAlpha})`;
-    pCtx.fill();
-    // sparkle cross on large particles
-    if(p.size>2.5&&alpha>0.4){
-      pCtx.strokeStyle=`rgba(255,240,180,${finalAlpha*0.5})`;
-      pCtx.lineWidth=0.5;
-      pCtx.beginPath();pCtx.moveTo(p.x-p.size*1.5,p.y);pCtx.lineTo(p.x+p.size*1.5,p.y);pCtx.stroke();
-      pCtx.beginPath();pCtx.moveTo(p.x,p.y-p.size*1.5);pCtx.lineTo(p.x,p.y+p.size*1.5);pCtx.stroke();
-    }
-  }
-  requestAnimationFrame(animateParticles);
-}
-resizeParticles();
-window.addEventListener('resize',resizeParticles);
-animateParticles();
-
 const LANDMARK_CENTERS={
   'aurelith-veil':{x:328,y:56},'sylvarith':{x:297,y:225},'lumindor':{x:276,y:364},
   'elarion-vale':{x:236,y:532},'elynthara':{x:399,y:686},
@@ -1017,13 +930,11 @@ document.querySelectorAll('.landmark').forEach(g=>{
     if(outer&&key!==selectedKey){outer.style.stroke='#d8c08a';outer.style.opacity='';}
   });
   g.addEventListener('click',e=>{
-    if(center) spawnDust(center.x,center.y);
     if(data) selectRegion(key);
     else if(special) showSpecial(special);
   });
   g.addEventListener('touchstart',e=>{
     e.preventDefault();
-    if(center) spawnDust(center.x,center.y);
     if(data) selectRegion(key);
     else if(special) showSpecial(special);
   },{passive:false});
@@ -1108,8 +1019,6 @@ function updateDots(idx){document.querySelectorAll('.dyn-dot').forEach((d,i)=>d.
 document.querySelectorAll('.dyn-dot').forEach((dot,i)=>{
   dot.addEventListener('click',()=>{
     const key=REGION_KEYS[i%REGION_KEYS.length];
-    const center=LANDMARK_CENTERS[key];
-    if(center)spawnDust(center.x,center.y);
     selectRegion(key);
   });
 });
@@ -1206,17 +1115,15 @@ if(!reducedMotion){
 /* ── PARALLAX DEPTH (mouse) ── */
 (function(){
   if(reducedMotion)return;
-  const frameEl=document.getElementById('atlasFrame'),mist=document.getElementById('mistCanvas'),particles=document.getElementById('particleCanvas');
+  const frameEl=document.getElementById('atlasFrame'),mist=document.getElementById('mistCanvas');
   if(!frameEl)return;
   frameEl.addEventListener('mousemove',e=>{
     const r=frameEl.getBoundingClientRect();
     const px=(e.clientX-r.left)/r.width-0.5,py=(e.clientY-r.top)/r.height-0.5;
     if(mist)mist.style.transform=`translate(${px*10}px,${py*8}px)`;
-    if(particles)particles.style.transform=`translate(${px*-6}px,${py*-5}px)`;
   });
   frameEl.addEventListener('mouseleave',()=>{
     if(mist)mist.style.transform='';
-    if(particles)particles.style.transform='';
   });
 })();
 
@@ -1243,12 +1150,17 @@ if(!reducedMotion){
       phase:Math.random()*Math.PI*2,speed:.015+Math.random()*.02
     }));
   }
-  function setPointer(e){const r=frame.getBoundingClientRect();pointer={x:e.clientX-r.left,y:e.clientY-r.top};}
+  const glow=document.getElementById('atlasCursorGlow');
+  function setPointer(e){
+    const r=frame.getBoundingClientRect();pointer={x:e.clientX-r.left,y:e.clientY-r.top};
+    if(glow&&e.pointerType==='mouse'){glow.style.transform=`translate(${pointer.x}px,${pointer.y}px)`;glow.classList.add('active');}
+  }
+  function clearPointer(){pointer=null;if(glow)glow.classList.remove('active');}
   frame.addEventListener('pointermove',setPointer);
   frame.addEventListener('pointerdown',setPointer);
-  frame.addEventListener('pointerleave',()=>{pointer=null;});
-  frame.addEventListener('pointerup',()=>{pointer=null;});
-  frame.addEventListener('pointercancel',()=>{pointer=null;});
+  frame.addEventListener('pointerleave',clearPointer);
+  frame.addEventListener('pointerup',clearPointer);
+  frame.addEventListener('pointercancel',clearPointer);
   function draw(){
     ctx.clearRect(0,0,c.width,c.height);
     const radius=220;
@@ -1262,21 +1174,6 @@ if(!reducedMotion){
       }
       ctx.beginPath();ctx.arc(s.x,s.y,s.r+1,0,Math.PI*2);ctx.fillStyle=`rgba(216,192,138,${a})`;ctx.fill();
     });
-    if(pointer){
-      stars.forEach(s=>{
-        const dx=s.x-pointer.x,dy=s.y-pointer.y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<radius){
-          const a=(1-dist/radius)*.7;
-          stars.forEach(s2=>{
-            const dx2=s.x-s2.x,dy2=s.y-s2.y,d2=Math.sqrt(dx2*dx2+dy2*dy2);
-            if(d2<75&&d2>0){
-              const d3=Math.sqrt((s2.x-pointer.x)**2+(s2.y-pointer.y)**2);
-              if(d3<radius){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s2.x,s2.y);ctx.strokeStyle=`rgba(216,192,138,${a*.4})`;ctx.lineWidth=.7;ctx.stroke();}
-            }
-          });
-        }
-      });
-    }
     requestAnimationFrame(draw);
   }
   resize();window.addEventListener('resize',resize);draw();
