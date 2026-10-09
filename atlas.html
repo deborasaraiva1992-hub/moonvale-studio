@@ -211,16 +211,33 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .tt-sub{font-size:.75rem;color:var(--cream-dim);font-style:italic;}
 
 /* DYNAMIC BANNER */
-.dyn-banner{position:relative;overflow:hidden;min-height:clamp(280px,40vw,500px);}
-.dyn-default{position:relative;min-height:inherit;display:flex;align-items:center;justify-content:center;text-align:center;background-image:url('atlas-banner-default.webp');background-size:cover;background-position:center;transition:opacity .5s var(--ease),visibility .5s var(--ease);}
+.dyn-banner{position:relative;overflow:hidden;width:100%;aspect-ratio:1860/845;min-height:240px;}
+.dyn-default{position:relative;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .5s var(--ease),visibility .5s var(--ease);}
 .dyn-default.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-.dyn-default__veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,22,.85) 0%,rgba(5,8,22,.55) 50%,rgba(5,8,22,.2) 80%);}
-.dyn-default__content{position:relative;z-index:2;padding:clamp(2rem,5vw,5rem) clamp(1.4rem,4vw,3rem);max-width:600px;}
-.dyn-default__star{font-size:1.2rem;color:var(--gold);opacity:.7;margin-bottom:.8rem;}
-.dyn-default__title{font-family:var(--font-d);font-size:clamp(1.5rem,3.5vw,2.8rem);letter-spacing:.1em;color:var(--cream);margin-bottom:.9rem;}
-.dyn-default__text{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--cream-dim);font-style:italic;margin:0 auto 1.6rem;max-width:460px;}
-.dyn-default__link{display:inline-flex;align-items:center;gap:.4em;font-family:var(--font-d);font-size:.68rem;letter-spacing:.1em;color:var(--cream-dim);opacity:.6;text-decoration:none;transition:opacity .3s,color .3s;}
-.dyn-default__link:hover{opacity:1;color:var(--gold);}
+.dyn-default__image{position:absolute;inset:0;z-index:1;background:var(--ink);}
+.dyn-default__image img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
+.dyn-default__veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,var(--ink) 0%,rgba(5,8,22,.5) 10%,transparent 22%,transparent 78%,rgba(11,18,40,.5) 90%,var(--ink-deep) 100%),radial-gradient(ellipse at center,rgba(5,8,22,.78) 0%,rgba(5,8,22,.48) 50%,rgba(5,8,22,.12) 80%),radial-gradient(ellipse farthest-corner at center,transparent 58%,rgba(5,8,22,.7) 100%);}
+.dyn-default__content{position:relative;z-index:3;padding:clamp(2rem,5vw,5rem) clamp(1.4rem,4vw,3rem);max-width:540px;}
+@media(min-width:861px){
+  .dyn-default{align-items:flex-start;}
+  .dyn-default__content{padding-top:10vw;}
+}
+@media(max-width:860px){
+  .dyn-default__content{padding:clamp(1.4rem,5vw,2rem) 1.2rem;max-width:360px;}
+  .dyn-default__veil{background:linear-gradient(180deg,var(--ink) 0%,rgba(5,8,22,.75) 18%,transparent 38%,transparent 62%,rgba(11,18,40,.75) 82%,var(--ink-deep) 100%),radial-gradient(ellipse at center,rgba(5,8,22,.78) 0%,rgba(5,8,22,.48) 50%,rgba(5,8,22,.12) 80%),radial-gradient(ellipse farthest-corner at center,transparent 58%,rgba(5,8,22,.7) 100%);}
+}
+.dyn-default__star{font-size:1rem;color:var(--gold);opacity:.7;margin-bottom:.6rem;}
+.dyn-default__title{font-family:var(--font-d);font-size:clamp(1.1rem,2.2vw,1.85rem);letter-spacing:.09em;color:var(--cream);margin-bottom:.7rem;white-space:nowrap;}
+.dyn-default__text{font-size:clamp(.78rem,1vw,.95rem);color:var(--cream-dim);font-style:italic;margin:0 auto 1.3rem;max-width:400px;line-height:1.5;}
+.dyn-default__link{margin-top:.4rem;padding:.5em 1.3em;font-size:.6rem;border-width:2px;border-color:var(--gold-hi);color:var(--gold-hi);background:rgba(245,217,127,.08);box-shadow:0 0 16px rgba(245,217,127,.45),0 0 2px rgba(245,217,127,.6);text-shadow:0 0 8px rgba(245,217,127,.5);}
+.dyn-default__link:hover{box-shadow:0 0 22px rgba(245,217,127,.65),0 0 3px rgba(245,217,127,.8);}
+@media(max-width:480px){
+  .dyn-default__content{max-width:300px;}
+  .dyn-default__star{font-size:.78rem;margin-bottom:.35rem;}
+  .dyn-default__title{font-size:.88rem;letter-spacing:.06em;margin-bottom:.35rem;white-space:normal;}
+  .dyn-default__text{font-size:.66rem;margin-bottom:.7rem;}
+  .dyn-default__link{padding:.42em 1em;font-size:.52rem;border-width:2px;}
+}
 .dyn-region{position:absolute;inset:0;display:grid;grid-template-columns:2fr 3fr;opacity:0;pointer-events:none;transition:opacity .6s var(--ease);background:var(--ink-deep);}
 .dyn-region.visible{opacity:1;pointer-events:auto;}
 .dyn-region__img{overflow:hidden;}
@@ -765,12 +782,13 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 <!-- DYNAMIC BANNER -->
 <div class="dyn-banner reveal" id="dynBanner">
   <div class="dyn-default" id="dynDefault">
+    <div class="dyn-default__image"><img src="atlas-banner-default.webp" alt="An astrologer's study overlooking Moonvale's lit skyline at night" draggable="false"></div>
     <div class="dyn-default__veil"></div>
     <div class="dyn-default__content">
       <p class="dyn-default__star">✦</p>
       <h2 class="dyn-default__title" data-i18n="banner.title">THE STARS REMEMBER</h2>
       <p class="dyn-default__text"   data-i18n="banner.text">Ancient realms connected by starlight, shadow and forgotten legends.</p>
-      <a href="lore-library.html" class="dyn-default__link" data-i18n="banner.cta">or browse the full archive →</a>
+      <a href="lore-library.html" class="btn-outline dyn-default__link" data-i18n="banner.cta">or browse the full archive →</a>
     </div>
   </div>
   <div class="dyn-region" id="dynRegion">
@@ -974,6 +992,7 @@ function showRegionBanner(data){
   document.getElementById('dynPage').href=data.url;document.getElementById('dynPage').style.display='';
   document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
+  document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function showSpecial(special){
@@ -987,6 +1006,7 @@ function showSpecial(special){
   document.getElementById('dynPage').style.display='none';
   document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
+  document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 function showUnknown(){
@@ -998,6 +1018,7 @@ function showUnknown(){
   document.getElementById('dynLore').style.display='none';document.getElementById('dynPage').style.display='none';
   document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
+  document.getElementById('dynBanner').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 document.getElementById('dynClose').addEventListener('click',()=>{
