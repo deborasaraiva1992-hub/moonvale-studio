@@ -244,12 +244,16 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .dyn-region__image img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;filter:saturate(1.12) contrast(1.06);transition:transform 6s ease;}
 .dyn-region.visible .dyn-region__image img{animation:regionBreathe 14s ease-in-out .6s infinite;}
 @keyframes regionBreathe{0%,100%{transform:scale(1.02);}50%{transform:scale(1.07);}}
-.dyn-region__veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,var(--ink) 0%,rgba(5,8,22,.45) 5%,transparent 13%,transparent 87%,rgba(11,18,40,.45) 95%,var(--ink-deep) 100%),linear-gradient(0deg,rgba(11,18,40,.55) 0%,rgba(11,18,40,.55) 100%);}
+.dyn-region__glow{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse 50% 60% at 32% 42%,rgba(255,224,160,.4) 0%,rgba(255,224,160,.15) 45%,transparent 75%);animation:regionGlowPulse 7s ease-in-out infinite;}
+@keyframes regionGlowPulse{0%,100%{opacity:.55;}50%{opacity:1;}}
+.dyn-region[data-textpos="left"] .dyn-region__glow{background:radial-gradient(ellipse 50% 60% at 68% 42%,rgba(255,224,160,.4) 0%,rgba(255,224,160,.15) 45%,transparent 75%);}
+.dyn-region[data-textpos="center"] .dyn-region__glow{display:none;}
+.dyn-region__veil{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,var(--ink) 0%,rgba(5,8,22,.45) 5%,transparent 13%,transparent 87%,rgba(11,18,40,.45) 95%,var(--ink-deep) 100%),linear-gradient(0deg,rgba(11,18,40,.55) 0%,rgba(11,18,40,.55) 100%);}
 @media(min-width:661px){
   .dyn-region[data-textpos="right"] .dyn-region__veil{background:linear-gradient(180deg,var(--ink) 0%,rgba(5,8,22,.45) 5%,transparent 13%,transparent 87%,rgba(11,18,40,.45) 95%,var(--ink-deep) 100%),linear-gradient(90deg,transparent 36%,rgba(11,18,40,.65) 56%,rgba(11,18,40,.95) 76%);}
   .dyn-region[data-textpos="left"] .dyn-region__veil{background:linear-gradient(180deg,var(--ink) 0%,rgba(5,8,22,.45) 5%,transparent 13%,transparent 87%,rgba(11,18,40,.45) 95%,var(--ink-deep) 100%),linear-gradient(270deg,transparent 36%,rgba(11,18,40,.65) 56%,rgba(11,18,40,.95) 76%);}
 }
-.dyn-region__body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(1.6rem,3.5vw,3.5rem);max-width:600px;text-shadow:0 2px 10px rgba(0,0,0,.9),0 1px 3px rgba(0,0,0,.95);}
+.dyn-region__body{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(1.6rem,3.5vw,3.5rem);max-width:600px;text-shadow:0 2px 10px rgba(0,0,0,.9),0 1px 3px rgba(0,0,0,.95);}
 .dyn-region[data-textpos="right"] .dyn-region__body{margin-left:auto;text-align:center;align-items:center;max-width:62%;}
 .dyn-region[data-textpos="left"] .dyn-region__body{margin-right:auto;text-align:center;align-items:center;max-width:62%;}
 .dyn-region[data-textpos="center"] .dyn-region__body{margin-inline:auto;text-align:center;align-items:center;max-width:560px;}
@@ -814,6 +818,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   <div class="dyn-region" id="dynRegion" data-textpos="right">
     <button class="dyn-region__close" id="dynClose" aria-label="Close">✕</button>
     <div class="dyn-region__image"><img src="" alt="" id="dynImg"></div>
+    <div class="dyn-region__glow"></div>
     <div class="dyn-region__veil"></div>
     <div class="dyn-region__body">
       <p  class="dyn-region__realm"   id="dynRealm"></p>
@@ -900,16 +905,16 @@ function closeMenu(){document.getElementById('mobileMenu').classList.remove('ope
 
 /* ── REGION DATA ── */
 const REGIONS={
-  'lumindor':        {name:'Lumindor',        sub:'The Celestial Capital of Ethernia',       desc:'A city forged in starlight where ancient towers rise above the rivers of eternal dawn. The golden spires of Lumindor have guided every traveller home since the First Age.',    realm:'ethernia',img:'region-lumindor.webp',       url:'lore-library/regions/lumindor.html',       routes:['rt-lum-ely','rt-syl-lum']},
-  'sylvarith':       {name:'Sylvarith',        sub:'The Worldtree of Sylvarith',              desc:'At the edge of Ethernia, a forest older than memory breathes with emerald light. The roots of Sylvarith run deeper than any map has ever dared to mark.',                       realm:'ethernia',img:'region-sylvarith.webp',      url:'lore-library/regions/sylvarith.html',        routes:['rt-syl-lum']},
-  'aurelith-veil':   {name:'Aurelith Veil',    sub:'Celestial Observatory of the High Peaks', desc:'Above the snowline where the air runs thin and cold, the Veil Observatory watches stars that move against the current of time.',                                                realm:'ethernia',img:'region-aurelith-veil.webp',  url:'lore-library/regions/aurelith-veil.html',   routes:[]},
-  'elarion-vale':    {name:'Elarion Vale',     sub:'The Eternal Gardens',                     desc:'Where flowers bloom in winter and rivers hum with an old half-forgotten song. The Vale has never known drought, nor darkness, nor the silence of an empty sky.',                 realm:'ethernia',img:'region-elarion-vale.webp',   url:'lore-library/regions/elarion-vale.html',    routes:[]},
-  'elynthara':       {name:'Elynthara',        sub:'Lighthouse of Elynthara',                 desc:'A coastal realm where dawn breaks twice — once over the sea and once inside the crystal lighthouse whose beam once reached the farthest star.',                                   realm:'ethernia',img:'region-elynthara.webp',      url:'lore-library/regions/elynthara.html',        routes:['rt-lum-ely']},
-  'drakenfell':      {name:'Drakenfell',       sub:'The Ashen Fortress',                      desc:'A volcanic citadel wreathed in ember and smoke. Its lords forge weapons from cooled lava and keep the mountain paths closed to all but the sworn.',                              realm:'fantasy', img:'region-drakenfell.webp',      url:'lore-library/regions/drakenfell.html',       routes:['rt-dra-vel']},
-  'nocthaven':       {name:'Nocthaven',        sub:'Black Moon Castle',                       desc:'No moon shines over Nocthaven — it absorbs every light and returns it as violet shadow. The castle keeps its own calendar, and its own silence.',                                realm:'fantasy', img:'region-nocthaven.webp',       url:'lore-library/regions/nocthaven.html',        routes:['rt-noc-bla']},
-  'eldermere':       {name:'Eldermere',        sub:'Root Sanctuary',                          desc:'The oldest forest in the known realms. Trees here grow sideways, root-first, as if the earth itself is turning away from the sky.',                                              realm:'fantasy', img:'region-eldermere.webp',       url:'lore-library/regions/eldermere.html',        routes:['rt-eld-vel']},
-  'velmorra':        {name:'Velmorra',         sub:'Arcane Observatory',                      desc:'Built atop a ley-line nexus, Velmorra hums with contained magic. Its towers are filled with instruments no one fully understands, calibrated by hands long dust.',               realm:'fantasy', img:'region-velmorra.webp',        url:'lore-library/regions/velmorra.html',         routes:['rt-dra-vel','rt-eld-vel']},
-  'blacktide-harbor':{name:'Blacktide Harbor',sub:'Tidewatch Lighthouse',                    desc:'Where black ships dock at midnight and carry cargo that casts no shadow. The lighthouse keeper has watched every vessel but recorded none.',                                       realm:'fantasy', img:'region-blacktide-harbor.webp',url:'lore-library/regions/blacktide-harbor.html', routes:['rt-noc-bla']},
+  'lumindor':        {name:'Lumindor',        sub:'The Celestial Capital of Ethernia',       desc:'A city forged in starlight where ancient towers rise above the rivers of eternal dawn. The golden spires of Lumindor have guided every traveller home since the First Age.',    realm:'ethernia',img:'region-lumindor.webp',       url:'lumindor.html',       loreUrl:'crown-of-lumindor.html',           routes:['rt-lum-ely','rt-syl-lum']},
+  'sylvarith':       {name:'Sylvarith',        sub:'The Worldtree of Sylvarith',              desc:'At the edge of Ethernia, a forest older than memory breathes with emerald light. The roots of Sylvarith run deeper than any map has ever dared to mark.',                       realm:'ethernia',img:'region-sylvarith.webp',      url:'sylvarith.html',      loreUrl:'tears-of-sylvarith.html',          routes:['rt-syl-lum']},
+  'aurelith-veil':   {name:'Aurelith Veil',    sub:'Celestial Observatory of the High Peaks', desc:'Above the snowline where the air runs thin and cold, the Veil Observatory watches stars that move against the current of time.',                                                realm:'ethernia',img:'region-aurelith-veil.webp',  url:'aurelith-veil.html',  loreUrl:'the-sworn-light-of-aurelith.html', routes:[]},
+  'elarion-vale':    {name:'Elarion Vale',     sub:'The Eternal Gardens',                     desc:'Where flowers bloom in winter and rivers hum with an old half-forgotten song. The Vale has never known drought, nor darkness, nor the silence of an empty sky.',                 realm:'ethernia',img:'region-elarion-vale.webp',   url:'elarion-vale.html',   routes:[]},
+  'elynthara':       {name:'Elynthara',        sub:'Lighthouse of Elynthara',                 desc:'A coastal realm where dawn breaks twice — once over the sea and once inside the crystal lighthouse whose beam once reached the farthest star.',                                   realm:'ethernia',img:'region-elynthara.webp',      url:'elynthara.html',      routes:['rt-lum-ely']},
+  'drakenfell':      {name:'Drakenfell',       sub:'The Ashen Fortress',                      desc:'A volcanic citadel wreathed in ember and smoke. Its lords forge weapons from cooled lava and keep the mountain paths closed to all but the sworn.',                              realm:'fantasy', img:'region-drakenfell.webp',      url:'drakenfell.html',     routes:['rt-dra-vel']},
+  'nocthaven':       {name:'Nocthaven',        sub:'Black Moon Castle',                       desc:'No moon shines over Nocthaven — it absorbs every light and returns it as violet shadow. The castle keeps its own calendar, and its own silence.',                                realm:'fantasy', img:'region-nocthaven.webp',       url:'nocthaven.html',      routes:['rt-noc-bla']},
+  'eldermere':       {name:'Eldermere',        sub:'Root Sanctuary',                          desc:'The oldest forest in the known realms. Trees here grow sideways, root-first, as if the earth itself is turning away from the sky.',                                              realm:'fantasy', img:'region-eldermere.webp',       url:'eldermere.html',      routes:['rt-eld-vel']},
+  'velmorra':        {name:'Velmorra',         sub:'Arcane Observatory',                      desc:'Built atop a ley-line nexus, Velmorra hums with contained magic. Its towers are filled with instruments no one fully understands, calibrated by hands long dust.',               realm:'fantasy', img:'region-velmorra.webp',        url:'velmorra.html',       routes:['rt-dra-vel','rt-eld-vel']},
+  'blacktide-harbor':{name:'Blacktide Harbor',sub:'Tidewatch Lighthouse',                    desc:'Where black ships dock at midnight and carry cargo that casts no shadow. The lighthouse keeper has watched every vessel but recorded none.',                                       realm:'fantasy', img:'region-blacktide-harbor.webp',url:'blacktide-harbor.html', routes:['rt-noc-bla']},
 };
 const REGION_KEYS=Object.keys(REGIONS);
 let selectedKey=null, selectedIdx=0;
@@ -1011,7 +1016,7 @@ function showRegionBanner(data){
   const img=document.getElementById('dynImg');img.src=data.img;img.alt=data.name;
   document.getElementById('dynRegion').querySelector('.dyn-region__image').style.display='';
   document.getElementById('dynRegion').dataset.textpos=data.textPos||'right';
-  document.getElementById('dynLore').href=data.url;document.getElementById('dynLore').style.display='';
+  document.getElementById('dynLore').href=data.loreUrl||'lore-library.html';document.getElementById('dynLore').style.display='';
   document.getElementById('dynPage').href=data.url;document.getElementById('dynPage').style.display='';
   document.getElementById('dynDefault').classList.add('hidden');
   document.getElementById('dynRegion').classList.add('visible');
