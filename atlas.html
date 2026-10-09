@@ -257,9 +257,11 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .dyn-region__close:hover{border-color:var(--gold);color:var(--gold);}
 @media(max-width:660px){
   .dyn-region{grid-template-columns:1fr;}
-  .dyn-region__img{max-height:180px;}
+  .dyn-region__img{height:180px;max-height:180px;}
   .dyn-region__body{padding:1.4rem;}
   .dyn-region__name{font-size:1.5rem;}
+  .dyn-banner:has(.dyn-region.visible){aspect-ratio:auto;min-height:auto;}
+  .dyn-banner:has(.dyn-region.visible) .dyn-region{position:relative;inset:auto;}
 }
 .dyn-dots{display:flex;justify-content:center;gap:.5rem;padding:.8rem 0 .3rem;background:var(--ink-deep);}
 .dyn-dot{width:7px;height:7px;border-radius:50%;background:rgba(216,192,138,.22);cursor:pointer;transition:background .25s,transform .25s;}
