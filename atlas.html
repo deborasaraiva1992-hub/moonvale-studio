@@ -212,10 +212,24 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 
 /* DYNAMIC BANNER */
 .dyn-banner{position:relative;overflow:hidden;min-height:clamp(280px,40vw,500px);}
-.dyn-default{position:relative;min-height:inherit;display:flex;align-items:center;justify-content:center;text-align:center;background-image:url('atlas-banner-default.webp');background-size:cover;background-position:center;transition:opacity .5s var(--ease),visibility .5s var(--ease);}
+.dyn-default{position:relative;min-height:inherit;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .5s var(--ease),visibility .5s var(--ease);}
 .dyn-default.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-.dyn-default__veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,22,.85) 0%,rgba(5,8,22,.55) 50%,rgba(5,8,22,.2) 80%);}
+.dyn-default__image{position:absolute;inset:0;z-index:0;}
+.dyn-default__image img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.dyn-default__veil{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(5,8,22,.85) 0%,rgba(5,8,22,.55) 50%,rgba(5,8,22,.2) 80%),radial-gradient(ellipse farthest-corner at center,transparent 52%,rgba(5,8,22,.96) 100%);}
 .dyn-default__content{position:relative;z-index:2;padding:clamp(2rem,5vw,5rem) clamp(1.4rem,4vw,3rem);max-width:600px;}
+/* Mobile: this art is much wider/shorter than the hero's (4.7:1), so
+   showing it complete (no crop) leaves too short a band for the title/
+   subtitle/CTA to sit on legibly. Show the full image on its own,
+   natural-height strip instead, and let the text flow in normal dark
+   space below it rather than forcing an overlay that wouldn't fit. */
+@media(max-width:860px){
+  .dyn-banner{min-height:auto;}
+  .dyn-default{min-height:auto;display:block;padding-bottom:clamp(1.6rem,5vw,2.4rem);}
+  .dyn-default__image{position:relative;inset:auto;}
+  .dyn-default__image img{height:auto;object-fit:contain;}
+  .dyn-default__content{margin-top:.6rem;padding:0 1.2rem;max-width:none;}
+}
 .dyn-default__star{font-size:1.2rem;color:var(--gold);opacity:.7;margin-bottom:.8rem;}
 .dyn-default__title{font-family:var(--font-d);font-size:clamp(1.5rem,3.5vw,2.8rem);letter-spacing:.1em;color:var(--cream);margin-bottom:.9rem;}
 .dyn-default__text{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--cream-dim);font-style:italic;margin:0 auto 1.6rem;max-width:460px;}
@@ -764,6 +778,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 <!-- DYNAMIC BANNER -->
 <div class="dyn-banner reveal" id="dynBanner">
   <div class="dyn-default" id="dynDefault">
+    <div class="dyn-default__image"><img src="atlas-banner-default.webp" alt="An astrologer's study overlooking Moonvale's lit skyline at night" draggable="false"></div>
     <div class="dyn-default__veil"></div>
     <div class="dyn-default__content">
       <p class="dyn-default__star">✦</p>
