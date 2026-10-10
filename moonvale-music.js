@@ -1,19 +1,21 @@
 (function(){
-  // One track per zone. Ethernia/Fantasy point at the general theme for now —
-  // once their dedicated files are added to audio/, just update these two paths.
-  // Atlas plays this same general theme too — it layers its own ocean ambience
-  // underneath separately (see the inline script in atlas.html), rather than
-  // replacing the theme with a different zone track.
+  // One track per zone. Atlas plays the general theme too — it layers its
+  // own ocean ambience underneath separately (see the inline script in
+  // atlas.html), rather than replacing the theme with a different zone track.
   const TRACKS={
     general:'audio/moonvale-theme.mp3',
-    ethernia:'audio/moonvale-theme.mp3',
-    fantasy:'audio/moonvale-theme.mp3'
+    ethernia:'audio/ethernia-theme.mp3',
+    fantasy:'audio/fantasy-theme.mp3',
+    lore:'audio/lore-library-theme.mp3',
+    shop:'audio/artefacts-theme.mp3'
   };
 
   function detectZone(){
     const file=location.pathname.split('/').pop();
     if(file==='ethernia.html')return'ethernia';
     if(file==='fantasy.html')return'fantasy';
+    if(file==='lore-library.html')return'lore';
+    if(file==='artefacts.html')return'shop';
     if(document.querySelector('.realm-ethernia'))return'ethernia';
     if(document.querySelector('.realm-fantasy'))return'fantasy';
     return'general';
