@@ -994,17 +994,20 @@ document.querySelectorAll('.landmark').forEach(g=>{
     if(outer&&key!==selectedKey){outer.style.stroke='#d8c08a';outer.style.opacity='';}
   });
   g.addEventListener('click',e=>{
+    tooltip.classList.remove('show');
     if(data) selectRegion(key);
     else if(special) showSpecial(special);
   });
   g.addEventListener('touchstart',e=>{
     e.preventDefault();
+    tooltip.classList.remove('show');
     if(data) selectRegion(key);
     else if(special) showSpecial(special);
   },{passive:false});
 });
 
 function selectRegion(key){
+  document.getElementById('atlasTooltip').classList.remove('show');
   if(selectedKey&&selectedKey!==key){
     const od=REGIONS[selectedKey];
     if(od)od.routes.forEach(r=>{const el=document.getElementById(r);if(el)el.style.opacity='0';});
@@ -1044,6 +1047,7 @@ function showRegionBanner(data){
 }
 
 function showSpecial(special){
+  document.getElementById('atlasTooltip').classList.remove('show');
   document.getElementById('dynRealm').textContent=special.realm;
   document.getElementById('dynRealm').className='dyn-region__realm';
   document.getElementById('dynName').textContent=special.name;
