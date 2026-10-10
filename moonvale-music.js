@@ -16,12 +16,13 @@
     if(file==='fantasy.html')return'fantasy';
     if(file==='lore-library.html')return'lore';
     if(file==='artefacts.html')return'shop';
+    if(file==='chronicles.html'||file==='relics.html'||file==='characters.html'||file==='regions.html')return'lore';
     if(document.querySelector('.realm-ethernia'))return'ethernia';
     if(document.querySelector('.realm-fantasy'))return'fantasy';
     return'general';
   }
 
-  const zone=detectZone();
+  let zone=detectZone();
   const audio=document.getElementById('bgAudio');
   const player=document.getElementById('musicPlayer');
   if(!audio||!player)return;
@@ -186,12 +187,48 @@
   }
   window.addEventListener('moonvale:languagechange',updateLabel);
 
+  // Switches the active zone in-page (no navigation) — used by the realm
+  // filter tabs on chronicles/relics/characters/regions, where "ALL REALMS"
+  // plays the Lore Library track and picking a realm crossfades to that
+  // realm's track instead. A no-op if the zone has no track of its own or
+  // is already playing.
+  function switchZone(newZone){
+    if(newZone===zone||!TRACKS[newZone])return;
+    zone=newZone;
+    window.MoonvaleMusic.zone=zone;
+    const newSrc=TRACKS[zone];
+    if(fadeTimer)clearInterval(fadeTimer);
+    if(!musicOn||audio.paused){
+      audio.src=newSrc;
+      return;
+    }
+    let v=audio.volume;
+    fadeTimer=setInterval(()=>{
+      v=Math.max(v-.02,0);audio.volume=v;
+      if(v<=0){
+        clearInterval(fadeTimer);
+        audio.pause();
+        audio.src=newSrc;
+        audio.currentTime=0;
+        audio.volume=0;
+        audio.play().then(()=>{
+          let v2=0;
+          fadeTimer=setInterval(()=>{
+            v2=Math.min(v2+.02,targetVol);audio.volume=v2;
+            if(v2>=targetVol)clearInterval(fadeTimer);
+          },40);
+        }).catch(()=>{});
+      }
+    },40);
+  }
+
   // Called by the page-transition click handler, before the page actually
   // navigates away: ducks the volume (without touching the persisted on/off
   // state) and remembers where playback was, so the next page can resume
   // there if it turns out to be the same music zone.
   window.MoonvaleMusic={
     zone:zone,
+    setZone:switchZone,
     beforeNav:function(){
       if(!musicOn)return;
       try{
