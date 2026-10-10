@@ -5,9 +5,9 @@ filenames kept so they can be matched back to the source library. "Saved
 as" is how the user renamed their local copy of that specific pick.
 
 ## Ethernia
-- **Principal:** `papulina-the-garden-of-silence-411283.mp3` ("The Garden of Silence") — saved as `Ethernia_The_Garden_of_Silence.mp3`
-- Alt 1: `moonpetalmedia-desert-in-bloom-ethereal-fantasy-instrumental-with-female-vocalise-546432.mp3` ("Desert in Bloom") — saved as `eth_op2.mp3`
-- Alt 2: `back_drop-peaceful-ambient-new-age-music-angelic-breeze-232656.mp3` ("Angelic Breeze") — saved as `opción2_ethernia.mp3`
+- **Principal:** `back_drop-peaceful-ambient-new-age-music-angelic-breeze-232656.mp3` ("Angelic Breeze") — saved as `opción2_ethernia.mp3`. Swapped in to replace Garden of Silence, which the user felt was too sad/melancholic for the realm.
+- Alt 1: `papulina-the-garden-of-silence-411283.mp3` ("The Garden of Silence") — saved as `Ethernia_The_Garden_of_Silence.mp3` (previous principal, demoted — too sad)
+- Alt 2: `moonpetalmedia-desert-in-bloom-ethereal-fantasy-instrumental-with-female-vocalise-546432.mp3` ("Desert in Bloom") — saved as `eth_op2.mp3`
 - Alt 3: `back_drop-ethereal-ambient-new-age-music-tender-whisper-249845.mp3` ("Tender Whisper")
 - Alt 4: `tunetank-dreamy-ambient-music-348223.mp3` ("Dreamy Ambient Music") — saved as `tunetank-dreamy-ambient-music-348223.mp3` (kept original name)
 
