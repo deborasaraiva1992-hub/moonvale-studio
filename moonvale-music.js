@@ -150,6 +150,14 @@
     sessionStorage.setItem(ON_KEY,'1');
     updateLabel();
 
+    // While muted, playback still silently advances — so by the time the
+    // visitor's first real gesture arrives and unmutes it, the track has
+    // already drifted past whatever position (0, or a resumed one) it
+    // started this page at. Rewind by exactly how long it played unheard,
+    // so unmuting always reveals that intended starting point instead of
+    // wherever silent drift left it.
+    const mutedStartedAt=performance.now();
+
     function rampUp(){
       if(fadeTimer)clearInterval(fadeTimer);
       let v=0;audio.volume=0;
@@ -171,6 +179,10 @@
       if(player.contains(e.target))return;
       if(!audio.muted&&!audio.paused){stopListening();return;}
       audio.muted=false;
+      const silentElapsed=(performance.now()-mutedStartedAt)/1000;
+      if(silentElapsed>0&&isFinite(audio.duration)&&audio.duration>0){
+        audio.currentTime=((audio.currentTime-silentElapsed)%audio.duration+audio.duration)%audio.duration;
+      }
       if(audio.paused){
         audio.play().then(()=>{stopListening();rampUp();}).catch(()=>{
           audio.muted=true;
