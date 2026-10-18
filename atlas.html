@@ -707,20 +707,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <!-- ══════════════════════════════════
              LIGHTHOUSES — pink
         ══════════════════════════════════ -->
-        <g class="landmark special" data-key="lighthouse-dawn" data-type="lighthouse">
-          <circle class="landmark-hit" cx="471" cy="630" r="38"/>
-          <circle cx="471" cy="630" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:.3s"/>
-          <circle cx="471" cy="630" r="3" fill="rgba(255,200,220,.85)"/>
-          <rect fill="rgba(5,8,22,.75)" x="399" y="646" width="144" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="471" y="656" letter-spacing="1">DAWN'S LAST LANTERN</text>
-        </g>
-        <g class="landmark special" data-key="lighthouse-tide" data-type="lighthouse">
-          <circle class="landmark-hit" cx="1420" cy="695" r="38"/>
-          <circle cx="1420" cy="695" r="8" fill="none" stroke="rgba(255,200,220,.65)" stroke-width="1.2" style="animation:pulseOut 2.8s ease-in-out infinite;animation-delay:1.3s"/>
-          <circle cx="1420" cy="695" r="3" fill="rgba(255,200,220,.85)"/>
-          <rect fill="rgba(5,8,22,.75)" x="1340" y="711" width="160" height="14" rx="3" ry="3"/>
-          <text font-family="'Cinzel',serif" font-size="9" fill="rgba(255,200,220,.9)" text-anchor="middle" x="1420" y="721" letter-spacing="1">THE TIDEWATCH TOWER</text>
-        </g>
 
         <!-- ══════════════════════════════════
              SEA MONSTERS — blue/purple
@@ -925,8 +911,6 @@ const REGIONS={
   'eldermere':       {name:'Eldermere',        sub:'Root Sanctuary',                          desc:'The oldest forest in the known realms. Trees here grow sideways, root-first, as if the earth itself is turning away from the sky.',                                              realm:'fantasy', img:'region-eldermere.webp',       url:'eldermere.html',      routes:['rt-eld-vel']},
   'velmorra':        {name:'Velmorra',         sub:'Arcane Observatory',                      desc:'Built atop a ley-line nexus, Velmorra hums with contained magic. Its towers are filled with instruments no one fully understands, calibrated by hands long dust.',               realm:'fantasy', img:'region-velmorra.webp',        url:'velmorra.html',       routes:['rt-dra-vel','rt-eld-vel']},
   'blacktide-harbor':{name:'Blacktide Harbor',sub:'Tidewatch Lighthouse',                    desc:'Where black ships dock at midnight and carry cargo that casts no shadow. The lighthouse keeper has watched every vessel but recorded none.',                                       realm:'fantasy', img:'region-blacktide-harbor.webp',url:'blacktide-harbor.html', routes:['rt-noc-bla']},
-  'lighthouse-dawn': {name:"Dawn's Last Lantern",sub:'A beacon that never dims, even on moonless nights.', desc:'Perched on the cliffs above an endless sea, the lantern has burned since before memory began. Sailors who lose their way need only look toward its light — it has never once gone dark, and never will.', realm:'ethernia',img:'region-dawns-last-lantern.webp',url:'lore-library.html',   routes:[]},
-  'lighthouse-tide':  {name:'The Tidewatch Tower',sub:'Built by hands unknown. Lit by fire unknown.',       desc:'No record names its builder, yet the tower has stood through every storm this coast has thrown at it. Ships that pass beneath its light say the flame burns colder than any fire should.', realm:'fantasy', img:'region-tidewatch-tower.webp',    url:'lore-library.html',   routes:[]},
   'leviathan':        {name:'The Ancient Leviathan',sub:'It stirs only when the stars misalign.',           desc:'Older than every crown in Ethernia, the Leviathan swims eternal through the Astral Sea — and when it rises, sailors say the stars themselves dim before it.', realm:'ethernia',img:'region-leviathan.webp',     url:'lore-library.html',   routes:[]},
   'saltscar':         {name:'Saltscar',sub:'A lawless port carved from salt and shipwrecks — loyal to no crown.', desc:'Built from the bones of a thousand wrecked ships, Saltscar answers to whichever captain holds the harbor that week — and no debt here goes uncollected.', realm:'fantasy', img:'region-saltscar.webp',        url:'lore-library.html',   routes:[]},
   'astral-crossing':  {name:'The Astral Crossing',sub:'Where the two seas and the two skies meet as one.', desc:'No compass holds true at the Crossing — every fleet that nears its spiral is pulled toward the center, and what waits on the other side depends on who you ask.', realm:'fantasy', img:'region-astral-crossing.webp', url:'lore-library.html',   routes:[]},
@@ -943,15 +927,12 @@ const LANDMARK_CENTERS={
   'elarion-vale':{x:236,y:532},'elynthara':{x:399,y:686},
   'drakenfell':{x:1229,y:123},'nocthaven':{x:1229,y:328},'eldermere':{x:1004,y:256},
   'velmorra':{x:1208,y:502},'blacktide-harbor':{x:1260,y:748},
-  'lighthouse-dawn':{x:471,y:630},'lighthouse-tide':{x:1420,y:695},
   'leviathan':{x:655,y:799},'saltscar':{x:952,y:799},
   'astral-crossing':{x:788,y:307},
   'isle-whispered':{x:758,y:133},'forsaken-reliquary':{x:788,y:635}
 };
 
 const SPECIAL_TOOLTIPS={
-  'lighthouse-dawn':   {name:"Dawn's Last Lantern",  sub:'A beacon that never dims, even on moonless nights.',         realm:'ETHERNIA', color:'rgba(255,200,220,.9)'},
-  'lighthouse-tide':   {name:'The Tidewatch Tower',  sub:'Built by hands unknown. Lit by fire unknown.',               realm:'FANTASY',  color:'rgba(255,200,220,.9)'},
   'leviathan':         {name:'The Ancient Leviathan',sub:'It stirs only when the stars misalign.',                     realm:'ETHERNIA', color:'rgba(160,120,240,.9)'},
   'saltscar':          {name:'Saltscar', sub:'A lawless port carved from salt and shipwrecks — loyal to no crown.',    realm:'???',      color:'rgba(232,169,74,.9)'},
   'astral-crossing':   {name:'The Astral Crossing',  sub:'Where the two seas and the two skies meet as one.',         realm:'???',      color:'rgba(220,130,130,.9)'},
