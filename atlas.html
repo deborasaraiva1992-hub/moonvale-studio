@@ -203,9 +203,11 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .atlas-tooltip{position:fixed;z-index:300;background:rgba(5,8,22,.97);border:1px solid var(--gold-dim);border-radius:10px;padding:1rem 1.3rem;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s;min-width:185px;max-width:230px;backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(0,0,0,.7);}
 .atlas-tooltip.show{opacity:1;transform:translateY(0);}
 .atlas-tooltip.fan{border-color:rgba(155,142,196,.4);}
+.atlas-tooltip.astral{border-color:rgba(220,100,100,.4);}
 .tt-realm{font-family:var(--font-d);font-size:.52rem;letter-spacing:.22em;opacity:.7;margin-bottom:.25rem;}
 .tt-realm.eth{color:var(--gold);}
 .tt-realm.fan{color:var(--purple);}
+.tt-realm.astral{color:rgba(220,130,130,.9);}
 .tt-realm.fut{color:rgba(216,192,138,.4);}
 .tt-name{font-family:var(--font-d);font-size:.85rem;letter-spacing:.08em;margin-bottom:.18rem;}
 .tt-sub{font-size:.75rem;color:var(--cream-dim);font-style:italic;}
@@ -263,6 +265,7 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .dyn-region__realm{font-family:var(--font-d);font-size:.58rem;letter-spacing:.28em;margin-bottom:.55rem;display:inline-flex;align-items:center;gap:.5em;}
 .dyn-region__realm.eth{color:var(--gold);}
 .dyn-region__realm.fan{color:var(--purple);}
+.dyn-region__realm.astral{color:rgba(220,130,130,.9);}
 .dyn-region__realm::before{content:'◈';}
 .dyn-region__compass{font-size:1.4rem;color:var(--gold-hi);margin-bottom:.4rem;text-shadow:0 2px 8px rgba(0,0,0,.8);animation:regionTwinkle 2.4s ease-in-out infinite;}
 @keyframes regionTwinkle{0%,100%{opacity:.6;text-shadow:0 0 8px rgba(245,217,127,.4),0 2px 8px rgba(0,0,0,.8);}50%{opacity:1;text-shadow:0 0 20px rgba(245,217,127,.9),0 2px 8px rgba(0,0,0,.8);}}
@@ -911,9 +914,9 @@ const REGIONS={
   'eldermere':       {name:'Eldermere',        sub:'Root Sanctuary',                          desc:'The oldest forest in the known realms. Trees here grow sideways, root-first, as if the earth itself is turning away from the sky.',                                              realm:'fantasy', img:'region-eldermere.webp',       url:'eldermere.html',      routes:['rt-eld-vel']},
   'velmorra':        {name:'Velmorra',         sub:'Arcane Observatory',                      desc:'Built atop a ley-line nexus, Velmorra hums with contained magic. Its towers are filled with instruments no one fully understands, calibrated by hands long dust.',               realm:'fantasy', img:'region-velmorra.webp',        url:'velmorra.html',       routes:['rt-dra-vel','rt-eld-vel']},
   'blacktide-harbor':{name:'Blacktide Harbor',sub:'Tidewatch Lighthouse',                    desc:'Where black ships dock at midnight and carry cargo that casts no shadow. The lighthouse keeper has watched every vessel but recorded none.',                                       realm:'fantasy', img:'region-blacktide-harbor.webp',url:'blacktide-harbor.html', routes:['rt-noc-bla']},
-  'leviathan':        {name:'The Ancient Leviathan',sub:'It stirs only when the stars misalign.',           desc:'Older than every crown in Ethernia, the Leviathan swims eternal through the Astral Sea — and when it rises, sailors say the stars themselves dim before it.', realm:'ethernia',img:'region-leviathan.webp',     url:'lore-library.html',   routes:[]},
-  'saltscar':         {name:'Saltscar',sub:'A lawless port carved from salt and shipwrecks — loyal to no crown.', desc:'Built from the bones of a thousand wrecked ships, Saltscar answers to whichever captain holds the harbor that week — and no debt here goes uncollected.', realm:'fantasy', img:'region-saltscar.webp',        url:'lore-library.html',   routes:[]},
-  'astral-crossing':  {name:'The Astral Crossing',sub:'Where the two seas and the two skies meet as one.', desc:'No compass holds true at the Crossing — every fleet that nears its spiral is pulled toward the center, and what waits on the other side depends on who you ask.', realm:'fantasy', img:'region-astral-crossing.webp', url:'lore-library.html',   routes:[]},
+  'leviathan':        {name:'The Ancient Leviathan',sub:'It stirs only when the stars misalign.',           desc:'Older than every crown in Ethernia, the Leviathan swims eternal through the Astral Sea — and when it rises, sailors say the stars themselves dim before it.', realm:'astral', img:'region-leviathan.webp',     url:'lore-library.html',   routes:[]},
+  'saltscar':         {name:'Saltscar',sub:'A lawless port carved from salt and shipwrecks — loyal to no crown.', desc:'Built from the bones of a thousand wrecked ships, Saltscar answers to whichever captain holds the harbor that week — and no debt here goes uncollected.', realm:'astral', img:'region-saltscar.webp',        url:'lore-library.html',   routes:[]},
+  'astral-crossing':  {name:'The Astral Crossing',sub:'Where the two seas and the two skies meet as one.', desc:'No compass holds true at the Crossing — every fleet that nears its spiral is pulled toward the center, and what waits on the other side depends on who you ask.', realm:'astral', img:'region-astral-crossing.webp', url:'lore-library.html',   routes:[]},
 };
 const REGION_KEYS=Object.keys(REGIONS);
 let selectedKey=null, selectedIdx=0;
@@ -949,10 +952,11 @@ document.querySelectorAll('.landmark').forEach(g=>{
 
   g.addEventListener('mouseenter',e=>{
     if(data){
-      ttRealm.textContent=data.realm==='ethernia'?'ETHERNIA':'FANTASY';
-      ttRealm.className='tt-realm '+(data.realm==='ethernia'?'eth':'fan');
+      const realmCls=data.realm==='ethernia'?'eth':data.realm==='fantasy'?'fan':'astral';
+      ttRealm.textContent=data.realm==='ethernia'?'ETHERNIA':data.realm==='fantasy'?'FANTASY':'ASTRAL SEA';
+      ttRealm.className='tt-realm '+realmCls;
       ttName.textContent=data.name; ttSub.textContent=data.sub;
-      tooltip.className='atlas-tooltip show'+(data.realm==='fantasy'?' fan':'');
+      tooltip.className='atlas-tooltip show '+realmCls;
     } else if(special){
       ttRealm.textContent=special.realm; ttRealm.className='tt-realm fut';
       ttName.textContent=special.name; ttSub.textContent=special.sub;
@@ -1006,8 +1010,9 @@ function selectRegion(key){
 }
 
 function showRegionBanner(data){
-  document.getElementById('dynRealm').textContent=data.realm==='ethernia'?'ETHERNIA':'FANTASY';
-  document.getElementById('dynRealm').className='dyn-region__realm '+(data.realm==='ethernia'?'eth':'fan');
+  const realmCls=data.realm==='ethernia'?'eth':data.realm==='fantasy'?'fan':'astral';
+  document.getElementById('dynRealm').textContent=data.realm==='ethernia'?'ETHERNIA':data.realm==='fantasy'?'FANTASY':'ASTRAL SEA';
+  document.getElementById('dynRealm').className='dyn-region__realm '+realmCls;
   document.getElementById('dynName').textContent=data.name;
   document.getElementById('dynSub').textContent=data.sub;
   document.getElementById('dynDesc').textContent=data.desc;
