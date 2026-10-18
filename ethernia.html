@@ -831,13 +831,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
    content's height, sitting at the top instead of centered in the
    taller box. Stretch it to cover the banner so align-items can
    actually center the text vertically. */
-.eth-final .eth-banner__inner{position:absolute;inset:0;justify-content:center;text-align:center;}
+/* The art's figure stands on the right side of the frame, so the
+   text is biased toward the open left side (sky/waterfalls) instead
+   of true center, where it would sit on top of her. The bias is a
+   percentage (via padding-right), so it holds at every width. */
+.eth-final .eth-banner__inner{position:absolute;inset:0;justify-content:center;text-align:center;padding-right:26%;}
 .eth-final .eth-panel{background:transparent;border:0;backdrop-filter:none;max-width:400px;padding:clamp(14px,2vw,24px);}
 /* Its art is brighter/more colorful than the other banners, so it
    gets its own stronger shade, and its title now matches the same
    Cinzel/gold/uppercase treatment as every other banner heading
    instead of a different italic serif style. */
-.eth-final .eth-banner__shade{background:radial-gradient(ellipse 42% 80% at 50% 50%,rgba(5,8,22,.5),transparent 75%);}
+.eth-final .eth-banner__shade{background:radial-gradient(ellipse 42% 80% at 37% 50%,rgba(5,8,22,.5),transparent 75%);}
 .eth-final h2{font-family:'Cinzel',serif;font-weight:400;text-transform:uppercase;color:var(--gold-hi);letter-spacing:clamp(1px,.26vw,3px);font-size:clamp(.95rem,2.05vw,1.8rem);line-height:1.6;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);white-space:nowrap;}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}
 @keyframes ethDrift{to{transform:scale(1.075) translate3d(1.2%,-.8%,0)}}@keyframes bloom{to{opacity:.72}}@keyframes scrollFloat{50%{transform:translateY(-4px)}}@keyframes scrollDot{50%{transform:translate(-50%,11px);opacity:.2}}@keyframes frameGlow{0%,100%{box-shadow:inset 0 0 36px rgba(245,217,127,.055);border-color:rgba(245,217,127,.3);}50%{box-shadow:inset 0 0 52px rgba(245,217,127,.12);border-color:rgba(245,217,127,.48);}}@keyframes titleShimmer{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}@keyframes sparkleTwinkle{0%,100%{opacity:0;transform:scale(.4);}50%{opacity:1;transform:scale(1);}}
