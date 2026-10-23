@@ -33,7 +33,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:58% 42%;display:block;animation:hhKenBurns 26s ease-in-out infinite alternate;}
 @keyframes hhKenBurns{0%{transform:scale(1);}100%{transform:scale(1.06);}}
 .hh-hero-overlay{position:absolute;inset:0;
-  background:linear-gradient(to bottom, transparent 0%, transparent 72%, rgba(5,8,22,.55) 90%, rgba(5,8,22,.82) 100%);
+  background:linear-gradient(to bottom, transparent 0%, transparent 62%, rgba(5,8,22,.6) 84%, rgba(5,8,22,.96) 96%, var(--bg) 100%);
 }
 .hh-hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;max-width:620px;padding:110px 48px 100px clamp(32px,6vw,96px);}
 .hh-eyebrow{color:var(--gold);font-size:1rem;opacity:.85;margin-bottom:18px;}
@@ -45,7 +45,6 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-cta svg{transition:transform .3s;}
 .hh-cta:hover svg{transform:translateX(3px);}
 .hh-scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--gold);opacity:.6;}
-.hh-scroll-cue-inline{display:none;}
 .hh-scroll-mouse{width:20px;height:32px;border:1.5px solid var(--gold);border-radius:10px;position:relative;display:flex;justify-content:center;}
 .hh-scroll-mouse::after{content:'';width:2.5px;height:5px;background:var(--gold);border-radius:2px;position:absolute;top:5px;animation:scrollWheel 2s ease-in-out infinite;}
 @keyframes scrollWheel{0%{top:5px;opacity:1;}100%{top:17px;opacity:0;}}
@@ -151,7 +150,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   .hh-hero{min-height:auto;display:block;overflow:visible;padding-top:calc(56px + env(safe-area-inset-top));}
   .hh-hero-img-wrap{position:relative;inset:auto;height:auto;}
   .hh-hero-img-wrap img{height:auto;object-fit:contain;object-position:center top;animation:none;}
-  .hh-hero-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.15) 0%,rgba(5,8,22,.02) 35%,rgba(5,8,22,.55) 72%,rgba(5,8,22,.95) 100%);}
+  .hh-hero-overlay{background:linear-gradient(to bottom,rgba(5,8,22,.15) 0%,rgba(5,8,22,.02) 35%,rgba(5,8,22,.65) 80%,rgba(5,8,22,.97) 96%,var(--bg) 100%);}
   .hh-hero-content{position:absolute;top:calc(56px + env(safe-area-inset-top) + 32px);left:0;height:auto;max-width:46vw;padding:0 0 0 24px;align-items:flex-start;text-align:left;}
   #hh-categories{padding-top:46px;}
   .hh-eyebrow{display:none;}
@@ -159,8 +158,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   .hh-title-main{font-size:clamp(1.3rem,6.6vw,1.9rem);letter-spacing:1.5px;line-height:1.1;margin-bottom:10px;}
   .hh-subtitle{font-size:clamp(.68rem,2.7vw,.82rem);line-height:1.4;max-width:100%;margin-bottom:14px;}
   .hh-cta{display:none;}
-  .hh-scroll-cue{display:none;}
-  .hh-scroll-cue-inline{display:flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:3px;color:var(--gold);opacity:.75;text-decoration:none;}
+  .hh-scroll-cue{bottom:10px;}
   footer{padding:50px 24px 32px;}
 }
 @media(max-width:600px){
@@ -236,10 +234,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
     <a href="#hh-categories" class="hh-cta">
       ENTER THE HIDDEN WORLDS
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-    <a href="#hh-categories" class="hh-scroll-cue-inline">
-      <div class="hh-scroll-mouse"></div>
-      SCROLL TO DISCOVER
     </a>
   </div>
   <div class="hh-scroll-cue">
