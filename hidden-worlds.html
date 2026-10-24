@@ -82,10 +82,6 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-panel-desc{font-size:.78rem;color:var(--dim);line-height:1.4;margin-bottom:10px;font-style:italic;min-height:2.6em;}
 .hh-panel-arrow{color:var(--gold);font-size:.95rem;opacity:.75;transition:transform .3s,opacity .3s;}
 .hh-panel:hover .hh-panel-arrow{opacity:1;transform:translateY(2px);}
-.hh-panel-lock{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;background:rgba(5,8,22,.78);border:1px solid rgba(216,192,138,.4);display:flex;align-items:center;justify-content:center;z-index:2;}
-.hh-panel-lock svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:1.6;}
-.hh-panel-lock.unlocked{border-color:rgba(130,200,150,.6);}
-.hh-panel-lock.unlocked svg{stroke:#8fd9a8;}
 
 .mobile-menu{display:none;position:fixed;inset:0;z-index:1001;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;}
 .mobile-menu.open{display:flex;}
@@ -278,7 +274,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 
   <div class="hh-grid" id="hhGrid">
     <a href="#" class="hh-panel" data-category="hidden-chronicles">
-      <div class="hh-panel-lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
       <div class="hh-panel-art"><img src="cat-hidden-chronicles.webp" alt="Hidden Chronicles" loading="lazy"></div>
       <div class="hh-panel-frame"></div>
       <div class="hh-panel-body">
@@ -288,7 +283,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </div>
     </a>
     <a href="#" class="hh-panel" data-category="secret-realms">
-      <div class="hh-panel-lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
       <div class="hh-panel-art"><img src="cat-secret-realms.webp" alt="Secret Realms" loading="lazy"></div>
       <div class="hh-panel-frame"></div>
       <div class="hh-panel-body">
@@ -298,7 +292,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </div>
     </a>
     <a href="#" class="hh-panel" data-category="forgotten-characters">
-      <div class="hh-panel-lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
       <div class="hh-panel-art"><img src="cat-forgotten-characters.webp" alt="Forgotten Characters" loading="lazy"></div>
       <div class="hh-panel-frame"></div>
       <div class="hh-panel-body">
@@ -308,7 +301,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </div>
     </a>
     <a href="#" class="hh-panel" data-category="lost-artefacts">
-      <div class="hh-panel-lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
       <div class="hh-panel-art"><img src="cat-lost-artefacts.webp" alt="Lost Artefacts" loading="lazy"></div>
       <div class="hh-panel-frame"></div>
       <div class="hh-panel-body">
@@ -318,7 +310,6 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </div>
     </a>
     <a href="#" class="hh-panel" data-category="uncharted-wonders">
-      <div class="hh-panel-lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
       <div class="hh-panel-art"><img src="cat-uncharted-wonders.webp" alt="Uncharted Wonders" loading="lazy"></div>
       <div class="hh-panel-frame"></div>
       <div class="hh-panel-body">
@@ -402,22 +393,12 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 
-/* ── Hidden Worlds unlock state (localStorage) ── */
-function hhIsUnlocked(){return localStorage.getItem('moonvaleHiddenWorldsUnlocked')==='1';}
+/* ── Hidden Worlds: click goes straight to checkout ── */
 document.querySelectorAll('.hh-panel').forEach(panel=>{
-  const lock=panel.querySelector('.hh-panel-lock');
-  if(hhIsUnlocked()){
-    lock.classList.add('unlocked');
-    lock.innerHTML='<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 018 0"/></svg>';
-  }
   panel.addEventListener('click',e=>{
     e.preventDefault();
     const cat=panel.getAttribute('data-category');
-    if(hhIsUnlocked()){
-      window.location.href='lore-library.html?hidden='+encodeURIComponent(cat);
-    }else{
-      window.location.href='hidden-worlds-checkout.html?from='+encodeURIComponent(cat);
-    }
+    window.location.href='hidden-worlds-checkout.html?from='+encodeURIComponent(cat);
   });
 });
 
