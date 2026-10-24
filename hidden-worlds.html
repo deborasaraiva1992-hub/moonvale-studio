@@ -240,7 +240,10 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 <!-- HERO -->
 <section class="hh-hero">
   <div class="hh-hero-img-wrap">
-    <img src="hidden-worlds-hero.webp" alt="The Hidden Worlds" draggable="false">
+    <picture>
+      <source media="(min-width:901px)" srcset="hidden-worlds-hero-wide.webp">
+      <img src="hidden-worlds-hero.webp" alt="The Hidden Worlds" draggable="false">
+    </picture>
     <div class="hh-hero-overlay"></div>
   </div>
   <div class="hh-hero-content">
