@@ -56,16 +56,32 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-banner::before{content:'';position:absolute;inset:9px;border:1px solid rgba(216,192,138,.42);z-index:3;pointer-events:none;box-shadow:inset 0 0 36px rgba(216,192,138,.07);}
 .hh-banner::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(110deg,transparent 15%,rgba(155,142,196,.08) 50%,transparent 85%);opacity:0;transition:opacity .6s;}
 .hh-banner:hover::after{opacity:1;}
-.hh-frame-corner{position:absolute;z-index:4;font-size:1rem;color:var(--gold-hi);text-shadow:0 0 10px rgba(245,217,127,.5);pointer-events:none;line-height:1;font-family:'Cinzel',serif;}
-.hh-frame-corner--tl{top:13px;left:13px;}
-.hh-frame-corner--tr{top:13px;right:13px;}
-.hh-frame-corner--bl{bottom:13px;left:13px;}
-.hh-frame-corner--br{bottom:13px;right:13px;}
+.hh-frame-corner{position:absolute;z-index:6;width:44px;height:44px;pointer-events:none;}
+.hh-frame-corner::before,.hh-frame-corner::after{content:'';position:absolute;border-color:rgba(216,192,138,.8);}
+.hh-frame-corner::before{width:32px;height:32px;border-width:2px 0 0 2px;border-style:solid;}
+.hh-frame-corner::after{width:20px;height:20px;border-width:1px 0 0 1px;border-style:solid;border-color:rgba(216,192,138,.5);}
+.hh-frame-corner span{position:absolute;font-size:1.05rem;color:var(--gold-hi);text-shadow:0 0 10px rgba(245,217,127,.6);font-family:'Cinzel',serif;line-height:1;}
+.hh-frame-corner--tl{top:10px;left:10px;}
+.hh-frame-corner--tl::before{top:0;left:0;}
+.hh-frame-corner--tl::after{top:8px;left:8px;}
+.hh-frame-corner--tl span{top:-7px;left:-7px;}
+.hh-frame-corner--tr{top:10px;right:10px;}
+.hh-frame-corner--tr::before{top:0;right:0;border-width:2px 2px 0 0;}
+.hh-frame-corner--tr::after{top:8px;right:8px;border-width:1px 1px 0 0;}
+.hh-frame-corner--tr span{top:-7px;right:-7px;}
+.hh-frame-corner--bl{bottom:10px;left:10px;}
+.hh-frame-corner--bl::before{bottom:0;left:0;border-width:0 0 2px 2px;}
+.hh-frame-corner--bl::after{bottom:8px;left:8px;border-width:0 0 1px 1px;}
+.hh-frame-corner--bl span{bottom:-7px;left:-7px;}
+.hh-frame-corner--br{bottom:10px;right:10px;}
+.hh-frame-corner--br::before{bottom:0;right:0;border-width:0 2px 2px 0;}
+.hh-frame-corner--br::after{bottom:8px;right:8px;border-width:0 1px 1px 0;}
+.hh-frame-corner--br span{bottom:-7px;right:-7px;}
 .hh-banner__image{position:absolute;inset:0;z-index:-2;}
 .hh-banner__image img{width:100%;height:100%;object-fit:cover;object-position:center;}
 .hh-banner__shade{position:absolute;inset:0;z-index:-1;background:var(--shade);}
 .hh-banner__edgefade{position:absolute;inset:0;z-index:0;pointer-events:none;}
-.hh-banner__inner{position:absolute;inset:0;display:flex;align-items:center;padding:clamp(28px,6vw,88px);}
+.hh-banner__inner{position:absolute;inset:0;z-index:5;display:flex;align-items:center;padding:clamp(28px,6vw,88px);}
 .hh-banner--left .hh-banner__inner{justify-content:flex-start;}
 .hh-banner--left{--shade:linear-gradient(90deg,rgba(5,8,22,.6) 0%,rgba(5,8,22,.42) 20%,rgba(5,8,22,.22) 42%,rgba(5,8,22,.06) 65%,transparent 90%);}
 .hh-banner-panel{max-width:min(560px,48%);padding:clamp(18px,2.6vw,34px);}
@@ -86,10 +102,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-final-btn:hover{transform:translateY(-2px);border-color:var(--gold-hi);box-shadow:0 0 24px rgba(216,192,138,.22);}
 
 /* TEASER EXAMPLE */
-.hh-teaser{position:relative;width:100%;max-width:1760px;margin:30px auto 0;border-radius:18px;overflow:hidden;border:1px solid rgba(216,192,138,.34);box-shadow:0 28px 90px rgba(0,0,0,.52),0 0 46px rgba(155,142,196,.09);}
+.hh-teaser{position:relative;width:100%;max-width:1760px;margin:30px auto 0;border-radius:6px;overflow:hidden;border:2px solid rgba(216,192,138,.55);box-shadow:0 28px 90px rgba(0,0,0,.52),0 0 46px rgba(155,142,196,.09);}
+.hh-teaser::before{content:'';position:absolute;inset:9px;border:1px solid rgba(216,192,138,.42);z-index:3;pointer-events:none;box-shadow:inset 0 0 36px rgba(216,192,138,.07);}
 .hh-teaser-img{position:relative;width:100%;aspect-ratio:2/1;}
 .hh-teaser-img img{width:100%;height:100%;object-fit:cover;display:block;}
-.hh-teaser-panel{position:absolute;top:8%;bottom:8%;right:10%;width:36%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;}
+.hh-teaser-panel{position:absolute;top:8%;bottom:8%;right:10%;width:36%;z-index:5;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;}
 .hh-teaser-kicker{font-family:'Cinzel',serif;font-size:clamp(.52rem,.85vw,.64rem);letter-spacing:2.6px;color:#8a6a3a;text-transform:uppercase;margin-bottom:clamp(6px,1vw,12px);opacity:.9;}
 .hh-teaser-title{font-family:'Cinzel',serif;font-size:clamp(.82rem,1.7vw,1.35rem);font-weight:500;letter-spacing:.5px;color:#2a1d10;line-height:1.28;margin-bottom:clamp(6px,1.2vw,14px);}
 .hh-teaser-quote{font-size:clamp(.62rem,1vw,.82rem);font-style:italic;color:#4a3824;line-height:1.45;margin-bottom:clamp(8px,1.6vw,18px);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
@@ -105,10 +122,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
   .hh-banner-panel h2{font-size:clamp(.92rem,2.8vw,1.35rem);letter-spacing:clamp(1px,.25vw,2px);margin:6px 0 8px;}
   .hh-banner-panel p{font-size:clamp(.78rem,1.9vw,.95rem);line-height:1.35;margin:0;}
   .hh-banner__shade{background:linear-gradient(180deg,rgba(5,8,22,0) 10%,rgba(5,8,22,.1) 42%,rgba(5,8,22,.56) 100%);}
-  .hh-banner--left{margin-top:6px;border:0;box-shadow:none;border-radius:0;}
-  .hh-banner--left::before{content:none;}
-  .hh-banner--left .hh-frame-corner{display:none;}
-  .hh-banner--left .hh-banner__edgefade{background:linear-gradient(to bottom,var(--bg) 0%,transparent 6%,transparent 94%,var(--bg) 100%);}
+  .hh-banner--left{margin-top:6px;}
   .hh-banner--left .hh-banner__inner{align-items:flex-start;padding-top:0;}
   .hh-banner--left .hh-banner-panel{max-width:38%;padding-top:2px;}
   .hh-banner--left .hh-banner-panel h2{font-size:clamp(.76rem,2.3vw,.98rem);margin:4px 0 6px;}
@@ -360,10 +374,10 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       <p>Some stories were never meant to be forgotten. Some worlds remain beyond the paths most travelers follow. And some secrets reveal themselves only to those who dare to look deeper.</p>
     </div>
   </div>
-  <span class="hh-frame-corner hh-frame-corner--tl">❖</span>
-  <span class="hh-frame-corner hh-frame-corner--tr">❖</span>
-  <span class="hh-frame-corner hh-frame-corner--bl">❖</span>
-  <span class="hh-frame-corner hh-frame-corner--br">❖</span>
+  <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--br"><span>⚜</span></span>
 </section>
 
 <!-- CATEGORIES -->
@@ -445,6 +459,10 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </a>
     </div>
   </div>
+  <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--br"><span>⚜</span></span>
 </section>
 
 <!-- FINAL -->
@@ -461,10 +479,10 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </a>
     </div>
   </div>
-  <span class="hh-frame-corner hh-frame-corner--tl">❖</span>
-  <span class="hh-frame-corner hh-frame-corner--tr">❖</span>
-  <span class="hh-frame-corner hh-frame-corner--bl">❖</span>
-  <span class="hh-frame-corner hh-frame-corner--br">❖</span>
+  <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--br"><span>⚜</span></span>
 </section>
 
 <footer>
