@@ -59,6 +59,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-banner__image{position:absolute;inset:0;z-index:-2;}
 .hh-banner__image img{width:100%;height:100%;object-fit:cover;object-position:center;}
 .hh-banner__shade{position:absolute;inset:0;z-index:-1;background:var(--shade);}
+.hh-banner__edgefade{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .hh-banner__inner{position:absolute;inset:0;display:flex;align-items:center;padding:clamp(28px,6vw,88px);}
 .hh-banner--left .hh-banner__inner{justify-content:flex-start;}
 .hh-banner--left{--shade:linear-gradient(90deg,rgba(5,8,22,.6) 0%,rgba(5,8,22,.42) 20%,rgba(5,8,22,.22) 42%,rgba(5,8,22,.06) 65%,transparent 90%);}
@@ -99,6 +100,12 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
   .hh-banner-panel h2{font-size:clamp(.92rem,2.8vw,1.35rem);letter-spacing:clamp(1px,.25vw,2px);margin:6px 0 8px;}
   .hh-banner-panel p{font-size:clamp(.78rem,1.9vw,.95rem);line-height:1.35;margin:0;}
   .hh-banner__shade{background:linear-gradient(180deg,rgba(5,8,22,0) 10%,rgba(5,8,22,.1) 42%,rgba(5,8,22,.56) 100%);}
+  .hh-banner--left{margin-top:28px;border:0;}
+  .hh-banner--left::before{content:none;}
+  .hh-banner--left .hh-banner__edgefade{background:linear-gradient(to bottom,var(--bg) 0%,transparent 12%,transparent 86%,var(--bg) 100%);}
+  .hh-banner--left .hh-banner__inner{align-items:flex-start;padding-top:16px;}
+  .hh-banner--left .hh-banner-panel h2{font-size:clamp(.76rem,2.3vw,.98rem);margin:4px 0 6px;}
+  .hh-banner--left .hh-banner-panel p{font-size:clamp(.62rem,1.5vw,.76rem);line-height:1.28;}
   .hh-final{aspect-ratio:2/1;height:auto;min-height:0;}
   .hh-final .hh-banner__image{position:absolute;inset:0;aspect-ratio:auto;}
   .hh-final .hh-banner-panel{border:0;margin:0;background:transparent;max-width:78%;}
@@ -335,6 +342,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 <section class="hh-banner hh-banner--content hh-banner--left fade-in" id="hh-concept" aria-labelledby="hh-concept-title">
   <div class="hh-banner__image"><img src="hidden-worlds-concept-banner.webp" alt="Beyond What Is Known" loading="lazy"></div>
   <div class="hh-banner__shade"></div>
+  <div class="hh-banner__edgefade"></div>
   <div class="hh-banner__inner">
     <div class="hh-banner-panel">
       <span class="hh-banner-kicker">☾</span>
