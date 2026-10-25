@@ -67,6 +67,13 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-banner-kicker::before,.hh-banner-kicker::after{content:'';width:clamp(28px,5vw,68px);height:1px;background:linear-gradient(90deg,transparent,var(--fan),transparent);opacity:.7;}
 .hh-banner-panel h2{font-family:'Cinzel',serif;font-size:clamp(1.55rem,3.6vw,3.4rem);font-weight:400;letter-spacing:clamp(2px,.45vw,6px);line-height:1.1;color:var(--gold-hi);margin:10px 0 14px;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);}
 .hh-banner-panel p{font-size:clamp(1rem,1.55vw,1.28rem);color:rgba(245,241,232,.9);line-height:1.55;margin:0;text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.95);}
+.hh-banner--center .hh-banner__inner{justify-content:center;text-align:center;}
+.hh-banner--center{--shade:radial-gradient(ellipse 74% 84% at center,rgba(5,8,22,.28),rgba(5,8,22,.1) 60%,transparent 88%);}
+.hh-final{aspect-ratio:2.4/1;height:auto;min-height:0;margin-top:30px;}
+.hh-final .hh-banner__inner{position:absolute;inset:0;justify-content:center;text-align:center;flex-direction:column;}
+.hh-final .hh-banner-panel{background:transparent;border:0;max-width:650px;padding:clamp(14px,2vw,24px);}
+.hh-final .hh-banner__shade{background:radial-gradient(ellipse 42% 80% at 50% 50%,rgba(5,8,22,.5),transparent 75%);}
+.hh-final h2{font-family:'Cinzel',serif;font-weight:400;text-transform:uppercase;color:var(--gold-hi);letter-spacing:clamp(1px,.26vw,3px);font-size:clamp(.95rem,2.05vw,1.8rem);line-height:1.6;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);white-space:nowrap;margin:0;}
 @media(max-width:900px){
   .hh-banner--content{--content-frame-height:clamp(210px,53vw,255px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto;}
   .hh-banner__inner{min-height:inherit;padding:clamp(12px,2.8vw,24px);}
@@ -74,12 +81,18 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
   .hh-banner-panel h2{font-size:clamp(.92rem,2.8vw,1.35rem);letter-spacing:clamp(1px,.25vw,2px);margin:6px 0 8px;}
   .hh-banner-panel p{font-size:clamp(.78rem,1.9vw,.95rem);line-height:1.35;margin:0;}
   .hh-banner__shade{background:linear-gradient(180deg,rgba(5,8,22,0) 10%,rgba(5,8,22,.1) 42%,rgba(5,8,22,.56) 100%);}
+  .hh-final{aspect-ratio:2/1;height:auto;min-height:0;}
+  .hh-final .hh-banner__image{position:absolute;inset:0;aspect-ratio:auto;}
+  .hh-final .hh-banner-panel{border:0;margin:0;background:transparent;max-width:78%;}
 }
 @media(max-width:520px){
   .hh-banner--content{--content-frame-height:clamp(210px,53vw,245px);min-height:var(--content-frame-height);height:var(--content-frame-height);}
   .hh-banner-panel{max-width:60%;padding:10px;}
   .hh-banner-panel h2{font-size:clamp(.9rem,3.6vw,1.05rem);line-height:1.08;}
   .hh-banner-panel p{font-size:clamp(.74rem,2.8vw,.84rem);line-height:1.28;}
+  .hh-final{aspect-ratio:1.8/1;height:auto;min-height:0;}
+  .hh-final .hh-banner-panel{max-width:84%;}
+  .hh-final h2{font-size:clamp(.58rem,2.5vw,.74rem);line-height:1.5;white-space:normal;}
 }
 
 /* SECTION BASE */
@@ -366,6 +379,17 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
         <span class="hh-panel-arrow">›</span>
       </div>
     </a>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="hh-banner hh-banner--center hh-final fade-in" aria-labelledby="hh-final-title">
+  <div class="hh-banner__image"><img src="hidden-worlds-final-banner.webp" alt="A hooded figure overlooking a moonlit hidden realm" loading="lazy"></div>
+  <div class="hh-banner__shade"></div>
+  <div class="hh-banner__inner">
+    <div class="hh-banner-panel">
+      <h2 id="hh-final-title">SOME SECRETS ARE NOT LOST.<br>THEY ARE JUST HIDDEN.</h2>
+    </div>
   </div>
 </section>
 
