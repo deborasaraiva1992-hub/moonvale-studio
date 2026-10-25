@@ -50,8 +50,109 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hh-scroll-mouse::after{content:'';width:2.5px;height:5px;background:var(--gold);border-radius:2px;position:absolute;top:5px;animation:scrollWheel 2s ease-in-out infinite;}
 @keyframes scrollWheel{0%{top:5px;opacity:1;}100%{top:17px;opacity:0;}}
 
+/* CONCEPT BANNER */
+.hh-banner{position:relative;max-width:1760px;width:100%;margin:64px auto 0;border:1px double rgba(216,192,138,.38);border-radius:clamp(12px,1vw,18px);overflow:hidden;box-shadow:0 22px 58px rgba(0,0,0,.44),0 0 24px rgba(216,192,138,.075);isolation:isolate;background:#050816;}
+.hh-banner--content{aspect-ratio:2.3/1;height:auto;min-height:0;max-width:1760px;}
+.hh-banner::before{content:'';position:absolute;inset:5px;border:1px solid rgba(218,184,102,.3);border-radius:13px;box-shadow:inset 0 0 16px rgba(216,192,138,.035),0 0 14px rgba(216,192,138,.045);z-index:3;pointer-events:none;background:linear-gradient(135deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top left/54px 54px no-repeat,linear-gradient(225deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top right/54px 54px no-repeat,linear-gradient(45deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom left/54px 54px no-repeat,linear-gradient(315deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom right/54px 54px no-repeat;}
+.hh-banner::after{content:'';position:absolute;inset:12px;border:1px solid rgba(216,192,138,.08);border-radius:12px;z-index:4;pointer-events:none;background:radial-gradient(circle at 0 0,rgba(245,217,127,.58) 0 1.5px,transparent 2.5px),radial-gradient(circle at 100% 0,rgba(245,217,127,.58) 0 1.5px,transparent 2.5px),radial-gradient(circle at 0 100%,rgba(245,217,127,.5) 0 1.5px,transparent 2.5px),radial-gradient(circle at 100% 100%,rgba(245,217,127,.5) 0 1.5px,transparent 2.5px);}
+.hh-frame-corner{display:none;}
+.hh-frame-corner::before,.hh-frame-corner::after{content:'';position:absolute;border-color:rgba(216,192,138,.8);}
+.hh-frame-corner::before{width:32px;height:32px;border-width:2px 0 0 2px;border-style:solid;}
+.hh-frame-corner::after{width:20px;height:20px;border-width:1px 0 0 1px;border-style:solid;border-color:rgba(216,192,138,.5);}
+.hh-frame-corner span{position:absolute;font-size:1.05rem;color:var(--gold-hi);text-shadow:0 0 10px rgba(245,217,127,.6);font-family:'Cinzel',serif;line-height:1;}
+.hh-frame-corner--tl{top:14px;left:14px;}
+.hh-frame-corner--tl::before{top:0;left:0;}
+.hh-frame-corner--tl::after{top:8px;left:8px;}
+.hh-frame-corner--tl span{top:-7px;left:-7px;}
+.hh-frame-corner--tr{top:14px;right:14px;}
+.hh-frame-corner--tr::before{top:0;right:0;border-width:2px 2px 0 0;}
+.hh-frame-corner--tr::after{top:8px;right:8px;border-width:1px 1px 0 0;}
+.hh-frame-corner--tr span{top:-7px;right:-7px;}
+.hh-frame-corner--bl{bottom:14px;left:14px;}
+.hh-frame-corner--bl::before{bottom:0;left:0;border-width:0 0 2px 2px;}
+.hh-frame-corner--bl::after{bottom:8px;left:8px;border-width:0 0 1px 1px;}
+.hh-frame-corner--bl span{bottom:-7px;left:-7px;}
+.hh-frame-corner--br{bottom:14px;right:14px;}
+.hh-frame-corner--br::before{bottom:0;right:0;border-width:0 2px 2px 0;}
+.hh-frame-corner--br::after{bottom:8px;right:8px;border-width:0 1px 1px 0;}
+.hh-frame-corner--br span{bottom:-7px;right:-7px;}
+.hh-banner__image{position:absolute;inset:0;z-index:-2;}
+.hh-banner__image img{width:100%;height:100%;object-fit:cover;object-position:center;}
+.hh-banner__shade{position:absolute;inset:0;z-index:-1;background:var(--shade);}
+.hh-banner__edgefade{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.hh-banner__inner{position:absolute;inset:0;z-index:5;display:flex;align-items:center;padding:clamp(28px,6vw,88px);}
+.hh-banner--left .hh-banner__inner{justify-content:flex-start;}
+.hh-banner--left{--shade:linear-gradient(90deg,rgba(5,8,22,.6) 0%,rgba(5,8,22,.42) 20%,rgba(5,8,22,.22) 42%,rgba(5,8,22,.06) 65%,transparent 90%);}
+.hh-banner-panel{max-width:min(560px,48%);padding:clamp(18px,2.6vw,34px);}
+.hh-banner-kicker{font-family:'Cinzel',serif;font-size:clamp(.62rem,1.05vw,.82rem);letter-spacing:clamp(2.6px,.55vw,6px);color:var(--fan);text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;text-shadow:0 2px 12px rgba(0,0,0,.8);}
+.hh-banner-kicker::before,.hh-banner-kicker::after{content:'';width:clamp(28px,5vw,68px);height:1px;background:linear-gradient(90deg,transparent,var(--fan),transparent);opacity:.7;}
+.hh-banner-panel h2{font-family:'Cinzel',serif;font-size:clamp(1.55rem,3.6vw,3.4rem);font-weight:400;letter-spacing:clamp(2px,.45vw,6px);line-height:1.1;color:var(--gold-hi);margin:10px 0 14px;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);}
+.hh-banner-panel p{font-size:clamp(1rem,1.55vw,1.28rem);color:rgba(245,241,232,.9);line-height:1.55;margin:0;text-shadow:0 2px 16px rgba(0,0,0,.9),0 1px 4px rgba(0,0,0,.95);}
+.hh-banner--center .hh-banner__inner{justify-content:center;text-align:center;}
+.hh-banner--center{--shade:radial-gradient(ellipse 74% 84% at center,rgba(5,8,22,.28),rgba(5,8,22,.1) 60%,transparent 88%);}
+.hh-final{aspect-ratio:2.8/1;height:auto;min-height:0;margin-top:30px;}
+.hh-final .hh-banner__inner{position:absolute;inset:0;justify-content:flex-start;padding-top:15%;text-align:center;flex-direction:column;}
+.hh-final .hh-banner-panel{background:transparent;border:0;max-width:650px;padding:clamp(14px,2vw,24px);}
+.hh-final .hh-banner__shade{background:radial-gradient(ellipse 42% 80% at 50% 50%,rgba(5,8,22,.5),transparent 75%);}
+.hh-final h2{font-family:'Cinzel',serif;font-weight:400;text-transform:uppercase;color:var(--gold-hi);letter-spacing:clamp(1px,.26vw,3px);font-size:clamp(.95rem,2.05vw,1.8rem);line-height:1.6;text-shadow:0 4px 24px rgba(0,0,0,.9),0 1px 6px rgba(0,0,0,.95);margin:0;}
+.hh-final .hh-banner-panel{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.hh-final p{font-size:clamp(.7rem,1.1vw,.85rem);color:var(--dim);font-style:italic;margin:0;text-shadow:0 2px 12px rgba(0,0,0,.85);}
+.hh-final-btn{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:8px 18px;border:1px solid rgba(216,192,138,.5);font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-hi);background:rgba(5,8,22,.55);text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s;}
+.hh-final-btn:hover{transform:translateY(-2px);border-color:var(--gold-hi);box-shadow:0 0 24px rgba(216,192,138,.22);}
+
+/* TEASER EXAMPLE */
+.hh-teaser{position:relative;width:100%;max-width:1760px;margin:30px auto 0;border:1px double rgba(216,192,138,.38);border-radius:clamp(12px,1vw,18px);overflow:hidden;box-shadow:0 22px 58px rgba(0,0,0,.44),0 0 24px rgba(216,192,138,.075);}
+.hh-teaser::before{content:'';position:absolute;inset:5px;border:1px solid rgba(218,184,102,.3);border-radius:13px;box-shadow:inset 0 0 16px rgba(216,192,138,.035),0 0 14px rgba(216,192,138,.045);z-index:3;pointer-events:none;background:linear-gradient(135deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top left/54px 54px no-repeat,linear-gradient(225deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top right/54px 54px no-repeat,linear-gradient(45deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom left/54px 54px no-repeat,linear-gradient(315deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom right/54px 54px no-repeat;}
+.hh-teaser::after{content:'';position:absolute;inset:12px;border:1px solid rgba(216,192,138,.08);border-radius:12px;z-index:4;pointer-events:none;background:radial-gradient(circle at 0 0,rgba(245,217,127,.58) 0 1.5px,transparent 2.5px),radial-gradient(circle at 100% 0,rgba(245,217,127,.58) 0 1.5px,transparent 2.5px),radial-gradient(circle at 0 100%,rgba(245,217,127,.5) 0 1.5px,transparent 2.5px),radial-gradient(circle at 100% 100%,rgba(245,217,127,.5) 0 1.5px,transparent 2.5px);}
+.hh-teaser-img{position:relative;width:100%;aspect-ratio:2.3/1;}
+.hh-teaser-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.hh-teaser-panel{position:absolute;top:22%;bottom:26%;right:19%;width:37%;z-index:5;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;}
+.hh-teaser-kicker{font-family:'Cinzel',serif;font-size:clamp(.52rem,.85vw,.64rem);letter-spacing:2.6px;color:#8a6a3a;text-transform:uppercase;margin-bottom:clamp(6px,1vw,12px);opacity:.9;}
+.hh-teaser-title{font-family:'Cinzel',serif;font-size:clamp(.82rem,1.7vw,1.35rem);font-weight:500;letter-spacing:.5px;color:#2a1d10;line-height:1.28;margin-bottom:clamp(6px,1.2vw,14px);}
+.hh-teaser-quote{font-size:clamp(.62rem,1vw,.82rem);font-style:italic;color:#4a3824;line-height:1.45;margin-bottom:clamp(8px,1.6vw,18px);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.hh-teaser-row{display:flex;align-items:center;gap:clamp(6px,1vw,10px);flex-wrap:wrap;}
+.hh-teaser-lock{width:clamp(20px,2.2vw,28px);height:clamp(20px,2.2vw,28px);border-radius:50%;border:1.5px solid #6b4f28;display:flex;align-items:center;justify-content:center;color:#6b4f28;flex-shrink:0;}
+.hh-teaser-lock svg{width:46%;height:46%;}
+.hh-teaser-btn{display:inline-flex;align-items:center;gap:6px;padding:clamp(7px,1vw,10px) clamp(10px,1.6vw,16px);border:1px solid #6b4f28;font-family:'Cinzel',serif;font-size:clamp(.48rem,.78vw,.58rem);letter-spacing:1.2px;text-transform:uppercase;color:#2a1d10;background:rgba(255,250,235,.32);text-decoration:none;transition:background .25s,transform .25s;white-space:nowrap;}
+.hh-teaser-btn:hover{background:rgba(255,250,235,.58);transform:translateY(-2px);}
+@media(max-width:900px){
+  .hh-banner--content{--content-frame-height:clamp(210px,53vw,255px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto;}
+  .hh-banner__inner{min-height:inherit;padding:clamp(12px,2.8vw,24px);}
+  .hh-banner-panel{max-width:min(58%,360px);margin:0;padding:clamp(10px,1.8vw,16px);}
+  .hh-banner-panel h2{font-size:clamp(.92rem,2.8vw,1.35rem);letter-spacing:clamp(1px,.25vw,2px);margin:6px 0 8px;}
+  .hh-banner-panel p{font-size:clamp(.78rem,1.9vw,.95rem);line-height:1.35;margin:0;}
+  .hh-banner__shade{background:linear-gradient(180deg,rgba(5,8,22,0) 10%,rgba(5,8,22,.1) 42%,rgba(5,8,22,.56) 100%);}
+  .hh-banner--left{margin-top:6px;}
+  .hh-banner--left .hh-banner__inner{align-items:flex-start;padding-top:0;}
+  .hh-banner--left .hh-banner-panel{max-width:38%;padding-top:2px;}
+  .hh-banner--left .hh-banner-panel h2{font-size:clamp(.76rem,2.3vw,.98rem);margin:4px 0 6px;}
+  .hh-banner--left .hh-banner-panel p{font-size:clamp(.62rem,1.5vw,.76rem);line-height:1.28;}
+  .hh-final{aspect-ratio:2/1;height:auto;min-height:0;}
+  .hh-final .hh-banner__image{position:absolute;inset:0;aspect-ratio:auto;}
+  .hh-final .hh-banner__inner{padding-top:9%;}
+  .hh-final .hh-banner-panel{border:0;margin:0;background:transparent;max-width:93%;}
+  .hh-teaser-img{--content-frame-height:clamp(210px,53vw,255px);display:block;height:var(--content-frame-height);aspect-ratio:auto;}
+  .hh-teaser-panel{right:21%;width:30%;top:20%;bottom:24%;}
+  .hh-teaser-kicker{font-size:.4rem;letter-spacing:1px;margin-bottom:4px;}
+  .hh-teaser-title{font-size:.56rem;line-height:1.1;margin-bottom:4px;}
+  .hh-teaser-quote{font-size:.42rem;line-height:1.25;margin-bottom:6px;-webkit-line-clamp:2;}
+  .hh-teaser-btn{font-size:.34rem;padding:4px 5px;letter-spacing:.4px;}
+  .hh-teaser-lock{width:13px;height:13px;}
+  .hh-teaser-row{gap:3px;}
+}
+@media(max-width:520px){
+  .hh-banner--content{--content-frame-height:clamp(210px,53vw,245px);min-height:var(--content-frame-height);height:var(--content-frame-height);}
+  .hh-banner-panel{max-width:60%;padding:10px;}
+  .hh-banner-panel h2{font-size:clamp(.9rem,3.6vw,1.05rem);line-height:1.08;}
+  .hh-banner-panel p{font-size:clamp(.74rem,2.8vw,.84rem);line-height:1.28;}
+  .hh-final{aspect-ratio:1.8/1;height:auto;min-height:0;}
+  .hh-final .hh-banner-panel{max-width:93%;}
+  .hh-final h2{font-size:clamp(.58rem,2.5vw,.74rem);line-height:1.5;white-space:normal;}
+  .hh-teaser-img{--content-frame-height:clamp(210px,53vw,245px);height:var(--content-frame-height);}
+}
+
 /* SECTION BASE */
-.section{max-width:1400px;margin:0 auto;padding:90px 48px;}
+.section{max-width:1700px;margin:0 auto;padding:90px 48px;}
 .section-header{text-align:center;margin-bottom:56px;}
 .section-ornament{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px;}
 .section-ornament-line{width:35px;height:1px;background:var(--gold);opacity:.4;}
@@ -183,8 +284,11 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   .section{padding:52px 16px;}
   .hh-hero-content{max-width:48vw;padding:0 0 0 18px;}
   #hh-categories{padding-top:40px;}
-  .hh-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .hh-grid{grid-template-columns:repeat(2,1fr);gap:12px;max-width:280px;margin:0 auto;}
   .hh-panel-desc{display:none;}
+  .hh-panel-arrow{display:none;}
+  .hh-panel-name{font-size:.62rem;letter-spacing:1.6px;line-height:1.35;margin-top:7px;margin-bottom:0;min-height:2.7em;}
+  .hh-panel-arrow{font-size:.78rem;}
   .footer-inner{grid-template-columns:1fr;gap:24px;}
   footer{padding:44px 16px 28px;}
   .footer-bottom{flex-direction:column;text-align:center;}
@@ -262,6 +366,24 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
   </a>
 </section>
 
+<!-- CONCEPT -->
+<section class="hh-banner hh-banner--content hh-banner--left fade-in" id="hh-concept" aria-labelledby="hh-concept-title">
+  <div class="hh-banner__image"><img src="hidden-worlds-concept-banner.webp" alt="Beyond What Is Known" loading="lazy"></div>
+  <div class="hh-banner__shade"></div>
+  <div class="hh-banner__edgefade"></div>
+  <div class="hh-banner__inner">
+    <div class="hh-banner-panel">
+      <span class="hh-banner-kicker">☾</span>
+      <h2 id="hh-concept-title">BEYOND WHAT IS KNOWN</h2>
+      <p>Some stories were never meant to be forgotten. Some worlds remain beyond the paths most travelers follow. And some secrets reveal themselves only to those who dare to look deeper.</p>
+    </div>
+  </div>
+  <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--br"><span>⚜</span></span>
+</section>
+
 <!-- CATEGORIES -->
 <section class="section fade-in" id="hh-categories">
   <div class="section-header">
@@ -322,6 +444,49 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </div>
     </a>
   </div>
+</section>
+
+<!-- TEASER EXAMPLE -->
+<section class="hh-teaser fade-in" aria-labelledby="hh-teaser-title">
+  <div class="hh-teaser-img"><img src="hidden-worlds-teaser-banner.webp" alt="A glimpse into a hidden story: The Chronicle of the Fallen King" loading="lazy"></div>
+  <div class="hh-teaser-panel">
+    <span class="hh-teaser-kicker">A Glimpse Into a Hidden Story</span>
+    <h3 id="hh-teaser-title" class="hh-teaser-title">THE CHRONICLE OF THE FALLEN KING</h3>
+    <p class="hh-teaser-quote">"The kingdom did not fall in a single night. Its towers still stood when the last king disappeared, and those who remained never spoke his name again..."</p>
+    <div class="hh-teaser-row">
+      <span class="hh-teaser-lock" aria-hidden="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      </span>
+      <a href="hidden-worlds-checkout.html?from=hidden-chronicles" class="hh-teaser-btn">
+        DISCOVER WHAT LIES BEYOND
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--br"><span>⚜</span></span>
+</section>
+
+<!-- FINAL -->
+<section class="hh-banner hh-banner--center hh-final fade-in" aria-labelledby="hh-final-title">
+  <div class="hh-banner__image"><img src="hidden-worlds-final-banner.webp" alt="A hooded figure overlooking a moonlit hidden realm" loading="lazy"></div>
+  <div class="hh-banner__shade"></div>
+  <div class="hh-banner__inner">
+    <div class="hh-banner-panel">
+      <h2 id="hh-final-title">SOME STORIES ARE STILL WAITING.</h2>
+      <p>The archive is open.</p>
+      <a href="lore-library.html" class="hh-final-btn">
+        ENTER THE LORE LIBRARY
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
+  <span class="hh-frame-corner hh-frame-corner--br"><span>⚜</span></span>
 </section>
 
 <footer>
