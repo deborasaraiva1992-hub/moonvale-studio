@@ -35,7 +35,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 }
 
 /* PIECE 1 — HERO BANNER */
-.pc-hero{position:relative;width:100%;aspect-ratio:1448/1086;overflow:hidden;padding:clamp(28px,5vw,80px);display:flex;align-items:center;justify-content:center;}
+.pc-hero{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;padding:clamp(28px,5vw,80px);display:flex;align-items:center;justify-content:center;}
 .pc-hero-bg{position:absolute;inset:0;z-index:-2;}
 .pc-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:saturate(.95) brightness(.9);}
 .pc-hero-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,8,22,.15) 0%,rgba(5,8,22,.35) 38%,rgba(5,8,22,.8) 58%,rgba(5,8,22,.92) 100%),linear-gradient(180deg,transparent 0%,transparent 55%,rgba(5,8,22,.6) 85%,var(--bg) 100%);}
@@ -60,7 +60,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .pc-benefit span{font-size:.72rem;color:var(--dim);line-height:1.3;}
 @media(max-width:800px){
   .pc-hero{aspect-ratio:unset;flex-direction:column;align-items:stretch;justify-content:flex-start;padding:0;}
-  .pc-hero-bg{position:relative;inset:auto;z-index:auto;aspect-ratio:1448/1086;width:100%;}
+  .pc-hero-bg{position:relative;inset:auto;z-index:auto;aspect-ratio:4/3;width:100%;}
   .pc-hero-overlay{display:none;}
   .pc-hero-content{text-align:center;align-items:center;margin:0 auto;max-width:560px;padding:32px 24px 48px;background:var(--bg);}
   .pc-sub,.pc-copy{margin-left:auto;margin-right:auto;}
