@@ -60,7 +60,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .pc-benefit span{font-size:.72rem;color:var(--dim);line-height:1.3;}
 @media(max-width:800px){
   .pc-hero{aspect-ratio:unset;flex-direction:column;align-items:stretch;justify-content:flex-start;padding:0;}
-  .pc-hero-bg{position:relative;inset:auto;z-index:auto;aspect-ratio:4/3;width:100%;}
+  /* height:0 + padding-top:75% forces exactly a 4:3 box based on the element's own
+     width — this works even where the `aspect-ratio` CSS property doesn't, which is
+     why it's used here instead (some mobile browsers were still cropping with it). */
+  .pc-hero-bg{position:relative;inset:auto;z-index:auto;width:100%;height:0;padding-top:75%;overflow:hidden;}
+  .pc-hero-bg img{position:absolute;inset:0;}
   .pc-hero-overlay{display:none;}
   .pc-hero-content{text-align:center;align-items:center;margin:0 auto;max-width:560px;padding:32px 24px 48px;background:var(--bg);}
   .pc-sub,.pc-copy{margin-left:auto;margin-right:auto;}
