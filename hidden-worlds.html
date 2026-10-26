@@ -81,7 +81,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .hh-banner__shade{position:absolute;inset:0;z-index:-1;background:var(--shade);}
 .hh-banner__edgefade{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .hh-banner__inner{position:absolute;inset:0;z-index:5;display:flex;align-items:center;padding:clamp(28px,6vw,88px);}
-.hh-banner--left .hh-banner__inner{justify-content:flex-start;}
+.hh-banner--left .hh-banner__inner{justify-content:flex-start;align-items:flex-start;padding-top:clamp(30px,8vw,100px);}
 .hh-banner--left{--shade:linear-gradient(90deg,rgba(5,8,22,.6) 0%,rgba(5,8,22,.42) 20%,rgba(5,8,22,.22) 42%,rgba(5,8,22,.06) 65%,transparent 90%);}
 .hh-banner-panel{max-width:min(560px,48%);padding:clamp(18px,2.6vw,34px);}
 .hh-banner-kicker{font-family:'Cinzel',serif;font-size:clamp(.62rem,1.05vw,.82rem);letter-spacing:clamp(2.6px,.55vw,6px);color:var(--fan);text-transform:uppercase;display:inline-flex;align-items:center;gap:14px;text-shadow:0 2px 12px rgba(0,0,0,.8);}
@@ -107,14 +107,17 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .hh-teaser-img{position:relative;width:100%;aspect-ratio:2.3/1;}
 .hh-teaser-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .hh-teaser-panel{position:absolute;top:18%;bottom:20%;right:22%;width:34%;z-index:5;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;}
-.hh-teaser-kicker{font-family:'Cinzel',serif;font-size:clamp(.6rem,1vw,.74rem);letter-spacing:2.6px;color:#8a6a3a;text-transform:uppercase;margin-bottom:clamp(6px,1vw,12px);opacity:.9;}
-.hh-teaser-title{font-family:'Cinzel',serif;font-size:clamp(.95rem,2vw,1.6rem);font-weight:500;letter-spacing:.5px;color:#2a1d10;line-height:1.26;margin-bottom:clamp(6px,1.2vw,14px);}
-.hh-teaser-quote{font-size:clamp(.72rem,1.15vw,.95rem);font-style:italic;color:#4a3824;line-height:1.4;margin-bottom:clamp(8px,1.6vw,18px);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.hh-teaser-row{display:flex;align-items:center;gap:clamp(6px,1vw,10px);flex-wrap:wrap;}
-.hh-teaser-lock{width:clamp(20px,2.2vw,28px);height:clamp(20px,2.2vw,28px);border-radius:50%;border:1.5px solid #6b4f28;display:flex;align-items:center;justify-content:center;color:#6b4f28;flex-shrink:0;}
+.hh-teaser-kicker{font-family:'Cinzel',serif;font-size:clamp(.6rem,1.15vw,.85rem);letter-spacing:2.6px;color:#8a6a3a;text-transform:uppercase;margin-bottom:clamp(6px,1.2vw,14px);opacity:.9;}
+.hh-teaser-title{font-family:'Cinzel',serif;font-size:clamp(.95rem,2.6vw,2.05rem);font-weight:500;letter-spacing:.5px;color:#2a1d10;line-height:1.26;margin-bottom:clamp(6px,1.5vw,18px);}
+.hh-teaser-quote{font-size:clamp(.72rem,1.5vw,1.15rem);font-style:italic;color:#4a3824;line-height:1.4;margin-bottom:clamp(8px,2vw,22px);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.hh-teaser-row{display:flex;align-items:center;gap:clamp(6px,1.2vw,12px);flex-wrap:wrap;}
+.hh-teaser-lock{width:clamp(20px,2.6vw,34px);height:clamp(20px,2.6vw,34px);border-radius:50%;border:1.5px solid #6b4f28;display:flex;align-items:center;justify-content:center;color:#6b4f28;flex-shrink:0;}
 .hh-teaser-lock svg{width:46%;height:46%;}
-.hh-teaser-btn{display:inline-flex;align-items:center;gap:7px;padding:clamp(8px,1.2vw,12px) clamp(12px,1.8vw,18px);border:1px solid #6b4f28;font-family:'Cinzel',serif;font-size:clamp(.55rem,.9vw,.68rem);letter-spacing:1.4px;text-transform:uppercase;color:#2a1d10;background:rgba(255,250,235,.32);text-decoration:none;transition:background .25s,transform .25s;white-space:nowrap;}
+.hh-teaser-btn{display:inline-flex;align-items:center;gap:7px;padding:clamp(8px,1.5vw,15px) clamp(12px,2.2vw,22px);border:1px solid #6b4f28;font-family:'Cinzel',serif;font-size:clamp(.55rem,1.05vw,.82rem);letter-spacing:1.4px;text-transform:uppercase;color:#2a1d10;background:rgba(255,250,235,.32);text-decoration:none;transition:background .25s,transform .25s;white-space:nowrap;}
 .hh-teaser-btn:hover{background:rgba(255,250,235,.58);transform:translateY(-2px);}
+@media(min-width:901px){
+  .hh-teaser-panel{align-items:stretch;}
+}
 @media(max-width:900px){
   .hh-banner--content{--content-frame-height:clamp(210px,53vw,255px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto;}
   .hh-banner__inner{min-height:inherit;padding:clamp(12px,2.8vw,24px);}
