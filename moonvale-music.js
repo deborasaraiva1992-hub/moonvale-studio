@@ -15,6 +15,7 @@
     if(file==='ethernia.html')return'ethernia';
     if(file==='fantasy.html')return'fantasy';
     if(file==='lore-library.html')return'lore';
+    if(file==='hidden-worlds.html')return'lore';
     if(file==='artefacts.html')return'shop';
     if(file==='chronicles.html'||file==='relics.html'||file==='characters.html'||file==='regions.html')return'lore';
     if(document.querySelector('.realm-ethernia'))return'ethernia';
