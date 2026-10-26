@@ -192,6 +192,34 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .hh-panel-arrow{color:var(--gold);font-size:.95rem;opacity:.75;transition:transform .3s,opacity .3s;}
 .hh-panel:hover .hh-panel-arrow{opacity:1;transform:translateY(2px);}
 
+/* CARD REVEAL + SHINE SWEEP */
+.hh-panel{opacity:0;}
+.hh-panel.hh-pv{animation:hhCardIn .7s cubic-bezier(.22,.68,.32,1) forwards;}
+.hh-panel::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);transform:translateX(-120%);opacity:0;pointer-events:none;}
+.hh-panel.hh-pv::after{animation:hhShine .9s ease-out forwards;}
+.hh-panel:nth-child(1).hh-pv{animation-delay:0s;}
+.hh-panel:nth-child(2).hh-pv{animation-delay:.09s;}
+.hh-panel:nth-child(3).hh-pv{animation-delay:.18s;}
+.hh-panel:nth-child(4).hh-pv{animation-delay:.27s;}
+.hh-panel:nth-child(5).hh-pv{animation-delay:.36s;}
+.hh-panel:nth-child(1).hh-pv::after{animation-delay:.3s;}
+.hh-panel:nth-child(2).hh-pv::after{animation-delay:.39s;}
+.hh-panel:nth-child(3).hh-pv::after{animation-delay:.48s;}
+.hh-panel:nth-child(4).hh-pv::after{animation-delay:.57s;}
+.hh-panel:nth-child(5).hh-pv::after{animation-delay:.66s;}
+@keyframes hhCardIn{0%{opacity:0;transform:translateY(34px) scale(.95);}100%{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes hhShine{0%{opacity:0;transform:translateX(-120%);}15%{opacity:1;}85%{opacity:1;}100%{opacity:0;transform:translateX(120%);}}
+@media(prefers-reduced-motion:reduce){
+  .hh-panel{opacity:1;}
+  .hh-panel.hh-pv,.hh-panel.hh-pv::after{animation:none;}
+}
+
+/* CURSOR GLOW ON BANNERS */
+.hh-cursor-glow{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;transition:opacity .4s ease;background:radial-gradient(380px circle at var(--gx,50%) var(--gy,50%),rgba(245,217,127,.18),transparent 62%);}
+@media(hover:hover) and (pointer:fine){
+  .hh-banner:hover .hh-cursor-glow,.hh-teaser:hover .hh-cursor-glow{opacity:1;}
+}
+
 .mobile-menu{display:none;position:fixed;inset:0;z-index:1001;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;padding-top:env(safe-area-inset-top);}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:4px;text-decoration:none;color:var(--text);transition:color .25s;}
@@ -393,6 +421,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       <p>Some stories were never meant to be forgotten. Some worlds remain beyond the paths most travelers follow. And some secrets reveal themselves only to those who dare to look deeper.</p>
     </div>
   </div>
+  <div class="hh-cursor-glow"></div>
   <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
   <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
   <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
@@ -478,6 +507,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </a>
     </div>
   </div>
+  <div class="hh-cursor-glow"></div>
   <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
   <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
   <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
@@ -498,6 +528,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
       </a>
     </div>
   </div>
+  <div class="hh-cursor-glow"></div>
   <span class="hh-frame-corner hh-frame-corner--tl"><span>⚜</span></span>
   <span class="hh-frame-corner hh-frame-corner--tr"><span>⚜</span></span>
   <span class="hh-frame-corner hh-frame-corner--bl"><span>⚜</span></span>
@@ -575,6 +606,42 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
 document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+/* ── Card entrance: stagger + shine sweep, once per card ── */
+const panelObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('hh-pv');panelObs.unobserve(e.target);}
+  });
+},{threshold:.2});
+document.querySelectorAll('.hh-panel').forEach(p=>panelObs.observe(p));
+
+/* ── Mouse-only polish: card tilt + banner cursor glow ── */
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.hh-panel').forEach(panel=>{
+    let raf=null;
+    panel.addEventListener('mousemove',e=>{
+      const r=panel.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-0.5;
+      const py=(e.clientY-r.top)/r.height-0.5;
+      if(raf)cancelAnimationFrame(raf);
+      raf=requestAnimationFrame(()=>{
+        panel.style.transform='translateY(-8px) perspective(900px) rotateX('+(-py*8).toFixed(2)+'deg) rotateY('+(px*10).toFixed(2)+'deg)';
+      });
+    });
+    panel.addEventListener('mouseleave',()=>{
+      if(raf)cancelAnimationFrame(raf);
+      panel.style.transform='';
+    });
+  });
+
+  document.querySelectorAll('.hh-banner, .hh-teaser').forEach(banner=>{
+    banner.addEventListener('mousemove',e=>{
+      const r=banner.getBoundingClientRect();
+      banner.style.setProperty('--gx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      banner.style.setProperty('--gy',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+  });
+}
 
 /* ── Hidden Worlds: click goes straight to checkout ── */
 document.querySelectorAll('.hh-panel').forEach(panel=>{
