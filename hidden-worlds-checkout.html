@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlock the Archive — Moonvale Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
+  --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
+  --fan:#9b8ec4;
+}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;min-height:100vh;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16px + env(safe-area-inset-top));background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.07);z-index:1000;}
+.nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
+.logo-nav{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:5px;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:26px;align-items:center;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:1.5px;background:var(--gold);}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:1001;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;padding-top:env(safe-area-inset-top);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text);text-decoration:none;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:2px;}
+.mobile-close{position:absolute;top:calc(20px + env(safe-area-inset-top));right:24px;background:none;border:0;color:var(--gold);font-size:1.4rem;cursor:pointer;}
+@media(max-width:900px){
+  nav{padding:14px 24px;padding-top:calc(14px + env(safe-area-inset-top));}.nav-links{display:none;}.hamburger{display:flex;}
+}
+
+/* PIECE 1 — HERO BANNER */
+.pc-hero{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;padding:clamp(28px,5vw,80px);display:flex;align-items:center;justify-content:center;}
+.pc-hero-bg{position:absolute;inset:0;z-index:-2;}
+.pc-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:saturate(.95) brightness(.9);}
+.pc-hero-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,8,22,.15) 0%,rgba(5,8,22,.35) 38%,rgba(5,8,22,.8) 58%,rgba(5,8,22,.92) 100%),linear-gradient(180deg,transparent 0%,transparent 55%,rgba(5,8,22,.6) 85%,var(--bg) 100%);}
+.pc-hero-content{position:relative;max-width:560px;text-align:right;display:flex;flex-direction:column;align-items:flex-end;margin-left:auto;}
+.pc-lock{width:56px;height:56px;border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);margin-bottom:18px;background:rgba(5,8,22,.5);box-shadow:0 0 26px rgba(216,192,138,.12);}
+.pc-lock svg{width:22px;height:22px;}
+.pc-kicker{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.9;}
+.pc-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:500;letter-spacing:1.5px;color:var(--gold-hi);line-height:1.15;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.8);}
+.pc-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--dim);max-width:460px;margin:0 0 20px;}
+.pc-divider{display:flex;align-items:center;gap:14px;color:var(--gold);opacity:.6;margin-bottom:20px;}
+.pc-divider span{width:48px;height:1px;background:linear-gradient(90deg,transparent,currentColor);}
+.pc-divider span.flip{background:linear-gradient(90deg,currentColor,transparent);}
+.pc-copy{font-size:1rem;color:var(--dim);max-width:460px;margin:0 0 32px;}
+.pc-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;width:100%;max-width:400px;border:1px double rgba(216,192,138,.5);border-radius:50px;background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);color:#2a1d10;padding:16px 26px;margin-bottom:34px;text-decoration:none;cursor:default;}
+.pc-btn-text{font-family:'Cinzel',serif;}
+.pc-btn-text b{display:block;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2px;}
+.pc-btn-text em{display:block;font-style:normal;font-size:1.1rem;}
+.pc-btn svg{width:18px;height:18px;flex-shrink:0;}
+.pc-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2vw,22px);max-width:560px;}
+.pc-benefit{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+.pc-benefit svg{width:22px;height:22px;color:var(--gold);}
+.pc-benefit span{font-size:.72rem;color:var(--dim);line-height:1.3;}
+@media(max-width:800px){
+  .pc-hero{aspect-ratio:unset;flex-direction:column;align-items:stretch;justify-content:flex-start;padding:0;}
+  /* Plainest possible image rendering — no object-fit, no absolute positioning,
+     no computed-ratio box. Just a normal block image at its own natural ratio,
+     100% of the container's width. This is the same technique already used for
+     the hero images on ethernia.html/fantasy.html, which never had this problem. */
+  .pc-hero-bg{position:static;width:100%;}
+  .pc-hero-bg img{position:static;width:100%;height:auto;display:block;}
+  .pc-hero-overlay{display:none;}
+  .pc-hero-content{text-align:center;align-items:center;margin:0 auto;max-width:560px;padding:32px 24px 48px;background:var(--bg);}
+  .pc-sub,.pc-copy{margin-left:auto;margin-right:auto;}
+}
+@media(max-width:600px){
+  .pc-benefits{grid-template-columns:repeat(2,1fr);max-width:320px;}
+}
+
+/* FOOTER (same as rest of site) */
+footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
+.footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:40px;}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:10px;}
+.footer-tagline{font-style:italic;color:var(--dim);margin-bottom:10px;}
+.footer-desc{font-size:.9rem;color:var(--dim);max-width:320px;margin-bottom:18px;}
+.footer-social{display:flex;gap:14px;}
+.footer-social a{width:34px;height:34px;border:1px solid rgba(216,192,138,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,color .25s;}
+.footer-social a svg{width:15px;height:15px;}
+.footer-social a:hover{border-color:var(--gold-hi);color:var(--gold-hi);}
+.footer-col h5{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:2px;color:var(--gold);margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul a{color:var(--dim);text-decoration:none;font-size:.88rem;transition:color .25s;}
+.footer-col ul a:hover{color:var(--gold-hi);}
+.footer-bottom{max-width:1700px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(216,192,138,.08);text-align:center;}
+.footer-copy{font-size:.8rem;color:var(--dim);}
+@media(max-width:900px){
+  .footer-inner{grid-template-columns:repeat(4,1fr);}
+  .footer-inner>div:first-child{grid-column:1/-1;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-nav">MOONVALE</a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+      <li><a href="ethernia.html" data-i18n="nav.ethernia">ETHERNIA</a></li>
+      <li><a href="fantasy.html" data-i18n="nav.fantasy">FANTASY</a></li>
+      <li><a href="lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+    </ul>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" data-i18n="nav.home" onclick="closeMenu()">HOME</a>
+  <a href="ethernia.html" data-i18n="nav.ethernia" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" data-i18n="nav.fantasy" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" data-i18n="nav.lore" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" data-i18n="nav.artefacts" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="about.html" data-i18n="nav.about" onclick="closeMenu()">ABOUT</a>
+</div>
+
+<section class="pc-hero">
+  <div class="pc-hero-bg"><img src="hidden-worlds-premium-hero-v2.webp" alt="A hooded figure overlooking a moonlit castle"></div>
+  <div class="pc-hero-overlay"></div>
+  <div class="pc-hero-content">
+    <div class="pc-lock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    </div>
+    <p class="pc-kicker">Premium Content</p>
+    <h1 class="pc-title">THIS SECRET AWAITS YOU</h1>
+    <p class="pc-sub">You've found a hidden part of our worlds. This content is available for Premium members.</p>
+    <div class="pc-divider"><span></span>✦<span class="flip"></span></div>
+    <p class="pc-copy">Unlock this story and reveal every secret, character and artefact hidden within — yours to keep, forever.</p>
+
+    <a class="pc-btn" href="#">
+      <span class="pc-btn-text"><b>Unlock This Story</b><em>$5.99 USD</em></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <div class="pc-benefits">
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V6a2 2 0 0 1 2-2h12a1 1 0 0 1 1 1v14"/><path d="M6 17h13"/><path d="M6 21a2 2 0 0 1 0-4h13v4z"/></svg>
+        <span>Full access to this story</span>
+      </div>
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>New illustrations included</span>
+      </div>
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M3 12h18"/></svg>
+        <span>Every secret unlocked</span>
+      </div>
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>
+        <span>Secure one-time payment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-logo">MOONVALE</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
+      <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
+      <div class="footer-social">
+        <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.pinterest.com/moonvalestudio/" aria-label="Pinterest" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.navigation">NAVIGATION</h5>
+      <ul><li><a href="index.html" data-i18n="footer.link.home">Home</a></li><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="footer.link.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="footer.link.about">About</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.worlds">WORLDS</h5>
+      <ul><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.link.atlas">Atlas</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.archive">ARCHIVE</h5>
+      <ul><li><a href="regions.html" data-i18n="footer.link.regions">Regions</a></li><li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li><li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li><li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.connect">CONTACT</h5>
+      <ul><li><a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.eth">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.fan">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" data-i18n="social.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" data-i18n="social.pinterest">Pinterest</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="moonvale-i18n.js"></script>
+<script>
+function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+/* ───────────────────────────────────────────────────────────
+   PASTE YOUR LIVE PAYPAL CLIENT ID BELOW (from developer.paypal.com,
+   requires a PayPal Business account — personal accounts only get
+   sandbox/test credentials). Leave empty to show the "pending" message.
+   ─────────────────────────────────────────────────────────── */
+const PAYPAL_CLIENT_ID = 'AYBz3_N8LlEKq5bTF-KsCi5d6pK7PDcghkdHwRFeByzjvKQtqfQmYE1Z86F_YO_4TCXspdl6bQ1RNa5z'; // SANDBOX (teste) — trocar pelo Live ID antes de lançar
+const PRICE_USD = '5.99';
+
+const CATEGORIES = {
+  'hidden-chronicles': {title:'HIDDEN CHRONICLES', desc:'Fragments of forgotten events.', img:'cat-hidden-chronicles.webp'},
+  'secret-realms': {title:'SECRET REALMS', desc:'Places beyond the known maps.', img:'cat-secret-realms.webp'},
+  'forgotten-characters': {title:'FORGOTTEN CHARACTERS', desc:'Those whose stories remain untold.', img:'cat-forgotten-characters.webp'},
+  'lost-artefacts': {title:'LOST ARTEFACTS', desc:'Objects with hidden histories.', img:'cat-lost-artefacts.webp'},
+  'uncharted-wonders': {title:'UNCHARTED WONDERS', desc:'Hidden places, rare creatures and secrets across the world.', img:'cat-uncharted-wonders.webp'}
+};
+
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('from') || 'hidden-chronicles';
+const cat = CATEGORIES[slug] || CATEGORIES['hidden-chronicles'];
+</script>
+</body>
+</html>
