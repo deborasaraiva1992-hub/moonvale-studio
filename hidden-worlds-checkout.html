@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlock the Archive — Moonvale Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
+  --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
+  --fan:#9b8ec4;
+}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;min-height:100vh;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16px + env(safe-area-inset-top));background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.07);z-index:1000;}
+.nav-inner{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;}
+.logo-nav{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:5px;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:26px;align-items:center;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--text);font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2px;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:24px;height:1.5px;background:var(--gold);}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:1001;background:rgba(5,8,22,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;padding-top:env(safe-area-inset-top);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text);text-decoration:none;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:2px;}
+.mobile-close{position:absolute;top:calc(20px + env(safe-area-inset-top));right:24px;background:none;border:0;color:var(--gold);font-size:1.4rem;cursor:pointer;}
+@media(max-width:900px){
+  nav{padding:14px 24px;padding-top:calc(14px + env(safe-area-inset-top));}.nav-links{display:none;}.hamburger{display:flex;}
+}
+
+/* CHECKOUT */
+.ck-wrap{max-width:1760px;margin:0 auto;padding:clamp(120px,14vw,160px) clamp(20px,5vw,48px) 80px;display:flex;justify-content:center;}
+.ck-card{width:100%;max-width:640px;background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);border:1px double rgba(216,192,138,.5);border-radius:16px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 30px rgba(216,192,138,.08);position:relative;}
+.ck-art{position:relative;width:100%;aspect-ratio:16/9;}
+.ck-art img{width:100%;height:100%;object-fit:cover;display:block;}
+.ck-art::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(43,30,15,.65));}
+.ck-body{padding:clamp(24px,4vw,40px);text-align:center;color:#2a1d10;}
+.ck-kicker{display:block;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:3px;color:#8a6a3a;text-transform:uppercase;margin-bottom:10px;}
+.ck-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3.4vw,2rem);font-weight:500;letter-spacing:1px;color:#2a1d10;margin-bottom:10px;}
+.ck-desc{font-size:1.05rem;font-style:italic;color:#4a3824;max-width:480px;margin:0 auto 22px;}
+.ck-price{font-family:'Cinzel',serif;font-size:2.2rem;color:#2a1d10;margin-bottom:6px;}
+.ck-price span{font-size:.9rem;letter-spacing:2px;color:#6b4f28;margin-left:4px;}
+.ck-price-note{font-size:.82rem;color:#6b4f28;margin-bottom:26px;}
+#paypal-button-container{max-width:360px;margin:0 auto 20px;min-height:45px;}
+.checkout-pending{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:1px;color:#8a1f1f;background:rgba(138,31,31,.08);border:1px solid rgba(138,31,31,.25);border-radius:8px;padding:14px 16px;max-width:360px;margin:0 auto 20px;}
+.ck-alt-toggle{display:inline-block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:1.5px;color:#6b4f28;text-decoration:underline;cursor:pointer;margin-bottom:4px;background:none;border:0;}
+.ck-alt-box{max-width:420px;margin:14px auto 0;padding:16px 18px;border:1px dashed rgba(107,79,40,.4);border-radius:10px;background:rgba(255,255,255,.25);font-size:.92rem;color:#4a3824;text-align:left;}
+.ck-alt-box[hidden]{display:none;}
+.ck-success{max-width:420px;margin:0 auto;padding:18px 20px;border:1px solid rgba(90,140,90,.4);border-radius:10px;background:rgba(90,140,90,.12);font-size:.95rem;color:#2a4a2a;}
+.ck-success[hidden]{display:none;}
+.ck-back{display:inline-block;margin-top:26px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:1.5px;color:#6b4f28;text-decoration:none;}
+.ck-back:hover{color:#2a1d10;}
+
+/* FOOTER (same as rest of site) */
+footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
+.footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:40px;}
+.footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:10px;}
+.footer-tagline{font-style:italic;color:var(--dim);margin-bottom:10px;}
+.footer-desc{font-size:.9rem;color:var(--dim);max-width:320px;margin-bottom:18px;}
+.footer-social{display:flex;gap:14px;}
+.footer-social a{width:34px;height:34px;border:1px solid rgba(216,192,138,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,color .25s;}
+.footer-social a svg{width:15px;height:15px;}
+.footer-social a:hover{border-color:var(--gold-hi);color:var(--gold-hi);}
+.footer-col h5{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:2px;color:var(--gold);margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul a{color:var(--dim);text-decoration:none;font-size:.88rem;transition:color .25s;}
+.footer-col ul a:hover{color:var(--gold-hi);}
+.footer-bottom{max-width:1700px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(216,192,138,.08);text-align:center;}
+.footer-copy{font-size:.8rem;color:var(--dim);}
+@media(max-width:900px){
+  .footer-inner{grid-template-columns:repeat(4,1fr);}
+  .footer-inner>div:first-child{grid-column:1/-1;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo-nav">MOONVALE</a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+      <li><a href="ethernia.html" data-i18n="nav.ethernia">ETHERNIA</a></li>
+      <li><a href="fantasy.html" data-i18n="nav.fantasy">FANTASY</a></li>
+      <li><a href="lore-library.html" data-i18n="nav.lore">LORE LIBRARY</a></li>
+      <li><a href="artefacts.html" data-i18n="nav.artefacts">ARTEFACTS</a></li>
+      <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+    </ul>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="index.html" data-i18n="nav.home" onclick="closeMenu()">HOME</a>
+  <a href="ethernia.html" data-i18n="nav.ethernia" onclick="closeMenu()">ETHERNIA</a>
+  <a href="fantasy.html" data-i18n="nav.fantasy" onclick="closeMenu()">FANTASY</a>
+  <a href="lore-library.html" data-i18n="nav.lore" onclick="closeMenu()">LORE LIBRARY</a>
+  <a href="artefacts.html" data-i18n="nav.artefacts" onclick="closeMenu()">ARTEFACTS</a>
+  <a href="about.html" data-i18n="nav.about" onclick="closeMenu()">ABOUT</a>
+</div>
+
+<section class="ck-wrap">
+  <div class="ck-card" id="checkoutCard">
+    <div class="ck-art"><img id="ckImg" src="cat-hidden-chronicles.webp" alt=""></div>
+    <div class="ck-body">
+      <span class="ck-kicker">Unlock the Archive</span>
+      <h1 class="ck-title" id="ckTitle">HIDDEN CHRONICLES</h1>
+      <p class="ck-desc" id="ckDesc">Fragments of forgotten events.</p>
+      <p class="ck-price">$5.99<span>USD</span></p>
+      <p class="ck-price-note">One-time payment · instant access</p>
+
+      <div id="paypal-button-container"></div>
+
+      <button class="ck-alt-toggle" id="ckAltToggle" type="button">Prefer Yape or Plin? →</button>
+      <div class="ck-alt-box" id="ckAltBox" hidden>
+        Send your payment via Yape or Plin, then send a screenshot of the receipt to
+        <strong>[SEU E-MAIL OU WHATSAPP AQUI]</strong> along with the category you want
+        (<span id="ckAltCat">Hidden Chronicles</span>). Access will be sent back within 24h.
+      </div>
+
+      <div class="ck-success" id="ckSuccess" hidden>
+        ✦ Payment received — thank you! We'll send your access shortly to the email used in checkout.
+      </div>
+
+      <a href="hidden-worlds.html" class="ck-back">← Back to Hidden Worlds</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-logo">MOONVALE</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Between Stars And Stories</p>
+      <p class="footer-desc" data-i18n="footer.desc">We are the bridge between worlds and imagination.</p>
+      <div class="footer-social">
+        <a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" aria-label="TikTok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg></a>
+        <a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.pinterest.com/moonvalestudio/" aria-label="Pinterest" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.navigation">NAVIGATION</h5>
+      <ul><li><a href="index.html" data-i18n="footer.link.home">Home</a></li><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="lore-library.html" data-i18n="footer.link.lore">Lore Library</a></li><li><a href="artefacts.html" data-i18n="footer.link.artefacts">Artefacts</a></li><li><a href="about.html" data-i18n="footer.link.about">About</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.worlds">WORLDS</h5>
+      <ul><li><a href="ethernia.html" data-i18n="footer.link.ethernia">Ethernia</a></li><li><a href="fantasy.html" data-i18n="footer.link.fantasy">Fantasy</a></li><li><a href="atlas.html" data-i18n="footer.link.atlas">Atlas</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.archive">ARCHIVE</h5>
+      <ul><li><a href="regions.html" data-i18n="footer.link.regions">Regions</a></li><li><a href="characters.html" data-i18n="footer.link.characters">Characters</a></li><li><a href="relics.html" data-i18n="footer.link.relics">Relics</a></li><li><a href="chronicles.html" data-i18n="footer.link.chronicles">Chronicles</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.connect">CONTACT</h5>
+      <ul><li><a href="https://www.tiktok.com/@ethernia.f?_r=1&_t=ZS-91n9eVyc8BO" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.eth">TikTok Ethernia</a></li><li><a href="https://www.tiktok.com/@fantasy.ia?_r=1&_t=ZS-91n9Zuc4DxA" target="_blank" rel="noopener noreferrer" data-i18n="social.tiktok.fan">TikTok Fantasy</a></li><li><a href="https://youtube.com/@fantasyy_ia?si=fjB4xlLIYXL-ztGJ" target="_blank" rel="noopener noreferrer" data-i18n="social.youtube">YouTube</a></li><li><a href="https://www.pinterest.com/moonvalestudio/" target="_blank" rel="noopener noreferrer" data-i18n="social.pinterest">Pinterest</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy" data-i18n="footer.copy">© 2026 Moonvale Studio. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="moonvale-i18n.js"></script>
+<script>
+function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+/* ───────────────────────────────────────────────────────────
+   PASTE YOUR LIVE PAYPAL CLIENT ID BELOW (from developer.paypal.com,
+   requires a PayPal Business account — personal accounts only get
+   sandbox/test credentials). Leave empty to show the "pending" message.
+   ─────────────────────────────────────────────────────────── */
+const PAYPAL_CLIENT_ID = '';
+const PRICE_USD = '5.99';
+
+const CATEGORIES = {
+  'hidden-chronicles': {title:'HIDDEN CHRONICLES', desc:'Fragments of forgotten events.', img:'cat-hidden-chronicles.webp'},
+  'secret-realms': {title:'SECRET REALMS', desc:'Places beyond the known maps.', img:'cat-secret-realms.webp'},
+  'forgotten-characters': {title:'FORGOTTEN CHARACTERS', desc:'Those whose stories remain untold.', img:'cat-forgotten-characters.webp'},
+  'lost-artefacts': {title:'LOST ARTEFACTS', desc:'Objects with hidden histories.', img:'cat-lost-artefacts.webp'},
+  'uncharted-wonders': {title:'UNCHARTED WONDERS', desc:'Hidden places, rare creatures and secrets across the world.', img:'cat-uncharted-wonders.webp'}
+};
+
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('from') || 'hidden-chronicles';
+const cat = CATEGORIES[slug] || CATEGORIES['hidden-chronicles'];
+
+document.getElementById('ckTitle').textContent = cat.title;
+document.getElementById('ckDesc').textContent = cat.desc;
+document.getElementById('ckImg').src = cat.img;
+document.getElementById('ckImg').alt = cat.title;
+document.getElementById('ckAltCat').textContent = cat.title;
+
+document.getElementById('ckAltToggle').addEventListener('click', function(){
+  const box = document.getElementById('ckAltBox');
+  box.hidden = !box.hidden;
+});
+
+if (PAYPAL_CLIENT_ID) {
+  const s = document.createElement('script');
+  s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=USD&enable-funding=card';
+  s.onload = renderPayPalButton;
+  s.onerror = function(){
+    document.getElementById('paypal-button-container').innerHTML =
+      '<p class="checkout-pending">Could not load PayPal. Please try again later.</p>';
+  };
+  document.head.appendChild(s);
+} else {
+  document.getElementById('paypal-button-container').innerHTML =
+    '<p class="checkout-pending">Payment is being set up — please check back soon, or use the Yape/Plin option below.</p>';
+}
+
+function renderPayPalButton(){
+  if (!window.paypal) return;
+  paypal.Buttons({
+    style: { layout: 'vertical', color: 'gold', shape: 'pill', label: 'paypal' },
+    createOrder: function(data, actions){
+      return actions.order.create({
+        purchase_units: [{
+          description: 'Moonvale Studio — ' + cat.title,
+          amount: { value: PRICE_USD, currency_code: 'USD' }
+        }]
+      });
+    },
+    onApprove: function(data, actions){
+      return actions.order.capture().then(function(){
+        document.getElementById('paypal-button-container').hidden = true;
+        document.getElementById('ckAltToggle').hidden = true;
+        document.getElementById('ckSuccess').hidden = false;
+      });
+    },
+    onError: function(err){
+      console.error('PayPal error', err);
+      alert('Something went wrong with the payment. Please try again or use the Yape/Plin option below.');
+    }
+  }).render('#paypal-button-container');
+}
+</script>
+</body>
+</html>
