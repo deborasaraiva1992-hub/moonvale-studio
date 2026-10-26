@@ -49,9 +49,6 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .ck-price-note{font-size:.82rem;color:#6b4f28;margin-bottom:26px;}
 #paypal-button-container{max-width:360px;margin:0 auto 20px;min-height:45px;}
 .checkout-pending{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:1px;color:#8a1f1f;background:rgba(138,31,31,.08);border:1px solid rgba(138,31,31,.25);border-radius:8px;padding:14px 16px;max-width:360px;margin:0 auto 20px;}
-.ck-alt-toggle{display:inline-block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:1.5px;color:#6b4f28;text-decoration:underline;cursor:pointer;margin-bottom:4px;background:none;border:0;}
-.ck-alt-box{max-width:420px;margin:14px auto 0;padding:16px 18px;border:1px dashed rgba(107,79,40,.4);border-radius:10px;background:rgba(255,255,255,.25);font-size:.92rem;color:#4a3824;text-align:left;}
-.ck-alt-box[hidden]{display:none;}
 .ck-success{max-width:420px;margin:0 auto;padding:18px 20px;border:1px solid rgba(90,140,90,.4);border-radius:10px;background:rgba(90,140,90,.12);font-size:.95rem;color:#2a4a2a;}
 .ck-success[hidden]{display:none;}
 .ck-back{display:inline-block;margin-top:26px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:1.5px;color:#6b4f28;text-decoration:none;}
@@ -118,13 +115,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
       <p class="ck-price-note">One-time payment · instant access</p>
 
       <div id="paypal-button-container"></div>
-
-      <button class="ck-alt-toggle" id="ckAltToggle" type="button">Prefer Yape or Plin? →</button>
-      <div class="ck-alt-box" id="ckAltBox" hidden>
-        Send your payment via Yape or Plin, then send a screenshot of the receipt to
-        <strong>[SEU E-MAIL OU WHATSAPP AQUI]</strong> along with the category you want
-        (<span id="ckAltCat">Hidden Chronicles</span>). Access will be sent back within 24h.
-      </div>
 
       <div class="ck-success" id="ckSuccess" hidden>
         ✦ Payment received — thank you! We'll send your access shortly to the email used in checkout.
@@ -198,13 +188,6 @@ document.getElementById('ckTitle').textContent = cat.title;
 document.getElementById('ckDesc').textContent = cat.desc;
 document.getElementById('ckImg').src = cat.img;
 document.getElementById('ckImg').alt = cat.title;
-document.getElementById('ckAltCat').textContent = cat.title;
-
-document.getElementById('ckAltToggle').addEventListener('click', function(){
-  const box = document.getElementById('ckAltBox');
-  box.hidden = !box.hidden;
-});
-
 if (PAYPAL_CLIENT_ID) {
   const s = document.createElement('script');
   s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=USD&enable-funding=card';
@@ -216,7 +199,7 @@ if (PAYPAL_CLIENT_ID) {
   document.head.appendChild(s);
 } else {
   document.getElementById('paypal-button-container').innerHTML =
-    '<p class="checkout-pending">Payment is being set up — please check back soon, or use the Yape/Plin option below.</p>';
+    '<p class="checkout-pending">Payment is being set up — please check back soon.</p>';
 }
 
 function renderPayPalButton(){
@@ -234,13 +217,12 @@ function renderPayPalButton(){
     onApprove: function(data, actions){
       return actions.order.capture().then(function(){
         document.getElementById('paypal-button-container').hidden = true;
-        document.getElementById('ckAltToggle').hidden = true;
         document.getElementById('ckSuccess').hidden = false;
       });
     },
     onError: function(err){
       console.error('PayPal error', err);
-      alert('Something went wrong with the payment. Please try again or use the Yape/Plin option below.');
+      alert('Something went wrong with the payment. Please try again.');
     }
   }).render('#paypal-button-container');
 }
