@@ -115,6 +115,9 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .hh-teaser-lock svg{width:46%;height:46%;}
 .hh-teaser-btn{display:inline-flex;align-items:center;gap:7px;padding:clamp(8px,1.2vw,12px) clamp(12px,1.8vw,18px);border:1px solid #6b4f28;font-family:'Cinzel',serif;font-size:clamp(.55rem,.9vw,.68rem);letter-spacing:1.4px;text-transform:uppercase;color:#2a1d10;background:rgba(255,250,235,.32);text-decoration:none;transition:background .25s,transform .25s;white-space:nowrap;}
 .hh-teaser-btn:hover{background:rgba(255,250,235,.58);transform:translateY(-2px);}
+@media(min-width:901px){
+  .hh-teaser-panel{align-items:stretch;}
+}
 @media(max-width:900px){
   .hh-banner--content{--content-frame-height:clamp(210px,53vw,255px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto;}
   .hh-banner__inner{min-height:inherit;padding:clamp(12px,2.8vw,24px);}
