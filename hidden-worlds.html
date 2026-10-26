@@ -117,6 +117,8 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .hh-teaser-btn:hover{background:rgba(255,250,235,.58);transform:translateY(-2px);}
 @media(min-width:901px){
   .hh-teaser-panel{align-items:stretch;}
+  /* Match Ethernia's banner width: inset by the same side gutter as .eth-main */
+  .hh-banner,.hh-teaser{width:calc(100% - clamp(24px,8vw,112px));}
 }
 @media(max-width:900px){
   .hh-banner--content{--content-frame-height:clamp(210px,53vw,255px);display:block;min-height:var(--content-frame-height);height:var(--content-frame-height);aspect-ratio:auto;}
