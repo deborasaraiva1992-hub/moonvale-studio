@@ -34,25 +34,52 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
   nav{padding:14px 24px;padding-top:calc(14px + env(safe-area-inset-top));}.nav-links{display:none;}.hamburger{display:flex;}
 }
 
-/* CHECKOUT */
-.ck-wrap{max-width:1760px;margin:0 auto;padding:clamp(120px,14vw,160px) clamp(20px,5vw,48px) 80px;display:flex;justify-content:center;}
-.ck-card{width:100%;max-width:640px;background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);border:1px double rgba(216,192,138,.5);border-radius:16px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.5),0 0 30px rgba(216,192,138,.08);position:relative;}
-.ck-art{position:relative;width:100%;aspect-ratio:16/9;}
-.ck-art img{width:100%;height:100%;object-fit:cover;display:block;}
-.ck-art::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,rgba(43,30,15,.65));}
-.ck-body{padding:clamp(24px,4vw,40px);text-align:center;color:#2a1d10;}
-.ck-kicker{display:block;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:3px;color:#8a6a3a;text-transform:uppercase;margin-bottom:10px;}
-.ck-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,3.4vw,2rem);font-weight:500;letter-spacing:1px;color:#2a1d10;margin-bottom:10px;}
-.ck-desc{font-size:1.05rem;font-style:italic;color:#4a3824;max-width:480px;margin:0 auto 22px;}
-.ck-price{font-family:'Cinzel',serif;font-size:2.2rem;color:#2a1d10;margin-bottom:6px;}
-.ck-price span{font-size:.9rem;letter-spacing:2px;color:#6b4f28;margin-left:4px;}
-.ck-price-note{font-size:.82rem;color:#6b4f28;margin-bottom:26px;}
-#paypal-button-container{max-width:360px;margin:0 auto 20px;min-height:45px;}
-.checkout-pending{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:1px;color:#8a1f1f;background:rgba(138,31,31,.08);border:1px solid rgba(138,31,31,.25);border-radius:8px;padding:14px 16px;max-width:360px;margin:0 auto 20px;}
-.ck-success{max-width:420px;margin:0 auto;padding:18px 20px;border:1px solid rgba(90,140,90,.4);border-radius:10px;background:rgba(90,140,90,.12);font-size:.95rem;color:#2a4a2a;}
+/* PREMIUM HERO */
+.pc-hero{position:relative;width:100%;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(100px,14vw,140px) clamp(20px,6vw,48px) 60px;overflow:hidden;}
+.pc-hero-bg{position:absolute;inset:0;z-index:-2;}
+.pc-hero-bg img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.9) brightness(.85);}
+.pc-hero-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,8,22,.75) 0%,rgba(5,8,22,.55) 35%,rgba(5,8,22,.88) 80%,var(--bg) 100%);}
+.pc-hero-content{position:relative;max-width:640px;text-align:center;display:flex;flex-direction:column;align-items:center;}
+.pc-lock{width:56px;height:56px;border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);margin-bottom:18px;background:rgba(5,8,22,.5);box-shadow:0 0 26px rgba(216,192,138,.12);}
+.pc-lock svg{width:22px;height:22px;}
+.pc-kicker{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;opacity:.9;}
+.pc-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:500;letter-spacing:1.5px;color:var(--gold-hi);line-height:1.15;margin-bottom:18px;text-shadow:0 4px 30px rgba(0,0,0,.8);}
+.pc-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--dim);max-width:520px;margin:0 auto 34px;}
+.pc-sub strong{color:var(--text);font-style:normal;}
+
+.pc-price-box{width:100%;max-width:380px;border:1px double rgba(216,192,138,.4);border-radius:14px;background:rgba(216,192,138,.06);backdrop-filter:blur(6px);padding:clamp(22px,3vw,30px) clamp(20px,3vw,28px);margin-bottom:30px;}
+.pc-price-row{font-family:'Cinzel',serif;color:var(--gold-hi);font-size:1.5rem;margin-bottom:4px;}
+.pc-price-row span{font-size:.72rem;letter-spacing:2px;color:var(--gold);margin-left:6px;vertical-align:middle;}
+.pc-price-note{font-size:.84rem;color:var(--dim);margin-bottom:18px;}
+#paypal-button-container{min-height:45px;}
+.checkout-pending{font-family:'Cinzel',serif;font-size:.74rem;letter-spacing:1px;color:#e4a3a3;background:rgba(138,31,31,.12);border:1px solid rgba(216,120,120,.3);border-radius:8px;padding:14px 16px;}
+.ck-success{padding:16px 18px;border:1px solid rgba(150,200,150,.4);border-radius:10px;background:rgba(120,180,120,.12);font-size:.92rem;color:#d7f0d7;}
 .ck-success[hidden]{display:none;}
-.ck-back{display:inline-block;margin-top:26px;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:1.5px;color:#6b4f28;text-decoration:none;}
-.ck-back:hover{color:#2a1d10;}
+
+.pc-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,2vw,22px);max-width:560px;margin-bottom:28px;}
+.pc-benefit{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+.pc-benefit svg{width:22px;height:22px;color:var(--gold);}
+.pc-benefit span{font-size:.72rem;color:var(--dim);line-height:1.3;}
+.pc-back{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:1.5px;color:var(--gold);text-decoration:none;opacity:.8;transition:opacity .25s;}
+.pc-back:hover{opacity:1;}
+@media(max-width:600px){
+  .pc-benefits{grid-template-columns:repeat(2,1fr);max-width:320px;}
+}
+
+/* GLIMPSE SECTION */
+.pc-glimpse{max-width:1300px;margin:0 auto;padding:0 clamp(20px,5vw,48px) clamp(60px,8vw,100px);display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(16px,3vw,28px);}
+.pc-glimpse-art{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(216,192,138,.25);min-height:280px;}
+.pc-glimpse-art img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.4) saturate(.8);}
+.pc-glimpse-lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;}
+.pc-glimpse-lock svg{width:26px;height:26px;color:var(--gold-hi);}
+.pc-glimpse-lock p{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:1px;color:var(--text);}
+.pc-glimpse-copy{background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);border-radius:14px;border:1px double rgba(216,192,138,.5);padding:clamp(28px,4vw,40px);display:flex;flex-direction:column;justify-content:center;color:#2a1d10;}
+.pc-glimpse-copy h2{font-family:'Cinzel',serif;font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:500;letter-spacing:.5px;margin-bottom:14px;}
+.pc-glimpse-copy p{font-size:1rem;color:#4a3824;}
+@media(max-width:800px){
+  .pc-glimpse{grid-template-columns:1fr;}
+  .pc-glimpse-art{min-height:220px;}
+}
 
 /* FOOTER (same as rest of site) */
 footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
@@ -104,24 +131,61 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   <a href="about.html" data-i18n="nav.about" onclick="closeMenu()">ABOUT</a>
 </div>
 
-<section class="ck-wrap">
-  <div class="ck-card" id="checkoutCard">
-    <div class="ck-art"><img id="ckImg" src="cat-hidden-chronicles.webp" alt=""></div>
-    <div class="ck-body">
-      <span class="ck-kicker">Unlock the Archive</span>
-      <h1 class="ck-title" id="ckTitle">HIDDEN CHRONICLES</h1>
-      <p class="ck-desc" id="ckDesc">Fragments of forgotten events.</p>
-      <p class="ck-price">$5.99<span>USD</span></p>
-      <p class="ck-price-note">One-time payment · instant access</p>
+<section class="pc-hero">
+  <div class="pc-hero-bg"><img id="ckImg" src="cat-hidden-chronicles.webp" alt=""></div>
+  <div class="pc-hero-overlay"></div>
+  <div class="pc-hero-content">
+    <div class="pc-lock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+    </div>
+    <p class="pc-kicker">Premium Content</p>
+    <h1 class="pc-title">THIS SECRET AWAITS YOU</h1>
+    <p class="pc-sub">You've found a hidden part of our worlds — <strong id="ckTitle">Hidden Chronicles</strong>.
+      <span id="ckDesc">Fragments of forgotten events.</span> Unlock it below to reveal the full story.</p>
 
+    <div class="pc-price-box">
+      <p class="pc-price-row">$5.99<span>USD</span></p>
+      <p class="pc-price-note">One-time unlock · instant access</p>
       <div id="paypal-button-container"></div>
-
       <div class="ck-success" id="ckSuccess" hidden>
         ✦ Payment received — thank you! We'll send your access shortly to the email used in checkout.
       </div>
-
-      <a href="hidden-worlds.html" class="ck-back">← Back to Hidden Worlds</a>
     </div>
+
+    <div class="pc-benefits">
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V6a2 2 0 0 1 2-2h12a1 1 0 0 1 1 1v14"/><path d="M6 17h13"/><path d="M6 21a2 2 0 0 1 0-4h13v4z"/></svg>
+        <span>Full access to this story</span>
+      </div>
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>High-resolution art</span>
+      </div>
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span>Instant access</span>
+      </div>
+      <div class="pc-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>
+        <span>Secure checkout</span>
+      </div>
+    </div>
+
+    <a href="hidden-worlds.html" class="pc-back">← Back to Hidden Worlds</a>
+  </div>
+</section>
+
+<section class="pc-glimpse">
+  <div class="pc-glimpse-art">
+    <img id="ckImg2" src="cat-hidden-chronicles.webp" alt="">
+    <div class="pc-glimpse-lock">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <p>This content is for unlocked members</p>
+    </div>
+  </div>
+  <div class="pc-glimpse-copy">
+    <h2>ONE UNLOCK. THE FULL STORY.</h2>
+    <p id="ckGlimpseDesc">Unlock Hidden Chronicles to reveal every fragment, illustration and secret hidden within — yours to keep, forever.</p>
   </div>
 </section>
 
@@ -188,6 +252,11 @@ document.getElementById('ckTitle').textContent = cat.title;
 document.getElementById('ckDesc').textContent = cat.desc;
 document.getElementById('ckImg').src = cat.img;
 document.getElementById('ckImg').alt = cat.title;
+document.getElementById('ckImg2').src = cat.img;
+document.getElementById('ckImg2').alt = cat.title;
+document.getElementById('ckGlimpseDesc').textContent =
+  'Unlock ' + cat.title.charAt(0) + cat.title.slice(1).toLowerCase() + ' to reveal every fragment, illustration and secret hidden within — yours to keep, forever.';
+
 if (PAYPAL_CLIENT_ID) {
   const s = document.createElement('script');
   s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=USD&enable-funding=card';
