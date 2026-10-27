@@ -109,6 +109,26 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .unlock-labels{position:absolute;left:4.85%;right:4.85%;top:70%;height:17%;display:grid;grid-template-columns:18.94% 20.02% 21.95% 19.99% 19.10%;align-items:center;}
 .unlock-labels span{display:flex;align-items:center;justify-content:center;height:100%;font-family:'Cinzel',serif;font-size:clamp(.3rem,1.45vw,1.05rem);letter-spacing:clamp(.2px,.15vw,1.5px);line-height:1.2;color:var(--gold-hi);text-transform:uppercase;text-align:center;padding:0 2%;text-shadow:0 1px 6px rgba(0,0,0,.85);}
 
+/* PIECE 3 — A GLIMPSE OF WHAT AWAITS YOU */
+.glimpse-section{padding:10px 0 60px;}
+.glimpse-img-wrap{position:relative;width:100%;overflow:hidden;}
+.glimpse-img-wrap img{width:100%;height:auto;display:block;}
+.glimpse-fade-left{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,22,.78) 0%,rgba(5,8,22,.6) 26%,rgba(5,8,22,.25) 40%,transparent 46%);}
+.glimpse-left{position:absolute;left:0;top:0;width:45%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3%;}
+.glimpse-kicker{font-family:'Cinzel',serif;font-size:clamp(.34rem,1.3vw,.85rem);letter-spacing:clamp(.3px,.3vw,2px);color:var(--gold-hi);text-transform:uppercase;margin-bottom:clamp(3px,.8vw,12px);text-shadow:0 1px 6px rgba(0,0,0,.85);}
+.glimpse-divider{display:flex;align-items:center;gap:clamp(4px,1vw,10px);color:var(--gold);opacity:.7;margin-bottom:clamp(3px,.8vw,12px);font-size:clamp(.4rem,1vw,.7rem);}
+.glimpse-divider span{width:clamp(10px,2.4vw,30px);height:1px;background:linear-gradient(90deg,transparent,currentColor);}
+.glimpse-divider span.flip{background:linear-gradient(90deg,currentColor,transparent);}
+.glimpse-divider.dark{color:#8a6a3a;}
+.glimpse-lock{width:clamp(14px,3.4vw,34px);height:clamp(14px,3.4vw,34px);border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);margin-bottom:clamp(3px,.8vw,12px);background:rgba(5,8,22,.5);flex-shrink:0;}
+.glimpse-lock svg{width:42%;height:42%;}
+.glimpse-sub{font-size:clamp(.3rem,1.1vw,.68rem);color:var(--dim);line-height:1.25;margin-bottom:clamp(4px,1.1vw,16px);text-shadow:0 1px 6px rgba(0,0,0,.7);}
+.glimpse-btn{display:inline-flex;align-items:center;justify-content:center;gap:clamp(3px,.8vw,8px);border:1px double rgba(216,192,138,.5);border-radius:30px;background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);color:#2a1d10;padding:clamp(3px,.9vw,10px) clamp(6px,1.6vw,16px);text-decoration:none;cursor:default;font-family:'Cinzel',serif;font-size:clamp(.26rem,.95vw,.62rem);letter-spacing:.3px;text-transform:uppercase;line-height:1.25;max-width:100%;}
+.glimpse-btn svg{width:clamp(7px,1.4vw,12px);height:clamp(7px,1.4vw,12px);flex-shrink:0;}
+.glimpse-right{position:absolute;left:46.5%;top:19.6%;width:46.5%;height:50.6%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2% 5%;}
+.glimpse-title{font-family:'Cinzel',serif;font-size:clamp(.5rem,2vw,1.5rem);font-weight:500;letter-spacing:clamp(.3px,.3vw,1.5px);color:#2a1d10;line-height:1.2;margin-bottom:clamp(3px,1vw,12px);}
+.glimpse-copy{font-size:clamp(.28rem,1.05vw,.68rem);line-height:1.35;color:#4a3a28;}
+
 /* FOOTER (same as rest of site) */
 footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
 .footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(18px,2.4vw,40px);}
@@ -209,6 +229,29 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
       <span>Forgotten<br>Characters</span>
       <span>Lost<br>Artefacts</span>
       <span>Uncharted<br>Wonders</span>
+    </div>
+  </div>
+</section>
+
+<section class="glimpse-section">
+  <div class="glimpse-img-wrap">
+    <img src="hidden-worlds-glimpse-banner.webp" alt="An open illuminated book beside a blank parchment scroll, with a candle, armillary sphere and moonlit castle">
+    <div class="glimpse-fade-left"></div>
+    <div class="glimpse-left">
+      <p class="glimpse-kicker">A Glimpse of What Awaits You</p>
+      <div class="glimpse-divider"><span></span>✦<span class="flip"></span></div>
+      <div class="glimpse-lock">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      </div>
+      <p class="glimpse-sub">This content is for Premium members</p>
+      <a class="glimpse-btn" href="#">Join now to reveal the full story
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="glimpse-right">
+      <h3 class="glimpse-title">One Membership.<br>All Secrets.</h3>
+      <div class="glimpse-divider dark"><span></span>✦<span class="flip"></span></div>
+      <p class="glimpse-copy">Explore the complete universe of Moonvale Studio and discover the hidden layers of each world. With a single subscription, you unlock everything in The Hidden Worlds.</p>
     </div>
   </div>
 </section>
