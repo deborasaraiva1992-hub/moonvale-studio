@@ -53,15 +53,19 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .pc-divider span{width:clamp(14px,3.2vw,36px);height:1px;background:linear-gradient(90deg,transparent,currentColor);}
 .pc-divider span.flip{background:linear-gradient(90deg,currentColor,transparent);}
 .pc-copy{font-size:clamp(.42rem,1.2vw,.72rem);line-height:1.3;color:var(--dim);max-width:100%;margin:0 0 clamp(6px,1.4vw,18px);}
-.pc-btn{display:flex;align-items:center;justify-content:space-between;gap:clamp(5px,1.2vw,12px);width:100%;max-width:100%;border:1px double rgba(216,192,138,.5);border-radius:40px;background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);color:#2a1d10;padding:clamp(6px,1.4vw,13px) clamp(9px,2vw,18px);margin-bottom:clamp(6px,1.4vw,16px);text-decoration:none;cursor:default;}
+.pc-btn{display:flex;align-items:center;justify-content:space-between;gap:clamp(4px,1vw,10px);width:100%;max-width:clamp(140px,34vw,280px);border:1px double rgba(216,192,138,.5);border-radius:30px;background:linear-gradient(160deg,#f3e6c8,#e9d9b2 60%,#e2cfa1);color:#2a1d10;padding:clamp(4px,1vw,9px) clamp(7px,1.6vw,14px);margin-bottom:clamp(5px,1.2vw,14px);text-decoration:none;cursor:default;}
 .pc-btn-text{font-family:'Cinzel',serif;}
-.pc-btn-text b{display:block;font-size:clamp(.4rem,1vw,.6rem);letter-spacing:.8px;text-transform:uppercase;margin-bottom:1px;white-space:nowrap;}
-.pc-btn-text em{display:block;font-style:normal;font-size:clamp(.52rem,1.4vw,.82rem);}
-.pc-btn svg{width:clamp(10px,1.8vw,15px);height:clamp(10px,1.8vw,15px);flex-shrink:0;}
+.pc-btn-text b{display:block;font-size:clamp(.32rem,.8vw,.48rem);letter-spacing:.6px;text-transform:uppercase;margin-bottom:1px;white-space:nowrap;}
+.pc-btn-text em{display:block;font-style:normal;font-size:clamp(.42rem,1.1vw,.66rem);}
+.pc-btn svg{width:clamp(8px,1.4vw,12px);height:clamp(8px,1.4vw,12px);flex-shrink:0;}
 .pc-benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(4px,1.2vw,12px);width:100%;max-width:100%;}
-.pc-benefit{display:flex;flex-direction:column;align-items:center;gap:clamp(2px,.6vw,6px);text-align:center;}
-.pc-benefit svg{width:clamp(10px,2vw,16px);height:clamp(10px,2vw,16px);color:var(--gold);}
-.pc-benefit span{font-size:clamp(.34rem,.95vw,.52rem);color:var(--dim);line-height:1.2;}
+.pc-benefit{display:flex;flex-direction:column;align-items:center;gap:clamp(2px,.5vw,5px);text-align:center;}
+.pc-benefit-icon{width:clamp(16px,3.6vw,32px);height:clamp(16px,3.6vw,32px);border-radius:50%;border:1px solid rgba(216,192,138,.45);display:flex;align-items:center;justify-content:center;background:rgba(5,8,22,.4);box-shadow:0 0 10px rgba(216,192,138,.08);flex-shrink:0;}
+.pc-benefit-icon svg{width:50%;height:50%;color:var(--gold-hi);}
+.pc-benefit span{font-size:clamp(.32rem,.9vw,.5rem);color:var(--dim);line-height:1.2;}
+.pc-signin{font-size:clamp(.32rem,.9vw,.5rem);color:var(--dim);margin-top:clamp(3px,.8vw,8px);}
+.pc-signin a{color:var(--gold-hi);text-decoration:none;font-family:'Cinzel',serif;letter-spacing:.4px;display:inline-flex;align-items:center;gap:3px;}
+.pc-signin a svg{width:8px;height:8px;}
 @media(min-width:720px){
   .pc-benefits{grid-template-columns:repeat(4,1fr);}
 }
@@ -129,22 +133,24 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 
       <div class="pc-benefits">
         <div class="pc-benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V6a2 2 0 0 1 2-2h12a1 1 0 0 1 1 1v14"/><path d="M6 17h13"/><path d="M6 21a2 2 0 0 1 0-4h13v4z"/></svg>
+          <div class="pc-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 6.2c-2-1.4-5-1.8-9-.9v13c4-.9 7 0 9 1.4c2-1.4 5-2.3 9-1.4v-13c-4-.9-7-.5-9 .9z"/><path d="M12 6.2v14.3"/></svg></div>
           <span>Full access to this story</span>
         </div>
         <div class="pc-benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <div class="pc-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20 4c-5 0-9.5 3-11.5 9.5l-3 6.5 6.5-3C18 14.5 20 10 20 4z"/><path d="M9.3 13.3L5.5 17.1"/></svg></div>
           <span>New illustrations included</span>
         </div>
         <div class="pc-benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M3 12h18"/></svg>
+          <div class="pc-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7.5" cy="7.5" r="3.1"/><path d="M9.7 9.7L20 20"/><path d="M14.6 14.6l2.2-2.2M17.4 17.4l2.2-2.2"/></svg></div>
           <span>Every secret unlocked</span>
         </div>
         <div class="pc-benefit">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>
+          <div class="pc-benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M12 9l2.3 2.3L12 13.6L9.7 11.3z"/></svg></div>
           <span>Secure one-time payment</span>
         </div>
       </div>
+
+      <p class="pc-signin">Already a member? <a href="#">Sign In <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
   </div>
 </div>
