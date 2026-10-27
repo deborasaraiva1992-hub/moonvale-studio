@@ -181,8 +181,8 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .checkout-loading{color:var(--dim);font-size:.82rem;}
 
 /* FOOTER (same as rest of site) */
-footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
-.footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(18px,2.4vw,40px);}
+footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(8px,1.2vw,18px) clamp(16px,4vw,58px) calc(clamp(8px,1.4vw,20px) + env(safe-area-inset-bottom));}
+.footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(8px,0.8vw,11px);}
 .footer-inner>div{min-width:0;}
 .footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:10px;}
 .footer-tagline{font-style:italic;color:var(--dim);margin-bottom:10px;}
@@ -191,7 +191,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 .footer-social a{width:34px;height:34px;border:1px solid rgba(216,192,138,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,color .25s;}
 .footer-social a svg{width:15px;height:15px;}
 .footer-social a:hover{border-color:var(--gold-hi);color:var(--gold-hi);}
-.footer-col h5{font-family:'Cinzel',serif;font-size:clamp(.5rem,1.8vw,.74rem);letter-spacing:clamp(.4px,.3vw,2px);color:var(--gold);margin-bottom:14px;white-space:nowrap;}
+.footer-col h5{font-family:'Cinzel',serif;font-size:clamp(.5rem,1vw,.58rem);letter-spacing:clamp(1px,.4vw,2.6px);color:var(--gold);margin-bottom:14px;white-space:nowrap;}
 .footer-col ul{list-style:none;}
 .footer-col ul li{margin-bottom:8px;}
 .footer-col ul a{color:var(--dim);text-decoration:none;font-size:.88rem;transition:color .25s;}
@@ -202,8 +202,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   .footer-inner{grid-template-columns:repeat(4,1fr);}
   .footer-inner>div:first-child{grid-column:1/-1;}
 }
-@media(max-width:430px){.footer-inner{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:420px){.footer-inner{gap:14px;}.footer-col h5{margin-bottom:7px;}.footer-col ul li{margin-bottom:4px;}}
+@media(max-width:380px){.footer-desc{display:none;}}
 </style>
 </head>
 <body>
