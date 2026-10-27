@@ -137,19 +137,13 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .final-icon svg{width:46%;height:46%;}
 .final-item p{font-size:clamp(.68rem,1.3vw,.88rem);color:var(--dim);line-height:1.4;max-width:260px;}
 
-/* PIECE 4 — FINAL ICON STRIP (code-built, no artwork) */
-.final-bar{border-top:1px solid rgba(216,192,138,.15);border-bottom:1px solid rgba(216,192,138,.15);padding:clamp(24px,4vw,40px) clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);max-width:1300px;margin:0 auto;}
-.final-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(6px,1.2vw,12px);}
-.final-icon{width:clamp(30px,5vw,46px);height:clamp(30px,5vw,46px);border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);background:rgba(216,192,138,.05);box-shadow:0 0 18px rgba(216,192,138,.1);flex-shrink:0;}
-.final-icon svg{width:46%;height:46%;}
-.final-item p{font-size:clamp(.68rem,1.3vw,.88rem);color:var(--dim);line-height:1.4;max-width:260px;}
-
 /* FOOTER (same as rest of site) */
 footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
 .footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(18px,2.4vw,40px);}
+.footer-inner>div{min-width:0;}
 .footer-logo{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:5px;color:var(--gold);margin-bottom:10px;}
 .footer-tagline{font-style:italic;color:var(--dim);margin-bottom:10px;}
-.footer-desc{font-size:.9rem;color:var(--dim);max-width:320px;margin-bottom:18px;}
+.footer-desc{font-size:.9rem;color:var(--dim);max-width:100%;margin-bottom:18px;}
 .footer-social{display:flex;gap:14px;}
 .footer-social a{width:34px;height:34px;border:1px solid rgba(216,192,138,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);transition:border-color .25s,color .25s;}
 .footer-social a svg{width:15px;height:15px;}
@@ -165,6 +159,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   .footer-inner{grid-template-columns:repeat(4,1fr);}
   .footer-inner>div:first-child{grid-column:1/-1;}
 }
+@media(max-width:560px){.footer-inner{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:420px){.footer-inner{gap:14px;}.footer-col h5{margin-bottom:7px;}.footer-col ul li{margin-bottom:4px;}}
 </style>
 </head>
