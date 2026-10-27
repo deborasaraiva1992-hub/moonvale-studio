@@ -113,21 +113,22 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .glimpse-section{padding:10px 0 60px;}
 .glimpse-img-wrap{position:relative;width:100%;overflow:hidden;}
 .glimpse-img-wrap img{width:100%;height:auto;display:block;}
+.glimpse-smoke{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,var(--bg) 0%,rgba(5,8,22,.55) 4%,transparent 11%,transparent 89%,rgba(5,8,22,.55) 96%,var(--bg) 100%);}
 .glimpse-fade-left{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,22,.78) 0%,rgba(5,8,22,.6) 30%,rgba(5,8,22,.25) 48%,transparent 56%);}
-.glimpse-left{position:absolute;left:0;top:0;width:45%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3%;}
-.glimpse-kicker{font-family:'Cinzel',serif;font-size:clamp(.34rem,1.3vw,.85rem);letter-spacing:clamp(.3px,.3vw,2px);color:var(--gold-hi);text-transform:uppercase;margin-bottom:clamp(3px,.8vw,12px);text-shadow:0 1px 6px rgba(0,0,0,.85);}
-.glimpse-divider{display:flex;align-items:center;gap:clamp(4px,1vw,10px);color:var(--gold);opacity:.7;margin-bottom:clamp(3px,.8vw,12px);font-size:clamp(.4rem,1vw,.7rem);}
+.glimpse-left{position:absolute;left:0;top:0;width:45%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3% 3% 6%;gap:clamp(2px,.6vw,4px);}
+.glimpse-kicker{font-family:'Cinzel',serif;font-size:clamp(.5rem,1.5vw,.85rem);letter-spacing:clamp(.3px,.3vw,2px);color:var(--gold-hi);text-transform:uppercase;margin-bottom:clamp(2px,.6vw,10px);text-shadow:0 1px 6px rgba(0,0,0,.9);line-height:1.25;}
+.glimpse-divider{display:flex;align-items:center;gap:clamp(4px,1vw,10px);color:var(--gold);opacity:.7;margin-bottom:clamp(2px,.6vw,10px);font-size:clamp(.4rem,1vw,.7rem);}
 .glimpse-divider span{width:clamp(10px,2.4vw,30px);height:1px;background:linear-gradient(90deg,transparent,currentColor);}
 .glimpse-divider span.flip{background:linear-gradient(90deg,currentColor,transparent);}
 .glimpse-divider.dark{color:#8a6a3a;}
-.glimpse-lock{width:clamp(14px,3.4vw,34px);height:clamp(14px,3.4vw,34px);border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);margin-bottom:clamp(3px,.8vw,12px);background:rgba(5,8,22,.5);flex-shrink:0;}
+.glimpse-lock{width:clamp(16px,3.4vw,34px);height:clamp(16px,3.4vw,34px);border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);margin-bottom:clamp(2px,.6vw,10px);background:rgba(5,8,22,.6);flex-shrink:0;}
 .glimpse-lock svg{width:42%;height:42%;}
-.glimpse-sub{font-size:clamp(.3rem,1.1vw,.68rem);color:var(--dim);line-height:1.25;margin-bottom:clamp(4px,1.1vw,16px);text-shadow:0 1px 6px rgba(0,0,0,.7);}
-.glimpse-btn{display:inline-flex;align-items:center;justify-content:center;gap:clamp(4px,1vw,10px);border:1.5px double rgba(245,217,127,.8);border-radius:40px;background:linear-gradient(160deg,#fcf1d6 0%,#f3e0ae 30%,#d9b878 65%,#f0dba8 100%);color:#3a2712;padding:clamp(4px,1.1vw,13px) clamp(9px,2.2vw,24px);text-decoration:none;cursor:default;font-family:'Cinzel',serif;font-size:clamp(.26rem,.95vw,.64rem);letter-spacing:1.4px;text-transform:uppercase;line-height:1.3;max-width:100%;box-shadow:0 0 0 1px rgba(5,8,22,.45),0 4px 18px rgba(0,0,0,.5),0 0 22px rgba(216,192,138,.4),inset 0 1px 0 rgba(255,255,255,.55);text-shadow:0 1px 0 rgba(255,255,255,.35);}
+.glimpse-sub{font-size:clamp(.46rem,1.2vw,.68rem);color:var(--dim);line-height:1.3;margin-bottom:clamp(3px,.9vw,14px);text-shadow:0 1px 6px rgba(0,0,0,.85);}
+.glimpse-btn{display:inline-flex;align-items:center;justify-content:center;gap:clamp(4px,1vw,10px);border:1.5px double rgba(245,217,127,.8);border-radius:40px;background:linear-gradient(160deg,#fcf1d6 0%,#f3e0ae 30%,#d9b878 65%,#f0dba8 100%);color:#3a2712;padding:clamp(4px,1.1vw,13px) clamp(9px,2.2vw,24px);text-decoration:none;cursor:default;font-family:'Cinzel',serif;font-size:clamp(.38rem,1vw,.64rem);letter-spacing:1px;text-transform:uppercase;line-height:1.3;max-width:100%;box-shadow:0 0 0 1px rgba(5,8,22,.45),0 4px 18px rgba(0,0,0,.5),0 0 22px rgba(216,192,138,.4),inset 0 1px 0 rgba(255,255,255,.55);text-shadow:0 1px 0 rgba(255,255,255,.35);}
 .glimpse-btn svg{width:clamp(7px,1.4vw,12px);height:clamp(7px,1.4vw,12px);flex-shrink:0;}
-.glimpse-right{position:absolute;left:58.6%;top:20.2%;width:33.6%;height:55.7%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2% 5%;}
-.glimpse-title{font-family:'Cinzel',serif;font-size:clamp(.5rem,2vw,1.5rem);font-weight:500;letter-spacing:clamp(.3px,.3vw,1.5px);color:#2a1d10;line-height:1.2;margin-bottom:clamp(3px,1vw,12px);}
-.glimpse-copy{font-size:clamp(.28rem,1.05vw,.68rem);line-height:1.35;color:#4a3a28;}
+.glimpse-right{position:absolute;left:58.6%;top:20.2%;width:33.6%;height:55.7%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2% 5%;gap:clamp(2px,.6vw,4px);}
+.glimpse-title{font-family:'Cinzel',serif;font-size:clamp(.58rem,2.2vw,1.5rem);font-weight:500;letter-spacing:clamp(.3px,.3vw,1.5px);color:#2a1d10;line-height:1.15;margin-bottom:clamp(1px,.8vw,12px);}
+.glimpse-copy{font-size:clamp(.4rem,1.15vw,.68rem);line-height:1.22;color:#4a3a28;}
 
 /* FOOTER (same as rest of site) */
 footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
@@ -236,6 +237,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <section class="glimpse-section">
   <div class="glimpse-img-wrap">
     <img src="hidden-worlds-glimpse-banner.webp" alt="An open illuminated book beside a blank parchment scroll, with a candle, armillary sphere and moonlit castle">
+    <div class="glimpse-smoke"></div>
     <div class="glimpse-fade-left"></div>
     <div class="glimpse-left">
       <p class="glimpse-kicker">A Glimpse of What Awaits You</p>
