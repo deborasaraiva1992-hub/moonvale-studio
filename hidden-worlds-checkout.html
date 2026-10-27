@@ -96,6 +96,22 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
   .pc-hero-overlay-text{padding:2% 15% 2% 3%;}
 }
 
+/* PIECE 2 — WHAT YOU WILL UNLOCK */
+.unlock-section{padding:60px 0 70px;}
+.unlock-head{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 24px 28px;}
+.unlock-line{width:clamp(30px,6vw,70px);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.unlock-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.8rem);letter-spacing:clamp(2px,.6vw,5px);color:var(--gold-hi);text-transform:uppercase;font-weight:500;text-align:center;}
+.unlock-img-wrap{width:100%;overflow:hidden;margin-bottom:30px;}
+.unlock-img-wrap img{width:100%;height:auto;display:block;}
+.unlock-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,2vw,24px);max-width:1500px;margin:0 auto;padding:0 clamp(16px,4vw,48px);}
+.unlock-item{text-align:center;}
+.unlock-item h3{font-family:'Cinzel',serif;font-size:clamp(.62rem,1.3vw,.82rem);letter-spacing:clamp(.5px,.3vw,1.5px);color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.unlock-item p{font-size:clamp(.72rem,1.4vw,.92rem);color:var(--dim);line-height:1.4;}
+@media(max-width:700px){
+  .unlock-grid{grid-template-columns:repeat(2,1fr);}
+  .unlock-item:last-child{grid-column:1/-1;}
+}
+
 /* FOOTER (same as rest of site) */
 footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding-bottom:calc(40px + env(safe-area-inset-bottom));}
 .footer-inner{max-width:1700px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,1.3fr) repeat(4,1fr);gap:clamp(18px,2.4vw,40px);}
@@ -180,6 +196,39 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
     </div>
   </div>
 </div>
+
+<section class="unlock-section">
+  <div class="unlock-head">
+    <span class="unlock-line"></span>
+    <h2 class="unlock-title">What You Will Unlock</h2>
+    <span class="unlock-line"></span>
+  </div>
+  <div class="unlock-img-wrap">
+    <img src="hidden-worlds-unlock-banner.webp" alt="Five framed illustrations: a desk of chronicles, a moonlit castle, a hooded woman, an armillary sphere, and a dragon over ancient ruins">
+  </div>
+  <div class="unlock-grid">
+    <div class="unlock-item">
+      <h3>Hidden Chronicles</h3>
+      <p>Ancient stories, forgotten chronicles and mysterious records.</p>
+    </div>
+    <div class="unlock-item">
+      <h3>Secret Realms</h3>
+      <p>Hidden places, extraordinary kingdoms and unexplored territories.</p>
+    </div>
+    <div class="unlock-item">
+      <h3>Forgotten Characters</h3>
+      <p>Characters, destinies and stories lost in time.</p>
+    </div>
+    <div class="unlock-item">
+      <h3>Lost Artefacts</h3>
+      <p>Legendary objects and the secrets they hold.</p>
+    </div>
+    <div class="unlock-item">
+      <h3>Uncharted Wonders</h3>
+      <p>Amazing landscapes, mysteries and wonders beyond the known.</p>
+    </div>
+  </div>
+</section>
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
