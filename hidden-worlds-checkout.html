@@ -114,6 +114,8 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   </div>
 </nav>
 
+<div id="debugBox" style="position:relative;z-index:2000;background:#ff2d55;color:#fff;font-family:monospace;font-size:14px;padding:70px 12px 10px;text-align:center;"></div>
+
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
   <a href="index.html" data-i18n="nav.home" onclick="closeMenu()">HOME</a>
@@ -201,6 +203,24 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 <script>
 function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+(function(){
+  var b = document.getElementById('debugBox');
+  if (!b) return;
+  var heroImg = document.querySelector('.pc-hero-bg img');
+  function update(){
+    var r = heroImg ? heroImg.getBoundingClientRect() : null;
+    b.textContent =
+      'innerWidth=' + window.innerWidth +
+      ' clientWidth=' + document.documentElement.clientWidth +
+      ' dpr=' + window.devicePixelRatio +
+      ' imgRenderedW=' + (r ? Math.round(r.width) : 'n/a') +
+      ' imgNaturalW=' + (heroImg ? heroImg.naturalWidth : 'n/a');
+  }
+  update();
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+})();
 
 /* ───────────────────────────────────────────────────────────
    PASTE YOUR LIVE PAYPAL CLIENT ID BELOW (from developer.paypal.com,
