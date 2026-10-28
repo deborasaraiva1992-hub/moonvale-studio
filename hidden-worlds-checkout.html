@@ -122,10 +122,20 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
   .pc-btn-text b{font-size:clamp(.38rem,.9vw,.56rem);white-space:normal;}
   .pc-btn-text em{font-size:clamp(.5rem,1.25vw,.76rem);}
 }
-/* Desktop only: push the block further left */
+/* Desktop only: push the block further left, bigger box, bigger type */
 @media(min-width:1024px){
   .pc-hero-fade{background:radial-gradient(ellipse 24% 55% at 70% 46%,rgba(5,10,28,.95) 0%,rgba(5,10,28,.88) 38%,rgba(5,10,28,.5) 62%,rgba(5,10,28,.15) 80%,transparent 92%);}
   .pc-hero-overlay-text{padding:2% 15% 2% 3%;}
+  .pc-hero-box{max-width:clamp(400px,27vw,560px);}
+  .pc-kicker{font-size:clamp(.6rem,1vw,.8rem);}
+  .pc-title{font-size:clamp(2rem,3vw,3.1rem);}
+  .pc-sub{font-size:clamp(.82rem,1.25vw,1.15rem);}
+  .pc-copy{font-size:clamp(.7rem,1.05vw,.95rem);}
+  .pc-btn{max-width:clamp(230px,24vw,320px);}
+  .pc-btn-text b{font-size:clamp(.58rem,.82vw,.78rem);}
+  .pc-btn-text em{font-size:clamp(.78rem,1.15vw,1.05rem);}
+  .pc-benefit span{font-size:clamp(.5rem,.75vw,.7rem);}
+  .pc-signin{font-size:clamp(.5rem,.72vw,.68rem);}
 }
 
 /* PIECE 2 — WHAT YOU WILL UNLOCK */
