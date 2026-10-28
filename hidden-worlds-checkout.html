@@ -164,7 +164,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .glimpse-divider span{width:clamp(10px,2.4vw,30px);height:1px;background:linear-gradient(90deg,transparent,currentColor);}
 .glimpse-divider span.flip{background:linear-gradient(90deg,currentColor,transparent);}
 .glimpse-divider.dark{color:#8a6a3a;}
-@media(max-width:1023px){.glimpse-left>.glimpse-divider{display:none;}.glimpse-left{padding-top:9%;}}
+@media(max-width:1023px){
+  .glimpse-left>.glimpse-divider{display:none;}
+  .glimpse-left{padding-top:9%;left:12%;width:34%;}
+  .glimpse-kicker{right:auto;left:12%;width:34%;display:flex;align-items:center;justify-content:center;}
+}
 .glimpse-lock{width:clamp(16px,3.4vw,34px);height:clamp(16px,3.4vw,34px);border-radius:50%;border:1px solid rgba(216,192,138,.5);display:flex;align-items:center;justify-content:center;color:var(--gold-hi);margin-bottom:clamp(2px,.6vw,10px);background:rgba(5,8,22,.6);flex-shrink:0;}
 .glimpse-lock svg{width:42%;height:42%;}
 .glimpse-sub{font-size:clamp(.46rem,1.2vw,.68rem);color:var(--dim);line-height:1.3;margin-bottom:clamp(3px,.9vw,14px);background:rgba(5,8,22,.55);padding:clamp(2px,.6vw,6px) clamp(7px,1.6vw,14px);border-radius:16px;box-shadow:0 4px 14px rgba(5,8,22,.55);}
