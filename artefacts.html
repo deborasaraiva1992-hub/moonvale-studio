@@ -46,6 +46,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .hero-eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:6px;color:var(--gold);opacity:.85;margin-bottom:20px;}
 
 .hero-title-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:20px;}
+.hero-tagline{font-family:'Cinzel',serif;font-size:clamp(.78rem,1.6vw,1.05rem);letter-spacing:5px;color:var(--text);opacity:.85;margin-top:14px;text-transform:uppercase;}
 .hero-rule{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
 .hero-rule-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.5;}
 .hero-rule-line.right{background:linear-gradient(90deg,var(--gold),transparent);}
@@ -77,7 +78,10 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 
 .hero-rule-bottom{display:flex;align-items:center;gap:14px;margin-top:18px;}
 
-.hero-subtitle{font-size:clamp(1rem,2.2vw,1.4rem);color:var(--dim);font-style:italic;font-weight:300;margin-bottom:40px;max-width:620px;margin-left:auto;margin-right:auto;margin-top:24px;}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:clamp(.62rem,1.3vw,.82rem);letter-spacing:3px;text-transform:uppercase;color:var(--dim);font-style:normal;font-weight:400;margin-bottom:36px;max-width:620px;margin-left:auto;margin-right:auto;margin-top:24px;}
+
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 34px;margin-bottom:34px;border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:2.5px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);backdrop-filter:blur(6px);transition:all .3s;}
+.hero-cta:hover{background:rgba(216,192,138,.1);border-color:var(--gold);box-shadow:0 0 18px rgba(216,192,138,.15);}
 
 .scroll-cue{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:4px;color:var(--gold);opacity:.6;}
 .scroll-mouse{width:20px;height:32px;border:1.5px solid var(--gold);border-radius:10px;position:relative;display:flex;justify-content:center;}
@@ -316,21 +320,22 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
     <div class="hero-smoke"></div>
   </div>
   <div class="hero-content">
-    <p class="hero-eyebrow">✧ &nbsp; RELICS OF BOTH WORLDS &nbsp; ✧</p>
     <div class="hero-title-wrap">
       <div class="hero-rule">
         <div class="hero-rule-line"></div>
-        <span class="hero-rule-sym">◈</span>
+        <span class="hero-rule-sym">✦</span>
         <div class="hero-rule-line right"></div>
       </div>
       <h1 class="hero-title" id="heroTitle">ARTEFACTS</h1>
+      <p class="hero-tagline">Fantasy Art &amp; Prints</p>
       <div class="hero-rule-bottom">
         <div class="hero-rule-line"></div>
         <span class="hero-rule-sym">◈</span>
         <div class="hero-rule-line right"></div>
       </div>
     </div>
-    <p class="hero-subtitle">Treasures forged in light and shadow, waiting to be discovered.</p>
+    <p class="hero-subtitle">Worlds Beyond Your Imagination</p>
+    <a href="#featured-collections" class="hero-cta">EXPLORE THE COLLECTIONS →</a>
     <div class="scroll-cue">
       <div class="scroll-mouse"></div>
       SCROLL TO DISCOVER
@@ -355,7 +360,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 <hr class="section-divider">
 
 <!-- FEATURED COLLECTIONS -->
-<section class="section fade-in">
+<section class="section fade-in" id="featured-collections">
   <div class="section-header">
     <div class="section-ornament">
       <div class="section-ornament-line"></div>
