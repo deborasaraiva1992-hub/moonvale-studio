@@ -175,6 +175,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;padding-top:calc(16
 .glimpse-right{position:absolute;left:58.6%;top:20.2%;width:33.6%;height:55.7%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:4% 5% 2%;gap:clamp(1px,.5vw,4px);}
 .glimpse-title{font-family:'Cinzel',serif;font-size:clamp(.5rem,2vw,1.5rem);font-weight:500;letter-spacing:clamp(.1px,.2vw,1.5px);color:#2a1d10;line-height:1.15;margin-bottom:clamp(1px,.8vw,12px);white-space:normal;}
 .glimpse-copy{font-size:clamp(.38rem,1.1vw,.68rem);line-height:1.18;color:#4a3a28;}
+@media(min-width:1024px){
+  .glimpse-title{font-size:clamp(1.3rem,2.6vw,2.1rem);margin-bottom:clamp(6px,1.2vw,16px);}
+  .glimpse-copy{font-size:clamp(.8rem,1.4vw,1.05rem);line-height:1.35;}
+  .glimpse-right{gap:clamp(4px,1vw,10px);}
+}
 
 /* PIECE 4 — FINAL ICON STRIP (code-built, no artwork) */
 .final-bar{border-top:1px solid rgba(216,192,138,.15);border-bottom:1px solid rgba(216,192,138,.15);padding:clamp(24px,4vw,40px) clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,3vw,40px);max-width:1300px;margin:0 auto;}
