@@ -26,7 +26,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 :root{
-  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--text:#f5f1e8;
+  --bg:#050816;--gold:#d8c08a;--gold-hi:#f5d97f;--gold-aged:#b5873c;--text:#f5f1e8;
   --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
   --fan:#9b8ec4;
 }
@@ -819,9 +819,12 @@ footer::before{opacity:.08;animation-duration:24s;}
    3/4 and 2.75/4 + cover/contain left over from earlier edits above. */
 .collection-card{aspect-ratio:4/5!important;background:#050816!important;}
 .collection-card img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;background:none!important;padding:0!important;}
-.collection-card-label{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:16px 14px;font-family:'Cinzel',serif;font-size:clamp(.62rem,1.3vw,.8rem);letter-spacing:1px;color:var(--gold-hi);text-shadow:0 2px 10px rgba(0,0,0,.9);pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease;}
-.collection-card:hover .collection-card-label,.collection-card:focus-visible .collection-card-label,.collection-card:active .collection-card-label{opacity:1;transform:translateY(0);}
-@media(max-width:600px){.collection-card-label{padding:12px 10px;font-size:.66rem;}}
+.collection-card-label{position:absolute;left:14px;right:14px;bottom:18%;z-index:2;text-align:center;font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1rem,2.4vw,1.4rem);letter-spacing:1.5px;color:var(--gold-aged);text-shadow:0 1px 0 rgba(255,230,170,.2),0 3px 16px rgba(0,0,0,.95),0 0 22px rgba(0,0,0,.65);pointer-events:none;opacity:.88;transition:opacity .35s ease,transform .35s ease;}
+@media(hover:hover) and (pointer:fine){
+  .collection-card-label{opacity:0;transform:translateY(8px);}
+  .collection-card:hover .collection-card-label,.collection-card:focus-visible .collection-card-label{opacity:1;transform:translateY(0);}
+}
+@media(max-width:600px){.collection-card-label{font-size:1.05rem;bottom:16%;}}
 </style>
 </head>
 <body>
