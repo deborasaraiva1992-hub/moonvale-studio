@@ -133,7 +133,8 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .col-card:hover .col-card-btn{background:rgba(216,192,138,.12);border-color:var(--gold);}
 
 /* PROMO BANNERS (Fresh Art / Beloved by Explorers / Artisan's Promise) */
-.promo-stack{display:flex;flex-direction:column;gap:28px;max-width:1400px;margin:0 auto;}
+.promo-stack{display:flex;flex-direction:column;gap:28px;max-width:2000px;margin:0 auto;}
+#promo-banners{max-width:2000px;}
 .promo-banner{position:relative;aspect-ratio:2.3/1;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#050816;transition:border-color .35s;}
 .promo-banner:hover{border-color:rgba(216,192,138,.4);}
 .promo-media{position:absolute;inset:0;z-index:0;}
@@ -421,7 +422,7 @@ footer{padding-top:clamp(34px,4vw,54px)!important;padding-bottom:calc(clamp(24px
 <hr class="section-divider">
 
 <!-- PROMO BANNERS -->
-<section class="section fade-in">
+<section class="section fade-in" id="promo-banners">
   <div class="promo-stack">
     <div class="promo-banner">
       <div class="promo-content">
