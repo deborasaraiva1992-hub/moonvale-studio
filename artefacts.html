@@ -41,7 +41,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
   radial-gradient(ellipse 36% 30% at 80% 97%,rgba(0,0,0,.6) 0%,transparent 74%),
   radial-gradient(ellipse 32% 28% at 98% 100%,rgba(0,0,0,.55) 0%,transparent 72%);}
 .hero-fade-glow{position:relative;height:160px;margin-top:-140px;pointer-events:none;z-index:1;background:radial-gradient(ellipse 65% 100% at 50% 0%,rgba(216,192,138,.1) 0%,rgba(155,142,196,.05) 45%,rgba(5,8,22,0) 78%);}
-#featured-collections{padding-top:10px;}
+#featured-collections{padding-top:10px;max-width:2000px;}
 .hero-fade{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 32% 46% at 56% 49.6%,rgba(5,8,22,.95) 0%,rgba(5,8,22,.78) 48%,rgba(5,8,22,.3) 72%,transparent 90%);}
 .hero-img-overlay::before{content:'';position:absolute;top:0;left:0;right:0;height:100px;background:linear-gradient(to bottom,rgba(5,8,22,.45),transparent);}
 .hero-content{position:relative;z-index:2;padding:0;max-width:27vw;width:100%;margin:-42vw auto 0;transform:translateX(9vw);}
@@ -118,9 +118,9 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .section-divider{width:100%;max-width:1400px;margin:0 auto;border:none;border-top:1px solid rgba(216,192,138,.08);}
 
 /* CAROUSEL (Featured Collections) */
-.col-cards-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;max-width:1400px;margin:0 auto;}
-.col-card{position:relative;flex:0 1 calc((100% - 96px) / 5);max-width:280px;aspect-ratio:1/2;border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:box-shadow .35s,border-color .35s;text-decoration:none;display:block;background:#050816;}
-@media(max-width:1100px){.col-card{flex:0 1 calc((100% - 48px) / 3);max-width:300px;}}
+.col-cards-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;max-width:2000px;margin:0 auto;}
+.col-card{position:relative;flex:0 1 calc((100% - 96px) / 5);max-width:380px;aspect-ratio:1/2;border-radius:8px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:box-shadow .35s,border-color .35s;text-decoration:none;display:block;background:#050816;}
+@media(max-width:1100px){.col-card{flex:0 1 calc((100% - 48px) / 3);max-width:320px;}}
 @media(max-width:700px){.col-card{flex:0 1 calc((100% - 24px) / 2);max-width:280px;}}
 @media(max-width:480px){.col-card{flex:0 1 100%;max-width:300px;}}
 .col-card:hover{border-color:var(--gold);box-shadow:0 0 0 1px rgba(216,192,138,.3),0 0 34px rgba(216,192,138,.3),0 0 60px rgba(216,192,138,.12);}
