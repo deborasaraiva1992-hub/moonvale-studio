@@ -160,20 +160,16 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .promo-trust-overlay .promo-trust-item strong{color:#1c1408;font-size:clamp(.82rem,1.22vw,1.04rem);letter-spacing:.2px;margin-bottom:1px;}
 .promo-trust-overlay .promo-trust-item:nth-child(3) strong{font-size:clamp(.72rem,1.08vw,.92rem);}
 @media(max-width:900px){
-  .promo-banner{aspect-ratio:auto;height:clamp(210px,53vw,255px);}
-  .promo-media img{object-fit:contain;}
+  .promo-banner{aspect-ratio:2.3/1;height:auto;}
   .promo-content{max-width:62%;padding:clamp(16px,4vw,28px);}
   .promo-eyebrow{font-size:.56rem;margin-bottom:8px;}
   .promo-title{font-size:clamp(1rem,4vw,1.3rem);margin-bottom:8px;}
   .promo-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;}
-  .promo-trust{gap:6px;margin-bottom:10px;}
   .promo-trust-overlay{display:none;}
-  .promo-trust-mobile{display:flex;}
 }
 @media(max-width:480px){
   .promo-content{max-width:68%;}
   .promo-desc{-webkit-line-clamp:1;}
-  .promo-trust-item:nth-child(3){display:none;}
 }
 
 .ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.22);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
