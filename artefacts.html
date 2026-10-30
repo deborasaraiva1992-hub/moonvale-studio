@@ -135,7 +135,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 /* PROMO BANNERS (Fresh Art / Beloved by Explorers / Artisan's Promise) */
 .promo-stack{display:flex;flex-direction:column;gap:28px;max-width:2000px;margin:0 auto;}
 #promo-banners{max-width:2000px;}
-.promo-banner{position:relative;aspect-ratio:2.3/1;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#050816;transition:border-color .35s;}
+.promo-banner{position:relative;aspect-ratio:2.3/1;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#050816;transition:border-color .35s;container-type:inline-size;}
 .promo-banner:hover{border-color:rgba(216,192,138,.4);}
 .promo-media{position:absolute;inset:0;z-index:0;}
 .promo-media img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -151,13 +151,16 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .promo-trust-icon{color:var(--gold);font-size:1rem;flex-shrink:0;margin-top:2px;}
 .promo-trust-item strong{color:var(--text);font-family:'Cinzel',serif;font-size:clamp(.66rem,.9vw,.78rem);letter-spacing:.5px;display:block;margin-bottom:1px;}
 .promo-trust-mobile{display:none;}
-/* desktop-only: trust text aligned over the parchment icons in artefacts-banner-artisan.webp */
+/* trust text aligned beside the parchment icons in artefacts-banner-artisan.webp.
+   Sized in cqw (% of the banner's own rendered width) instead of vw/rem so the
+   box position, box width and font-size all scale together as one rigid unit —
+   identical relative layout and line-wrap at every viewport width. */
 .promo-trust-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;}
-.promo-trust-overlay .promo-trust-item{position:absolute;left:56%;width:18.2%;display:flex;flex-direction:column;justify-content:center;gap:0;font-size:.68vw;color:#2b2010;line-height:1.15;overflow-wrap:break-word;}
-.promo-trust-overlay .promo-trust-item:nth-child(1){top:28.2%;height:9.8%;}
-.promo-trust-overlay .promo-trust-item:nth-child(2){top:44.8%;height:6.3%;}
-.promo-trust-overlay .promo-trust-item:nth-child(3){top:56.9%;height:8.6%;width:13.5%;}
-.promo-trust-overlay .promo-trust-item strong{color:#1c1408;font-size:.78vw;letter-spacing:.3px;margin-bottom:0;display:block;text-transform:uppercase;}
+.promo-trust-overlay .promo-trust-item{position:absolute;left:57%;width:12.5%;display:flex;flex-direction:column;justify-content:center;gap:0;font-size:.62cqw;color:#2b2010;line-height:1.22;overflow-wrap:break-word;}
+.promo-trust-overlay .promo-trust-item:nth-child(1){top:21%;height:15%;}
+.promo-trust-overlay .promo-trust-item:nth-child(2){top:36.5%;height:15%;}
+.promo-trust-overlay .promo-trust-item:nth-child(3){top:51.5%;height:15%;width:11%;}
+.promo-trust-overlay .promo-trust-item strong{color:#1c1408;font-size:.8cqw;letter-spacing:.3px;margin-bottom:.2cqw;display:block;text-transform:uppercase;}
 @media(max-width:900px){
   .promo-banner{aspect-ratio:2.3/1;height:auto;}
   .promo-content{max-width:48%;margin-left:0;padding:clamp(16px,4vw,28px);}
@@ -166,8 +169,6 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
   .promo-desc{font-size:.52rem;line-height:1.25;margin-bottom:5px;}
   .promo-btn{padding:4px 8px;font-size:.38rem;gap:3px;letter-spacing:.5px;}
   .promo-banner:has(.promo-trust-overlay) .promo-content{max-width:46%;}
-  .promo-trust-overlay .promo-trust-item{font-size:clamp(.4rem,1.55vw,.5rem);line-height:1.15;}
-  .promo-trust-overlay .promo-trust-item strong{font-size:clamp(.46rem,1.75vw,.58rem);text-transform:none;}
 }
 @media(max-width:480px){
   .promo-content{max-width:48%;}
