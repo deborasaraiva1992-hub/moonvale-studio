@@ -68,15 +68,13 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .coll-explore-card{position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden;text-decoration:none;display:block;transition:transform .3s;}
 .coll-explore-card:hover{transform:translateY(-4px);}
 .coll-explore-card img{width:100%;height:100%;object-fit:cover;display:block;}
-.coll-explore-label{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);width:max-content;max-width:78%;text-align:center;font-family:'Cinzel',serif;font-size:clamp(.6rem,1.3vw,.95rem);letter-spacing:1px;color:var(--gold-hi);text-shadow:0 0 6px rgba(5,8,22,.95),0 0 12px rgba(5,8,22,.95),0 0 18px rgba(5,8,22,.9),0 2px 4px rgba(5,8,22,1);}
 @media(max-width:900px){.coll-explore-grid{grid-template-columns:repeat(2,1fr);gap:14px;}.coll-explore{padding:50px 24px;}}
 
-/* ORNAMENTS: considerable-size vertical vines flanking the page as you scroll past
-   the Hero/About banners, and a row of small repeating tiles along the bottom. */
-.vine-v{position:fixed;top:0;height:100vh;width:var(--vine-w);background-repeat:repeat-y;background-size:100% auto;z-index:3;pointer-events:none;opacity:.95;}
+/* ORNAMENTS: vertical vines flanking only the Hero + About frame, not the cards or page bottom. */
+.coll-top-frame{position:relative;}
+.vine-v{position:absolute;top:0;bottom:0;width:var(--vine-w);background-repeat:repeat-y;background-size:100% auto;z-index:3;pointer-events:none;opacity:.95;}
 .vine-v.left{left:0;background-image:url('artefacts-dark-medieval-legends-ornament-v.webp');}
 .vine-v.right{right:0;background-image:url('artefacts-dark-medieval-legends-ornament-v.webp');transform:scaleX(-1);}
-.vine-h{width:100%;height:clamp(50px,6vw,96px);background-image:url('artefacts-dark-medieval-legends-ornament-h.webp');background-repeat:repeat-x;background-size:auto 100%;background-position:center;opacity:.95;margin-top:40px;}
 @media(max-width:900px){.vine-v{display:none;}}
 
 /* SECTION BASE (shared) */
@@ -172,9 +170,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
 </div>
 <audio id="bgAudio" loop preload="none"></audio>
 
-<div class="vine-v left"></div>
-<div class="vine-v right"></div>
-
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo-nav">MOONVALE</a>
@@ -204,6 +199,10 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
 
 <p class="crumb"><a href="artefacts.html">Artefacts</a> / Dark Medieval Legends</p>
 
+<div class="coll-top-frame">
+<div class="vine-v left"></div>
+<div class="vine-v right"></div>
+
 <section class="coll-hero fade-in">
   <div class="coll-hero-media"><img src="artefacts-dark-medieval-legends-hero.webp" alt="Dark Medieval Legends — a dragon over a burning gothic castle under a blood moon" loading="lazy"></div>
   <div class="coll-hero-shade"></div>
@@ -223,6 +222,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
     <p class="coll-about-body">Every crown is forged in fire, and every kingdom guards a secret older than its walls. This collection gathers the dragons, the broken banners and the gothic spires of a darker age — art for those drawn to castles under siege and legends written in blood moonlight.</p>
   </div>
 </section>
+</div>
 
 <section class="coll-explore fade-in" id="explore-collections">
   <div class="section-header">
@@ -237,24 +237,18 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
   <div class="coll-explore-grid">
     <a href="enchanted-realms.html" class="coll-explore-card">
       <img src="artefacts-enchanted-realms-thumb.webp" alt="Enchanted Realms" loading="lazy">
-      <span class="coll-explore-label">Enchanted Realms</span>
     </a>
     <a href="epic-fantasy-kingdoms.html" class="coll-explore-card">
       <img src="artefacts-epic-fantasy-kingdoms-thumb.webp" alt="Epic Fantasy Kingdoms" loading="lazy">
-      <span class="coll-explore-label">Epic Fantasy Kingdoms</span>
     </a>
     <a href="golden-steampunk-realms.html" class="coll-explore-card">
       <img src="artefacts-golden-steampunk-realms-thumb.webp" alt="Golden Steampunk Realms" loading="lazy">
-      <span class="coll-explore-label">Golden Steampunk Realms</span>
     </a>
     <a href="fantasy-silhouette-art.html" class="coll-explore-card">
       <img src="artefacts-fantasy-silhouette-art-thumb.webp" alt="Fantasy Silhouette Art" loading="lazy">
-      <span class="coll-explore-label">Fantasy Silhouette Art</span>
     </a>
   </div>
 </section>
-
-<div class="vine-h"></div>
 
 <footer>
   <div class="footer-inner">
