@@ -52,23 +52,15 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
   .coll-hero-cta{font-size:.46rem;padding:6px 12px;gap:5px;}
 }
 
-/* COLLECTION ABOUT (parchment + archway) */
-.coll-about{position:relative;max-width:2000px;margin:28px auto;aspect-ratio:2000/780;display:flex;border-radius:10px;overflow:hidden;}
-@media(max-width:700px){.coll-about{border-radius:0;}}
-.coll-about-text{flex:0 0 42%;background:linear-gradient(160deg,#ecd9ae 0%,#e2c694 55%,#d8b67e 100%);color:#2b2010;display:flex;flex-direction:column;justify-content:center;padding:clamp(18px,3.4vw,50px);}
-.coll-about-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.56rem,1vw,.78rem);letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;margin-bottom:10px;opacity:.9;}
-.coll-about-title{font-family:'Cinzel',serif;font-size:clamp(1rem,2.6vw,2rem);font-weight:600;color:#1c1408;line-height:1.18;margin-bottom:14px;}
-.coll-about-body{font-size:clamp(.6rem,1.25vw,1.05rem);color:#3a2a16;line-height:1.5;}
-.coll-about-media{flex:0 0 58%;position:relative;}
+/* COLLECTION ABOUT (parchment scroll painted into the scene, text overlaid on the scroll) */
+.coll-about{position:relative;max-width:2000px;margin:28px auto;aspect-ratio:2000/780;border-radius:10px;overflow:hidden;container-type:inline-size;}
+.coll-about-media{position:absolute;inset:0;}
 .coll-about-media img{width:100%;height:100%;object-fit:cover;display:block;}
-@media(max-width:700px){
-  .coll-about{aspect-ratio:auto;flex-direction:column;}
-  .coll-about-text{flex-basis:auto;padding:22px 18px;}
-  .coll-about-eyebrow{margin-bottom:6px;}
-  .coll-about-title{margin-bottom:10px;}
-  .coll-about-body{line-height:1.45;}
-  .coll-about-media{flex-basis:auto;aspect-ratio:2000/1200;}
-}
+.coll-about-text{position:absolute;left:10.5%;top:16%;width:24%;height:68%;color:#2b2010;display:flex;flex-direction:column;justify-content:center;}
+.coll-about-eyebrow{font-family:'Cinzel',serif;font-size:1.1cqw;letter-spacing:.1cqw;color:var(--accent);text-transform:uppercase;margin-bottom:.9cqw;opacity:.9;}
+.coll-about-title{font-family:'Cinzel',serif;font-size:1.85cqw;font-weight:600;color:#1c1408;line-height:1.14;margin-bottom:1cqw;}
+.coll-about-body{font-size:1.05cqw;color:#3a2a16;line-height:1.32;}
+@media(max-width:700px){.coll-about{border-radius:0;}}
 
 /* EXPLORE OTHER COLLECTIONS */
 .coll-explore{max-width:2000px;margin:0 auto;padding:70px 48px;}
@@ -228,12 +220,12 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:60px 48px 40px;}
 </section>
 
 <section class="coll-about fade-in" id="about-collection">
+  <div class="coll-about-media"><img src="artefacts-dark-medieval-legends-about.webp" alt="A parchment scroll beside a moonlit gothic castle, wolves and a raven on a battlement" loading="lazy"></div>
   <div class="coll-about-text">
     <p class="coll-about-eyebrow">About This Collection</p>
     <h2 class="coll-about-title">Realms of Shadow and Glory</h2>
     <p class="coll-about-body">Every crown is forged in fire, and every kingdom guards a secret older than its walls. This collection gathers the dragons, the broken banners and the gothic spires of a darker age — art for those drawn to castles under siege and legends written in blood moonlight.</p>
   </div>
-  <div class="coll-about-media"><img src="artefacts-dark-medieval-legends-about.webp" alt="A misty battlefield at dawn beneath a dark gothic castle" loading="lazy"></div>
 </section>
 
 <section class="coll-explore fade-in" id="explore-collections">
