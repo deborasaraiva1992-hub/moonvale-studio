@@ -34,7 +34,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 
 /* COLLECTION HERO — aspect-ratio always matches the hero image's own ratio (2000/700)
    so it is never cropped by object-fit on any device, per the image-display rule. */
-.coll-hero{position:relative;width:100%;aspect-ratio:1681/936;overflow:hidden;background:#050816;margin-top:0;display:flex;align-items:center;}
+.coll-hero{position:relative;width:100%;aspect-ratio:1681/936;overflow:hidden;background:#050816;margin-top:0;display:flex;align-items:center;container-type:inline-size;}
 .coll-hero-media{position:absolute;inset:0;z-index:0;}
 .coll-hero-media img{width:100%;height:100%;object-fit:cover;display:block;}
 .coll-hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,8,22,.3) 0%,rgba(5,8,22,.9) 8%,rgba(5,8,22,.92) 36%,rgba(5,8,22,.36) 64%,rgba(5,8,22,.06) 100%);}
@@ -45,11 +45,11 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .coll-hero-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:clamp(4px,1.8vw,20px) clamp(8px,3vw,38px);border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:clamp(.34rem,1.15vw,.95rem);letter-spacing:1.5px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);transition:all .3s;white-space:nowrap;}
 .coll-hero-cta:hover{background:rgba(216,192,138,.1);border-color:var(--gold);}
 @media(max-width:900px){
-  .coll-hero-content{max-width:34%;margin-left:4.3%;padding:2% 0;}
-  .coll-hero-eyebrow{font-size:.48rem;margin-bottom:2%;letter-spacing:1px;}
-  .coll-hero-title{font-size:.86rem;margin-bottom:2%;line-height:1.16;}
-  .coll-hero-sub{font-size:.4rem;line-height:1.28;margin-bottom:3%;}
-  .coll-hero-cta{font-size:.32rem;padding:1.2% 2.5%;gap:3px;white-space:normal;}
+  .coll-hero-content{position:absolute;left:4.3%;top:21.1%;width:34%;height:68.9%;max-width:none;margin-left:0;padding:0;justify-content:space-between;}
+  .coll-hero-eyebrow{font-size:2cqw;margin-bottom:0;letter-spacing:.15cqw;}
+  .coll-hero-title{font-size:3.7cqw;margin-bottom:0;line-height:1.18;}
+  .coll-hero-sub{font-size:1.65cqw;line-height:1.3;margin-bottom:0;}
+  .coll-hero-cta{font-size:1.35cqw;padding:1.4cqw 3cqw;gap:.6cqw;white-space:normal;align-self:flex-start;}
 }
 
 /* COLLECTION ABOUT (parchment scroll painted into the scene, text overlaid on the scroll) */
@@ -61,6 +61,12 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .coll-about-title{font-family:'Cinzel',serif;font-size:2.05cqw;font-weight:600;color:#120d08;line-height:1.14;margin-bottom:1cqw;}
 .coll-about-body{font-size:1.15cqw;font-weight:600;color:#120d08;line-height:1.3;}
 @media(max-width:700px){.coll-about{border-radius:0;}}
+@media(max-width:900px){
+  .coll-about-text{justify-content:space-between;}
+  .coll-about-eyebrow{font-size:1.4cqw;margin-bottom:0;}
+  .coll-about-title{font-size:2.3cqw;margin-bottom:0;}
+  .coll-about-body{font-size:1.3cqw;}
+}
 
 /* EXPLORE OTHER COLLECTIONS */
 .coll-explore{max-width:2000px;margin:0 auto;padding:70px 48px;}
