@@ -32,24 +32,20 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .crumb a{color:var(--dim);text-decoration:none;}
 .crumb a:hover{color:var(--gold);}
 
-/* COLLECTION HERO — full viewport scale, matching the Ethernia/Fantasy realm heroes */
-.coll-hero{position:relative;width:100%;min-height:min(100svh,880px);overflow:hidden;background:#050816;margin-top:0;display:flex;align-items:center;}
+/* COLLECTION HERO — aspect-ratio always matches the hero image's own ratio (2000/700)
+   so it is never cropped by object-fit on any device, per the image-display rule. */
+.coll-hero{position:relative;width:100%;aspect-ratio:2000/700;overflow:hidden;background:#050816;margin-top:0;display:flex;align-items:center;}
 .coll-hero-media{position:absolute;inset:0;z-index:0;}
 .coll-hero-media img{width:100%;height:100%;object-fit:cover;display:block;}
 .coll-hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,8,22,.3) 0%,rgba(5,8,22,.9) 8%,rgba(5,8,22,.92) 36%,rgba(5,8,22,.36) 64%,rgba(5,8,22,.06) 100%);}
-.coll-hero-content{position:relative;z-index:2;max-width:min(620px,52%);margin-left:7%;padding:clamp(60px,8vw,110px) 0;display:flex;flex-direction:column;justify-content:center;}
-.coll-hero-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.78rem,1.3vw,1.05rem);letter-spacing:3px;color:var(--accent);opacity:.95;margin-bottom:22px;text-transform:uppercase;}
-.coll-hero-title{font-family:'Cinzel',serif;font-size:clamp(2.1rem,5.2vw,4.4rem);font-weight:500;letter-spacing:1.5px;line-height:1.08;color:var(--gold-hi);margin-bottom:26px;text-transform:uppercase;text-shadow:0 0 30px rgba(245,217,127,.25);}
-.coll-hero-sub{font-size:clamp(.88rem,1.7vw,1.4rem);color:var(--dim);line-height:1.55;margin-bottom:32px;max-width:46ch;}
-.coll-hero-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:clamp(12px,1.8vw,20px) clamp(20px,3vw,38px);border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:clamp(.68rem,1.15vw,.95rem);letter-spacing:1.5px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);transition:all .3s;white-space:nowrap;}
+.coll-hero-content{position:relative;z-index:2;max-width:min(620px,52%);margin-left:7%;padding:clamp(20px,4vw,60px) 0;display:flex;flex-direction:column;justify-content:center;}
+.coll-hero-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.5rem,1.3vw,1.05rem);letter-spacing:3px;color:var(--gold);opacity:.9;margin-bottom:1.6%;text-transform:uppercase;}
+.coll-hero-title{font-family:'Cinzel',serif;font-size:clamp(.95rem,5.2vw,4.4rem);font-weight:500;letter-spacing:1.5px;line-height:1.08;color:var(--gold-hi);margin-bottom:1.8%;text-transform:uppercase;text-shadow:0 0 30px rgba(245,217,127,.25);}
+.coll-hero-sub{font-size:clamp(.4rem,1.7vw,1.4rem);color:var(--dim);line-height:1.4;margin-bottom:2.2%;max-width:46ch;}
+.coll-hero-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:clamp(4px,1.8vw,20px) clamp(8px,3vw,38px);border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:clamp(.34rem,1.15vw,.95rem);letter-spacing:1.5px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);transition:all .3s;white-space:nowrap;}
 .coll-hero-cta:hover{background:rgba(216,192,138,.1);border-color:var(--gold);}
 @media(max-width:900px){
-  .coll-hero{min-height:82svh;padding-top:calc(56px + env(safe-area-inset-top));}
-  .coll-hero-content{max-width:72%;margin-left:5%;padding:30px 0;}
-  .coll-hero-eyebrow{font-size:.62rem;margin-bottom:10px;letter-spacing:1.2px;}
-  .coll-hero-title{font-size:clamp(1.5rem,6.5vw,2.3rem);margin-bottom:14px;}
-  .coll-hero-sub{font-size:.62rem;line-height:1.35;margin-bottom:10px;}
-  .coll-hero-cta{font-size:.46rem;padding:6px 12px;gap:5px;}
+  .coll-hero-content{max-width:56%;margin-left:5%;}
 }
 
 /* COLLECTION ABOUT (parchment scroll painted into the scene, text overlaid on the scroll) */
@@ -57,9 +53,9 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .coll-about-media{position:absolute;inset:0;}
 .coll-about-media img{width:100%;height:100%;object-fit:cover;display:block;}
 .coll-about-text{position:absolute;left:10.5%;top:16%;width:24%;height:68%;color:#2b2010;display:flex;flex-direction:column;justify-content:center;}
-.coll-about-eyebrow{font-family:'Cinzel',serif;font-size:1.1cqw;letter-spacing:.1cqw;color:var(--accent);text-transform:uppercase;margin-bottom:.9cqw;opacity:.9;}
-.coll-about-title{font-family:'Cinzel',serif;font-size:1.85cqw;font-weight:600;color:#1c1408;line-height:1.14;margin-bottom:1cqw;}
-.coll-about-body{font-size:1cqw;font-weight:600;color:#3a2a16;line-height:1.3;}
+.coll-about-eyebrow{font-family:'Cinzel',serif;font-size:1.1cqw;letter-spacing:.1cqw;color:#120d08;text-transform:uppercase;margin-bottom:.9cqw;opacity:.9;}
+.coll-about-title{font-family:'Cinzel',serif;font-size:1.85cqw;font-weight:600;color:#120d08;line-height:1.14;margin-bottom:1cqw;}
+.coll-about-body{font-size:1cqw;font-weight:600;color:#120d08;line-height:1.3;}
 @media(max-width:700px){.coll-about{border-radius:0;}}
 
 /* EXPLORE OTHER COLLECTIONS */
@@ -69,6 +65,25 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .coll-explore-card:hover{transform:translateY(-4px);}
 .coll-explore-card img{width:100%;height:100%;object-fit:cover;display:block;}
 @media(max-width:900px){.coll-explore-grid{grid-template-columns:repeat(2,1fr);gap:14px;}.coll-explore{padding:50px 24px;}}
+
+/* FEATURED PRODUCTS / NEW ARRIVALS — layout reserved, pending real product photos */
+.coll-row{max-width:2000px;margin:0 auto;padding:50px 48px;}
+.coll-row-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px;flex-wrap:wrap;gap:10px;}
+.coll-row-title{font-family:'Cinzel',serif;font-size:clamp(1rem,2vw,1.5rem);letter-spacing:2px;color:var(--gold-hi);}
+.coll-row-link{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:1.5px;color:var(--gold);text-decoration:none;white-space:nowrap;}
+.coll-row-link:hover{text-decoration:underline;}
+.coll-products-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.coll-arrivals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.coll-placeholder{position:relative;aspect-ratio:1/1;border-radius:8px;border:1px dashed rgba(216,192,138,.3);background:rgba(216,192,138,.04);display:flex;align-items:center;justify-content:center;}
+.coll-arrivals-grid .coll-placeholder{aspect-ratio:4/3;}
+.coll-placeholder span{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:1px;color:var(--dim);opacity:.5;text-align:center;padding:0 10%;}
+.coll-product-label{text-align:center;margin-top:10px;font-size:.78rem;color:var(--dim);line-height:1.3;}
+@media(max-width:900px){
+  .coll-row{padding:40px 24px;}
+  .coll-products-grid{grid-template-columns:repeat(3,1fr);}
+  .coll-arrivals-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){.coll-products-grid{grid-template-columns:repeat(2,1fr);}}
 
 /* ORNAMENTS: vertical vines flanking only the Hero + About frame, not the cards or page bottom. */
 .coll-top-frame{position:relative;}
@@ -237,6 +252,43 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding-top:clamp(10px,1.3vw,1
   </div>
 </section>
 </div>
+
+<section class="coll-row fade-in" id="featured-products">
+  <div class="coll-row-head">
+    <h2 class="coll-row-title">FEATURED PRODUCTS</h2>
+    <a href="#" class="coll-row-link">VIEW ALL DESIGNS →</a>
+  </div>
+  <div class="coll-products-grid">
+    <div>
+      <div class="coll-placeholder"><span>Art Prints &amp; Posters</span></div>
+    </div>
+    <div>
+      <div class="coll-placeholder"><span>T-Shirts &amp; Apparel</span></div>
+    </div>
+    <div>
+      <div class="coll-placeholder"><span>Mugs &amp; Drinkware</span></div>
+    </div>
+    <div>
+      <div class="coll-placeholder"><span>Home Decor &amp; Accessories</span></div>
+    </div>
+    <div>
+      <div class="coll-placeholder"><span>Stationery &amp; More</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="coll-row fade-in" id="new-arrivals">
+  <div class="coll-row-head">
+    <h2 class="coll-row-title">NEW ARRIVALS</h2>
+    <a href="#" class="coll-row-link">SEE WHAT'S NEW →</a>
+  </div>
+  <div class="coll-arrivals-grid">
+    <div class="coll-placeholder"><span>New arrival</span></div>
+    <div class="coll-placeholder"><span>New arrival</span></div>
+    <div class="coll-placeholder"><span>New arrival</span></div>
+    <div class="coll-placeholder"><span>New arrival</span></div>
+  </div>
+</section>
 
 <section class="coll-explore fade-in" id="explore-collections">
   <div class="section-header">
