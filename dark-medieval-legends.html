@@ -38,6 +38,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 .coll-hero-media{position:absolute;inset:0;z-index:0;}
 .coll-hero-media img{width:100%;height:100%;object-fit:cover;display:block;}
 .coll-hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,8,22,.3) 0%,rgba(5,8,22,.9) 8%,rgba(5,8,22,.92) 36%,rgba(5,8,22,.36) 64%,rgba(5,8,22,.06) 100%);}
+.coll-hero-bottom-fade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,transparent 55%,rgba(5,8,22,1) 100%);}
 .coll-hero-content{position:relative;z-index:2;max-width:min(620px,52%);margin-left:7%;padding:clamp(20px,4vw,60px) 0;display:flex;flex-direction:column;justify-content:center;}
 .coll-hero-eyebrow{font-family:'Cinzel',serif;font-size:clamp(.5rem,1.3vw,1.05rem);letter-spacing:3px;color:var(--gold);opacity:.9;margin-bottom:1.6%;text-transform:uppercase;}
 .coll-hero-title{font-family:'Cinzel',serif;font-size:clamp(.95rem,5.2vw,4.4rem);font-weight:500;letter-spacing:1.5px;line-height:1.08;color:var(--gold-hi);margin-bottom:1.8%;text-transform:uppercase;text-shadow:0 0 30px rgba(245,217,127,.25);}
@@ -247,6 +248,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding-top:clamp(10px,1.3vw,1
 <section class="coll-hero fade-in">
   <div class="coll-hero-media"><img src="artefacts-dark-medieval-legends-hero.webp" alt="Dark Medieval Legends — a dragon over a burning gothic castle under a blood moon" loading="lazy"></div>
   <div class="coll-hero-shade"></div>
+  <div class="coll-hero-bottom-fade"></div>
   <div class="coll-hero-content">
     <p class="coll-hero-eyebrow">— Shadows &amp; Dragons —</p>
     <h1 class="coll-hero-title">Dark Medieval Legends</h1>
