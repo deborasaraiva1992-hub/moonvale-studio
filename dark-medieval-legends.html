@@ -15,7 +15,7 @@ html{scroll-behavior:smooth;}
   --dim:rgba(245,241,232,0.65);--border:rgba(216,192,138,0.22);
   --fan:#9b8ec4;--accent:#e4463a;--vine-w:clamp(90px,9vw,170px);
 }
-body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;}
+body{position:relative;background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8,22,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,192,138,.07);z-index:1000;}
@@ -98,9 +98,9 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 }
 @media(max-width:480px){.coll-products-grid{grid-template-columns:repeat(2,1fr);}}
 
-/* ORNAMENTS: vertical vines flanking only the Hero + About frame, not the cards or page bottom. */
+/* ORNAMENTS: vertical vines framing the whole page's edges, fading in/out at the very top and bottom. */
 .coll-top-frame{position:relative;margin-top:69px;}
-.vine-v{position:absolute;top:0;bottom:0;width:var(--vine-w);background-repeat:repeat-y;background-size:100% auto;z-index:3;pointer-events:none;opacity:.95;}
+.vine-v{position:absolute;top:0;bottom:0;width:var(--vine-w);background-repeat:repeat-y;background-size:100% auto;z-index:3;pointer-events:none;opacity:.95;mask-image:linear-gradient(to bottom,transparent 0%,black 6%,black 94%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 6%,black 94%,transparent 100%);}
 .vine-v.left{left:0;background-image:url('artefacts-dark-medieval-legends-ornament-v.webp');}
 .vine-v.right{right:0;background-image:url('artefacts-dark-medieval-legends-ornament-v.webp');transform:scaleX(-1);}
 @media(max-width:900px){.vine-v{display:none;}}
@@ -202,6 +202,8 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding-top:clamp(10px,1.3vw,1
 
 <canvas id="particles-canvas"></canvas>
 <div class="mist-layer"></div>
+<div class="vine-v left"></div>
+<div class="vine-v right"></div>
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 <div class="page-transition" id="pageTransition"></div>
@@ -242,8 +244,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding-top:clamp(10px,1.3vw,1
 
 <div class="coll-top-frame">
 <p class="crumb"><a href="artefacts.html">Artefacts</a> / Dark Medieval Legends</p>
-<div class="vine-v left"></div>
-<div class="vine-v right"></div>
 
 <section class="coll-hero fade-in">
   <div class="coll-hero-media"><img src="artefacts-dark-medieval-legends-hero.webp" alt="Dark Medieval Legends — a dragon over a burning gothic castle under a blood moon" loading="lazy"></div>
