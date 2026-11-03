@@ -100,7 +100,7 @@ nav{position:fixed;top:0;left:0;width:100%;padding:16px 48px;background:rgba(5,8
 
 /* ORNAMENTS: vertical vines framing the whole page's edges, fading in/out at the very top and bottom. */
 .coll-top-frame{position:relative;margin-top:69px;}
-.vine-v{position:absolute;top:0;bottom:0;width:var(--vine-w);background-repeat:repeat-y;background-size:100% auto;z-index:3;pointer-events:none;opacity:.95;mask-image:linear-gradient(to bottom,transparent 0%,black 6%,black 94%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 6%,black 94%,transparent 100%);}
+.vine-v{position:absolute;top:0;bottom:0;width:var(--vine-w);overflow:hidden;background-repeat:repeat-y;background-size:calc(var(--vine-w) * 2.1246) auto;background-position-x:calc(var(--vine-w) * -.5796);z-index:3;pointer-events:none;opacity:.95;mask-image:linear-gradient(to bottom,transparent 0%,black 6%,black 94%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 6%,black 94%,transparent 100%);}
 .vine-v.left{left:0;background-image:url('artefacts-dark-medieval-legends-ornament-v.webp');}
 .vine-v.right{right:0;background-image:url('artefacts-dark-medieval-legends-ornament-v.webp');transform:scaleX(-1);}
 @media(max-width:900px){.vine-v{display:none;}}
