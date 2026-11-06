@@ -356,10 +356,15 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 @media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 /* page transition with logo */
-.page-transition{position:fixed;inset:0;background:#050816;z-index:9997;opacity:0;pointer-events:none;transition:opacity .4s ease;display:flex;align-items:center;justify-content:center;}
+.page-transition{position:fixed;inset:0;background:#050816 url('moonvale-intro-starfield.webp') center/cover no-repeat;z-index:9997;opacity:0;pointer-events:none;transition:opacity .5s ease;display:flex;align-items:center;justify-content:center;}
 .page-transition.out{opacity:1;pointer-events:auto;}
+.pt-inner{display:flex;flex-direction:column;align-items:center;}
+.pt-crest{width:clamp(48px,6vw,86px);height:auto;display:block;margin:0 auto 14px;opacity:0;transform:scale(.82);transition:opacity .35s ease .05s,transform .35s ease .05s;filter:drop-shadow(0 0 16px rgba(245,217,127,.28));}
+.page-transition.out .pt-crest{opacity:.95;transform:scale(1);}
 .pt-logo{font-family:'Cinzel',serif;font-size:1.5rem;letter-spacing:6px;color:var(--gold);opacity:0;transition:opacity .3s ease .2s;}
 .page-transition.out .pt-logo{opacity:1;}
+.pt-line{display:block;width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto 0;transition:width .3s ease .3s;}
+.page-transition.out .pt-line{width:110px;}
 
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
@@ -846,7 +851,11 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 <!-- PAGE TRANSITION WITH LOGO -->
 <div class="page-transition" id="pageTransition">
-  <span class="pt-logo">MOONVALE</span>
+  <div class="pt-inner">
+    <img class="pt-crest" src="moonvale-intro-crest.webp" alt="" loading="lazy">
+    <span class="pt-logo">MOONVALE</span>
+    <span class="pt-line"></span>
+  </div>
 </div>
 
 <!-- MUSIC -->
@@ -1192,11 +1201,11 @@ window.addEventListener('load',()=>{
     a.addEventListener('click',e=>{
       e.preventDefault();
       pt.classList.add('out');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();
-      setTimeout(()=>{window.location.href=href;},450);
+      setTimeout(()=>{window.location.href=href;},600);
     });
   });
-  pt.style.opacity='1';pt.style.pointerEvents='auto';
-  setTimeout(()=>{pt.style.opacity='0';pt.style.pointerEvents='none';},50);
+  pt.classList.add('out');
+  setTimeout(()=>{pt.classList.remove('out');},750);
 })();
 
 // ── SCROLL INDICATOR ──
