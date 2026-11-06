@@ -328,10 +328,7 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 #cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:7px;height:7px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);opacity:.85;display:none;}
 #cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:28px;height:28px;border:1px solid rgba(216,192,138,.5);border-radius:50%;transform:translate(-50%,-50%);display:none;}
 @media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
-.page-transition{position:fixed;inset:0;background:#050816;z-index:9997;opacity:0;pointer-events:none;transition:opacity .4s ease;display:flex;align-items:center;justify-content:center;}
-.page-transition.out{opacity:1;pointer-events:auto;}
-.pt-logo{font-family:'Cinzel',serif;font-size:1.5rem;letter-spacing:6px;color:var(--gold);opacity:0;transition:opacity .3s ease .2s;}
-.page-transition.out .pt-logo{opacity:1;}
+
 .fade-in{opacity:0;transform:translateY(24px) scale(.97);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0) scale(1);}
 
@@ -446,8 +443,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
 <div class="mist-layer"></div>
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
-<div class="page-transition" id="pageTransition"><span class="pt-logo">MOONVALE</span></div>
-
 <div id="musicPlayer" onclick="toggleMusic()">
   <span id="musicIcon">♪</span>
   <span id="musicLabel">MUSIC OFF</span>
@@ -751,21 +746,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:clamp(28px,3.4vw,44px)
   document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(.5)';});
   document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
   document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='var(--gold)';});el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});});
-})();
-
-// ── PAGE TRANSITION (respects modifier keys so links can open in a new tab) ──
-(function(){
-  const pt=document.getElementById('pageTransition');
-  document.querySelectorAll('a[href]').forEach(a=>{
-    const href=a.getAttribute('href');
-    if(!href||href.startsWith('#')||href.startsWith('http'))return;
-    a.addEventListener('click',e=>{
-      if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-      e.preventDefault();pt.classList.add('out');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();setTimeout(()=>{window.location.href=href;},450);
-    });
-  });
-  pt.style.opacity='1';pt.style.pointerEvents='auto';
-  setTimeout(()=>{pt.style.opacity='0';pt.style.pointerEvents='none';},50);
 })();
 
 // ── CARD TILT (desktop/hover-capable only) ──
