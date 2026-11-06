@@ -113,7 +113,7 @@ nav{
 }
 .hero-img-wrap{position:relative;width:100%;overflow:hidden;}
 .hero-img-wrap img{
-  width:100%;height:auto;display:block;
+  width:100%;height:auto;display:block;aspect-ratio:6688/3764;
   animation:kenBurns 24s ease-in-out infinite alternate;
   transform-origin:center;will-change:transform;
 }
@@ -1157,11 +1157,13 @@ footer::before{opacity:.08;animation-duration:24s;}
 <script src="moonvale-music.js"></script>
 <script>
 // ── LOADING SCREEN ──
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.getElementById('loader').classList.add('hidden');
-  },2600);
-});
+// Plays its own self-contained animation (logo/tagline/bar), so it hides on a
+// fixed timer rather than waiting for window 'load' — that event waits for
+// every asset on the page (including images far below the fold), which on a
+// slow connection could leave this on screen far longer than intended.
+setTimeout(()=>{
+  document.getElementById('loader').classList.add('hidden');
+},2600);
 
 // ── STAR PARTICLES ──
 (function(){
