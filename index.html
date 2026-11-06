@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<!-- Preload the intro/transition screen's art so it doesn't pop in late -->
+<link rel="preload" as="image" href="moonvale-intro-crest.webp">
+<link rel="preload" as="image" href="moonvale-intro-starfield.webp" media="(min-width: 701px)">
+<link rel="preload" as="image" href="moonvale-intro-starfield-mobile.webp" media="(max-width: 700px)">
+
 <title>Moonvale Studio — Between Stars And Stories</title>
 
 <!-- META TAGS & OPEN GRAPH -->
@@ -323,6 +329,19 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 #cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:7px;height:7px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);opacity:.85;display:none;}
 #cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:28px;height:28px;border:1px solid rgba(216,192,138,.5);border-radius:50%;transform:translate(-50%,-50%);display:none;}
 @media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
+
+/* page transition with logo */
+.page-transition{position:fixed;inset:0;background:#050816 url('moonvale-intro-starfield.webp') center/cover no-repeat;z-index:9997;opacity:1;pointer-events:auto;transition:opacity .5s ease;display:flex;align-items:center;justify-content:center;}
+.page-transition.hide{opacity:0;pointer-events:none;}
+.pt-inner{position:relative;display:flex;flex-direction:column;align-items:center;}
+.pt-inner::before{content:'';position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:min(620px,92vw);height:min(460px,60vh);background:radial-gradient(ellipse,rgba(245,217,127,.16) 0%,rgba(245,217,127,.07) 40%,transparent 72%);pointer-events:none;z-index:-1;}
+.pt-crest{width:clamp(150px,19vw,260px);height:auto;display:block;margin:0 auto 26px;opacity:.95;transform:scale(1);transition:opacity .35s ease,transform .35s ease;filter:drop-shadow(0 0 30px rgba(245,217,127,.42));}
+.page-transition.hide .pt-crest{opacity:0;transform:scale(.82);}
+.pt-logo{font-family:'Cinzel',serif;font-size:clamp(2rem,4.2vw,3.2rem);letter-spacing:9px;color:var(--gold);opacity:1;transition:opacity .3s ease;}
+.page-transition.hide .pt-logo{opacity:0;}
+.pt-line{display:block;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px auto 0;transition:width .3s ease;}
+.page-transition.hide .pt-line{width:0;}
+@media(max-width:700px){.page-transition{background-image:url('moonvale-intro-starfield-mobile.webp');}}
 
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
@@ -799,6 +818,16 @@ footer::before{opacity:.08;animation-duration:24s;}
 <div class="mist-layer"></div>
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
+
+<!-- PAGE TRANSITION WITH LOGO -->
+<div class="page-transition" id="pageTransition">
+  <div class="pt-inner">
+    <img class="pt-crest" src="moonvale-intro-crest.webp" alt="" loading="lazy">
+    <span class="pt-logo">MOONVALE</span>
+    <span class="pt-line"></span>
+  </div>
+</div>
+
 <!-- MUSIC -->
 <div id="musicPlayer" onclick="toggleMusic()">
   <span id="musicIcon">♪</span>
@@ -1124,6 +1153,21 @@ footer::before{opacity:.08;animation-duration:24s;}
     el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='var(--gold)';});
     el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});
   });
+})();
+
+// ── PAGE TRANSITION WITH LOGO ──
+(function(){
+  const pt=document.getElementById('pageTransition');
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http'))return;
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      pt.classList.remove('hide');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();
+      setTimeout(()=>{window.location.href=href;},600);
+    });
+  });
+  setTimeout(()=>{pt.classList.add('hide');},750);
 })();
 
 // ── SCROLL INDICATOR ──
