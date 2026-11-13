@@ -151,7 +151,7 @@ footer{padding-top:clamp(10px,1.3vw,18px)!important;padding-bottom:calc(clamp(6p
 .footer-col h5{margin-bottom:2px!important;}
 .footer-col ul li{margin-bottom:0!important;}
 .footer-bottom{margin-top:4px!important;padding-top:4px!important;}
-@media(max-width:700px){footer{padding-top:10px!important;padding-bottom:calc(8px + env(safe-area-inset-bottom))!important}.footer-inner{gap:5px 8px!important}.footer-col h5{margin-bottom:2px!important}.footer-col ul li{margin-bottom:0!important}.footer-bottom{margin-top:4px!important;padding-top:4px!important}}
+@media(max-width:700px){footer{padding-top:10px!important;padding-bottom:calc(8px + env(safe-area-inset-bottom))!important}.footer-inner{gap:5px 8px!important}.footer-social{margin-bottom:18px!important}.footer-col h5{margin-bottom:2px!important}.footer-col ul li{margin-bottom:0!important}.footer-bottom{margin-top:4px!important;padding-top:4px!important}}
 @media(max-width:380px){footer{padding-top:8px!important}.footer-inner{gap:4px 8px!important}.footer-desc{margin-bottom:3px!important}.footer-bottom{margin-top:3px!important;padding-top:3px!important}}
 .realm-card-eth .realm-card-content::after,.realm-card-fan .realm-card-content::after,.collection-card-overlay::after,.cinematic-banner-overlay::before,footer::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 28%,rgba(245,217,127,.18) 0 1px,transparent 2px),radial-gradient(circle at 74% 42%,rgba(245,241,232,.12) 0 1px,transparent 2px),radial-gradient(circle at 48% 76%,rgba(216,192,138,.1) 0 1px,transparent 2px);background-size:170px 170px,230px 230px,310px 310px;opacity:.18;animation:ambientDust 16s linear infinite;}
 footer{position:relative;overflow:hidden;}
@@ -181,13 +181,11 @@ footer::before{opacity:.08;animation-duration:24s;}
 .coll-hero-sub{font-size:clamp(.4rem,1.7vw,1.4rem);color:var(--dim);line-height:1.4;margin-bottom:2.2%;max-width:46ch;}
 .coll-hero-cta{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:clamp(4px,1.8vw,20px) clamp(8px,3vw,38px);border:1px solid rgba(216,192,138,.5);border-radius:3px;font-family:'Cinzel',serif;font-size:clamp(.34rem,1.15vw,.95rem);letter-spacing:1.5px;color:var(--gold);text-decoration:none;background:rgba(5,8,22,.5);transition:all .3s;white-space:nowrap;}
 .coll-hero-cta:hover{background:rgba(216,192,138,.1);border-color:var(--gold);}
-@media(max-width:900px){
-  .coll-hero-content{position:absolute;left:4.3%;top:21.1%;width:34%;height:68.9%;max-width:none;margin-left:0;padding:0;justify-content:space-between;align-items:center;text-align:center;}
-  .coll-hero-eyebrow{font-size:2cqw;margin-bottom:0;letter-spacing:.15cqw;}
-  .coll-hero-title{font-size:3.7cqw;margin-bottom:0;line-height:1.18;}
-  .coll-hero-sub{font-size:1.65cqw;line-height:1.3;margin-bottom:0;}
-  .coll-hero-cta{font-size:1.35cqw;padding:1.4cqw 3cqw;gap:.6cqw;white-space:normal;align-self:center;}
-}
+.coll-hero-content{position:absolute;left:4.3%;top:21.1%;width:34%;height:68.9%;max-width:none;margin-left:0;padding:0;justify-content:space-between;align-items:center;text-align:center;}
+.coll-hero-eyebrow{font-size:2cqw;margin-bottom:0;letter-spacing:.15cqw;}
+.coll-hero-title{font-size:3.7cqw;margin-bottom:0;line-height:1.18;}
+.coll-hero-sub{font-size:1.65cqw;line-height:1.3;margin-bottom:0;}
+.coll-hero-cta{font-size:1.35cqw;padding:1.4cqw 3cqw;gap:.6cqw;white-space:normal;align-self:center;}
 
 /* COLLECTION ABOUT (parchment scroll painted into the scene, text overlaid on the scroll) */
 .coll-about{position:relative;max-width:2000px;margin:28px auto;aspect-ratio:2000/780;border-radius:10px;overflow:hidden;container-type:inline-size;box-sizing:border-box;border:3px solid var(--gold);box-shadow:0 0 0 1px rgba(5,8,22,.85),0 0 0 4px var(--gold-hi),0 0 28px rgba(245,217,127,.22);}
