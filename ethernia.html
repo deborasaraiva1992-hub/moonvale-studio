@@ -436,8 +436,9 @@ footer::before{opacity:.08;animation-duration:24s;}
 @keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
 .ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.2);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
 @keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:7px;height:7px;background:var(--gold);border-radius:50%;transform:translate(-50%,-50%);opacity:.85;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:28px;height:28px;border:1px solid rgba(216,192,138,.5);border-radius:50%;transform:translate(-50%,-50%);display:none;}
+#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:15px;height:15px;background:var(--gold-hi);clip-path:polygon(50% 0%,61% 37%,100% 50%,61% 63%,50% 100%,39% 63%,0% 50%,39% 37%);transform:translate(-50%,-50%);opacity:.9;filter:drop-shadow(0 0 3px rgba(245,217,127,.7));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
+#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.32),rgba(245,217,127,.08) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
+@keyframes cursorStarTwinkle{0%,100%{opacity:.65;filter:drop-shadow(0 0 2px rgba(245,217,127,.55));}50%{opacity:1;filter:drop-shadow(0 0 7px rgba(245,217,127,1));}}
 @media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
