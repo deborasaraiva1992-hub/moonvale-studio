@@ -345,9 +345,9 @@ footer::before{opacity:.08;animation-duration:24s;}
 #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.55;}
 .mist-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 55% 40% at 25% 45%,rgba(216,192,138,.03) 0%,transparent 70%),radial-gradient(ellipse 45% 35% at 75% 60%,rgba(155,142,196,.02) 0%,transparent 70%);animation:mistDrift 22s ease-in-out infinite alternate;}
 @keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:15px;height:15px;background:var(--gold-hi);clip-path:polygon(50% 0%,61% 37%,100% 50%,61% 63%,50% 100%,39% 63%,0% 50%,39% 37%);transform:translate(-50%,-50%);opacity:.9;filter:drop-shadow(0 0 3px rgba(245,217,127,.7));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.32),rgba(245,217,127,.08) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
-@keyframes cursorStarTwinkle{0%,100%{opacity:.65;filter:drop-shadow(0 0 2px rgba(245,217,127,.55));}50%{opacity:1;filter:drop-shadow(0 0 7px rgba(245,217,127,1));}}
+#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;background:radial-gradient(circle,#fff 0%,var(--gold-hi) 45%,var(--gold) 100%);clip-path:path('M9,0 C9.54,6.3 11.7,8.46 18,9 C11.7,9.54 9.54,11.7 9,18 C8.46,11.7 6.3,9.54 0,9 C6.3,8.46 8.46,6.3 9,0 Z');transform:translate(-50%,-50%);opacity:.95;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px rgba(245,217,127,.85));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
+#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.38),rgba(245,217,127,.1) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
+@keyframes cursorStarTwinkle{0%,100%{opacity:.7;filter:drop-shadow(0 0 1px rgba(255,255,255,.75)) drop-shadow(0 0 4px rgba(245,217,127,.55));}50%{opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,1)) drop-shadow(0 0 10px rgba(245,217,127,1));}}
 @media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
