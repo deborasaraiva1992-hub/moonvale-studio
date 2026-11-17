@@ -248,6 +248,11 @@ footer::before{opacity:.08;animation-duration:24s;}
 .coll-product-shot-quad:nth-of-type(3){animation-delay:6s;}
 .coll-product-shot-quad:nth-of-type(4){animation-delay:9s;}
 @keyframes collProductFade4{0%{opacity:0;}3.75%,21%{opacity:1;}25%,100%{opacity:0;}}
+.coll-product-shot.coll-product-shot-dual{animation:collProductFade2 6s ease-in-out infinite;}
+.coll-product-shot-dual:nth-of-type(1){animation-delay:0s;}
+.coll-product-shot-dual:nth-of-type(2){animation-delay:3s;}
+@keyframes collProductFade2{0%{opacity:0;}7.5%,42%{opacity:1;}50%,100%{opacity:0;}}
+.coll-product-shot-contain{object-fit:contain;background:#050816;}
 @media(prefers-reduced-motion:reduce){.coll-product-shot{animation:none;opacity:0;}.coll-product-shot:first-of-type{opacity:1;}}
 @media(max-width:900px){
   .coll-row{padding:40px 24px;}
@@ -472,7 +477,13 @@ footer::before{opacity:.08;animation-duration:24s;}
       </div>
       <p class="coll-product-label">Alquimia</p>
     </a>
-    <div class="coll-placeholder"><span>New arrival</span></div>
+    <a class="coll-product-link" href="https://www.redbubble.com/es/shop/ap/178435858" target="_blank" rel="noopener noreferrer">
+      <div class="coll-placeholder coll-product-filled">
+        <img class="coll-product-shot coll-product-shot-dual coll-product-shot-contain" src="artefacts-dark-medieval-legends-product-mage-notebook-1.webp" alt="Dark Hooded Mage spiral notebook cover">
+        <img class="coll-product-shot coll-product-shot-dual coll-product-shot-contain" src="artefacts-dark-medieval-legends-product-mage-notebook-2.webp" alt="Dark Hooded Mage notebook styled with candlelight and a castle" loading="lazy">
+      </div>
+      <p class="coll-product-label">Dark Hooded Mage — Notebook</p>
+    </a>
     <div class="coll-placeholder"><span>New arrival</span></div>
     <div class="coll-placeholder"><span>New arrival</span></div>
   </div>
