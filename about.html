@@ -27,7 +27,7 @@ html{scroll-behavior:smooth;}
 @media(max-width:1024px){:root{--home-gutter:clamp(16px,3.2vw,34px);}}
 @media(max-width:700px){:root{--home-gutter:14px;}}
 
-body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;padding-bottom:env(safe-area-inset-bottom);}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;padding-bottom:env(safe-area-inset-bottom);}
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
 
 /* ── NAV (matches Home) ── */
@@ -403,32 +403,9 @@ footer::before{opacity:.08;animation-duration:24s;}
    and the four nav columns stay side by side beneath it at every
    narrower size) ── */
 
-
-
-
-
-
-
-
-
-
-
 @keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
 
-
-
-
-
-
-
-
-
-
-
 /* ── MOBILE MENU ── */
-
-
-
 
 .mobile-close{position:absolute;top:calc(24px + env(safe-area-inset-top));right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
 
@@ -438,10 +415,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 @keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
 .ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.2);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
 @keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;background:radial-gradient(circle,#fff 0%,var(--gold-hi) 45%,var(--gold) 100%);clip-path:path('M9,0 C9.54,6.3 11.7,8.46 18,9 C11.7,9.54 9.54,11.7 9,18 C8.46,11.7 6.3,9.54 0,9 C6.3,8.46 8.46,6.3 9,0 Z');transform:translate(-50%,-50%);opacity:.95;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px rgba(245,217,127,.85));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.38),rgba(245,217,127,.1) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
-@keyframes cursorStarTwinkle{0%,100%{opacity:.7;filter:drop-shadow(0 0 1px rgba(255,255,255,.75)) drop-shadow(0 0 4px rgba(245,217,127,.55));}50%{opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,1)) drop-shadow(0 0 10px rgba(245,217,127,1));}}
-@media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 .fade-in{opacity:0;transform:translateY(24px) scale(.97);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0) scale(1);}
@@ -539,15 +512,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 }
 @media(max-width:700px){.candle-flicker{display:none;}#hero-sparkle-canvas{display:none;}}
 
-
-
-
-
-
-
-
-
-
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
@@ -555,8 +519,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 <canvas id="particles-canvas"></canvas>
 <div class="mist-layer"></div>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
 <div id="musicPlayer" onclick="toggleMusic()">
   <span id="musicIcon">♪</span>
   <span id="musicLabel">MUSIC OFF</span>
@@ -848,20 +810,6 @@ footer::before{opacity:.08;animation-duration:24s;}
   animate();
 })();
 
-// ── CUSTOM CURSOR ──
-(function(){
-  const dot=document.getElementById('cursor-dot');
-  const ring=document.getElementById('cursor-ring');
-  if(!dot||!ring)return;
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
-  animRing();
-  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(.5)';});
-  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
-  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='var(--gold)';});el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});});
-})();
-
 // ── CARD TILT (desktop/hover-capable only) ──
 if(window.matchMedia('(hover: hover)').matches){
   document.querySelectorAll('.realm-mini').forEach(card=>{
@@ -893,8 +841,6 @@ document.addEventListener('click',e=>{
   t.style.position=t.style.position||'relative';t.style.overflow='hidden';
   t.appendChild(r);setTimeout(()=>r.remove(),500);
 });
-
-
 
 function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}

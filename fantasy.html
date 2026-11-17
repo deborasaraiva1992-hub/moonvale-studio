@@ -19,7 +19,7 @@ html{scroll-behavior:smooth;}
 @media(max-width:1024px){:root{--home-gutter:clamp(16px,3.2vw,34px);}}
 @media(max-width:700px){:root{--home-gutter:14px;}}
 
-body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;cursor:none;}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',serif;line-height:1.7;overflow-x:hidden;}
 
 /* NAV */
 nav{
@@ -167,18 +167,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 /* ── PREMIUM LANGUAGE SELECTOR (same component as Home/Ethernia/About) ── */
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ── HERO + BANNERS — same structure/mechanics as Ethernia (see
    ethernia.html for the annotated original): no-crop hero image,
    text overlaid directly on wide screens, dropping to normal flow
@@ -251,52 +239,21 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 /* MOBILE MENU */
 
-
-
-
 .mobile-close{position:absolute;top:24px;right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
 
 /* FOOTER */
 
-
-
-
-
-
-
-
-
-
 @keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
-
-
-
-
-
-
-
-
-
 
 /* EFFECTS */
 #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.55;}
 .mist-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 55% 40% at 80% 40%,rgba(155,142,196,.025) 0%,transparent 70%),radial-gradient(ellipse 45% 35% at 20% 60%,rgba(100,80,160,.02) 0%,transparent 70%);animation:mistDrift 22s ease-in-out infinite alternate;}
 @keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(-10px) translateY(-6px);}100%{transform:translateX(8px) translateY(5px);}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;background:radial-gradient(circle,#fff 0%,var(--fan) 45%,#7d6fae 100%);clip-path:path('M9,0 C9.54,6.3 11.7,8.46 18,9 C11.7,9.54 9.54,11.7 9,18 C8.46,11.7 6.3,9.54 0,9 C6.3,8.46 8.46,6.3 9,0 Z');transform:translate(-50%,-50%);opacity:.95;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px rgba(155,142,196,.85));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(155,142,196,.38),rgba(155,142,196,.1) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
-@keyframes cursorStarTwinkle{0%,100%{opacity:.7;filter:drop-shadow(0 0 1px rgba(255,255,255,.75)) drop-shadow(0 0 4px rgba(155,142,196,.55));}50%{opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,1)) drop-shadow(0 0 10px rgba(155,142,196,1));}}
-@media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 
 /* MUSIC */
-
-
-
-
-
-
 
 /* RESPONSIVE */
 
@@ -317,17 +274,8 @@ footer::before{opacity:.08;animation-duration:24s;}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 
-
 /* ── Moonvale global polish: compact footer, safe anchors, subtle immersion ── */
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
-
-
-
-
-
-
-
-
 
 .section-title{text-shadow:0 0 18px rgba(216,192,138,.16),0 0 34px rgba(155,142,196,.08);}
 .fan-btn{will-change:transform;animation:moonvaleCtaBreath 4.8s ease-in-out infinite;}
@@ -338,70 +286,7 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 /* ── Footer/nav parity with Home & Ethernia (later density passes) ── */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @keyframes ambientDust{0%{background-position:0 0,0 0,0 0}100%{background-position:170px -170px,-230px 230px,310px -310px}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </style>
 </head>
@@ -409,8 +294,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 <canvas id="particles-canvas"></canvas>
 <div class="mist-layer"></div>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
 <!-- MUSIC -->
 <div id="musicPlayer" onclick="toggleMusic()">
   <span id="musicIcon">♪</span>
@@ -574,21 +457,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 })();
 
 // CUSTOM CURSOR
-(function(){
-  const dot=document.getElementById('cursor-dot');
-  const ring=document.getElementById('cursor-ring');
-  if(!dot||!ring)return;
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
-  animRing();
-  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.transform='translate(-50%,-50%) scale(.6)';});
-  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';});
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.6)';ring.style.borderColor='var(--fan)';});
-    el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(155,142,196,.5)';});
-  });
-})();
 
 // SCROLL REVEAL
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
@@ -609,7 +477,6 @@ document.addEventListener('click',e=>{
 // NAV
 function openMenu(){document.getElementById('mobileMenu').classList.add('open');}
 function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
-
 
 // ── SCROLL CUE (fades out once the page is scrolled) ──
 const syncScrollIndicator=()=>document.querySelector('.fan-scroll')?.classList.toggle('is-hidden',window.scrollY>16);window.addEventListener('scroll',syncScrollIndicator,{passive:true});syncScrollIndicator();

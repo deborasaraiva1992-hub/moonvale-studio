@@ -23,7 +23,7 @@ html{scroll-behavior:smooth;}
 body{
   background:var(--bg);color:var(--text);
   font-family:'Cormorant Garamond',serif;
-  line-height:1.7;overflow-x:hidden;cursor:none;
+  line-height:1.7;overflow-x:hidden;
   padding-bottom:env(safe-area-inset-bottom);
 }
 
@@ -403,30 +403,9 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 /* ── FOOTER ── */
 
-
-
-
-
-
-
-
-
-
 @keyframes socialCelestial{0%,100%{filter:brightness(1);transform:scale(1) rotate(0deg);}50%{filter:brightness(1.25);transform:scale(1.08) rotate(12deg);}}
 
-
-
-
-
-
-
-
-
-
 /* ── MOBILE MENU ── */
-
-
-
 
 .mobile-close{position:absolute;top:calc(24px + env(safe-area-inset-top));right:32px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none;}
 
@@ -436,10 +415,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 @keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
 .ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.2);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
 @keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;background:radial-gradient(circle,#fff 0%,var(--gold-hi) 45%,var(--gold) 100%);clip-path:path('M9,0 C9.54,6.3 11.7,8.46 18,9 C11.7,9.54 9.54,11.7 9,18 C8.46,11.7 6.3,9.54 0,9 C6.3,8.46 8.46,6.3 9,0 Z');transform:translate(-50%,-50%);opacity:.95;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px rgba(245,217,127,.85));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.38),rgba(245,217,127,.1) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
-@keyframes cursorStarTwinkle{0%,100%{opacity:.7;filter:drop-shadow(0 0 1px rgba(255,255,255,.75)) drop-shadow(0 0 4px rgba(245,217,127,.55));}50%{opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,1)) drop-shadow(0 0 10px rgba(245,217,127,1));}}
-@media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
@@ -454,13 +429,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 @keyframes goldReveal{0%{background-position:-100% center;}100%{background-position:100% center;}}
 
 /* ── MUSIC ── */
-
-
-
-
-
-
-
 
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){
@@ -509,22 +477,7 @@ footer::before{opacity:.08;animation-duration:24s;}
   .quote-text{font-size:1.1rem;}
 }
 
-
 /* ── PREMIUM RESPONSIVE REFINEMENTS ── */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .hero{min-height:min(100svh,880px);justify-content:center;padding-top:calc(clamp(54px,7vw,74px) + env(safe-area-inset-top));}
 .hero-img-wrap{position:absolute;inset:0;height:100%;}
@@ -564,12 +517,9 @@ footer::before{opacity:.08;animation-duration:24s;}
 .journey-card{text-align:left;padding:clamp(24px,3vw,38px);background:linear-gradient(135deg,rgba(216,192,138,.055),rgba(155,142,196,.035));}
 .journey-icon{margin:0 0 16px;}
 
-
 @media(max-width:900px){.hero{min-height:min(86svh,720px)}.hero-content{min-height:calc(min(86svh,720px) - 62px)}.realm-grid{grid-template-columns:1fr}.realm-card{min-height:clamp(250px,64vw,430px)}.cinematic-copy{max-width:min(620px,86%)}.atlas-banner img{height:clamp(390px,70vw,560px)}.journey-grid{margin-left:0;max-width:none}}
 @media(max-width:600px){.hero{min-height:82svh}.hero-content{min-height:calc(82svh - 58px);padding-top:24px}.hero-portals{display:grid;grid-template-columns:1fr 1fr}.scroll-cue{display:none}.realm-selection{margin-top:-18px}.realm-card-content{left:14px;right:14px;bottom:14px}.section-header{margin-bottom:34px}.carousel-wrap{gap:8px}.collection-card{aspect-ratio:3/4}.cinematic-banner::before{inset:8px}.cinematic-banner-overlay{align-items:flex-end;padding:22px;background:linear-gradient(to right,rgba(5,8,22,.92),rgba(5,8,22,.48)),linear-gradient(to top,rgba(5,8,22,.88),transparent 68%)}.cinematic-copy{max-width:100%;padding:16px 14px}.atlas-banner img{height:430px;object-position:center}.journey-grid{grid-template-columns:1fr}.journey-card{padding:22px 18px}.portal-realm-sub{display:none}.hero-tagline{margin-bottom:32px}}
 @media(max-width:420px){.hero-logo{font-size:clamp(2.05rem,11vw,2.9rem)}.hero-portals{gap:8px}.hero-btn{letter-spacing:1.2px;font-size:.56rem}.portal-realm-name{letter-spacing:2px}.section{padding-left:14px;padding-right:14px}.atlas-banner img{height:390px}.realm-card{min-height:280px}}
-
-
 
 /* ── PR POLISH PASS: continuous cinematic layout + non-cropping hero ── */
 .section{max-width:min(1680px,100%);padding:clamp(48px,5.8vw,96px) clamp(18px,4vw,56px);}
@@ -597,8 +547,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 @media(max-width:600px){.section{padding:40px 14px}.quote-section{padding:30px 18px}.hero{padding-top:calc(52px + env(safe-area-inset-top));}.hero-content{margin-top:clamp(-132px,-28vw,-86px);padding-inline:14px}.hero-portals{margin-bottom:4px}.hero-btn{padding:10px 10px}.collection-card{aspect-ratio:3/4}.carousel-viewport{border-radius:10px}.atlas-banner img{height:clamp(320px,88vw,430px)}.cinematic-banner{border-radius:14px}.cinematic-banner::before{inset:7px;border-radius:10px;background:linear-gradient(135deg,rgba(245,217,127,.62),transparent 14%) top left/48px 48px no-repeat,linear-gradient(225deg,rgba(245,217,127,.62),transparent 14%) top right/48px 48px no-repeat,linear-gradient(45deg,rgba(245,217,127,.52),transparent 14%) bottom left/48px 48px no-repeat,linear-gradient(315deg,rgba(245,217,127,.52),transparent 14%) bottom right/48px 48px no-repeat}.cinematic-banner::after{inset:13px}.cinematic-banner-overlay{padding:20px;background:linear-gradient(90deg,rgba(5,8,22,.9),rgba(5,8,22,.5) 68%,rgba(5,8,22,.12)),linear-gradient(to top,rgba(5,8,22,.88),transparent 62%)}.cinematic-copy{max-width:100%;padding:14px 12px;background:linear-gradient(90deg,rgba(5,8,22,.74),rgba(5,8,22,.28),transparent)}.journey-grid{margin-left:0}}
 @media(max-width:430px){.hero-content{margin-top:clamp(-118px,-28vw,-78px)}.hero-logo{font-size:clamp(2rem,10.5vw,2.85rem)}.portal-realm-name{font-size:.52rem}.collection-card{aspect-ratio:2.75/4}.atlas-banner img{height:clamp(300px,86vw,385px)}.section{padding-top:34px;padding-bottom:34px}}
 @media(min-width:1500px){.section{padding-left:72px;padding-right:72px}.atlas-banner img{height:min(720px,38vw)}}
-
-
 
 /* ── FINAL COMPOSITION PASS: reference-style hero and illuminated banners ── */
 .hero{min-height:auto;padding-top:calc(clamp(58px,6vw,76px) + env(safe-area-inset-top));}
@@ -634,8 +582,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 @media(max-width:390px){.hero-content{margin-top:clamp(-114px,-28vw,-68px)}.hero-description{display:none}.hero-primary-cta{font-size:.58rem}.atlas-banner img,.journey-banner img{height:295px}.section{padding-top:28px;padding-bottom:28px}}
 @media(min-width:1500px){.atlas-banner img,.journey-banner img{height:min(660px,34vw)}}
 
-
-
 /* ── MOBILE BANNER BALANCE PATCH ── */
 .cinematic-banner{box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 34px rgba(216,192,138,.09);}
 .cinematic-banner::before{inset:6px;border-width:1px;border-color:rgba(218,184,102,.34);border-radius:14px;background:linear-gradient(135deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top left/64px 64px no-repeat,linear-gradient(225deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top right/64px 64px no-repeat,linear-gradient(45deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom left/64px 64px no-repeat,linear-gradient(315deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom right/64px 64px no-repeat;box-shadow:inset 0 0 20px rgba(216,192,138,.04),0 0 20px rgba(216,192,138,.06);}
@@ -653,8 +599,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 @media(max-width:600px){.atlas-banner img,.journey-banner img{aspect-ratio:1.18/1;height:auto;min-height:0;object-fit:cover}.atlas-banner img{object-position:center top}.lore-banner img{object-position:center}.journey-banner img{object-position:center}.cinematic-banner{border-radius:13px}.cinematic-banner::before{inset:4px;border-radius:10px;background-size:38px 38px}.cinematic-banner::after{inset:9px}.cinematic-banner-overlay{padding:14px}.cinematic-copy{max-width:82%;padding:10px 11px}.banner-kicker{font-size:.55rem;letter-spacing:2px}.cinematic-copy h3{font-size:1.08rem;letter-spacing:1.7px;margin:5px 0}.cinematic-copy p{font-size:.78rem;line-height:1.32}.atlas-banner-btn{font-size:.56rem;padding:8px 12px;letter-spacing:1.6px}.journey-socials{grid-template-columns:1fr;margin-top:9px}.journey-social{font-size:.52rem;padding:7px 9px}.journey-social svg{width:13px;height:13px}}
 @media(max-width:430px){.atlas-banner img,.journey-banner img{aspect-ratio:1.08/1}.cinematic-copy{max-width:88%}.cinematic-copy p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));}.journey-social span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.journey-social{gap:6px;padding:7px 8px}}
 @media(max-width:370px){.atlas-banner img,.journey-banner img{aspect-ratio:1/1}.cinematic-copy{max-width:92%;}.journey-socials{grid-template-columns:1fr}.cinematic-copy p{display:none}}
-
-
 
 /* ── FINAL RESPONSIVE POLISH: header clearance, desktop scale, slim mobile banners ── */
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
@@ -682,9 +626,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 
-
-
-
 /* ── AAA home immersion polish: depth, aligned frames, living sections ── */
 .hero{isolation:isolate;background:radial-gradient(ellipse at 50% 25%,rgba(155,142,196,.09),transparent 55%),#050816;}
 .hero::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(circle at 22% 28%,rgba(245,217,127,.18) 0 1px,transparent 2px),radial-gradient(circle at 74% 18%,rgba(245,241,232,.18) 0 1px,transparent 2px),radial-gradient(circle at 62% 52%,rgba(216,192,138,.14) 0 1px,transparent 2px);background-size:260px 260px,340px 340px,420px 420px;animation:moonvaleStarTwinkle 9s ease-in-out infinite;opacity:.42;}
@@ -704,14 +645,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 /* ── Moonvale global polish: compact footer, safe anchors, subtle immersion ── */
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
-
-
-
-
-
-
-
-
 
 .hero-logo,.section-title{text-shadow:0 0 18px rgba(216,192,138,.16),0 0 34px rgba(155,142,196,.08);}
 .hero-primary-cta,.hero-btn,.atlas-banner-btn{will-change:transform;animation:moonvaleCtaBreath 4.8s ease-in-out infinite;}
@@ -755,21 +688,14 @@ footer::before{opacity:.08;animation-duration:24s;}
 .cinematic-copy p{text-wrap:pretty;}
 .journey-socials{max-width:500px;}
 
-
-
-
-
 @media(max-width:1024px){:root{--home-section-y:clamp(36px,5vw,62px);--home-gutter:clamp(16px,3.2vw,34px)}.cinematic-copy{max-width:60%}}
 @media(max-width:700px){:root{--home-section-y:32px;--home-gutter:14px;--frame-inset:4px}.hero-img-wrap img{animation:none}.hero-content{padding-bottom:18px}.hero-description{font-size:.9rem}.hero-primary-cta{min-height:38px}.section-header{margin-bottom:20px}.realm-card{min-height:260px}.realm-card-content{padding:13px;bottom:12px}.collection-card{aspect-ratio:3/4}.cinematic-banner::after{inset:9px}.cinematic-banner-overlay{padding:12px;background:linear-gradient(90deg,rgba(5,8,22,.62),rgba(5,8,22,.32) 58%,rgba(5,8,22,.04)),linear-gradient(to top,rgba(5,8,22,.48),transparent 56%)}.cinematic-copy{max-width:78%;padding:9px 10px}.cinematic-copy h3{font-size:1.02rem}.cinematic-copy p{font-size:.72rem;line-height:1.28}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.journey-social span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 @media(max-width:380px){.hero-description{display:block;font-size:.78rem;line-height:1.28;margin-bottom:10px}.cinematic-copy{max-width:84%}.cinematic-copy p{font-size:.66rem;line-height:1.2}.atlas-banner-btn{margin-top:6px}}
-
 
 /* ── FINAL MOBILE FIT TUNING ── */
 @media(max-width:700px){.realm-card{min-height:clamp(218px,62vw,264px)}.realm-card img{object-fit:cover;object-position:center}.realm-card-content{max-width:88%;padding:10px 11px}.realm-card h3{font-size:1.22rem;letter-spacing:2px}.realm-card p{font-size:.78rem;line-height:1.28}.carousel-wrap{gap:6px}.carousel-viewport{max-width:min(86vw,360px);margin:auto}.collection-card{aspect-ratio:3/4}.collection-card img{object-fit:cover;object-position:center}.carousel-dots{margin-top:14px}.section{padding-top:28px;padding-bottom:28px}.section-sub{margin-top:7px}}
 @media(max-width:430px){.hero-content{padding-left:14px;padding-right:14px}.hero-logo{margin-bottom:6px}.hero-tagline{margin-bottom:8px}.hero-primary-cta{min-height:36px;padding:9px 18px}.realm-card{min-height:224px}.cinematic-copy{max-width:82%;}.cinematic-copy h3{font-size:.96rem}.journey-socials{grid-template-columns:1fr 1fr}}
 @media(max-width:340px){.hero-description{font-size:.74rem}.realm-card{min-height:210px}.realm-card p{display:none}.carousel-viewport{max-width:82vw}.cinematic-copy p{display:none}.journey-social{font-size:.42rem}}
-
-
 
 /* ── FINAL DESKTOP CARD + FOOTER + SOCIAL LINK POLISH ── */
 .realm-card{aspect-ratio:3/2;min-height:0!important;}
@@ -777,34 +703,14 @@ footer::before{opacity:.08;animation-duration:24s;}
 .realm-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
 .realm-card-content{bottom:clamp(14px,2.2vw,32px);left:clamp(14px,2.8vw,36px);right:clamp(14px,2.8vw,36px);padding:clamp(13px,1.8vw,22px);}
 
-
-
 @media(max-width:700px){.realm-grid{grid-template-columns:1fr}.realm-card{aspect-ratio:3/2;min-height:0!important}.realm-card-content{max-width:86%;padding:9px 10px}}
-
-
-
 
 /* ── PRODUCTION-READY HOMEPAGE FINAL RHYTHM ── */
 @media(min-width:1025px){.hero-logo{font-size:clamp(3.1rem,7.15vw,6.85rem);margin-bottom:clamp(10px,1.1vw,16px)}.hero-tagline{margin-bottom:clamp(14px,1.55vw,24px)}.hero-description{margin-bottom:clamp(22px,2.25vw,34px)}.hero-primary-cta{min-height:48px;padding-inline:clamp(30px,3.2vw,46px)}.realm-card{aspect-ratio:3/2}.realm-card-content{bottom:clamp(16px,2vw,30px)}}
 
-
-
 @media(max-width:700px){.realm-card{aspect-ratio:3/2}.realm-card img{object-fit:cover!important}.realm-card-content{bottom:9px;left:10px;right:10px}}
 
-
-
 /* ── FINAL REUSABLE HOMEPAGE FOOTER DENSITY ── */
-
-
-
-
-
-
-
-
-
-
-
 
 /* ── FINAL CINEMATIC MOTION PASS ── */
 .hero-img-wrap::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 52% 18%,rgba(245,217,127,.22),transparent 10%),radial-gradient(circle at 46% 42%,rgba(245,217,127,.12),transparent 8%),linear-gradient(100deg,transparent 22%,rgba(245,217,127,.08) 44%,transparent 58%);mix-blend-mode:screen;opacity:.28;animation:heroMoonPulse 11s ease-in-out infinite,heroTitleSweep 18s ease-in-out infinite;}
@@ -824,7 +730,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 .atlas-banner .cinematic-banner-overlay::after,.journey-banner .cinematic-banner-overlay::after{content:'';position:absolute;inset:auto -12% 0;height:38%;pointer-events:none;background:repeating-linear-gradient(100deg,rgba(245,217,127,.045) 0 1px,transparent 1px 38px),radial-gradient(ellipse at center,rgba(155,142,196,.08),transparent 62%);opacity:.18;animation:waterShimmer 16s ease-in-out infinite;}
 .lore-banner .cinematic-banner-overlay::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 18%,rgba(245,217,127,.08) 42%,transparent 58%),radial-gradient(circle at 68% 38%,rgba(245,217,127,.1),transparent 18%);opacity:.16;animation:loreLightRay 14s ease-in-out infinite;}
 
-
 @keyframes heroMoonPulse{0%,100%{opacity:.22;filter:brightness(1)}50%{opacity:.36;filter:brightness(1.16)}}
 @keyframes heroTitleSweep{0%,100%{background-position:-35% 0,0 0,0 0}50%{background-position:135% 0,0 0,0 0}}
 @keyframes waterShimmer{0%,100%{transform:translate3d(-1%,0,0);opacity:.16}50%{transform:translate3d(1.5%,-2px,0);opacity:.28}}
@@ -838,13 +743,8 @@ footer::before{opacity:.08;animation-duration:24s;}
 @keyframes loreLightRay{0%,100%{transform:translateX(-2%);opacity:.1}50%{transform:translateX(2%);opacity:.2}}
 @media(max-width:700px){.hero-img-wrap::before,.hero-img-wrap::after{opacity:.18}.realm-card-eth img,.realm-card-fan img{animation:none}.cinematic-banner-overlay::before{opacity:.1}.collection-card-overlay::after{opacity:.08}}
 
-
-
-
-
 body{cursor:auto;background:radial-gradient(ellipse at 50% 0%,rgba(31,56,112,.2),transparent 42%),var(--bg);}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(circle at 20% 18%,rgba(245,217,127,.18) 0 1px,transparent 2px),radial-gradient(circle at 78% 28%,rgba(180,211,255,.18) 0 1px,transparent 2px),radial-gradient(circle at 46% 74%,rgba(245,217,127,.12) 0 1px,transparent 2px);background-size:180px 180px,240px 240px,320px 320px;}
-
 
 /* ── HERO — same "no-crop, image sets the height" approach as Home:
    the image is never cropped (object-fit:contain), and text overlays
@@ -939,13 +839,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
    2-column layout below 900px instead of the 4-column-with-full-width
    -brand layout every other page uses. */
 
-
-
-
 </style>
 </head>
 <body>
-<canvas id="particles-canvas" aria-hidden="true"></canvas><div id="cursor-dot"></div><div id="cursor-ring"></div><div id="scrollIndicator"></div>
+<canvas id="particles-canvas" aria-hidden="true"></canvas><div id="scrollIndicator"></div>
 <!-- MUSIC -->
 <div id="musicPlayer" onclick="toggleMusic()">
   <span id="musicIcon">♪</span>
@@ -983,7 +880,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
   <a href="artefacts.html" onclick="closeMenu()" data-i18n="nav.artefacts">ARTEFACTS</a>
   <a href="about.html" onclick="closeMenu()" data-i18n="nav.about">ABOUT</a>
 </div>
-
 
 <main>
 <section class="eth-hero" aria-labelledby="eth-title">
@@ -1046,7 +942,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
   </div>
 </footer>
 
-
 <script src="moonvale-i18n.js"></script>
 <script src="moonvale-music.js"></script>
 <script>
@@ -1068,23 +963,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
   for(let i=0;i<n;i++)stars.push(new Star());
   function animate(){ctx.clearRect(0,0,W,H);stars.forEach(s=>{s.update();s.draw();});requestAnimationFrame(animate);}
   animate();
-})();
-
-// ── CUSTOM CURSOR ──
-(function(){
-  const dot=document.getElementById('cursor-dot');
-  const ring=document.getElementById('cursor-ring');
-  if(!dot||!ring)return;
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
-  animRing();
-  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(.5)';ring.style.borderColor='var(--gold)';});
-  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='var(--gold)';});
-    el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});
-  });
 })();
 
 // ── SCROLL INDICATOR ──
@@ -1164,10 +1042,6 @@ document.addEventListener('click',e=>{
   window.addEventListener('resize',()=>{buildDots();update();});
   buildDots();update();
 })();
-
-
-
-
 
 // ── NAV ──
 function openMenu(){const menu=document.getElementById('mobileMenu');menu.classList.add('open');menu.setAttribute('aria-hidden','false');document.querySelector('.hamburger')?.setAttribute('aria-expanded','true');}
