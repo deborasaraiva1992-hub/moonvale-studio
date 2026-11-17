@@ -39,7 +39,7 @@ html{scroll-behavior:smooth;}
 body{
   background:var(--bg);color:var(--text);
   font-family:'Cormorant Garamond',serif;
-  line-height:1.7;overflow-x:hidden;cursor:none;
+  line-height:1.7;overflow-x:hidden;
   padding-bottom:env(safe-area-inset-bottom);
 }
 
@@ -326,10 +326,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 @keyframes mistDrift{0%{transform:translateX(0);}50%{transform:translateX(10px) translateY(-6px);}100%{transform:translateX(-8px) translateY(5px);}}
 .ripple{position:absolute;border-radius:50%;background:rgba(216,192,138,.2);transform:scale(0);animation:rippleAnim .5s ease-out forwards;pointer-events:none;}
 @keyframes rippleAnim{to{transform:scale(3);opacity:0;}}
-#cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:18px;height:18px;background:radial-gradient(circle,#fff 0%,var(--gold-hi) 45%,var(--gold) 100%);clip-path:path('M9,0 C9.54,6.3 11.7,8.46 18,9 C11.7,9.54 9.54,11.7 9,18 C8.46,11.7 6.3,9.54 0,9 C6.3,8.46 8.46,6.3 9,0 Z');transform:translate(-50%,-50%);opacity:.95;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px rgba(245,217,127,.85));animation:cursorStarTwinkle 1.8s ease-in-out infinite;display:none;}
-#cursor-ring{position:fixed;pointer-events:none;z-index:9998;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(245,217,127,.38),rgba(245,217,127,.1) 55%,transparent 75%);transform:translate(-50%,-50%);display:none;}
-@keyframes cursorStarTwinkle{0%,100%{opacity:.7;filter:drop-shadow(0 0 1px rgba(255,255,255,.75)) drop-shadow(0 0 4px rgba(245,217,127,.55));}50%{opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,1)) drop-shadow(0 0 10px rgba(245,217,127,1));}}
-@media(hover:hover){#cursor-dot,#cursor-ring{display:block;}}
 
 /* page transition with logo */
 .page-transition{position:fixed;inset:0;background:#050816 url('moonvale-intro-starfield.webp') center/cover no-repeat;z-index:9997;opacity:1;pointer-events:auto;transition:opacity .9s ease;display:flex;align-items:center;justify-content:center;}
@@ -413,7 +409,6 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
   .quote-text{font-size:1.1rem;}
 }
 
-
 /* ── PREMIUM RESPONSIVE REFINEMENTS ── */
 nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 .nav-inner{gap:clamp(18px,3vw,46px);}
@@ -473,8 +468,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:600px){.hamburger{margin-left:auto}.hero{min-height:82svh}.hero-content{min-height:calc(82svh - 58px);padding-top:24px}.hero-portals{display:grid;grid-template-columns:1fr 1fr}.realm-selection{margin-top:-18px}.realm-card-content{left:14px;right:14px;bottom:14px}.section-header{margin-bottom:34px}.carousel-wrap{gap:8px}.collection-card{aspect-ratio:3/4}.cinematic-banner::before{inset:8px}.cinematic-banner-overlay{align-items:flex-end;padding:22px;background:linear-gradient(to right,rgba(5,8,22,.92),rgba(5,8,22,.48)),linear-gradient(to top,rgba(5,8,22,.88),transparent 68%)}.cinematic-copy{max-width:100%;padding:16px 14px}.atlas-banner img{height:430px;object-position:center}.journey-grid{grid-template-columns:1fr}.journey-card{padding:22px 18px}.lang-globe{width:34px;height:34px}#musicPlayer{width:38px;height:38px;bottom:calc(12px + env(safe-area-inset-bottom));right:calc(12px + env(safe-area-inset-right));}.portal-realm-sub{display:none}.hero-tagline{margin-bottom:32px}}
 @media(max-width:420px){.hero-logo{font-size:clamp(2.05rem,11vw,2.9rem)}.hero-portals{gap:8px}.hero-btn{letter-spacing:1.2px;font-size:.56rem}.portal-realm-name{letter-spacing:2px}.section{padding-left:14px;padding-right:14px}.atlas-banner img{height:390px}.realm-card{min-height:280px}}
 
-
-
 /* ── PR POLISH PASS: continuous cinematic layout + non-cropping hero ── */
 .section{max-width:min(1680px,100%);padding:clamp(48px,5.8vw,96px) clamp(18px,4vw,56px);}
 .section-header{margin-bottom:clamp(26px,3.2vw,42px);}
@@ -501,8 +494,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:600px){.section{padding:40px 14px}.quote-section{padding:30px 18px}.hero{padding-top:calc(52px + env(safe-area-inset-top));}.hero-content{margin-top:clamp(-132px,-28vw,-86px);padding-inline:14px}.hero-portals{margin-bottom:4px}.hero-btn{padding:10px 10px}.collection-card{aspect-ratio:3/4}.carousel-viewport{border-radius:10px}.atlas-banner img{height:clamp(320px,88vw,430px)}.cinematic-banner{border-radius:14px}.cinematic-banner::before{inset:7px;border-radius:10px;background:linear-gradient(135deg,rgba(245,217,127,.62),transparent 14%) top left/48px 48px no-repeat,linear-gradient(225deg,rgba(245,217,127,.62),transparent 14%) top right/48px 48px no-repeat,linear-gradient(45deg,rgba(245,217,127,.52),transparent 14%) bottom left/48px 48px no-repeat,linear-gradient(315deg,rgba(245,217,127,.52),transparent 14%) bottom right/48px 48px no-repeat}.cinematic-banner::after{inset:13px}.cinematic-banner-overlay{padding:20px;background:linear-gradient(90deg,rgba(5,8,22,.9),rgba(5,8,22,.5) 68%,rgba(5,8,22,.12)),linear-gradient(to top,rgba(5,8,22,.88),transparent 62%)}.cinematic-copy{max-width:100%;padding:14px 12px;background:linear-gradient(90deg,rgba(5,8,22,.74),rgba(5,8,22,.28),transparent)}#musicPlayer{width:34px;height:34px;right:calc(10px + env(safe-area-inset-right));bottom:calc(10px + env(safe-area-inset-bottom));transform:none}.journey-grid{margin-left:0}}
 @media(max-width:430px){.hero-content{margin-top:clamp(-118px,-28vw,-78px)}.hero-logo{font-size:clamp(2rem,10.5vw,2.85rem)}.portal-realm-name{font-size:.52rem}.collection-card{aspect-ratio:2.75/4}.atlas-banner img{height:clamp(300px,86vw,385px)}.section{padding-top:34px;padding-bottom:34px}}
 @media(min-width:1500px){.section{padding-left:72px;padding-right:72px}.atlas-banner img{height:min(720px,38vw)}}
-
-
 
 /* ── FINAL COMPOSITION PASS: reference-style hero and illuminated banners ── */
 .hero{min-height:auto;padding-top:calc(clamp(58px,6vw,76px) + env(safe-area-inset-top));}
@@ -538,8 +529,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:390px){.hero-content{margin-top:clamp(-114px,-28vw,-68px)}.hero-description{display:none}.hero-primary-cta{font-size:.58rem}.atlas-banner img,.journey-banner img{height:295px}.section{padding-top:28px;padding-bottom:28px}}
 @media(min-width:1500px){.atlas-banner img,.journey-banner img{height:min(660px,34vw)}}
 
-
-
 /* ── MOBILE BANNER BALANCE PATCH ── */
 .cinematic-banner{box-shadow:0 24px 70px rgba(0,0,0,.48),0 0 34px rgba(216,192,138,.09);}
 .cinematic-banner::before{inset:6px;border-width:1px;border-color:rgba(218,184,102,.34);border-radius:14px;background:linear-gradient(135deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top left/64px 64px no-repeat,linear-gradient(225deg,rgba(245,217,127,.56),rgba(245,217,127,.16) 10%,transparent 18%) top right/64px 64px no-repeat,linear-gradient(45deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom left/64px 64px no-repeat,linear-gradient(315deg,rgba(245,217,127,.5),rgba(245,217,127,.12) 10%,transparent 18%) bottom right/64px 64px no-repeat;box-shadow:inset 0 0 20px rgba(216,192,138,.04),0 0 20px rgba(216,192,138,.06);}
@@ -557,8 +546,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:600px){.atlas-banner img,.journey-banner img{aspect-ratio:1.18/1;height:auto;min-height:0;object-fit:cover}.atlas-banner img{object-position:center top}.lore-banner img{object-position:center}.journey-banner img{object-position:center}.cinematic-banner{border-radius:13px}.cinematic-banner::before{inset:4px;border-radius:10px;background-size:38px 38px}.cinematic-banner::after{inset:9px}.cinematic-banner-overlay{padding:14px}.cinematic-copy{max-width:82%;padding:10px 11px}.banner-kicker{font-size:.55rem;letter-spacing:2px}.cinematic-copy h3{font-size:1.08rem;letter-spacing:1.7px;margin:5px 0}.cinematic-copy p{font-size:.78rem;line-height:1.32}.atlas-banner-btn{font-size:.56rem;padding:8px 12px;letter-spacing:1.6px}.journey-socials{grid-template-columns:1fr;margin-top:9px}.journey-social{font-size:.52rem;padding:7px 9px}.journey-social svg{width:13px;height:13px}}
 @media(max-width:430px){.atlas-banner img,.journey-banner img{aspect-ratio:1.08/1}.cinematic-copy{max-width:88%}.cinematic-copy p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));}.journey-social span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.journey-social{gap:6px;padding:7px 8px}}
 @media(max-width:370px){.atlas-banner img,.journey-banner img{aspect-ratio:1/1}.cinematic-copy{max-width:92%;}.journey-socials{grid-template-columns:1fr}.cinematic-copy p{display:none}}
-
-
 
 /* ── FINAL RESPONSIVE POLISH: header clearance, desktop scale, slim mobile banners ── */
 :where(section,[id]){scroll-margin-top:calc(84px + env(safe-area-inset-top));}
@@ -585,9 +572,6 @@ nav{padding-left:clamp(18px,4vw,64px);padding-right:clamp(18px,4vw,64px);}
 @media(max-width:370px){.atlas-banner img,.journey-banner img{aspect-ratio:16/9.4}.cinematic-copy{max-width:82%}.cinematic-copy p{display:none}.journey-socials{grid-template-columns:1fr 1fr}}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
-
-
-
 
 /* ── AAA home immersion polish: depth, aligned frames, living sections ── */
 .hero{isolation:isolate;background:radial-gradient(ellipse at 50% 25%,rgba(155,142,196,.09),transparent 55%),#050816;}
@@ -667,13 +651,10 @@ footer{padding:clamp(28px,3.4vw,44px) var(--home-gutter) calc(clamp(20px,2.5vw,3
 @media(max-width:700px){:root{--home-section-y:32px;--home-gutter:14px;--frame-inset:4px}.hero-img-wrap img{animation:none}.hero-content{padding-bottom:18px}.hero-description{font-size:.9rem}.hero-primary-cta{min-height:38px}.section-header{margin-bottom:20px}.realm-card{min-height:260px}.realm-card-content{padding:13px;bottom:12px}.collection-card{aspect-ratio:3/4}.cinematic-banner::after{inset:9px}.cinematic-banner-overlay{padding:12px;background:linear-gradient(90deg,rgba(5,8,22,.62),rgba(5,8,22,.32) 58%,rgba(5,8,22,.04)),linear-gradient(to top,rgba(5,8,22,.48),transparent 56%)}.cinematic-copy{max-width:78%;padding:9px 10px}.cinematic-copy h3{font-size:1.02rem}.cinematic-copy p{font-size:.72rem;line-height:1.28}.journey-socials{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.journey-social span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.footer-inner{grid-template-columns:repeat(2,minmax(0,1fr))!important}.footer-inner>div:first-child{grid-column:1/-1;grid-row:auto}.footer-desc{max-width:34rem}.footer-bottom{align-items:flex-start!important;text-align:left!important}}
 @media(max-width:380px){.hero-description{display:block;font-size:.78rem;line-height:1.28;margin-bottom:10px}.cinematic-copy{max-width:84%}.cinematic-copy p{font-size:.66rem;line-height:1.2}.atlas-banner-btn{margin-top:6px}.footer-inner{grid-template-columns:1fr!important}}
 
-
 /* ── FINAL MOBILE FIT TUNING ── */
 @media(max-width:700px){.realm-card{min-height:clamp(218px,62vw,264px)}.realm-card img{object-fit:cover;object-position:center}.realm-card-content{max-width:88%;padding:10px 11px}.realm-card h3{font-size:1.22rem;letter-spacing:2px}.realm-card p{font-size:.78rem;line-height:1.28}.carousel-wrap{gap:6px}.carousel-viewport{max-width:min(86vw,360px);margin:auto}.collection-card{aspect-ratio:3/4}.collection-card img{object-fit:cover;object-position:center}.carousel-dots{margin-top:14px}.section{padding-top:28px;padding-bottom:28px}.section-sub{margin-top:7px}.footer-social{margin-top:8px}.footer-col ul{columns:1}.footer-bottom{gap:10px}}
 @media(max-width:430px){.hero-content{padding-left:14px;padding-right:14px}.hero-logo{margin-bottom:6px}.hero-tagline{margin-bottom:8px}.hero-primary-cta{min-height:36px;padding:9px 18px}.realm-card{min-height:224px}.cinematic-copy{max-width:82%;}.cinematic-copy h3{font-size:.96rem}.journey-socials{grid-template-columns:1fr 1fr}.footer-inner{gap:12px!important}.footer-col h5{font-size:.55rem!important}.footer-col ul li a{font-size:.74rem!important}}
 @media(max-width:340px){.hero-description{font-size:.74rem}.realm-card{min-height:210px}.realm-card p{display:none}.carousel-viewport{max-width:82vw}.cinematic-copy p{display:none}.journey-social{font-size:.42rem}}
-
-
 
 /* ── FINAL DESKTOP CARD + FOOTER + SOCIAL LINK POLISH ── */
 .realm-card{aspect-ratio:3/2;min-height:0!important;}
@@ -685,8 +666,6 @@ footer{padding-top:clamp(22px,2.6vw,34px)!important;padding-bottom:calc(clamp(16
 .footer-logo{margin-bottom:4px!important}.footer-tagline{margin-bottom:6px!important}.footer-desc{margin-bottom:8px!important;line-height:1.45!important}.footer-social{gap:9px!important}.footer-col h5{margin-bottom:8px!important}.footer-col ul li{margin-bottom:4px!important}.footer-bottom{margin-top:clamp(12px,1.6vw,18px)!important;padding-top:10px!important}.footer-copy{line-height:1.35!important}
 @media(max-width:700px){.realm-grid{grid-template-columns:1fr}.realm-card{aspect-ratio:3/2;min-height:0!important}.realm-card-content{max-width:86%;padding:9px 10px}.footer-inner{gap:10px 14px!important}.footer-social a{width:30px!important;height:30px!important}.footer-bottom{margin-top:10px!important;padding-top:9px!important}.footer-language{transform:scale(.92);transform-origin:left center}}
 @media(max-width:380px){footer{padding-top:22px!important}.footer-desc{display:none}.footer-social{margin-top:4px!important}.footer-inner{gap:10px!important}}
-
-
 
 /* ── PRODUCTION-READY HOMEPAGE FINAL RHYTHM ── */
 @media(min-width:1025px){.hero-logo{font-size:clamp(3.1rem,7.15vw,6.85rem);margin-bottom:clamp(10px,1.1vw,16px)}.hero-tagline{margin-bottom:clamp(14px,1.55vw,24px)}.hero-description{margin-bottom:clamp(22px,2.25vw,34px)}.hero-primary-cta{min-height:48px;padding-inline:clamp(30px,3.2vw,46px)}.realm-card{aspect-ratio:3/2}.realm-card-content{bottom:clamp(16px,2vw,30px)}}
@@ -818,8 +797,6 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 <canvas id="particles-canvas"></canvas>
 <div class="mist-layer"></div>
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
 
 <!-- PAGE TRANSITION WITH LOGO -->
 <div class="page-transition" id="pageTransition">
@@ -956,7 +933,6 @@ footer::before{opacity:.08;animation-duration:24s;}
   <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
-
 <!-- HIDDEN WORLDS -->
 <section class="section fade-in">
   <a href="hidden-worlds.html" class="atlas-banner cinematic-banner hidden-worlds-banner">
@@ -973,7 +949,6 @@ footer::before{opacity:.08;animation-duration:24s;}
     </div>
   </a>
 </section>
-
 
 <!-- ATLAS BANNER -->
 <section class="section fade-in">
@@ -1002,7 +977,6 @@ footer::before{opacity:.08;animation-duration:24s;}
   </a>
 </section>
 
-
 <!-- LORE LIBRARY -->
 <section class="section fade-in">
   <div class="section-header">
@@ -1027,7 +1001,6 @@ footer::before{opacity:.08;animation-duration:24s;}
     </div>
   </a>
 </section>
-
 
 <!-- CONTINUE THE JOURNEY -->
 <section class="section fade-in">
@@ -1138,23 +1111,6 @@ footer::before{opacity:.08;animation-duration:24s;}
   animate();
 })();
 
-// ── CUSTOM CURSOR ──
-(function(){
-  const dot=document.getElementById('cursor-dot');
-  const ring=document.getElementById('cursor-ring');
-  if(!dot||!ring)return;
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
-  function animRing(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
-  animRing();
-  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(.5)';ring.style.borderColor='var(--gold)';});
-  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.8)';ring.style.borderColor='var(--gold)';});
-    el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(216,192,138,.5)';});
-  });
-})();
-
 // ── PAGE TRANSITION WITH LOGO ──
 (function(){
   const pt=document.getElementById('pageTransition');
@@ -1257,9 +1213,6 @@ document.addEventListener('click',e=>{
   window.addEventListener('resize',()=>{buildDots();update();});
   buildDots();update();
 })();
-
-
-
 
 // ── HOME-SPECIFIC: swap the featured banner's text on language change ──
 // (the picker itself is shared via moonvale-i18n.js)
