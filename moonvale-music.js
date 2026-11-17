@@ -21,6 +21,11 @@
     if(file==='chronicles.html'||file==='relics.html'||file==='characters.html'||file==='regions.html')return'lore';
     if(document.querySelector('.realm-ethernia'))return'ethernia';
     if(document.querySelector('.realm-fantasy'))return'fantasy';
+    // Any artefacts collection page (Dark Medieval Legends and the other
+    // collection pages built on the same template) shares the .coll-hero
+    // class, so this covers future collection pages automatically without
+    // needing their filenames added here.
+    if(document.querySelector('.coll-hero'))return'shop';
     return'general';
   }
 
