@@ -775,7 +775,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
    paint step as these pseudo-elements and, being later in the DOM, it
    was painting OVER the vignette/bloom, silently canceling them out.
    Explicit z-index here forces the correct order back. */
-.eth-hero__image::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 58% 54% at 50% 46%,rgba(10,20,55,.38) 0%,rgba(10,20,55,.26) 38%,rgba(10,20,55,.14) 60%,rgba(10,20,55,.05) 78%,transparent 92%),linear-gradient(180deg,transparent 70%,rgba(30,55,120,.32) 82%,rgba(30,55,120,.72) 92%,rgba(30,55,120,1) 100%);}
+.eth-hero__image::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 58% 54% at 50% 46%,rgba(10,20,55,.38) 0%,rgba(10,20,55,.26) 38%,rgba(10,20,55,.14) 60%,rgba(10,20,55,.05) 78%,transparent 92%),linear-gradient(180deg,transparent 70%,rgba(5,8,22,.32) 82%,rgba(5,8,22,.72) 92%,rgba(5,8,22,1) 100%);}
 .eth-hero__image::after{content:'';position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 38%,rgba(245,217,127,.2),transparent 36%),radial-gradient(ellipse at 50% 12%,rgba(179,214,255,.16),transparent 50%);animation:bloom 6s ease-in-out infinite alternate;pointer-events:none;}
 /* A handful of slow-drifting sparkles behind the title — the site's
    ambient star canvas reads faintly against this bright sky, so the
