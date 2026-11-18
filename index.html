@@ -333,9 +333,11 @@ footer{border-top:1px solid rgba(216,192,138,.08);padding:70px 48px 40px;padding
 .pt-bg{position:absolute;inset:0;z-index:0;background:url('moonvale-intro-starfield.webp') center/cover no-repeat;animation:ptBgZoom 9s ease-in-out infinite alternate;will-change:transform;}
 @media(max-width:700px){.pt-bg{background-image:url('moonvale-intro-starfield-mobile.webp');}}
 @keyframes ptBgZoom{0%{transform:scale(1);}100%{transform:scale(1.07);}}
-.pt-rays{position:absolute;inset:-20%;z-index:1;pointer-events:none;opacity:.55;mix-blend-mode:screen;will-change:transform;background:conic-gradient(from 0deg at 50% 45%,transparent 0deg,rgba(245,217,127,.07) 5deg,transparent 11deg,transparent 52deg,rgba(245,217,127,.06) 57deg,transparent 63deg,transparent 104deg,rgba(245,217,127,.07) 109deg,transparent 115deg,transparent 156deg,rgba(245,217,127,.06) 161deg,transparent 167deg,transparent 208deg,rgba(245,217,127,.07) 213deg,transparent 219deg,transparent 260deg,rgba(245,217,127,.06) 265deg,transparent 271deg,transparent 312deg,rgba(245,217,127,.07) 317deg,transparent 323deg,transparent 360deg);animation:ptRaysSpin 36s linear infinite;}
+.pt-rays{position:absolute;inset:-20%;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:screen;will-change:transform;transition:opacity 1s ease;background:conic-gradient(from 0deg at 50% 45%,transparent 0deg,rgba(245,217,127,.07) 5deg,transparent 11deg,transparent 52deg,rgba(245,217,127,.06) 57deg,transparent 63deg,transparent 104deg,rgba(245,217,127,.07) 109deg,transparent 115deg,transparent 156deg,rgba(245,217,127,.06) 161deg,transparent 167deg,transparent 208deg,rgba(245,217,127,.07) 213deg,transparent 219deg,transparent 260deg,rgba(245,217,127,.06) 265deg,transparent 271deg,transparent 312deg,rgba(245,217,127,.07) 317deg,transparent 323deg,transparent 360deg);animation:ptRaysSpin 36s linear infinite;}
+.page-transition.ready .pt-rays{opacity:.55;}
 @keyframes ptRaysSpin{to{transform:rotate(360deg);}}
-.pt-embers{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.pt-embers{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1s ease;}
+.page-transition.ready .pt-embers{opacity:1;}
 .pt-embers span{position:absolute;bottom:-4%;width:3px;height:3px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 6px 1px rgba(245,217,127,.75);opacity:0;animation:ptEmberRise 6.5s ease-in infinite;}
 .pt-embers span:nth-child(1){left:6%;animation-delay:.1s;animation-duration:6.8s;}
 .pt-embers span:nth-child(2){left:14%;animation-delay:1.4s;animation-duration:5.6s;}
@@ -1149,9 +1151,18 @@ footer::before{opacity:.08;animation-duration:24s;}
   function markReady(){pt.classList.add('ready');}
   if(crest.complete)markReady();
   else{crest.addEventListener('load',markReady);crest.addEventListener('error',markReady);}
+  const currentPage=location.pathname.split('/').pop()||'index.html';
   document.querySelectorAll('a[href]').forEach(a=>{
     const href=a.getAttribute('href');
     if(!href||href.startsWith('#')||href.startsWith('http'))return;
+    const targetPage=href.split('#')[0].split('?')[0];
+    if(targetPage===currentPage){
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+      return;
+    }
     a.addEventListener('click',e=>{
       e.preventDefault();
       pt.classList.remove('hide');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();
