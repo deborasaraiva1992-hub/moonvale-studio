@@ -329,9 +329,65 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 @media(prefers-reduced-motion:reduce){.hero-primary-cta,.hero-btn,.atlas-banner-btn{animation:none!important}}
 
+
+/* page transition with logo */
+.page-transition{position:fixed;inset:0;background:#050816;z-index:9997;opacity:1;pointer-events:auto;transition:opacity .9s ease;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.page-transition.hide{opacity:0;pointer-events:none;}
+.pt-bg{position:absolute;inset:0;z-index:0;background:url('moonvale-intro-starfield.webp') center/cover no-repeat;animation:ptBgZoom 9s ease-in-out infinite alternate;will-change:transform;}
+@media(max-width:700px){.pt-bg{background-image:url('moonvale-intro-starfield-mobile.webp');}}
+@keyframes ptBgZoom{0%{transform:scale(1);}100%{transform:scale(1.07);}}
+.pt-rays{position:absolute;inset:-20%;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:screen;will-change:transform;transition:opacity 1s ease;background:conic-gradient(from 0deg at 50% 45%,transparent 0deg,rgba(245,217,127,.07) 5deg,transparent 11deg,transparent 52deg,rgba(245,217,127,.06) 57deg,transparent 63deg,transparent 104deg,rgba(245,217,127,.07) 109deg,transparent 115deg,transparent 156deg,rgba(245,217,127,.06) 161deg,transparent 167deg,transparent 208deg,rgba(245,217,127,.07) 213deg,transparent 219deg,transparent 260deg,rgba(245,217,127,.06) 265deg,transparent 271deg,transparent 312deg,rgba(245,217,127,.07) 317deg,transparent 323deg,transparent 360deg);animation:ptRaysSpin 36s linear infinite;}
+.page-transition.ready .pt-rays{opacity:.55;}
+@keyframes ptRaysSpin{to{transform:rotate(360deg);}}
+.pt-embers{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1s ease;}
+.page-transition.ready .pt-embers{opacity:1;}
+.pt-embers span{position:absolute;bottom:-4%;width:3px;height:3px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 6px 1px rgba(245,217,127,.75);opacity:0;animation:ptEmberRise 6.5s ease-in infinite;}
+.pt-embers span:nth-child(1){left:6%;animation-delay:.1s;animation-duration:6.8s;}
+.pt-embers span:nth-child(2){left:14%;animation-delay:1.4s;animation-duration:5.6s;}
+.pt-embers span:nth-child(3){left:22%;animation-delay:2.6s;animation-duration:7.2s;}
+.pt-embers span:nth-child(4){left:31%;animation-delay:.6s;animation-duration:6.1s;}
+.pt-embers span:nth-child(5){left:39%;animation-delay:3.1s;animation-duration:5.9s;}
+.pt-embers span:nth-child(6){left:47%;animation-delay:1.9s;animation-duration:6.6s;}
+.pt-embers span:nth-child(7){left:55%;animation-delay:.3s;animation-duration:7.4s;}
+.pt-embers span:nth-child(8){left:63%;animation-delay:2.2s;animation-duration:5.7s;}
+.pt-embers span:nth-child(9){left:71%;animation-delay:3.6s;animation-duration:6.3s;}
+.pt-embers span:nth-child(10){left:78%;animation-delay:1.1s;animation-duration:7.0s;}
+.pt-embers span:nth-child(11){left:85%;animation-delay:2.9s;animation-duration:5.5s;}
+.pt-embers span:nth-child(12){left:92%;animation-delay:.9s;animation-duration:6.9s;}
+.pt-embers span:nth-child(13){left:11%;animation-delay:4.1s;animation-duration:6.4s;}
+.pt-embers span:nth-child(14){left:67%;animation-delay:4.4s;animation-duration:5.8s;}
+@keyframes ptEmberRise{0%{transform:translateY(0) scale(.6);opacity:0;}10%{opacity:.9;}82%{opacity:.35;}100%{transform:translateY(-110vh) scale(1.15);opacity:0;}}
+.pt-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;opacity:0;transition:opacity .7s ease;}
+.page-transition.ready .pt-inner{opacity:1;}
+.pt-inner::before{content:'';position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:min(620px,92vw);height:min(460px,60vh);background:radial-gradient(ellipse,rgba(245,217,127,.16) 0%,rgba(245,217,127,.07) 40%,transparent 72%);pointer-events:none;z-index:-1;animation:ptGlowPulse 3.4s ease-in-out infinite;}
+@keyframes ptGlowPulse{0%,100%{opacity:.75;}50%{opacity:1;}}
+.pt-crest{width:clamp(150px,19vw,260px);height:auto;display:block;margin:0 auto 26px;opacity:.95;transform:scale(1);transition:opacity .6s ease,transform .6s ease;animation:ptCrestBreathe 3.2s ease-in-out infinite;}
+.page-transition.hide .pt-crest{opacity:0;transform:scale(.82);}
+@keyframes ptCrestBreathe{0%,100%{filter:drop-shadow(0 0 22px rgba(245,217,127,.34));}50%{filter:drop-shadow(0 0 40px rgba(245,217,127,.6));}}
+.pt-logo{position:relative;font-family:'Cinzel',serif;font-size:clamp(2rem,4.2vw,3.2rem);letter-spacing:9px;opacity:1;transition:opacity .5s ease;background:linear-gradient(100deg,var(--gold) 42%,#fff8e0 50%,var(--gold) 58%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ptLogoShine 3.2s ease-in-out .4s infinite;}
+.page-transition.hide .pt-logo{opacity:0;}
+@keyframes ptLogoShine{0%{background-position:180% 0;}45%,100%{background-position:-80% 0;}}
+.pt-line{display:block;width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px auto 0;transition:width .5s ease;}
+.page-transition.hide .pt-line{width:0;}
+@media(prefers-reduced-motion:reduce){.pt-bg,.pt-rays,.pt-embers span,.pt-inner::before,.pt-crest,.pt-logo{animation:none!important;}}
 </style>
 </head>
 <body>
+<!-- PAGE TRANSITION WITH LOGO -->
+<div class="page-transition" id="pageTransition">
+  <div class="pt-bg"></div>
+  <div class="pt-rays"></div>
+  <div class="pt-embers">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="pt-inner">
+    <img class="pt-crest" src="moonvale-intro-crest.webp" alt="" loading="lazy">
+    <span class="pt-logo">MOONVALE</span>
+    <span class="pt-line"></span>
+  </div>
+</div>
+
 
 <canvas id="particles-canvas"></canvas>
 <div class="mist-layer"></div>
@@ -503,6 +559,35 @@ footer::before{opacity:.08;animation-duration:24s;}
 
 <script src="moonvale-i18n.js"></script>
 <script src="moonvale-music.js"></script>
+<script>
+// ── PAGE TRANSITION WITH LOGO ──
+(function(){
+  const pt=document.getElementById('pageTransition');
+  const crest=pt.querySelector('.pt-crest');
+  function markReady(){pt.classList.add('ready');}
+  if(crest.complete)markReady();
+  else{crest.addEventListener('load',markReady);crest.addEventListener('error',markReady);}
+  const currentPage=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http'))return;
+    const targetPage=href.split('#')[0].split('?')[0];
+    if(targetPage===currentPage){
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+      return;
+    }
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      pt.classList.remove('hide');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();
+      setTimeout(()=>{window.location.href=href;},1400);
+    });
+  });
+  setTimeout(()=>{pt.classList.add('hide');},2800);
+})();
+</script>
 <script>
 (function(){
   const c=document.getElementById('particles-canvas');
