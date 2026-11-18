@@ -616,9 +616,16 @@ footer::before{opacity:.08;animation-duration:24s;}
 (function(){
   const pt=document.getElementById('pageTransition');
   const crest=pt.querySelector('.pt-crest');
-  function markReady(){pt.classList.add('ready');}
-  if(crest.complete)markReady();
-  else{crest.addEventListener('load',markReady);crest.addEventListener('error',markReady);}
+  let skipIntro=false;
+  try{skipIntro=sessionStorage.getItem('moonvale.ptSkipIntro')==='1';}catch(e){}
+  if(skipIntro){
+    try{sessionStorage.removeItem('moonvale.ptSkipIntro');}catch(e){}
+    pt.classList.add('ready');
+  }else{
+    function markReady(){pt.classList.add('ready');}
+    if(crest.complete)markReady();
+    else{crest.addEventListener('load',markReady);crest.addEventListener('error',markReady);}
+  }
   const currentPage=location.pathname.split('/').pop()||'index.html';
   document.querySelectorAll('a[href]').forEach(a=>{
     const href=a.getAttribute('href');
@@ -634,10 +641,11 @@ footer::before{opacity:.08;animation-duration:24s;}
     a.addEventListener('click',e=>{
       e.preventDefault();
       pt.classList.remove('hide');if(window.MoonvaleMusic)window.MoonvaleMusic.beforeNav();
+      try{sessionStorage.setItem('moonvale.ptSkipIntro','1');}catch(err){}
       setTimeout(()=>{window.location.href=href;},1400);
     });
   });
-  setTimeout(()=>{pt.classList.add('hide');},2800);
+  setTimeout(()=>{pt.classList.add('hide');},skipIntro?1100:2800);
 })();
 </script>
 <script>
