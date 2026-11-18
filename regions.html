@@ -593,7 +593,7 @@ footer::before{opacity:.08;animation-duration:24s;}
       setTimeout(()=>{window.location.href=href;},1400);
     });
   });
-  setTimeout(()=>{pt.classList.add('hide');},skipIntro?1100:2800);
+  if(skipIntro){pt.classList.add('hide');}else{setTimeout(()=>{pt.classList.add('hide');},2800);}
 })();
 </script>
 <script>

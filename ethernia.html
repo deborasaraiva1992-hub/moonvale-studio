@@ -1034,7 +1034,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;ba
       setTimeout(()=>{window.location.href=href;},1400);
     });
   });
-  setTimeout(()=>{pt.classList.add('hide');},skipIntro?1100:2800);
+  if(skipIntro){pt.classList.add('hide');}else{setTimeout(()=>{pt.classList.add('hide');},2800);}
 })();
 </script>
 <script>
