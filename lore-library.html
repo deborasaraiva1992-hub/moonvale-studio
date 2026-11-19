@@ -541,6 +541,11 @@ footer::before{opacity:.08;animation-duration:24s;}
   const crest=pt.querySelector('.pt-crest');
   let skipIntro=false;
   try{skipIntro=sessionStorage.getItem('moonvale.ptSkipIntro')==='1';}catch(e){}
+  try{
+    const navEntries=performance.getEntriesByType('navigation');
+    const navType=navEntries.length?navEntries[0].type:(performance.navigation&&performance.navigation.type===2?'back_forward':'');
+    if(navType==='back_forward')skipIntro=true;
+  }catch(e){}
   if(skipIntro){
     try{sessionStorage.removeItem('moonvale.ptSkipIntro');}catch(e){}
     pt.classList.add('ready');
