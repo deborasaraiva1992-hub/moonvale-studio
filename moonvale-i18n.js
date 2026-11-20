@@ -64,7 +64,20 @@
       'ethernia.chronicles.desc':'Stories carried across the heavens.',
       'ethernia.chronicles.cta':'READ THE CHRONICLES',
       'ethernia.final.line1':'EVERY STAR','ethernia.final.line2':'LEAVES A LIGHT.','ethernia.final.line3':'WILL YOU FOLLOW IT?',
-      'music.off':'MUSIC OFF','music.on':'MUSIC ON'
+      'music.off':'MUSIC OFF','music.on':'MUSIC ON',
+      'coll.crumb.artefacts':'Artefacts','coll.about.label':'About This Collection','coll.hero.exploreCta':'EXPLORE THE COLLECTION',
+      'coll.featured.title':'FEATURED PRODUCTS','coll.featured.viewAll':'VIEW ALL DESIGNS','coll.arrivals.title':'NEW ARRIVALS','coll.arrivals.seeNew':"SEE WHAT'S NEW",
+      'coll.explore.title':'EXPLORE OTHER COLLECTIONS','coll.placeholder.comingSoon':'Coming soon',
+      'dml.hero.eyebrow':'Shadows & Dragons','dml.hero.sub':'Castles, dragons, forgotten realms and stories of a darker age.',
+      'dml.about.title':'Realms of Shadow and Glory','dml.about.body':'Every crown is forged in fire, and every kingdom guards a secret older than its walls. This collection gathers the dragons, the broken banners and the gothic spires of a darker age — art for those drawn to castles under siege and legends written in blood moonlight.',
+      'enchanted.hero.eyebrow':'Forests & Forgotten Magic','enchanted.hero.sub':'Magical creatures, ancient ruins and forests alive with forgotten magic.',
+      'enchanted.about.title':'Where Magic Still Lingers','enchanted.about.body':'Deep beneath the canopy, the old magic never truly faded — it only went quiet, waiting. This collection gathers the guardians of the wood, the ruins reclaimed by root and vine, and the soft glow of creatures that exist only where belief still burns. Art for those who feel the forest watching back.',
+      'epic.hero.eyebrow':'Majestic Cities & Legendary Journeys','epic.hero.sub':'Majestic cities, grand kingdoms and legendary journeys across epic lands.',
+      'epic.about.title':'Kingdoms Carved in Legend','epic.about.body':'Every great kingdom begins as a single banner raised against the horizon. This collection gathers the spires, the bridges and the roads walked by heroes on their way to becoming legend — grand cities built for those who dream in the scale of empires and journeys without end.',
+      'steampunk.hero.eyebrow':'Machines & Alchemy','steampunk.hero.sub':'Brass machines, alchemical wonders and Victorian worlds powered by steam and gold.',
+      'steampunk.about.title':'Gears, Gold and Alchemy','steampunk.about.body':'Where invention meets wonder, gears turn gold into magic of their own making. This collection gathers the airships, the alchemists and the brass-and-glass machinery of a world that chose steam over sorcery — art for those drawn to Victorian elegance and the hiss of clockwork dreams.',
+      'silhouette.hero.eyebrow':'Iconic Forms, Bold and Timeless','silhouette.hero.sub':'Bold silhouettes and timeless forms distilled into iconic fantasy art.',
+      'silhouette.about.title':'Shapes That Tell a Story','silhouette.about.body':'Stripped of detail, a great story still speaks — in a single bold line against the light. This collection gathers the dragons, heroes and ruins reduced to their purest silhouette: iconic forms built to be recognized in an instant, and remembered far longer.'
     },
     pt:{
       'nav.home':'INÍCIO','nav.ethernia':'ETHERNIA','nav.fantasy':'FANTASY','nav.lore':'BIBLIOTECA DE LORE','nav.artefacts':'ARTEFACTOS','nav.about':'SOBRE',
@@ -127,7 +140,20 @@
       'ethernia.chronicles.desc':'Histórias transportadas pelos céus.',
       'ethernia.chronicles.cta':'LER AS CRÔNICAS',
       'ethernia.final.line1':'CADA ESTRELA','ethernia.final.line2':'DEIXA UMA LUZ.','ethernia.final.line3':'VAIS SEGUI-LA?',
-      'music.off':'MÚSICA OFF','music.on':'MÚSICA ON'
+      'music.off':'MÚSICA OFF','music.on':'MÚSICA ON',
+      'coll.crumb.artefacts':'Artefatos','coll.about.label':'Sobre Esta Coleção','coll.hero.exploreCta':'EXPLORAR A COLEÇÃO',
+      'coll.featured.title':'PRODUTOS EM DESTAQUE','coll.featured.viewAll':'VER TODOS OS DESIGNS','coll.arrivals.title':'NOVIDADES','coll.arrivals.seeNew':'VEJA O QUE HÁ DE NOVO',
+      'coll.explore.title':'EXPLORE OUTRAS COLEÇÕES','coll.placeholder.comingSoon':'Em breve',
+      'dml.hero.eyebrow':'Sombras & Dragões','dml.hero.sub':'Castelos, dragões, reinos esquecidos e histórias de uma era mais sombria.',
+      'dml.about.title':'Reinos de Sombra e Glória','dml.about.body':'Toda coroa é forjada no fogo, e todo reino guarda um segredo mais antigo que suas muralhas. Esta coleção reúne os dragões, os estandartes quebrados e as torres góticas de uma era mais sombria — arte para quem é atraído por castelos sitiados e lendas escritas sob a luz de uma lua de sangue.',
+      'enchanted.hero.eyebrow':'Florestas & Magia Esquecida','enchanted.hero.sub':'Criaturas mágicas, ruínas antigas e florestas vivas com magia esquecida.',
+      'enchanted.about.title':'Onde a Magia Ainda Perdura','enchanted.about.body':'Nas profundezas da copa das árvores, a magia antiga nunca realmente desapareceu — ela apenas silenciou, à espera. Esta coleção reúne os guardiões do bosque, as ruínas reconquistadas por raízes e vinhas, e o brilho suave de criaturas que só existem onde a crença ainda arde. Arte para quem sente a floresta observando de volta.',
+      'epic.hero.eyebrow':'Cidades Majestosas & Jornadas Lendárias','epic.hero.sub':'Cidades majestosas, grandes reinos e jornadas lendárias por terras épicas.',
+      'epic.about.title':'Reinos Talhados em Lenda','epic.about.body':'Todo grande reino começa com um único estandarte erguido contra o horizonte. Esta coleção reúne as torres, as pontes e os caminhos trilhados por heróis a caminho de se tornarem lenda — grandes cidades construídas para quem sonha na escala de impérios e jornadas sem fim.',
+      'steampunk.hero.eyebrow':'Máquinas & Alquimia','steampunk.hero.sub':'Máquinas de latão, maravilhas alquímicas e mundos vitorianos movidos a vapor e ouro.',
+      'steampunk.about.title':'Engrenagens, Ouro e Alquimia','steampunk.about.body':'Onde a invenção encontra o fascínio, engrenagens transformam ouro em magia própria. Esta coleção reúne os dirigíveis, os alquimistas e a maquinaria de latão e vidro de um mundo que escolheu o vapor em vez da feitiçaria — arte para quem é atraído pela elegância vitoriana e pelo sopro dos sonhos mecânicos.',
+      'silhouette.hero.eyebrow':'Formas Icônicas, Ousadas e Atemporais','silhouette.hero.sub':'Silhuetas ousadas e formas atemporais destiladas em arte fantástica icônica.',
+      'silhouette.about.title':'Formas Que Contam uma História','silhouette.about.body':'Despida de detalhes, uma grande história ainda fala — em uma única linha ousada contra a luz. Esta coleção reúne os dragões, heróis e ruínas reduzidos à sua silhueta mais pura: formas icônicas feitas para serem reconhecidas num instante, e lembradas por muito mais tempo.'
     },
     es:{
       'nav.home':'INICIO','nav.ethernia':'ETHERNIA','nav.fantasy':'FANTASY','nav.lore':'BIBLIOTECA DE LORE','nav.artefacts':'ARTEFACTOS','nav.about':'ACERCA DE',
@@ -190,7 +216,20 @@
       'ethernia.chronicles.desc':'Historias llevadas a través de los cielos.',
       'ethernia.chronicles.cta':'LEER LAS CRÓNICAS',
       'ethernia.final.line1':'CADA ESTRELLA','ethernia.final.line2':'DEJA UNA LUZ.','ethernia.final.line3':'¿LA SEGUIRÁS?',
-      'music.off':'MÚSICA OFF','music.on':'MÚSICA ON'
+      'music.off':'MÚSICA OFF','music.on':'MÚSICA ON',
+      'coll.crumb.artefacts':'Artefactos','coll.about.label':'Sobre Esta Colección','coll.hero.exploreCta':'EXPLORAR LA COLECCIÓN',
+      'coll.featured.title':'PRODUCTOS DESTACADOS','coll.featured.viewAll':'VER TODOS LOS DISEÑOS','coll.arrivals.title':'NOVEDADES','coll.arrivals.seeNew':'MIRA LO NUEVO',
+      'coll.explore.title':'EXPLORA OTRAS COLECCIONES','coll.placeholder.comingSoon':'Próximamente',
+      'dml.hero.eyebrow':'Sombras y Dragones','dml.hero.sub':'Castillos, dragones, reinos olvidados e historias de una era más oscura.',
+      'dml.about.title':'Reinos de Sombra y Gloria','dml.about.body':'Toda corona se forja en el fuego, y todo reino guarda un secreto más antiguo que sus murallas. Esta colección reúne a los dragones, los estandartes rotos y las torres góticas de una era más oscura — arte para quienes se sienten atraídos por castillos sitiados y leyendas escritas bajo la luz de una luna de sangre.',
+      'enchanted.hero.eyebrow':'Bosques y Magia Olvidada','enchanted.hero.sub':'Criaturas mágicas, ruinas antiguas y bosques vivos con magia olvidada.',
+      'enchanted.about.title':'Donde la Magia Aún Perdura','enchanted.about.body':'En lo profundo del follaje, la magia antigua nunca se desvaneció del todo — solo guardó silencio, esperando. Esta colección reúne a los guardianes del bosque, las ruinas reconquistadas por raíces y enredaderas, y el suave resplandor de criaturas que solo existen donde la creencia aún arde. Arte para quienes sienten que el bosque les observa.',
+      'epic.hero.eyebrow':'Ciudades Majestuosas y Viajes Legendarios','epic.hero.sub':'Ciudades majestuosas, grandes reinos y viajes legendarios por tierras épicas.',
+      'epic.about.title':'Reinos Tallados en Leyenda','epic.about.body':'Todo gran reino comienza con un único estandarte alzado contra el horizonte. Esta colección reúne las torres, los puentes y los caminos recorridos por héroes camino a convertirse en leyenda — grandes ciudades construidas para quienes sueñan a la escala de imperios y viajes sin fin.',
+      'steampunk.hero.eyebrow':'Máquinas y Alquimia','steampunk.hero.sub':'Máquinas de latón, maravillas alquímicas y mundos victorianos impulsados por vapor y oro.',
+      'steampunk.about.title':'Engranajes, Oro y Alquimia','steampunk.about.body':'Donde la invención se encuentra con la maravilla, los engranajes convierten el oro en magia propia. Esta colección reúne los dirigibles, los alquimistas y la maquinaria de latón y cristal de un mundo que eligió el vapor en lugar de la hechicería — arte para quienes se sienten atraídos por la elegancia victoriana y el siseo de los sueños de relojería.',
+      'silhouette.hero.eyebrow':'Formas Icónicas, Audaces y Atemporales','silhouette.hero.sub':'Siluetas audaces y formas atemporales destiladas en arte de fantasía icónico.',
+      'silhouette.about.title':'Formas Que Cuentan una Historia','silhouette.about.body':'Despojada de detalles, una gran historia todavía habla — en una sola línea audaz contra la luz. Esta colección reúne a los dragones, héroes y ruinas reducidos a su silueta más pura: formas icónicas hechas para ser reconocidas en un instante, y recordadas por mucho más tiempo.'
     }
   };
   function detectLanguage(){
